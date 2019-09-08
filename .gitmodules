@@ -1,0 +1,3 @@
+[submodule "grobid"]
+	path = grobid
+	url = https://github.com/kermitt2/grobid.git
