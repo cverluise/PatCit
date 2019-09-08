@@ -3,7 +3,7 @@ import os
 
 import click
 
-from pnpl.io import process_biblio_tls214
+from scicit.io import process_biblio_tls214
 
 
 @click.command()

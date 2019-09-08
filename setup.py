@@ -1,9 +1,9 @@
 from setuptools import setup
 
 setup(
-    name="pnpl",
+    name="scicit",
     version="0.1",
-    packages=["pnpl"],
+    packages=["scicit"],
     url="",
     license="",
     author="Cyril Verluise",
