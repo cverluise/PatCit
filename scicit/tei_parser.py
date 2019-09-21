@@ -73,9 +73,9 @@ def clean_value(value):
 
 async def fetch_all_tags(soup):
     """
-
-    :param soup:
-    :return:
+    Return grobid ouptut as a json
+    :param soup: 'bs4.BeautifulSoup'
+    :return: dict
     """
     tasks = []
     for tag_ in tag_list:
