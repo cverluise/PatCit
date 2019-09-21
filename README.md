@@ -59,3 +59,36 @@ Bottlenecks:
     
 All in all, you can reasonably expect to process ~4 citations per second, ie 100,000 in 7 hours.
  
+### Grobid + Biblio-Glutton (on AWS)
+
+0. AWS Set up
+
+- Start EC2
+- Update ES policy strategy with IPv4 EC2
+
+1. Start biblio-glutton
+ 
+```shell script
+cd biblio-glutton/lookup/
+./gradlew clean build
+java -jar build/libs/lookup-service-1.0-SNAPSHOT-onejar.jar server data/config/config.yml
+curl localhost:8080/service/data  # Check that the service is running properly
+```
+
+2. Start Grobid 
+
+````shell script
+cd SciCit/grobid/
+./gradlew run
+curl -X POST -d "citations=Graff, Expert. Opin. Ther. Targets (2002) 6(1): 103-113" localhost:8070/api/processCitation
+````
+
+3. Start Processing
+
+```shell script
+cd SciCit/
+# pipenv install --dev
+pipenv shell
+python bin/ProcessCitations.py ~/data/small_chunks/
+
+``` 
