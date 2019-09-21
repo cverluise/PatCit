@@ -1,142 +1,101 @@
 import asyncio
+import re
 
-from bs4 import BeautifulSoup
+from scicit.schema import tag_list, tag2attr, cit_schema
+
+regex = re.compile(r"[\n\r\t]")
 
 
 async def fetch_author(auth):
     """
     Return author attributes in dict
-    :param auth: bs4.element.Tag
+    :param auth: bs4.BeautifulSoup
     :return: dict
     """
-    auth_ = {}
-    if auth.find("forename", {"type": "first"}):
-        first = auth.find("forename", {"type": "first"}).get_text()
-        auth_.update({"first": first})
-    if auth.find("forename", {"type": "middle"}):
-        middle = auth.find("forename", {"type": "middle"}).get_text()
-        auth_.update({"middle": middle})
-    if auth.find("surname"):
-        last = auth.find("surname").get_text()
-        auth_.update({"last": last})
+    auth_ = {"first": None, "middle": None, "surname": None, "genname": None}
+    for name_part in ["first", "middle"]:
+        if auth.find("forename", {"type": name_part}):
+            name = auth.find("forename", {"type": name_part}).get_text()
+            auth_.update({name_part: name})
+    for name_part in ["surname", "genname"]:
+        if auth.find(name_part):
+            name = auth.find(name_part).get_text()
+            auth_.update({name_part: name})
     return auth_
 
 
-async def fetch_authors(analytic):
+async def fetch_authors(soup):
     """
-
-    :param analytic: bs4.element.Tag
+    Return the list of author dict
+    :param soup: bs4.element.Tag
     :return: List[dict]
     """
-    if analytic.find_all("author"):
-        authors = [fetch_author(auth) for auth in analytic.find_all("author")]
+    if soup.find_all("author"):
+        authors = [fetch_author(auth) for auth in soup.find_all("author")]
         return await asyncio.gather(*authors)
 
 
-async def fetch_doi(analytic):
+async def fetch_tag(tag):
     """
-
-    :param analytic: bs4.element.Tag
-    :return: str
-    """
-    if analytic.find("idno"):
-        return analytic.find("idno").get_text()
-
-
-async def fetch_art_title(analytic):
-    """
-
-    :param analytic: bs4.element.Tag
-    :return: str
-    """
-    if analytic.find("title", {"level": "a", "type": "main"}):
-        return analytic.find(
-            "title", {"level": "a", "type": "main"}
-        ).get_text()
-
-
-async def fetch_analytic(analytic):
-    """
-
-    :param analytic: bs4.element.Tag
+    Return a dict for each tag with k the name of the tag and v the string of the tag
+    :param tag: bs4.element.Tag
     :return: dict
     """
-    task_authors = asyncio.create_task(fetch_authors(analytic))
-    task_title_art = asyncio.create_task(fetch_art_title(analytic))
-    task_doi = asyncio.create_task(fetch_doi(analytic))
+    assert tag.name in tag_list
+    attr = tag2attr[tag.name]
+    if attr and tag.string:
+        if tag.name == "title":
+            try:
+                return {
+                    tag.name + "_" + tag["type"] + "_" + tag[attr]: tag.string
+                }
+            except KeyError:
+                return {tag.name + "_" + tag[attr]: tag.string}
+        else:
+            try:
+                return {tag[attr]: tag.string}
+            except KeyError:  # handles cases like <idno>Pages 15 - 20</idno>
+                return {tag.name: tag.string}
+    else:
+        return tag.attrs
 
+
+def clean_value(value):
+    """
+    Return the value without string control characters. Nb: Only strings are actually modified
+    :param value:
+    :return:
+    """
+    if value and isinstance(value, str):
+        value = regex.sub("", str(value))
+    return value
+
+
+async def fetch_all_tags(soup):
+    """
+
+    :param soup:
+    :return:
+    """
+    tasks = []
+    for tag_ in tag_list:
+        for tag in soup.find_all(tag_):
+            task = asyncio.create_task(fetch_tag(tag))
+            tasks.append(task)
+    task_authors = asyncio.create_task(fetch_authors(soup))
+
+    tasks = await asyncio.gather(*tasks)
     await task_authors
-    await task_title_art
-    await task_doi
 
-    return {
-        "authors": task_authors.result(),
-        "title_art": task_title_art.result(),
-        "doi": task_doi.result(),
+    # TODO rename keys ?
+    cit = cit_schema
+    for task in tasks:
+        cit.update(task)
+    cit.update({"authors": task_authors.result()})
+    cit = {
+        k: clean_value(v)
+        for k, v in cit.items()
+        if k in list(cit_schema.keys())
     }
 
-
-async def fetch_journ_title(monogr):
-    """
-
-    :param monogr: bs4.element.Tag
-    :return: str
-    """
-    if monogr.find("title", {"level": "j"}):
-        return monogr.find("title", {"level": "j"}).get_text()
-
-
-async def fetch_imprint(monogr):
-    """
-
-    :param monogr: bs4.element.Tag
-    :return: dict
-    """
-    imprint_ = {}
-    if monogr.find("imprint").find_all("biblscope"):
-        for tag in monogr.find("imprint").find_all("biblscope"):
-            if tag.contents:
-                imprint_.update(dict(zip(tag.attrs.values(), tag.contents)))
-            else:
-                imprint_.update(tag.attrs)
-        return imprint_
-
-
-async def fetch_monogr(monogr):
-    """
-
-    :param monogr: bs4.element.Tag
-    :return: dict
-    """
-    task_title = asyncio.create_task(fetch_journ_title(monogr))
-    task_imprint = asyncio.create_task(fetch_imprint(monogr))
-
-    await task_title
-    await task_imprint
-
-    return {
-        "title_journ": task_title.result(),
-        "imprint": task_imprint.result(),
-    }
-
-
-async def fetch_all(response: str):
-    """
-
-    :param response: str
-    :return: dict
-    """
-    all_ = {}
-    soup_ = BeautifulSoup(response, "lxml")
-    if soup_.find("analytic"):
-        task_analytic = asyncio.create_task(
-            fetch_analytic(soup_.find("analytic"))
-        )
-        await task_analytic
-        all_.update(task_analytic.result())
-    if soup_.find("monogr"):
-        task_monogr = asyncio.create_task(fetch_monogr(soup_.find("monogr")))
-        await task_monogr
-        all_.update(task_monogr.result())
-
-    return all_
+    return cit
