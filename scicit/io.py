@@ -86,7 +86,7 @@ def process_full_text(input_file: str):
     output_file = (
         "/".join(tmp[:-1]) + "/processed_" + ".".join(tmp[-1].split(".")[:-1])
     )
-    data = {"citations": None, "consolidateCitations": 1}  # init
+    data = {"input": None, "consolidateCitations": 1}  # init
 
     with open(input_file, mode="r") as fin:
         fin_reader = csv.DictReader(
@@ -99,7 +99,7 @@ def process_full_text(input_file: str):
         with open(output_file, mode="w") as fout:
             fout_writer = csv.DictWriter(
                 fout,
-                fieldnames=["publication_number", "citation"],
+                fieldnames=["publication_number", "citations"],
                 delimiter=",",
                 quotechar='"',
                 quoting=csv.QUOTE_MINIMAL,
@@ -108,8 +108,6 @@ def process_full_text(input_file: str):
             for line in tqdm(fin_reader):
                 if line_count == 0:
                     fout_writer.writeheader()
-                    # as if there were no header (although there is, but no issue at the end of
-                    # the day)
                     pass
                 else:
                     # print(line_count)
@@ -121,15 +119,15 @@ def process_full_text(input_file: str):
                     )
                     soup = BeautifulSoup(response.text, "lxml")
 
-                    if soup.find_all("biblstruct"):
-                        for citation in soup.find_all("biblstruct"):
-                            # print([publication_number, bib])
-                            fout_writer.writerow(
-                                {
-                                    "publication_number": line[
-                                        "publication_number"
-                                    ],
-                                    "citation": citation,
-                                }
-                            )
+                    fout_writer.writerow(
+                        {
+                            "publication_number": line["publication_number"],
+                            "citations": list(
+                                map(
+                                    lambda x: str(x),
+                                    soup.find_all("biblstruct"),
+                                )
+                            ),
+                        }
+                    )
                 line_count += 1
