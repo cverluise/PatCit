@@ -24,7 +24,8 @@ from scicit.io import process_biblio_tls214, process_full_text
 )
 @click.option(
     "--max_workers",
-    type=str,
+    type=int,
+    default=10,
     help="Maximum number of threads running in parallel'",
 )
 def main(path, pattern, flavor, max_workers):
