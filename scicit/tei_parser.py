@@ -88,7 +88,33 @@ async def fetch_all_tags(soup):
     await task_authors
 
     # TODO rename keys ?
-    cit = cit_schema
+    # The schema is hard written because if we call it from scicit.schema,
+    # there is an overwrite issue. Every parsed objects have the same values
+    cit = {
+        "DOI": None,
+        "ISSN": None,
+        "ISSNe": None,
+        "PMCID": None,
+        "PMID": None,
+        "authors": [
+            {"first": None, "middle": None, "surname": None, "genname": None}
+        ],
+        "from": None,
+        "idno": None,
+        "issue": None,
+        "page": None,
+        "target": None,
+        "title_abbrev_j": None,
+        "title_j": None,
+        "title_m": None,
+        "title_main_a": None,
+        "title_main_m": None,
+        "to": None,
+        "type": None,
+        "unit": None,
+        "volume": None,
+        "when": None,
+    }
     for task in tasks:
         cit.update(task)
     cit.update({"authors": task_authors.result()})
