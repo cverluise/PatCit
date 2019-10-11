@@ -1,10 +1,14 @@
 import csv
+import sys
 
 import requests
+from bs4 import BeautifulSoup
 from smart_open import open
 from tqdm import tqdm
 
-header_fin = [
+csv.field_size_limit(sys.maxsize)
+
+header_fin_tls214 = [
     "npl_publn_id",
     "npl_type",
     "npl_biblio",
@@ -28,6 +32,8 @@ header_fin = [
     "online_search_date",
 ]
 
+header_fin_fulltext_us = ["publication_number", "description"]
+
 
 def process_biblio_tls214(input_file: str):
     tmp = input_file.split("/")
@@ -38,7 +44,7 @@ def process_biblio_tls214(input_file: str):
     with open(input_file, mode="r") as fin:
         fin_reader = csv.DictReader(
             fin,
-            fieldnames=header_fin,
+            fieldnames=header_fin_tls214,
             delimiter=",",
             quotechar='"',
             quoting=csv.QUOTE_MINIMAL,
@@ -72,4 +78,58 @@ def process_biblio_tls214(input_file: str):
                             "npl_grobid": response.text,
                         }
                     )
+                line_count += 1
+
+
+def process_full_text(input_file: str):
+    tmp = input_file.split("/")
+    output_file = (
+        "/".join(tmp[:-1]) + "/processed_" + ".".join(tmp[-1].split(".")[:-1])
+    )
+    data = {"citations": None, "consolidateCitations": 1}  # init
+
+    with open(input_file, mode="r") as fin:
+        fin_reader = csv.DictReader(
+            fin,
+            fieldnames=header_fin_fulltext_us,
+            delimiter=",",
+            quotechar='"',
+            quoting=csv.QUOTE_MINIMAL,
+        )
+        with open(output_file, mode="w") as fout:
+            fout_writer = csv.DictWriter(
+                fout,
+                fieldnames=["publication_number", "citation"],
+                delimiter=",",
+                quotechar='"',
+                quoting=csv.QUOTE_MINIMAL,
+            )
+            line_count = 0
+            for line in tqdm(fin_reader):
+                if line_count == 0:
+                    fout_writer.writeheader()
+                    # as if there were no header (although there is, but no issue at the end of
+                    # the day)
+                    pass
+                else:
+                    # print(line_count)
+                    data.update({"input": line["description"]})
+
+                    response = requests.post(
+                        "http://localhost:8070/api/processCitationPatentTXT",
+                        data=data,
+                    )
+                    soup = BeautifulSoup(response.text, "lxml")
+
+                    if soup.find_all("biblstruct"):
+                        for citation in soup.find_all("biblstruct"):
+                            # print([publication_number, bib])
+                            fout_writer.writerow(
+                                {
+                                    "publication_number": line[
+                                        "publication_number"
+                                    ],
+                                    "citation": citation,
+                                }
+                            )
                 line_count += 1
