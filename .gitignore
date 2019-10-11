@@ -2,7 +2,8 @@
 data/
 
 # Dev
-dev.py
+dev*.py
+
 
 # System files
 **/.DS_Store
