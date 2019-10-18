@@ -1,0 +1,160 @@
+[
+  {
+        "description": "",
+        "name": "npl_publn_id",
+        "type": "INTEGER",
+        "mode": "REQUIRED"
+    },
+  {
+        "description": "",
+        "name": "DOI",
+        "type": "STRING",
+        "mode": "NULLABLE"
+    },
+  {
+        "description": "",
+        "name": "ISSN",
+        "type": "STRING",
+        "mode": "NULLABLE"
+    },
+  {
+        "description": "",
+        "name": "ISSNe",
+        "type": "STRING",
+        "mode": "NULLABLE"
+    },
+  {
+        "description": "",
+        "name": "PMCID",
+        "type": "STRING",
+        "mode": "NULLABLE"
+    },
+  {
+        "description": "",
+        "name": "PMID",
+        "type": "INTEGER",
+        "mode": "NULLABLE"
+    },
+  {
+        "description": "",
+        "name": "authors",
+        "type": "RECORD",
+        "mode": "REPEATED",
+        "fields": [
+            {
+        "description": "",
+        "name": "first",
+        "type": "STRING",
+        "mode": "NULLABLE"
+    },
+                {
+        "description": "",
+        "name": "middle",
+        "type": "STRING",
+        "mode": "NULLABLE"
+    },
+          {
+        "description": "",
+        "name": "surname",
+        "type": "STRING",
+        "mode": "NULLABLE"
+    },
+          {
+        "description": "",
+        "name": "genname",
+        "type": "STRING",
+        "mode": "NULLABLE"
+    }
+        ]
+    },
+  {
+        "description": "",
+        "name": "idno",
+        "type": "STRING",
+        "mode": "NULLABLE"
+    },
+  {
+        "description": "",
+        "name": "issue",
+        "type": "STRING",
+        "mode": "NULLABLE"
+    },
+  {
+        "description": "",
+        "name": "target",
+        "type": "STRING",
+        "mode": "NULLABLE"
+    },
+  {
+        "description": "",
+        "name": "title_abbrev_j",
+        "type": "STRING",
+        "mode": "NULLABLE"
+    },
+  {
+        "description": "",
+        "name": "title_j",
+        "type": "STRING",
+        "mode": "NULLABLE"
+    },
+  {
+        "description": "",
+        "name": "title_m",
+        "type": "STRING",
+        "mode": "NULLABLE"
+    },
+  {
+        "description": "",
+        "name": "title_main_a",
+        "type": "STRING",
+        "mode": "NULLABLE"
+    },
+  {
+        "description": "",
+        "name": "title_main_m",
+        "type": "STRING",
+        "mode": "NULLABLE"
+    },
+  {
+        "description": "",
+        "name": "type",
+        "type": "STRING",
+        "mode": "NULLABLE"
+    },
+  {
+        "description": "",
+        "name": "unit",
+        "type": "STRING",
+        "mode": "NULLABLE"
+    },
+     {
+        "description": "",
+        "name": "page",
+        "type": "INTEGER",
+        "mode": "NULLABLE"
+    },
+      {
+        "description": "",
+        "name": "from",
+        "type": "STRING",
+        "mode": "NULLABLE"
+    },
+    {
+        "description": "",
+        "name": "to",
+        "type": "STRING",
+        "mode": "NULLABLE"
+    },
+  {
+        "description": "",
+        "name": "volume",
+        "type": "INTEGER",
+        "mode": "NULLABLE"
+    },
+  {
+        "description": "",
+        "name": "when",
+        "type": "STRING",
+        "mode": "NULLABLE"
+    }
+    ]
