@@ -3,7 +3,7 @@ import asyncio
 import requests
 from bs4 import BeautifulSoup
 
-from scicit.tei_parser import fetch_analytic, fetch_monogr, fetch_all
+from scicit.serialize import fetch_analytic, fetch_monogr, fetch_all
 
 citation = (
     "WEIDLE U H ET AL: 'NEW EXPRESSION SYSTEM FOR MAMMALIAN CELLS BASED ON PUTATIVE "
