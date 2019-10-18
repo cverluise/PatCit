@@ -4,6 +4,7 @@ url = "https://pypi.org/simple"
 verify_ssl = true
 
 [dev-packages]
+google-cloud-bigquery = "*"
 
 [packages]
 lxml = "*"
@@ -14,6 +15,7 @@ beautifulsoup4 = "*"
 asyncio = "*"
 pre-commit = "*"
 pnpl = {editable = true,path = "."}
+jsonlines = "*"
 
 [requires]
 python_version = "3.7"
