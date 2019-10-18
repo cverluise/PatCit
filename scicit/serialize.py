@@ -68,12 +68,14 @@ def clean_value(value):
     """
     if value and isinstance(value, str):
         value = regex.sub("", str(value))
+        value = value
     return value
 
 
-async def fetch_all_tags(soup):
+async def fetch_all_tags(npl_publn_id, soup):
     """
     Return grobid ouptut as a json
+    :param npl_publn_id: str
     :param soup: 'bs4.BeautifulSoup'
     :return: dict
     """
@@ -123,5 +125,5 @@ async def fetch_all_tags(soup):
         for k, v in cit.items()
         if k in list(cit_schema.keys())
     }
-
+    cit.update({"npl_publn_id": npl_publn_id})
     return cit
