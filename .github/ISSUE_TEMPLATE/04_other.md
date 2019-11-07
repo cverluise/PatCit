@@ -10,7 +10,6 @@ about: For general usage questions.
 <!-- Include details of your environment.-->
 * Operating System:
 * Python Version Used:
-* spaCy Version Used:
 * Environment Information:
 
 <!-- If you plan to copy paste a long piece of code, log, etc, Rather than wrecking readability, wrap it in a <details> </details> tag!-->
