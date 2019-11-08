@@ -1,40 +1,72 @@
 [
   {
-        "description": "",
+        "description": "Non-Patent Literature publication identification. Source: PATSTAT and DOCDB.",
         "name": "npl_publn_id",
         "type": "INTEGER",
         "mode": "REQUIRED"
     },
   {
-        "description": "",
+    "description": "",
+    "name": "cited_by",
+    "type": "RECORD",
+    "mode": "REPEATED",
+    "fields": [
+      {
+        "description": "Origin of the citation (e.g. APPlicant, SEArch report, etc)",
+        "name": "origin",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      },
+      {
+        "description": "DOCDB publication number of citing patent(s)",
+        "name": "publication_number",
+        "type": "STRING",
+        "mode": "NULLABLE"
+      }
+    ]
+  },
+  {
+        "description": "Digital Object Identifier. DOIs are in wide use mainly to identify academic, professional, and government information, such as journal articles, research reports and data sets, and official publications.",
         "name": "DOI",
         "type": "STRING",
         "mode": "NULLABLE"
     },
   {
-        "description": "",
+        "description": "International Standard Serial Number. It is an 8-digit code used to identify newspapers, journals, magazines and periodicals of all kinds and on all media –- print and electronic.",
         "name": "ISSN",
         "type": "STRING",
         "mode": "NULLABLE"
     },
   {
-        "description": "",
+        "description": "Electronic International Standard Serial Number. When a serial with the same content is published in more than one media type, a different ISSN is assigned to each media type. The ISSN system refers to the electronic ISSN  as the ISSNe.",
         "name": "ISSNe",
         "type": "STRING",
         "mode": "NULLABLE"
     },
   {
-        "description": "",
+        "description": "PubMed Central Identifier. The PMCID is a unique reference number or identifier that is assigned to every article that is accepted into PubMed Central -- an archive of full-text journal articles.",
         "name": "PMCID",
         "type": "STRING",
         "mode": "NULLABLE"
     },
   {
-        "description": "",
+        "description": "PubMed Identifier. The PMID is a unique reference number for PubMed citations.",
         "name": "PMID",
         "type": "INTEGER",
         "mode": "NULLABLE"
     },
+  {
+        "description": "Document-specific identifier, if not in DOI, ISSN, ISSNe, PMCID, PMID.",
+        "name": "idno",
+        "type": "STRING",
+        "mode": "NULLABLE"
+    },
+  {
+      "description": "Open Access url",
+      "name": "target",
+      "type": "STRING",
+      "mode": "NULLABLE"
+  },
   {
         "description": "",
         "name": "authors",
@@ -42,25 +74,25 @@
         "mode": "REPEATED",
         "fields": [
             {
-        "description": "",
+        "description": "First name",
         "name": "first",
         "type": "STRING",
         "mode": "NULLABLE"
     },
-                {
-        "description": "",
+          {
+        "description": "Middle name",
         "name": "middle",
         "type": "STRING",
         "mode": "NULLABLE"
     },
           {
-        "description": "",
+        "description": "Surname",
         "name": "surname",
         "type": "STRING",
         "mode": "NULLABLE"
     },
           {
-        "description": "",
+        "description": "Gender name",
         "name": "genname",
         "type": "STRING",
         "mode": "NULLABLE"
@@ -68,59 +100,59 @@
         ]
     },
   {
-        "description": "",
-        "name": "idno",
-        "type": "STRING",
-        "mode": "NULLABLE"
-    },
-  {
-        "description": "",
-        "name": "issue",
-        "type": "STRING",
-        "mode": "NULLABLE"
-    },
-  {
-        "description": "",
-        "name": "target",
-        "type": "STRING",
-        "mode": "NULLABLE"
-    },
-  {
-        "description": "",
+        "description": "Journal title (abbreviated)",
         "name": "title_abbrev_j",
         "type": "STRING",
         "mode": "NULLABLE"
     },
   {
-        "description": "",
+        "description": "Journal title",
         "name": "title_j",
         "type": "STRING",
         "mode": "NULLABLE"
     },
   {
-        "description": "",
+        "description": "Title of the item holding the NPL -- for non journal items only , e.g. conference, proceedings, etc.",
         "name": "title_m",
         "type": "STRING",
         "mode": "NULLABLE"
     },
   {
-        "description": "",
+      "description": "",
+      "name": "title_main_m",
+      "type": "STRING",
+      "mode": "NULLABLE"
+  },
+  {
+        "description": "Article title",
         "name": "title_main_a",
         "type": "STRING",
         "mode": "NULLABLE"
     },
   {
-        "description": "",
-        "name": "title_main_m",
+        "description": "Publication date",
+        "name": "when",
         "type": "STRING",
         "mode": "NULLABLE"
     },
   {
-        "description": "",
+        "description": "Publication type",
         "name": "type",
         "type": "STRING",
         "mode": "NULLABLE"
     },
+  {
+      "description": "Volume number of the item holding the NPL (e.g. journal, proceedings, etc) ",
+      "name": "volume",
+      "type": "INTEGER",
+      "mode": "NULLABLE"
+  },
+  {
+      "description": "Issue number of the item holding the NPL (e.g. journal, proceedings, etc)",
+      "name": "issue",
+      "type": "STRING",
+      "mode": "NULLABLE"
+  },
   {
         "description": "",
         "name": "unit",
@@ -134,27 +166,15 @@
         "mode": "NULLABLE"
     },
       {
-        "description": "",
+        "description": "First page",
         "name": "from",
         "type": "STRING",
         "mode": "NULLABLE"
     },
     {
-        "description": "",
+        "description": "Last page",
         "name": "to",
         "type": "STRING",
         "mode": "NULLABLE"
-    },
-  {
-        "description": "",
-        "name": "volume",
-        "type": "INTEGER",
-        "mode": "NULLABLE"
-    },
-  {
-        "description": "",
-        "name": "when",
-        "type": "STRING",
-        "mode": "NULLABLE"
     }
-    ]
+]
