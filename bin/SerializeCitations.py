@@ -9,10 +9,10 @@ import pandas as pd
 from bs4 import BeautifulSoup
 from tqdm import tqdm
 
-from scicit.serialize import fetch_all_tags
+from scicit.serialize.npl_citation import fetch_all_tags
 
 
-# TODO: type checkingn: main issues on volume and page (use jsonschema for example)
+# TODO: type checking: main issues on volume and page (use jsonschema for example)
 
 
 async def fetch_batch(npl_publn_id_list, npl_grobid_list):
