@@ -16,6 +16,7 @@ asyncio = "*"
 pre-commit = "*"
 pnpl = {editable = true,path = "."}
 jsonlines = "*"
+jsonschema = "*"
 
 [requires]
 python_version = "3.7"
