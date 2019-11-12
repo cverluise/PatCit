@@ -1,40 +1,5 @@
 from dateutil.parser import parse
-from scicit.validation.schema import npl_citation_schema
-from scicit.validation.format import is_date_format, to_number, clean_string
-
-
-def prep_number(serialized_citation: dict):
-    """
-    Return the serialized citation with "number" fields as int
-    :param serialized_citation: dict
-    :return: dict
-    """
-    for k in [
-        k
-        for k, v in npl_citation_schema["properties"].items()
-        if v["type"] == "number"
-    ]:
-        if k in serialized_citation.keys():
-            serialized_citation.update({k: to_number(serialized_citation[k])})
-    return serialized_citation
-
-
-def prep_string(serialized_citation: dict):
-    """
-    Return the serialized citation with clean "string" fields
-    :param serialized_citation: dict
-    :return: dict
-    """
-    for k in [
-        k
-        for k, v in npl_citation_schema["properties"].items()
-        if v["type"] == "string"
-    ]:
-        if k in serialized_citation.keys():
-            serialized_citation.update(
-                {k: clean_string(serialized_citation[k])}
-            )
-    return serialized_citation
+from scicit.validation.shape import is_date_format
 
 
 def solve_issue_4(serialized_citation: dict, issues: list):
@@ -87,4 +52,17 @@ def solve_issue_3(serialized_citation):
         if is_date_format(date_string):
             date = parse(serialized_citation["when"])
             serialized_citation.update({"year": date.year})
+    return serialized_citation
+
+
+def solve_issues(serialized_citation, issues):
+    """
+
+    :param serialized_citation: dict
+    :param issues: list
+    :return: dict
+    """
+    serialized_citation = solve_issue_5(serialized_citation, issues)
+    serialized_citation = solve_issue_4(serialized_citation, issues)
+    serialized_citation = solve_issue_3(serialized_citation)
     return serialized_citation
