@@ -1,5 +1,5 @@
 import asyncio
-from scicit.validation import eval_date
+from scicit.validation.shape import is_date_format
 
 titles = ["title_j", "title_m", "title_main_a"]
 
@@ -29,7 +29,7 @@ async def eval_issue_4(serialized_citation):
     """
     if "idno" in serialized_citation.keys():
         idno_str = serialized_citation["idno"]
-        return 4 if eval_date(idno_str) else None
+        return 4 if is_date_format(idno_str) else None
 
 
 async def eval_issue_5(serialized_citation):
