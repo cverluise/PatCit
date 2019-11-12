@@ -30,6 +30,7 @@ npl_citation_schema = {
         "volume": {"type": "number"},
         "from": {"type": "number"},
         "to": {"type": "number"},
+        "issues": {"type": "array"}
         # 'page': {"type": "string"},
         # 'type': {"type": "string"},
         # 'unit': {"type":},
