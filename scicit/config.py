@@ -5,10 +5,10 @@ from google.oauth2 import service_account
 
 
 class Config:
-    def __init__(self, credentials=None, project_id=None, dataset_id=None):
+    def __init__(self, credentials_f=None, project_id=None, dataset_id=None):
         self.config_dict = json.load(open("config.json", "rb"))
-        self.credentials = (
-            credentials if credentials else self.config_dict["credentials"]
+        self.credentials_f = (
+            credentials_f if credentials_f else self.config_dict["credentials"]
         )
         self.project_id = (
             project_id if project_id else self.config_dict["project_id"]
@@ -18,9 +18,9 @@ class Config:
         )
 
     def credentials(self):
-        assert os.path.isfile(self.credentials)
+        assert os.path.isfile(self.credentials_f)
         return service_account.Credentials.from_service_account_file(
-            self.credentials,
+            self.credentials_f,
             scopes=["https://www.googleapis.com/auth/cloud-platform"],
         )
 
