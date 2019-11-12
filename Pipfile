@@ -17,6 +17,7 @@ pre-commit = "*"
 pnpl = {editable = true,path = "."}
 jsonlines = "*"
 jsonschema = "*"
+google-cloud-storage = "*"
 
 [requires]
 python_version = "3.7"

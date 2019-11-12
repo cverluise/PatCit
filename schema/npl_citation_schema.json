@@ -62,12 +62,6 @@
         "mode": "NULLABLE"
     },
   {
-      "description": "Open Access url",
-      "name": "target",
-      "type": "STRING",
-      "mode": "NULLABLE"
-  },
-  {
         "description": "",
         "name": "authors",
         "type": "RECORD",
@@ -99,15 +93,21 @@
     }
         ]
     },
-  {
-        "description": "Journal title (abbreviated)",
-        "name": "title_abbrev_j",
-        "type": "STRING",
-        "mode": "NULLABLE"
-    },
+    {
+      "description": "Open Access url",
+      "name": "target",
+      "type": "STRING",
+      "mode": "NULLABLE"
+  },
   {
         "description": "Journal title",
         "name": "title_j",
+        "type": "STRING",
+        "mode": "NULLABLE"
+    },
+    {
+        "description": "Journal title (abbreviated)",
+        "name": "title_abbrev_j",
         "type": "STRING",
         "mode": "NULLABLE"
     },
@@ -130,51 +130,38 @@
         "mode": "NULLABLE"
     },
   {
-        "description": "Publication date",
-        "name": "when",
-        "type": "STRING",
+        "description": "Publication year",
+        "name": "year",
+        "type": "INTEGER",
         "mode": "NULLABLE"
     },
-  {
-        "description": "Publication type",
-        "name": "type",
-        "type": "STRING",
-        "mode": "NULLABLE"
-    },
+    {
+      "description": "Issue number of the item holding the NPL (e.g. journal, proceedings, etc)",
+      "name": "issue",
+      "type": "INTEGER",
+      "mode": "NULLABLE"
+  },
   {
       "description": "Volume number of the item holding the NPL (e.g. journal, proceedings, etc) ",
       "name": "volume",
       "type": "INTEGER",
       "mode": "NULLABLE"
   },
-  {
-      "description": "Issue number of the item holding the NPL (e.g. journal, proceedings, etc)",
-      "name": "issue",
-      "type": "STRING",
-      "mode": "NULLABLE"
-  },
-  {
-        "description": "",
-        "name": "unit",
-        "type": "STRING",
-        "mode": "NULLABLE"
-    },
-     {
-        "description": "",
-        "name": "page",
-        "type": "INTEGER",
-        "mode": "NULLABLE"
-    },
       {
         "description": "First page",
         "name": "from",
-        "type": "STRING",
+        "type": "INTEGER",
         "mode": "NULLABLE"
     },
     {
         "description": "Last page",
         "name": "to",
-        "type": "STRING",
+        "type": "INTEGER",
         "mode": "NULLABLE"
-    }
+    },
+  {
+        "description": "Issues detected in row. See: https://github.com/cverluise/SciCit/issues/<issue number>.",
+        "name": "Issues",
+        "type": "INTEGER",
+        "mode": "Repeated"}
 ]
