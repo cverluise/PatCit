@@ -1,92 +1,87 @@
 import asyncio
 import concurrent.futures
-import json
-import os
+import glob
 
 import click
 import numpy as np
 import pandas as pd
 from bs4 import BeautifulSoup
+from jsonschema import validate
+import json
 from tqdm import tqdm
 
+from scicit.issues import eval_issues
 from scicit.serialize.npl_citation import fetch_all_tags
+from scicit.validation.npl_citation import solve_issues
+from scicit.validation.schema import npl_citation_schema
+from scicit.validation.shape import prep_and_pop
 
 
-# TODO: type checking: main issues on volume and page (use jsonschema for example)
+def serialize_prep_validate_npl(x):
+    npl_publn_id, npl_grobid = x
+    soup = BeautifulSoup(npl_grobid, "lxml")
+    out = asyncio.run(fetch_all_tags(npl_publn_id, soup))
+
+    issues = asyncio.run(eval_issues(out))
+    out.update({"issues": issues})
+    out = solve_issues(out, issues)
+    out = prep_and_pop(out, npl_citation_schema)
+
+    try:
+        validate(instance=out, schema=npl_citation_schema)
+    except Exception as e:
+        out = {
+            "npl_publn_id": out["npl_publn_id"],
+            "exception": str(e),
+            "issues": [0],
+        }
+
+    return json.dumps(out)
 
 
-async def fetch_batch(npl_publn_id_list, npl_grobid_list):
-    tasks = []
-    for id, npl in zip(npl_publn_id_list, npl_grobid_list):
-        soup = BeautifulSoup(npl, "lxml")
-        task = asyncio.create_task(fetch_all_tags(id, soup))
-        tasks.append(task)
-    batch = await asyncio.gather(*tasks)
-    return batch
-
-
-def serialize(input_file):
+def serialize(input_file, batch_size=1000):
     tmp = input_file.split("/")
-    output_file = (
-        "/".join(tmp[:-1])
-        + "/processed_"
-        + "."
-        + tmp[-1].split(".")[0]
-        + ".jsonl"
-    )
+    output_file = "/".join(tmp[:-1]) + "/" + tmp[-1].split(".")[0] + ".jsonl"
     output_file = output_file.replace("processed_", "serialized_")
-    npl_grobid_list = pd.read_csv(input_file, compression="gzip")[
-        "npl_grobid"
-    ].tolist()
-    npl_publn_id_list = pd.read_csv(input_file, compression="gzip")[
-        "npl_publn_id"
-    ].tolist()
-    by = 1000
+    data = pd.read_csv(input_file, compression="gzip")[
+        ["npl_publn_id", "npl_grobid"]
+    ]
+
     serialized_grobid = []
-    for i in tqdm(np.arange(0, len(npl_grobid_list), by)):
-        serialized_grobid += asyncio.run(
-            fetch_batch(
-                npl_publn_id_list[i : i + by], npl_grobid_list[i : i + by]
-            )
-        )
-
-    with open(output_file, "w") as fout:
-        fout.write(
-            "\n".join(list(map(lambda x: json.dumps(x), serialized_grobid)))
-        )
-
-
-@click.command()
-@click.option(
-    "--path", type=str, help="Path of folder containing files to be processed"
-)
-@click.option(
-    "--pattern",
-    type=str,
-    help="Sequence of characters which will be used to filter "
-    "files of interest. E.g. 'sub', 'us_'",
-)
-@click.option(
-    "--flavor",
-    type=str,
-    help="Type of files to be processed. Currently " "supported: 'tls_214'.",
-)
-@click.option(
-    "--max_workers",
-    type=int,
-    default=5,
-    help="Maximum number of threads running in parallel'",
-)
-def main(path, pattern, flavor, max_workers):
-    assert flavor in ["tls214"]
-    input_files = [path + file for file in os.listdir(path) if pattern in file]
-    with concurrent.futures.ProcessPoolExecutor(
-        max_workers=max_workers
-    ) as executor:
-        executor.map(serialize, input_files)
+    for i in tqdm(np.arange(0, len(data), batch_size)):
+        tmp = data.iloc[i : i + batch_size]
+        serialized_grobid += tmp.apply(
+            serialize_prep_validate_npl, axis=1
+        ).to_list()
+    np.savetxt(output_file, serialized_grobid, fmt="%s", delimiter="\n")
 
 
 if __name__ == "__main__":
+
+    @click.command()
+    @click.option(
+        "--path", type=str, help="File or folder path. Wildcard '*' enabled"
+    )
+    @click.option(
+        "--flavor",
+        type=str,
+        help="Type of files to be processed. Currently "
+        "supported: 'tls_214'.",
+    )
+    @click.option(
+        "--max_workers",
+        type=int,
+        default=5,
+        help="Maximum number of threads running in parallel'",
+    )
+    def main(path, flavor, max_workers):
+        assert flavor in ["tls214"]
+        files = glob.glob(path)
+        with concurrent.futures.ProcessPoolExecutor(
+            max_workers=max_workers
+        ) as executor:
+            executor.map(serialize, files)
+
     main()
 
 # python bin/SerializeCitations.py --path /Volumes/HD_CyrilVerluise/patstat18b/small_chunks/
