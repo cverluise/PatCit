@@ -19,23 +19,29 @@ from scicit.validation.shape import prep_and_pop
 
 def serialize_prep_validate_npl(x):
     npl_publn_id, npl_grobid = x
-    soup = BeautifulSoup(npl_grobid, "lxml")
-    out = asyncio.run(fetch_all_tags(npl_publn_id, soup))
+    if npl_grobid:
+        soup = BeautifulSoup(npl_grobid, "lxml")
+        out = asyncio.run(fetch_all_tags(npl_publn_id, soup))
 
-    issues = asyncio.run(eval_issues(out))
-    out.update({"issues": issues})
-    out = solve_issues(out, issues)
-    out = prep_and_pop(out, npl_citation_schema)
+        issues = asyncio.run(eval_issues(out))
+        out.update({"issues": issues})
+        out = solve_issues(out, issues)
+        out = prep_and_pop(out, npl_citation_schema)
 
-    try:
-        validate(instance=out, schema=npl_citation_schema)
-    except Exception as e:
+        try:
+            validate(instance=out, schema=npl_citation_schema)
+        except Exception as e:
+            out = {
+                "npl_publn_id": out["npl_publn_id"],
+                "exception": str(e),
+                "issues": [0],
+            }
+    else:
         out = {
-            "npl_publn_id": out["npl_publn_id"],
-            "exception": str(e),
+            "npl_publn_id": npl_publn_id,
+            "exception": "GrobidException",
             "issues": [0],
         }
-
     return json.dumps(out)
 
 
