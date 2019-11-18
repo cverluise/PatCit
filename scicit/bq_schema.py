@@ -1,13 +1,12 @@
 from google.cloud.bigquery import SchemaField
 
-npl_citation = [
-    SchemaField(
-        "npl_publn_id",
-        "INTEGER",
-        "REQUIRED",
-        "Non-Patent Literature publication identification. Source: PATSTAT and DOCDB.",
-        (),
-    ),
+from scicit.config import Config
+
+client = Config().client()
+
+npl_citation = client.schema_from_json("schema/npl_citation_schema.json")
+
+cited_by = [
     SchemaField(
         "cited_by",
         "RECORD",
@@ -17,113 +16,70 @@ npl_citation = [
             SchemaField(
                 "origin",
                 "STRING",
-                "NULLABLE",
+                "REPEATED",
                 "Origin of the citation (e.g. APPlicant, SEArch report, etc)",
                 (),
             ),
             SchemaField(
                 "publication_number",
                 "STRING",
-                "NULLABLE",
+                "REPEATED",
                 "DOCDB publication number of citing patent(s)",
                 (),
             ),
         ),
-    ),
+    )
+]
+
+crossref = [
+    SchemaField("abstract", "STRING", "NULLABLE", "Abstract", ()),
+    SchemaField("subject", "STRING", "REPEATED", "Subject", ()),
     SchemaField(
-        "DOI",
-        "STRING",
-        "NULLABLE",
-        "Digital Object Identifier. DOIs are in wide use mainly to identify academic, professional, and government information, such as journal articles, research reports and data sets, and official publications.",
-        (),
-    ),
-    SchemaField(
-        "ISSN",
-        "STRING",
-        "NULLABLE",
-        "International Standard Serial Number. It is an 8-digit code used to identify newspapers, journals, magazines and periodicals of all kinds and on all media –- print and electronic.",
-        (),
-    ),
-    SchemaField(
-        "ISSNe",
-        "STRING",
-        "NULLABLE",
-        "Electronic International Standard Serial Number. When a serial with the same content is published in more than one media type, a different ISSN is assigned to each media type. The ISSN system refers to the electronic ISSN  as the ISSNe.",
-        (),
-    ),
-    SchemaField(
-        "PMCID",
-        "STRING",
-        "NULLABLE",
-        "PubMed Central Identifier. The PMCID is a unique reference number or identifier that is assigned to every article that is accepted into PubMed Central -- an archive of full-text journal articles.",
-        (),
-    ),
-    SchemaField(
-        "PMID",
-        "INTEGER",
-        "NULLABLE",
-        "PubMed Identifier. The PMID is a unique reference number for PubMed citations.",
-        (),
-    ),
-    SchemaField(
-        "idno",
-        "STRING",
-        "NULLABLE",
-        "Document-specific identifier, if not in DOI, ISSN, ISSNe, PMCID, PMID.",
-        (),
-    ),
-    SchemaField(
-        "authors",
+        "funder",
         "RECORD",
         "REPEATED",
-        "",
+        None,
         (
-            SchemaField("first", "STRING", "NULLABLE", "First name", ()),
-            SchemaField("middle", "STRING", "NULLABLE", "Middle name", ()),
-            SchemaField("surname", "STRING", "NULLABLE", "Surname", ()),
-            SchemaField("genname", "STRING", "NULLABLE", "Gender name", ()),
+            SchemaField("DOI", "STRING", "NULLABLE", "Funder DOI", ()),
+            SchemaField(
+                "award", "STRING", "REPEATED", "Funding award identifier", ()
+            ),
+            SchemaField("name", "STRING", "NULLABLE", "Funder name", ()),
         ),
     ),
-    SchemaField("target", "STRING", "NULLABLE", "Open Access url", ()),
-    SchemaField("title_j", "STRING", "NULLABLE", "Journal title", ()),
-    SchemaField(
-        "title_abbrev_j",
-        "STRING",
-        "NULLABLE",
-        "Journal title (abbreviated)",
-        (),
-    ),
-    SchemaField(
-        "title_m",
-        "STRING",
-        "NULLABLE",
-        "Title of the item holding the NPL -- for non journal items only , e.g. conference, proceedings, etc.",
-        (),
-    ),
-    SchemaField("title_main_m", "STRING", "NULLABLE", "", ()),
-    SchemaField("title_main_a", "STRING", "NULLABLE", "Article title", ()),
-    SchemaField("year", "INTEGER", "NULLABLE", "Publication year", ()),
-    SchemaField(
-        "issue",
-        "INTEGER",
-        "NULLABLE",
-        "Issue number of the item holding the NPL (e.g. journal, proceedings, etc)",
-        (),
-    ),
-    SchemaField(
-        "volume",
-        "INTEGER",
-        "NULLABLE",
-        "Volume number of the item holding the NPL (e.g. journal, proceedings, etc) ",
-        (),
-    ),
-    SchemaField("from", "INTEGER", "NULLABLE", "First page", ()),
-    SchemaField("to", "INTEGER", "NULLABLE", "Last page", ()),
-    SchemaField(
-        "Issues",
-        "INTEGER",
-        "REPEATED",
-        "Issues detected in row. See: https://github.com/cverluise/SciCit/issues/<issue number>.",
-        (),
-    ),
 ]
+
+
+# nb: we could get it directly from crossref_schema.json but more variables at this point
+
+
+def _get_index(bq_schema, name):
+    for i, sf in enumerate(bq_schema):
+        if isinstance(sf, SchemaField):
+            if sf.name == name:
+                return i
+
+
+def make_aug_npl_schema():
+    tmp = npl_citation.copy()
+
+    idx_DOI = _get_index(tmp, "DOI")
+    schema_DOI = tmp[idx_DOI]
+    schema_doi = SchemaField(
+        "doi", schema_DOI.field_type, schema_DOI.mode, schema_DOI.description
+    )
+    tmp.pop(idx_DOI)
+    tmp.insert(idx_DOI, schema_doi)
+
+    idx_citedby = _get_index(tmp, "npl_publn_id") + 1
+    [
+        tmp.insert(idx_citedby, cited_by[i])
+        for i in reversed(range(len(cited_by)))
+    ]
+
+    idx_crossref = _get_index(tmp, "Issues")
+    [
+        tmp.insert(idx_crossref, crossref[i])
+        for i in reversed(range(len(crossref)))
+    ]
+    return tmp
