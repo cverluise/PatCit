@@ -32,19 +32,31 @@ cited_by = [
 ]
 
 crossref = [
-    SchemaField("abstract", "STRING", "NULLABLE", "Abstract", ()),
-    SchemaField("subject", "STRING", "REPEATED", "Subject", ()),
+    SchemaField(
+        "abstract", "STRING", "NULLABLE", "Abstract (from Crossref)", ()
+    ),
+    SchemaField(
+        "subject", "STRING", "REPEATED", "Subject (from Crossref)", ()
+    ),
     SchemaField(
         "funder",
         "RECORD",
         "REPEATED",
         None,
         (
-            SchemaField("DOI", "STRING", "NULLABLE", "Funder DOI", ()),
             SchemaField(
-                "award", "STRING", "REPEATED", "Funding award identifier", ()
+                "DOI", "STRING", "NULLABLE", "Funder DOI (from Crossref)", ()
             ),
-            SchemaField("name", "STRING", "NULLABLE", "Funder name", ()),
+            SchemaField(
+                "award",
+                "STRING",
+                "REPEATED",
+                "Funding award identifier (from Crossref)",
+                (),
+            ),
+            SchemaField(
+                "name", "STRING", "NULLABLE", "Funder name (from Crossref)", ()
+            ),
         ),
     ),
 ]
