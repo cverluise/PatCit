@@ -8,7 +8,6 @@ data/
 
 # Dev
 dev*.py
-bin/CreateBQTable.py
 example.py
 
 # System files
