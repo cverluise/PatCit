@@ -1,0 +1,96 @@
+[
+  {
+        "description": "",
+        "name": "DOI",
+        "type": "STRING",
+        "mode": "REQUIRED"
+    },
+  {
+        "description": "",
+        "name": "abstract",
+        "type": "STRING",
+        "mode": "NULLABLE"
+    },
+
+  {
+        "description": "",
+        "name": "author",
+        "type": "RECORD",
+        "mode": "REPEATED",
+        "fields": [
+         {"description": "",
+        "name": "affiliation",
+        "type": "RECORD",
+        "mode": "REPEATED",
+        "fields": [
+          {
+        "description": "",
+        "name": "name",
+        "type": "STRING",
+        "mode": "NULLABLE"
+          }
+        ]},
+            {
+        "description": "",
+        "name": "family",
+        "type": "STRING",
+        "mode": "NULLABLE"
+    },
+          {
+        "description": "",
+        "name": "given",
+        "type": "STRING",
+        "mode": "NULLABLE"
+    },
+          {
+        "description": "",
+        "name": "sequence",
+        "type": "STRING",
+        "mode": "NULLABLE"
+    }
+        ]},
+      {
+        "description": "",
+        "name": "funder",
+        "type": "RECORD",
+        "mode": "REPEATED",
+        "fields": [{
+          "description": "",
+          "name": "DOI",
+          "type": "STRING",
+          "mode": "NULLABLE"
+        },
+          {
+          "description": "",
+          "name": "award",
+          "type": "STRING",
+          "mode": "REPEATED"
+          },
+          {
+          "description": "",
+          "name": "name",
+          "type": "STRING",
+          "mode": "NULLABLE"
+        }
+        ]
+      },
+    {
+        "description": "",
+        "name": "reference",
+        "type": "RECORD",
+        "mode": "REPEATED",
+        "fields": [{
+          "description": "",
+          "name": "DOI",
+          "type": "STRING",
+          "mode": "NULLABLE"
+        }
+        ]
+    },
+      {
+        "description": "",
+        "name": "subject",
+        "type": "STRING",
+        "mode": "REPEATED"
+    }
+]

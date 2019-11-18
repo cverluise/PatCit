@@ -6,26 +6,6 @@
         "mode": "REQUIRED"
     },
   {
-    "description": "",
-    "name": "cited_by",
-    "type": "RECORD",
-    "mode": "REPEATED",
-    "fields": [
-      {
-        "description": "Origin of the citation (e.g. APPlicant, SEArch report, etc)",
-        "name": "origin",
-        "type": "STRING",
-        "mode": "NULLABLE"
-      },
-      {
-        "description": "DOCDB publication number of citing patent(s)",
-        "name": "publication_number",
-        "type": "STRING",
-        "mode": "NULLABLE"
-      }
-    ]
-  },
-  {
         "description": "Digital Object Identifier. DOIs are in wide use mainly to identify academic, professional, and government information, such as journal articles, research reports and data sets, and official publications.",
         "name": "DOI",
         "type": "STRING",
