@@ -29,7 +29,7 @@
 **Data quality.** There a mainly 3 levels of quality. 
 
 |Quality degree| Characterization| Share of the [DOCDB][DOCDB]|
-|---|---|---|---|
+|---|---|---|
 |1|Matched with a Digital Object Identifier (DOI)| 29%|
 |2|Parsed *at least* a document title (journal, conference, article), excl 1.| 43%|
 |3|Neither 1. nor 2.| 28%|
