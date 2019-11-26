@@ -1,7 +1,6 @@
 [DOCDB]:https://www.epo.org/searching-for-patents/data/bulk-data-sets/docdb.html#tab-1
 [user-guide]:user-guide/user-guide.md
-[beta-db]:https://console.cloud.google.com/bigquery?project=npl-parsing&p=npl-parsing&d=patcit&t=beta&page=table
-[v01-db]:https://console.cloud.google.com/bigquery?project=npl-parsing&p=npl-parsing&d=patcit&t=v01&page=table
+[db]:https://console.cloud.google.com/bigquery?project=npl-parsing&p=npl-parsing&d=patcit&page=dataset
 [grobid]:https://github.com/kermitt2/grobid
 [biblio-glutton]:https://github.com/kermitt2/biblio-glutton
 [issues-create]:https://github.com/cverluise/SciCit/issues/new/choose
@@ -14,17 +13,27 @@
 [gder]:http://www.gder.info/
 [cverluise]:https://github.com/cverluise
 [cver]:https://cverluise.github.io/
+[v01]:https://console.cloud.google.com/bigquery?project=npl-parsing&p=npl-parsing&d=patcit&t=v01&page=table
+[beta-npl]:https://console.cloud.google.com/bigquery?project=npl-parsing&p=npl-parsing&d=patcit&t=beta_contextualNPL&page=table
+[beta-pat]:https://console.cloud.google.com/bigquery?project=npl-parsing&p=npl-parsing&d=patcit&t=beta_contextualPat&page=table
+[US5914367A]:https://patents.google.com/patent/US5914367A/en
 
 
 # READ ME
 
+## :new: Patent Contextual Citations dataset
+
+**What's in there?** We extract, parse and consolidate *in-text* "patent-to-NPL" and "patent-to-patent" citations from patents description.
+
+**Give it a try!** We just released the beta dataset. It includes the contextual NPL and patent   citations for 250k+ US patents.  
+
+
 ## Worldwide Patent-to-Science Citations dataset
 
-**What's in there?** We parse and consolidate the 40 million Non Patent Literature (NPL) citations reported in the [DOCDB][DOCDB] database. This is as simple as that and this is just a first step.
+**What's in there?** We parse and consolidate the 40 million Non Patent Literature (NPL) citations reported in the [DOCDB][DOCDB] database. 
 
-**What does it mean?** We extract bibliographic attributes (e.g. title, authors, journal, etc) from the free-form NPL citations reported in the [DOCDB][DOCDB] database. We match these attributes with the Crossref, Pubmed and Unpaywall databases. Hence, we are able to enrich the final output with additional attributes such as the DOI, the PMID and the open access url *inter allia*. 
 
-**Give it a try!** We just released the v0.1 of the dataset. It includes the 40 million [DOCDB][DOCDB] NPL citations. It is open access and publicly available on Google Cloud BigQuery. No gatekeeper, no request time. Just click [here][v01-db]! and follow our [User Guide][user-guide]. For anyone having a smattering of SQL, we believe that this is the perfect environment to play with the data. 
+**Give it a try!** We just released the data v0.1. It includes the 40 million [DOCDB][DOCDB] NPL citations. 
 
 **Data quality.** There a mainly 3 levels of quality. 
 
@@ -38,19 +47,75 @@ And we can do even better! Quality will keep improving fast, [stay up to date](#
 
 **License.** The dataset is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
 
-### Release
+## In practice
 
-#### :new: v0.1
+### Data access 
 
-Full scale release. 40 million [DOCDB][DOCDB] NPL citations. Additional variables from crossref (abstract, subject and funders, see [#10][issue-10] for more).
+Our dataset is open access and publicly available on Google Cloud BigQuery. No gatekeeper, no request time. Plus, for anyone having a smattering of SQL, we believe that this is the perfect environment to play with the data. 
 
-Access the data [here][v01-db] and follow the [user-guide][user-guide]. 
+Just follow this [link][db] and navigate to your favourite table!
 
-#### Beta release (October 2019)
+|Data| Table (clickable link)|
+|---|---|
+|Worldwide Patent-to-Science - v0.1| [v01][v01]|
+|*Patent-to-NPL* Contextual Citations| [beta_contextualNPL][beta-npl]|
+|*Patent-to-NPL* Contextual Citations| [beta_contextualPat][beta-pat]|
 
-Sandbox for data tests and user feedbacks. Includes 100k NPL citations.  
+Need a quickstart with BigQuery? Follow our [User Guide][user-guide]. 
 
-Access the data [here][beta-db] and follow the [user-guide][user-guide].
+
+### Vocabulary
+
+Not sure to fully understand what we mean?
+
+- **Extract**: We *detect* NPL and patent citations in plain text documents. 
+
+<details>
+Let's consider an extract from [US5914367A][US5914367A]:
+
+> "Another disadvantage of this process is that such modified enzymes usually show low solubility in organic solvents, thereby limiting the enzyme loading to about 0.02% by weight in the final polymer products. Sea Z. Yang, D. Williams, and A. J. Russell, J. Am. Chem. Soc., 1995, vol. 117, 4843. The solubilized enzyme of this process also shows lower activity (...)"
+
+The extraction task consists in detecting the NPL citation 
+
+> "Z. Yang, D. Williams, and A. J. Russell, J. Am. Chem. Soc., 1995, vol. 117, 4843" 
+
+</details>
+
+- **Parse**: We *structure* free-form NPL and patent citations into standard bibliographic attributes (e.g. title, authors, journal, etc). 
+
+<details>
+
+Let's consider the following free-form NPL citation:
+
+>"Z. Yang, D. Williams, and A. J. Russell, J. Am. Chem. Soc., 1995, vol. 117, 4843." 
+
+The parsing task consists in structuring this sequence into standardized bibliographical attributes, e.g.:
+
+>- `Authors`: Z. Yang, D. Williams, A. J. Russell
+>- `Journal`: J. Am. Chem. Soc.
+>- `Date`: 1995
+>- `Volume`: 117
+>- `Page`: 4843
+
+</details>
+
+- **Consolidate**: We match the standardized bibliographical attributes with the Crossref, Pubmed and Unpaywall databases. Hence, we are able to enrich the final output with additional attributes such as the DOI, the PMID and the open access url *inter allia*. 
+
+<details>
+
+Let's consider the following free-form NPL citation:
+
+>"Z. Yang, D. Williams, and A. J. Russell, J. Am. Chem. Soc., 1995, vol. 117, 4843." 
+
+Matching it with Crossref, we can consolidate the bibliographical attribute found in the text with additional attributes, e.g.:
+
+> - `Article title`: "Activity and Stability of Enzymes Incorporated into Acrylic Polymers"
+> - `Journal title`: Journal of the American Chemical Society
+> - `DOI`: 10.1021/ja00122a014
+> - `ISSN`: 0002-7863
+
+</details>
+
 
 
 ## By and for the community 
@@ -77,7 +142,7 @@ Access the data [here][beta-db] and follow the [user-guide][user-guide].
 
 Still reading? Curious? We tell you more!
  
-**What's next?** Of course, we plan to keep improving the Worldwide Patent-to-Science Citations dataset. There is more! We are currently processing US patent full-texts to extract, parse and consolidate in-text patent and NPL citations. We are also planning to do it for other major patent offices. 
+**What's next?** Of course, we plan to keep improving the Worldwide Patent-to-Science Citations dataset. There is more! We plan to release the full contextual citations for US patents in the course of December - hopefully integrating your feedbacks. We are also planning to do it for other major patent offices. 
 
 **Under the hood.** We build on two great open source libraries: [Grobid][grobid], a Machine Learning library for extracting, parsing and restructuring raw documents and [biblio-glutton][biblio-glutton], a framework dedicated to bibliographic information with a powerful bibliographical matching service. These services are articulated in an efficient data pipeline in the cloud to process up to 2 million citations per day. 
 
