@@ -1,6 +1,8 @@
 import asyncio
 from scicit.serialize.npl_citation import fetch_all_tags
 
+pk = "publication_number_o"
+
 
 def split_pats_npls(soup):
     """
@@ -26,7 +28,7 @@ async def fetch_npls(id_, npls):
     :param npls: List[bs4.element.Tag]
     :return: List[dict]
     """
-    npls = [fetch_all_tags(id_, npl, "publication_number_o") for npl in npls]
+    npls = [fetch_all_tags(id_, npl, pk) for npl in npls]
     return await asyncio.gather(*npls)
 
 
@@ -42,7 +44,7 @@ async def fetch_patent(id_, patent):
     pat.update({"orgname": patent.find("orgname").string})
     for idno in patent.find_all("idno"):
         pat.update({idno["subtype"]: idno.string})
-    pat.update({"publication_number_o": id_})
+    pat.update({pk: id_})
     return pat
 
 
