@@ -58,8 +58,8 @@ Just follow this [link][db] and navigate to your favourite table!
 |Data| Table (clickable link)|
 |---|---|
 |Worldwide Patent-to-Science - v0.1| [v01][v01]|
-|*Patent-to-NPL* Contextual Citations| [beta_contextualNPL][beta-npl]|
-|*Patent-to-NPL* Contextual Citations| [beta_contextualPat][beta-pat]|
+|Patent-to-*NPL* Contextual Citations| [beta_contextualNPL][beta-npl]|
+|Patent-to-*patent* Contextual Citations| [beta_contextualPat][beta-pat]|
 
 Need a quickstart with BigQuery? Follow our [User Guide][user-guide]. 
 
