@@ -13,7 +13,7 @@ from tqdm import tqdm
 from scicit.issues import eval_issues
 from scicit.serialize.npl_citation import fetch_all_tags
 from scicit.validation.npl_citation import solve_issues
-from scicit.validation.schema import npl_citation_schema
+from scicit.validation.schema import get_schema
 from scicit.validation.shape import prep_and_pop
 
 
@@ -26,10 +26,10 @@ def serialize_prep_validate_npl(x):
         issues = asyncio.run(eval_issues(out))
         out.update({"issues": issues})
         out = solve_issues(out, issues)
-        out = prep_and_pop(out, npl_citation_schema)
+        out = prep_and_pop(out, get_schema("npl"))
 
         try:
-            validate(instance=out, schema=npl_citation_schema)
+            validate(instance=out, schema=get_schema("npl"))
         except Exception as e:
             out = {
                 "npl_publn_id": out["npl_publn_id"],
@@ -78,7 +78,7 @@ if __name__ == "__main__":
         "--max_workers",
         type=int,
         default=5,
-        help="Maximum number of threads running in parallel'",
+        help="Maximum number of processes running in parallel'",
     )
     def main(path, flavor, max_workers):
         assert flavor in ["tls214"]
