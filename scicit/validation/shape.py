@@ -136,7 +136,7 @@ def prep_string(serialized_citation: dict, schema: dict):
                 auth.update({k: clean_string(auth[k], True)})
             authors_clean += [auth]
         serialized_citation.update({"authors": authors_clean})
-    except TypeError:
+    except (TypeError, KeyError):
         pass
     return serialized_citation
 
