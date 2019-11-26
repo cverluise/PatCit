@@ -57,11 +57,12 @@ async def fetch_tag(tag):
         return tag.attrs
 
 
-async def fetch_all_tags(npl_publn_id, soup):
+async def fetch_all_tags(id_, soup, id_name="npl_publn_id"):
     """
     Return grobid ouptut as a json
-    :param npl_publn_id: str
+    :param id_: str
     :param soup: 'bs4.BeautifulSoup'
+    :param id_name: str
     :return: dict
     """
     tasks = []
@@ -79,5 +80,5 @@ async def fetch_all_tags(npl_publn_id, soup):
     for task in tasks:
         cit.update(task)
     cit.update({"authors": task_authors.result()})
-    cit.update({"npl_publn_id": npl_publn_id})
+    cit.update({id_name: id_})
     return cit
