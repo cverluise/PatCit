@@ -16,6 +16,8 @@
 [v01]:https://console.cloud.google.com/bigquery?project=npl-parsing&p=npl-parsing&d=patcit&t=v01&page=table
 [beta-npl]:https://console.cloud.google.com/bigquery?project=npl-parsing&p=npl-parsing&d=patcit&t=beta_contextualNPL&page=table
 [beta-pat]:https://console.cloud.google.com/bigquery?project=npl-parsing&p=npl-parsing&d=patcit&t=beta_contextualPat&page=table
+[v01-npl]:https://console.cloud.google.com/bigquery?cloudshell=false&project=npl-parsing&p=npl-parsing&d=patcit&t=v01_UScontextualNPL&page=table
+[v01-pat]:https://console.cloud.google.com/bigquery?cloudshell=false&project=npl-parsing&p=npl-parsing&d=patcit&t=v01_UScontextualPat&page=table
 [US5914367A]:https://patents.google.com/patent/US5914367A/en
 
 
@@ -23,10 +25,13 @@
 
 ## :new: Patent Contextual Citations dataset
 
-**What's in there?** We extract, parse and consolidate *in-text* "patent-to-NPL" and "patent-to-patent" citations from patents description.
+**What's in there?** We extract, parse and consolidate *in-text* "patent-to-NPL" and "patent-to-patent" citations from patents description. 
 
-**Give it a try!** We just released the beta dataset. It includes the contextual NPL and patent   citations for 250k+ US patents.  
+**Give it a try!** We just released the full US dataset. It includes the contextual NPL and patent   citations for all US patents.  
 
+**Data quality.** Data quality is under review. Any comments is most welcome. At this point, we know that we matched more than 13 million contextual NPL citations with a DOI. Overall, we extracted more than 70 million contextal NPL citations. 
+
+**License.** The dataset is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
 
 ## Worldwide Patent-to-Science Citations dataset
 
@@ -58,8 +63,8 @@ Just follow this [link][db] and navigate to your favourite table!
 |Data| Table (clickable link)|
 |---|---|
 |Worldwide Patent-to-Science - v0.1| [v01][v01]|
-|Patent-to-*NPL* Contextual Citations| [beta_contextualNPL][beta-npl]|
-|Patent-to-*patent* Contextual Citations| [beta_contextualPat][beta-pat]|
+|Patent-to-*NPL* Contextual Citations| [v01_UScontextualNPL][v01-npl]|
+|Patent-to-*patent* Contextual Citations| [v01_UScontextualPat][v01-pat]|
 
 Need a quickstart with BigQuery? Follow our [User Guide][user-guide]. 
 
@@ -142,7 +147,7 @@ Matching it with Crossref, we can consolidate the bibliographical attribute foun
 
 Still reading? Curious? We tell you more!
  
-**What's next?** Of course, we plan to keep improving the Worldwide Patent-to-Science Citations dataset. There is more! We plan to release the full contextual citations for US patents in the course of December - hopefully integrating your feedbacks. We are also planning to do it for other major patent offices. 
+**What's next?** We plan to keep improving the Worldwide Patent-to-Science Citations dataset in the coming months. 
 
 **Under the hood.** We build on two great open source libraries: [Grobid][grobid], a Machine Learning library for extracting, parsing and restructuring raw documents and [biblio-glutton][biblio-glutton], a framework dedicated to bibliographic information with a powerful bibliographical matching service. These services are articulated in an efficient data pipeline in the cloud to process up to 2 million citations per day. 
 
