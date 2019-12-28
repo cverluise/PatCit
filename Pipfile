@@ -19,6 +19,7 @@ jsonlines = "*"
 jsonschema = "*"
 google-cloud-storage = "*"
 wasabi = "*"
+plotly = "*"
 
 [requires]
 python_version = "3.7"
