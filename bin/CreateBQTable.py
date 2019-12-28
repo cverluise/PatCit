@@ -39,7 +39,7 @@ def main(uri, table_path, schema, write_mode):
     load_job_config.source_format = bq.SourceFormat.NEWLINE_DELIMITED_JSON
     load_job_config.ignore_unknown_values = True
     load_job_config.write_disposition = "WRITE_APPEND"
-    load_job_config.max_bad_records = 10
+    load_job_config.max_bad_records = 100
 
     assert write_mode in ["CREATE_NEW", "WRITE_APPEND"]
     table_id = table_path.split(".")[-1]
