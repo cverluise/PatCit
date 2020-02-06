@@ -15,9 +15,7 @@ def solve_issue_4(serialized_citation: dict, issues: list):
             if is_date_format(when_text):
                 pass
             else:
-                serialized_citation.update(
-                    {"when": serialized_citation["idno"]}
-                )
+                serialized_citation.update({"when": serialized_citation["idno"]})
         else:
             serialized_citation.update({"when": serialized_citation["idno"]})
     return serialized_citation
@@ -32,10 +30,7 @@ def solve_issue_5(serialized_citation: dict, issues: list):
     """
     if 5 in issues:
         serialized_citation["DOI"] = (
-            serialized_citation["DOI"]
-            .lower()
-            .replace("doi", "")
-            .replace(":", "")
+            serialized_citation["DOI"].lower().replace("doi", "").replace(":", "")
         )
     return serialized_citation
 

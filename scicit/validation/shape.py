@@ -106,9 +106,7 @@ def prep_number(serialized_citation: dict, schema: dict):
     :param schema: dict
     :return: dict
     """
-    for k in [
-        k for k, v in schema["properties"].items() if v["type"] == "number"
-    ]:
+    for k in [k for k, v in schema["properties"].items() if v["type"] == "number"]:
         if k in serialized_citation.keys():
             serialized_citation.update({k: to_number(serialized_citation[k])})
     return serialized_citation
@@ -121,14 +119,10 @@ def prep_string(serialized_citation: dict, schema: dict):
     :param schema: dict
     :return: dict
     """
-    for k in [
-        k for k, v in schema["properties"].items() if v["type"] == "string"
-    ]:
+    for k in [k for k, v in schema["properties"].items() if v["type"] == "string"]:
         if k in serialized_citation.keys():
             title = True if "title" in k else False
-            serialized_citation.update(
-                {k: clean_string(serialized_citation[k], title)}
-            )
+            serialized_citation.update({k: clean_string(serialized_citation[k], title)})
     try:
         authors_clean = []
         for auth in serialized_citation["authors"]:

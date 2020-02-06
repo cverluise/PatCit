@@ -32,21 +32,15 @@ cited_by = [
 ]
 
 crossref = [
-    SchemaField(
-        "abstract", "STRING", "NULLABLE", "Abstract (from Crossref)", ()
-    ),
-    SchemaField(
-        "subject", "STRING", "REPEATED", "Subject (from Crossref)", ()
-    ),
+    SchemaField("abstract", "STRING", "NULLABLE", "Abstract (from Crossref)", ()),
+    SchemaField("subject", "STRING", "REPEATED", "Subject (from Crossref)", ()),
     SchemaField(
         "funder",
         "RECORD",
         "REPEATED",
         None,
         (
-            SchemaField(
-                "DOI", "STRING", "NULLABLE", "Funder DOI (from Crossref)", ()
-            ),
+            SchemaField("DOI", "STRING", "NULLABLE", "Funder DOI (from Crossref)", ()),
             SchemaField(
                 "award",
                 "STRING",
@@ -84,14 +78,8 @@ def make_aug_npl_schema():
     tmp.insert(idx_DOI, schema_doi)
 
     idx_citedby = _get_index(tmp, "npl_publn_id") + 1
-    [
-        tmp.insert(idx_citedby, cited_by[i])
-        for i in reversed(range(len(cited_by)))
-    ]
+    [tmp.insert(idx_citedby, cited_by[i]) for i in reversed(range(len(cited_by)))]
 
     idx_crossref = _get_index(tmp, "Issues")
-    [
-        tmp.insert(idx_crossref, crossref[i])
-        for i in reversed(range(len(crossref)))
-    ]
+    [tmp.insert(idx_crossref, crossref[i]) for i in reversed(range(len(crossref)))]
     return tmp

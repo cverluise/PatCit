@@ -25,7 +25,7 @@ def npl_cited_by_table(tls211_ref, tls212_ref, citedby_ref):
         REPLACE(CONCAT(publn_auth, "-", publn_nr, "-", publn_kind), " ", "") AS publication_number,
         pat_publn_id
       FROM
-        `{ref_to_bq_path(tls211_ref)}` 
+        `{ref_to_bq_path(tls211_ref)}`
       WHERE
         publn_nr IS NOT NULL
         AND publn_nr != "")
@@ -177,9 +177,7 @@ def add_crossref(crossref_ref, in_ref, out_ref):
     default="npl-parsing.external.npl_cited_by",
     help="Bq path to the " "citedby table",
 )
-@click.option(
-    "--tmp", default="npl-parsing.tmp.tmp", help="Bq path to the tmp table"
-)
+@click.option("--tmp", default="npl-parsing.tmp.tmp", help="Bq path to the tmp table")
 @click.option(
     "--tls211",
     default="usptobias.patstat.tls211",

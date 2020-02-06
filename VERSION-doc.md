@@ -20,10 +20,10 @@ Access the data [here][db] (tables *beta\_contextualNPL* and *beta\_contextualPa
 
 Full scale release. 40 million [DOCDB][DOCDB] NPL citations. Additional variables from crossref (abstract, subject and funders, see [#10][issue-10] for more).
 
-Access the data [here][db] (tables *v01*) and follow the [user-guide][user-guide]. 
+Access the data [here][db] (tables *v01*) and follow the [user-guide][user-guide].
 
 ### Beta (October 2019)
 
-Sandbox for data tests and user feedbacks. Includes 100k NPL citations.  
+Sandbox for data tests and user feedbacks. Includes 100k NPL citations.
 
 *Deprecated*

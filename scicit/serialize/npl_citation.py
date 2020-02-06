@@ -43,9 +43,7 @@ async def fetch_tag(tag):
     if attr and tag.string:
         if tag.name == "title":
             try:
-                return {
-                    tag.name + "_" + tag["type"] + "_" + tag[attr]: tag.string
-                }
+                return {tag.name + "_" + tag["type"] + "_" + tag[attr]: tag.string}
             except KeyError:
                 return {tag.name + "_" + tag[attr]: tag.string}
         else:

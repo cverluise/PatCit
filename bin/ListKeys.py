@@ -16,9 +16,7 @@ from tqdm import tqdm
     default="sm",
     help="Examples reported if <flavor> is lg. Default " "<falvor> is sm.",
 )
-@click.option(
-    "--limit", default=None, type=int, help="Break after <limit> iterations"
-)
+@click.option("--limit", default=None, type=int, help="Break after <limit> iterations")
 def main(path, tar, flavor, limit):
     assert flavor in ["sm", "lg"]
     key_val = {}
@@ -35,18 +33,10 @@ def main(path, tar, flavor, limit):
                     if k in key_val.keys():
                         if flavor == "lg":
                             key_val.update(
-                                {
-                                    k: (
-                                        key_val[k][0] + 1,
-                                        key_val[k][1],
-                                        key_val[k][2],
-                                    )
-                                }
+                                {k: (key_val[k][0] + 1, key_val[k][1], key_val[k][2])}
                             )
                         else:
-                            key_val.update(
-                                {k: (key_val[k][0] + 1, key_val[k][1])}
-                            )
+                            key_val.update({k: (key_val[k][0] + 1, key_val[k][1])})
                     else:
                         if flavor == "lg":
                             key_val.update({k: (1, type(v), v)})

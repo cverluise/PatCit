@@ -14,8 +14,7 @@ async def eval_issue_1(serialized_citation):
     if "when" in serialized_citation.keys():
         return (
             1
-            if str(serialized_citation["npl_publn_id"])
-            in serialized_citation["when"]
+            if str(serialized_citation["npl_publn_id"]) in serialized_citation["when"]
             else None
         )
 
@@ -66,9 +65,7 @@ async def eval_issue_15(serialized_citation):
     :return: int or None
     """
     if "title_j" in serialized_citation.keys():
-        return (
-            15 if serialized_citation["title_j"].lower() == "pages" else None
-        )
+        return 15 if serialized_citation["title_j"].lower() == "pages" else None
 
 
 async def eval_issues(serialized_citation):

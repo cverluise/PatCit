@@ -37,9 +37,7 @@ header_fin_fulltext_us = ["publication_number", "description"]
 
 def process_biblio_tls214(input_file: str):
     tmp = input_file.split("/")
-    output_file = (
-        "/".join(tmp[:-1]) + "/processed_" + ".".join(tmp[-1].split(".")[:-1])
-    )
+    output_file = "/".join(tmp[:-1]) + "/processed_" + ".".join(tmp[-1].split(".")[:-1])
     data = {"citations": None, "consolidateCitations": 1}  # init
     with open(input_file, mode="r") as fin:
         fin_reader = csv.DictReader(
@@ -83,9 +81,7 @@ def process_biblio_tls214(input_file: str):
 
 def process_full_text(input_file: str):
     tmp = input_file.split("/")
-    output_file = (
-        "/".join(tmp[:-1]) + "/processed_" + ".".join(tmp[-1].split(".")[:-1])
-    )
+    output_file = "/".join(tmp[:-1]) + "/processed_" + ".".join(tmp[-1].split(".")[:-1])
     data = {"input": None, "consolidateCitations": 1}  # init
 
     with open(input_file, mode="r") as fin:
@@ -114,8 +110,7 @@ def process_full_text(input_file: str):
                     data.update({"input": line["description"]})
 
                     response = requests.post(
-                        "http://localhost:8070/api/processCitationPatentTXT",
-                        data=data,
+                        "http://localhost:8070/api/processCitationPatentTXT", data=data
                     )
                     soup = BeautifulSoup(response.text, "lxml")
 
@@ -123,10 +118,7 @@ def process_full_text(input_file: str):
                         {
                             "publication_number": line["publication_number"],
                             "citations": list(
-                                map(
-                                    lambda x: str(x),
-                                    soup.find_all("biblstruct"),
-                                )
+                                map(lambda x: str(x), soup.find_all("biblstruct"))
                             ),
                         }
                     )

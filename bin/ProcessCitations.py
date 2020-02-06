@@ -42,14 +42,10 @@ def main(path, pattern, flavor, max_workers):
     input_files = [path + file for file in os.listdir(path) if pattern in file]
 
     if flavor == "tls214":
-        with concurrent.futures.ThreadPoolExecutor(
-            max_workers=max_workers
-        ) as executor:
+        with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
             executor.map(process_biblio_tls214, input_files)
     else:
-        with concurrent.futures.ThreadPoolExecutor(
-            max_workers=max_workers
-        ) as executor:
+        with concurrent.futures.ThreadPoolExecutor(max_workers=max_workers) as executor:
             executor.map(process_full_text, input_files)
 
 

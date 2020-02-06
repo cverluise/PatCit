@@ -11,12 +11,9 @@ from scicit.utils import str_to_bq_ref
     "--table_path 'npl-parsing.patcit.beta' --schema 'schema/npl_citation_schema.json' "
     "--write_mode 'CREATE_NEW'"
 )
+@click.option("--uri", help="E.g. 'gs://npl-parsing/serialized_tls214/*.jsonl'")
 @click.option(
-    "--uri", help="E.g. 'gs://npl-parsing/serialized_tls214/*.jsonl'"
-)
-@click.option(
-    "--table_path",
-    help="BQ path of the target table (e.g 'npl-parsing.patcit.beta').",
+    "--table_path", help="BQ path of the target table (e.g 'npl-parsing.patcit.beta')."
 )
 @click.option("--schema", help="json file defining the table schema")
 @click.option(
@@ -56,9 +53,7 @@ def main(uri, table_path, schema, write_mode):
         table = bq.Table(table_ref, schema=client.schema_from_json(schema))
         client.create_table(table)
 
-    load_job = client.load_table_from_uri(
-        uri, table_ref, job_config=load_job_config
-    )
+    load_job = client.load_table_from_uri(uri, table_ref, job_config=load_job_config)
     with msg.loading("Loading data..."):
         load_job.result()
     msg.good("Data succesfully loaded!")

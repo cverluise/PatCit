@@ -49,30 +49,23 @@ def serialize(input_file, batch_size=1000):
     tmp = input_file.split("/")
     output_file = "/".join(tmp[:-1]) + "/" + tmp[-1].split(".")[0] + ".jsonl"
     output_file = output_file.replace("processed_", "serialized_")
-    data = pd.read_csv(input_file, compression="gzip")[
-        ["npl_publn_id", "npl_grobid"]
-    ]
+    data = pd.read_csv(input_file, compression="gzip")[["npl_publn_id", "npl_grobid"]]
 
     serialized_grobid = []
     for i in tqdm(np.arange(0, len(data), batch_size)):
         tmp = data.iloc[i : i + batch_size]
-        serialized_grobid += tmp.apply(
-            serialize_prep_validate_npl, axis=1
-        ).to_list()
+        serialized_grobid += tmp.apply(serialize_prep_validate_npl, axis=1).to_list()
     np.savetxt(output_file, serialized_grobid, fmt="%s", delimiter="\n")
 
 
 if __name__ == "__main__":
 
     @click.command()
-    @click.option(
-        "--path", type=str, help="File or folder path. Wildcard '*' enabled"
-    )
+    @click.option("--path", type=str, help="File or folder path. Wildcard '*' enabled")
     @click.option(
         "--flavor",
         type=str,
-        help="Type of files to be processed. Currently "
-        "supported: 'tls_214'.",
+        help="Type of files to be processed. Currently " "supported: 'tls_214'.",
     )
     @click.option(
         "--max_workers",

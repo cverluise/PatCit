@@ -33,9 +33,7 @@ async def prep_validate_ccit(id_, ccit, flavor):
     pk_type = "string"
     if flavor == "npl":
         ccit = prep_and_pop(ccit, get_schema(flavor, pk, pk_type))
-        ccit.update(
-            {pk: id_}
-        )  # hack to make sure that we preserve UPPER in id_
+        ccit.update({pk: id_})  # hack to make sure that we preserve UPPER in id_
     try:
         validate(instance=ccit, schema=get_schema(flavor, pk, pk_type))
     except Exception as e:
@@ -134,9 +132,7 @@ def serialize(input_file):
 if __name__ == "__main__":
 
     @click.command()
-    @click.option(
-        "--path", type=str, help="File or folder path. Wildcard '*' enabled"
-    )
+    @click.option("--path", type=str, help="File or folder path. Wildcard '*' enabled")
     @click.option(
         "--max_workers",
         type=int,
