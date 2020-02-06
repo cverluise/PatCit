@@ -1,0 +1,64 @@
+# Project information
+site_name: 'SciCit'
+site_description: 'Making patent citations uncool again'
+site_author: 'Cyril Verluise & Gaétan de Rassenfosse'
+#site_url: 'https://cverluise.github.io/SciCit/'
+
+# Repository
+repo_name: 'cverluise/parseEPO'
+repo_url: 'https://github.com/cverluise/SciCit'
+
+# Copyright
+copyright: 'Copyright; 2020 Cyril Verluise & Gaétan de Rassenfosse'
+
+# Configuration
+theme:
+  name: 'material'
+  language: 'en'
+  palette:
+    primary: 'green'
+    accent: 'green'
+  font:
+    text: 'Roboto'
+    code: 'Roboto Mono'
+
+# Customization
+extra:
+  manifest: 'manifest.webmanifest'
+  social:
+    - type: 'github'
+      link: 'https://github.com/cverluise'
+    - type: 'twitter'
+      link: 'https://twitter.com/cyrilverluise'
+    - type: 'linkedin'
+      link: 'https://www.linkedin.com/in/cyril-verluise-80184347/'
+
+# Google Analytics
+#google_analytics:
+#  - 'UA-XXXXXXXX-X'
+#  - 'auto'
+
+# Extensions
+markdown_extensions:
+  - admonition
+  - codehilite:
+      guess_lang: false
+  - toc:
+      permalink: true
+  - pymdownx.tasklist:
+      custom_checkbox: true
+  - pymdownx.superfences:
+  - pymdownx.details:
+
+# Page tree
+
+nav:
+  - About: index.md
+#  - Quick start:
+#  - Developers:
+#    - Set-up: set-up.md
+#    - Extract: extract.md
+#    - Transform: transform.md
+#    - Load: load.md
+#    - Before starting: before.md
+#  - License: license.md
