@@ -1,4 +1,4 @@
-from scicit.config import Config
+from patcit.config import Config
 
 
 def str_to_bq_ref(s):

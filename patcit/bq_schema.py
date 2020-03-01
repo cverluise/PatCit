@@ -1,6 +1,6 @@
 from google.cloud.bigquery import SchemaField
 
-from scicit.config import Config
+from patcit.config import Config
 
 client = Config().client()
 

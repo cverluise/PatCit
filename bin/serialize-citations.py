@@ -10,11 +10,11 @@ from jsonschema import validate
 import json
 from tqdm import tqdm
 
-from scicit.issues import eval_issues
-from scicit.serialize.npl_citation import fetch_all_tags
-from scicit.validation.npl_citation import solve_issues
-from scicit.validation.schema import get_schema
-from scicit.validation.shape import prep_and_pop
+from patcit.issues import eval_issues
+from patcit.serialize.npl_citation import fetch_all_tags
+from patcit.validation.npl_citation import solve_issues
+from patcit.validation.schema import get_schema
+from patcit.validation.shape import prep_and_pop
 
 
 def serialize_prep_validate_npl(x):

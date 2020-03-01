@@ -2,8 +2,8 @@ import click
 from google.cloud import bigquery as bq
 from wasabi import Printer
 
-from scicit.config import Config
-from scicit.utils import str_to_bq_ref
+from patcit.config import Config
+from patcit.utils import str_to_bq_ref
 
 
 @click.command(

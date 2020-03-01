@@ -1,6 +1,6 @@
 import asyncio
 
-from scicit.serialize.schema import tag_list, tag2attr
+from patcit.serialize.schema import tag_list, tag2attr
 
 
 async def fetch_author(auth):

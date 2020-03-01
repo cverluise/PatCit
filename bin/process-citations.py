@@ -3,7 +3,7 @@ import os
 
 import click
 
-from scicit.io import process_biblio_tls214, process_full_text
+from patcit.io import process_biblio_tls214, process_full_text
 
 
 @click.command()

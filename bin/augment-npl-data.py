@@ -2,9 +2,9 @@ import click
 from google.cloud import bigquery as bq
 from wasabi import Printer
 
-from scicit import bq_schema
-from scicit.config import Config
-from scicit.utils import str_to_bq_ref, ref_to_bq_path
+from patcit import bq_schema
+from patcit.config import Config
+from patcit.utils import str_to_bq_ref, ref_to_bq_path
 
 msg = Printer()
 

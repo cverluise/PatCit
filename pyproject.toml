@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "scicit"
+name = "patcit"
 version = "0.1.0"
 description = ""
 authors = ["Cyril Verluise <cyril.verluise@gmail.com>"]

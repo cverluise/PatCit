@@ -45,7 +45,7 @@ be properly identified. See [here][crossref-mailto] for more details.
 2. Start processing data
 
 ````shell script
-python3 bin/ProcessCitations.py data/path
+python3 process-citations.py data/path
 ````
 
 #### Disclaimer

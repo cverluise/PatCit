@@ -12,9 +12,9 @@ from jsonschema import validate
 from smart_open import open
 from tqdm import tqdm
 
-from scicit.serialize import contextual_citation
-from scicit.validation.schema import get_schema
-from scicit.validation.shape import prep_and_pop
+from patcit.serialize import contextual_citation
+from patcit.validation.schema import get_schema
+from patcit.validation.shape import prep_and_pop
 
 csv.field_size_limit(sys.maxsize)
 

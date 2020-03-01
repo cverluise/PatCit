@@ -1,9 +1,9 @@
 from setuptools import setup
 
 setup(
-    name="scicit",
+    name="patcit",
     version="0.1",
-    packages=["scicit"],
+    packages=["patcit"],
     url="",
     license="",
     author="Cyril Verluise",
