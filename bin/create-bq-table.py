@@ -7,7 +7,7 @@ from scicit.utils import str_to_bq_ref
 
 
 @click.command(
-    help="python bin/CreateBQTable.py --uri 'gs://npl-parsing/serialized_tls214/*.jsonl' "
+    help="python bin/create-bq-table.py --uri 'gs://npl-parsing/serialized_tls214/*.jsonl' "
     "--table_path 'npl-parsing.patcit.beta' --schema 'schema/npl_citation_schema.json' "
     "--write_mode 'CREATE_NEW'"
 )

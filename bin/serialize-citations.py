@@ -83,5 +83,5 @@ if __name__ == "__main__":
 
     main()
 
-# python bin/SerializeCitations.py --path /Volumes/HD_CyrilVerluise/patstat18b/small_chunks/
+# python bin/serialize-citations.py --path /Volumes/HD_CyrilVerluise/patstat18b/small_chunks/
 # --pattern "proc" --flavor "tls214"
