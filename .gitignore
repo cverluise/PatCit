@@ -2,16 +2,20 @@
 docs/
 
 # Confidential
-npl-parsing-cdda13f10f36.json
-npl-parsing-3412b4cafd20.json
-config.json
+**/npl-parsing-cdda13f10f36.json
+**/npl-parsing-3412b4cafd20.json
+**/config.json
 
 # Large files
 data/
+*results-*.csv
+*results-*.txt
+
 
 # Dev
 dev*.py
 example.py
+eda/
 
 # System files
 **/.DS_Store
