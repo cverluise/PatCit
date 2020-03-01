@@ -30,7 +30,7 @@ def solve_issue_5(serialized_citation: dict, issues: list):
     """
     if 5 in issues:
         serialized_citation["DOI"] = (
-            serialized_citation["DOI"].lower().replace("doi", "").replace(":", "")
+            serialized_citation["DOI"].lower().replace("doi:", "").replace("doi", "")
         )
     return serialized_citation
 
