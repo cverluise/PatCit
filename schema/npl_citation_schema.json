@@ -140,7 +140,7 @@
         "mode": "NULLABLE"
     },
   {
-        "description": "Issues detected in row. See: https://github.com/cverluise/SciCit/issues/<issue number>.",
+        "description": "Issues detected in row. See: https://github.com/cverluise/PatCit/issues/<issue number>.",
         "name": "Issues",
         "type": "INTEGER",
         "mode": "Repeated"}

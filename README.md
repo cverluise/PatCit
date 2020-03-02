@@ -13,7 +13,8 @@
 [gder]:http://www.gder.info/
 [cverluise]:https://github.com/cverluise
 [cver]:https://cverluise.github.io/
-[v01]:https://console.cloud.google.com/bigquery?project=npl-parsing&p=npl-parsing&d=patcit&t=v01&page=table
+[v01]:https://console.cloud.google.com/bigquery?project=npl-parsing&p=npl-parsing&d=patcit&t=v01_npl&page=table
+[v02]:https://console.cloud.google.com/bigquery?project=npl-parsing&p=npl-parsing&d=patcit&t=v02_npl&page=table
 [beta-npl]:https://console.cloud.google.com/bigquery?project=npl-parsing&p=npl-parsing&d=patcit&t=beta_contextualNPL&page=table
 [beta-pat]:https://console.cloud.google.com/bigquery?project=npl-parsing&p=npl-parsing&d=patcit&t=beta_contextualPat&page=table
 [v01-npl]:https://console.cloud.google.com/bigquery?cloudshell=false&project=npl-parsing&p=npl-parsing&d=patcit&t=v01_UScontextualNPL&page=table
@@ -23,7 +24,35 @@
 
 # READ ME
 
-## :new: Patent Contextual Citations dataset
+## Dataset
+
+
+**License.** The dataset is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+
+
+### :new: Worldwide NPL v0.2
+
+**What's in there?** We parse and consolidate the 40 million Non Patent Literature (NPL) citations reported in the [DOCDB][DOCDB] database.
+
+
+**Give it a try!** We just released the *[v0.2][v02]*. It builds on previous versions and adds a `npl_class` field which classifies the NPL publications in 9 different classes (bibliographical reference, office action, patent, search report, etc). We also extend the number of bibliographical reference with a ISSN (journal identifier) to 10.8 million (versus 8.9 million in v.01).
+
+**Data quality**:
+
+ - The classifier producing the `npl_class` achieves 89.9% accuracy
+ - In the subset of bibliographical references (27.5 million), there are 3 main quality levels:
+
+|Quality degree| Characterization| Share of the [DOCDB][DOCDB]|
+|---|---|---|
+|1|Matched with a Digital Object Identifier (DOI)| 40%|
+|2|Parsed *at least* a document title (journal, conference, article), excl 1.| 40%|
+|3|Neither 1. nor 2.| 20%|
+
+ - When we match a DOI, this is the right one in 99% of the cases
+
+And we can do even better! Quality will keep improving fast, [stay up to date](#update) and [contribute](#contribute).
+
+### Patent Contextual Citations
 
 **What's in there?** We extract, parse and consolidate *in-text* "patent-to-NPL" and "patent-to-patent" citations from patents description.
 
@@ -31,26 +60,6 @@
 
 **Data quality.** Data quality is under review. Any comments is most welcome. At this point, we know that we matched more than 13 million contextual NPL citations with a DOI. Overall, we extracted more than 70 million contextal NPL citations.
 
-**License.** The dataset is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
-
-## Worldwide Patent-to-Science Citations dataset
-
-**What's in there?** We parse and consolidate the 40 million Non Patent Literature (NPL) citations reported in the [DOCDB][DOCDB] database.
-
-
-**Give it a try!** We just released the data v0.1. It includes the 40 million [DOCDB][DOCDB] NPL citations.
-
-**Data quality.** There a mainly 3 levels of quality.
-
-|Quality degree| Characterization| Share of the [DOCDB][DOCDB]|
-|---|---|---|
-|1|Matched with a Digital Object Identifier (DOI)| 29%|
-|2|Parsed *at least* a document title (journal, conference, article), excl 1.| 43%|
-|3|Neither 1. nor 2.| 28%|
-
-And we can do even better! Quality will keep improving fast, [stay up to date](#update) and [contribute](#contribute).
-
-**License.** The dataset is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
 
 ## In practice
 
@@ -62,7 +71,8 @@ Just follow this [link][db] and navigate to your favourite table!
 
 |Data| Table (clickable link)|
 |---|---|
-|Worldwide Patent-to-Science - v0.1| [v01][v01]|
+|Worldwide NPL - v0.2| [v02][v02]|
+|Worldwide NPL - v0.1| [v01][v01]|
 |Patent-to-*NPL* Contextual Citations| [v01_UScontextualNPL][v01-npl]|
 |Patent-to-*patent* Contextual Citations| [v01_UScontextualPat][v01-pat]|
 
