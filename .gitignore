@@ -16,6 +16,7 @@ data/
 dev*.py
 example.py
 eda/
+validation/ref_parsing/
 
 # System files
 **/.DS_Store
