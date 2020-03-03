@@ -55,8 +55,18 @@ crossref = [
     ),
 ]
 
-
 # nb: we could get it directly from crossref_schema.json but more variables at this point
+
+npl_class = [
+    SchemaField(
+        "npl_class",
+        "STRING",
+        "NULLABLE",
+        "NPL class (e.g. BIBLIOGRAPHICAL_REFERENCE, OFFICE_ACTION, PATENT, "
+        "SEARCH_REPORT, etc)",
+        (),
+    )
+]
 
 
 def _get_index(bq_schema, name):
@@ -66,7 +76,8 @@ def _get_index(bq_schema, name):
                 return i
 
 
-def make_aug_npl_schema():
+def make_aug_npl_schema(flavor):
+    assert flavor in ["v01", "v02"]
     tmp = npl_citation.copy()
 
     idx_DOI = _get_index(tmp, "DOI")
@@ -82,4 +93,11 @@ def make_aug_npl_schema():
 
     idx_crossref = _get_index(tmp, "Issues")
     [tmp.insert(idx_crossref, crossref[i]) for i in reversed(range(len(crossref)))]
+
+    if flavor == "v02":
+        idx_nplclass = _get_index(tmp, "npl_publn_id") + 1
+        [
+            tmp.insert(idx_nplclass, npl_class[i])
+            for i in reversed(range(len(npl_class)))
+        ]
     return tmp
