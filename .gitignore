@@ -11,6 +11,9 @@ data/
 *results-*.csv
 *results-*.txt
 
+# spaCy models
+**/en_core_web_sm*/
+
 
 # Dev
 dev*.py
