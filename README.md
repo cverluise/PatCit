@@ -35,7 +35,7 @@
 **What's in there?** We parse and consolidate the 40 million Non Patent Literature (NPL) citations reported in the [DOCDB][DOCDB] database.
 
 
-**Give it a try!** We just released the *[v0.2][v02]*. It builds on previous versions and adds a `npl_class` field which classifies the NPL publications in 9 different classes (bibliographical reference, office action, patent, search report, etc). We also extend the number of bibliographical reference with a ISSN (journal identifier) to 10.8 million (versus 8.9 million in v.01).
+**Give it a try!** We just released the *[v0.2-npl][v02]*. It builds on previous versions and adds a `npl_class` field which classifies the NPL publications in 9 different classes (bibliographical reference, office action, patent, search report, etc). We also extend the number of bibliographical reference with a ISSN (journal identifier) to 10.8 million (versus 8.9 million in v.01).
 
 **Data quality**:
 
@@ -71,8 +71,8 @@ Just follow this [link][db] and navigate to your favourite table!
 
 |Data| Table (clickable link)|
 |---|---|
-|Worldwide NPL - v0.2| [v02][v02]|
-|Worldwide NPL - v0.1| [v01][v01]|
+|Worldwide NPL - v0.2| [v0.2-npl][v02]|
+|Worldwide NPL - v0.1| [v0.1-npl][v01]|
 |Patent-to-*NPL* Contextual Citations| [v01_UScontextualNPL][v01-npl]|
 |Patent-to-*patent* Contextual Citations| [v01_UScontextualPat][v01-pat]|
 
