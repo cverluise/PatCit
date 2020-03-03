@@ -13,6 +13,7 @@ data/
 
 # spaCy models
 **/en_core_web_sm*/
+**/en_core_web_sm*.tar.gz
 
 
 # Dev
