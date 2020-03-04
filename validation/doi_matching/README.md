@@ -25,11 +25,18 @@ WHERE
   tmp.npl_publn_id = tls214.npl_publn_id
 ```
 
+## Gold
+
+- Labeled by Francesco Gerotto
+- 300 samples
+
 ## Results
 
 ||match_doc|version_discrepancy|year_discrepancy|
 |---|---|---|---|
 |count|300.00|300.0|300.00|
 |mean| 0.99|0.0|0.02|
+
+From: `eval-20200222-215230.csv`
 
 Nb: part of the missing match is due to issue #5 (reopen)
