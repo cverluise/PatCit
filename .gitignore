@@ -10,6 +10,8 @@ docs/
 data/
 *results-*.csv
 *results-*.txt
+*prep*.csv
+*prep*.json
 
 # spaCy models
 **/en_core_web_sm*/
@@ -20,7 +22,6 @@ data/
 dev*.py
 example.py
 eda/
-validation/ref_parsing/
 
 # System files
 **/.DS_Store
