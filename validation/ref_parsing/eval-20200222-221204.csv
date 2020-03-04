@@ -1,0 +1,13 @@
+,True,False,Accuracy
+year_wna,138,12,0.92
+year_wona,136,6,0.96
+volume_wna,135,15,0.9
+volume_wona,102,7,0.94
+issue_wna,132,18,0.88
+issue_wona,38,13,0.75
+title_main_a_wna,116,34,0.77
+title_main_a_wona,58,28,0.67
+title_j_wna,107,43,0.71
+title_j_wona,88,33,0.73
+title_m_wna,120,30,0.8
+title_m_wona,12,16,0.43
