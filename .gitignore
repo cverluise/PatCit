@@ -22,7 +22,7 @@ dev*.py
 example.py
 eda/
 data-release/
-
+site/
 # System files
 **/.DS_Store
 .idea/*
