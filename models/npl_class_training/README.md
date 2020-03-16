@@ -199,7 +199,40 @@ python train-textcat.py data/label*.csv --train-share .8 --spacy-model en_core_w
 
 Overall performs well, in particular for crucial NPL classes.
 
-Current classification pitfall: webpage and product documentation.
+Current classification pitfalls: webpage and product documentation.
+
+#### `en_core_web_sm_npl-class-ensemble-0.8`
+
+- ensemble model (bow+cnn with bagging)
+- trained on 80% of the "gold" dataset and evaluated on remaining 20% (hold-out)
+
+**Average performance**
+
+accuracy|precision|recall|f1
+---|---|---|---
+0.9|0.89|0.88|0.88
+
+**Class performance**
+
+precision|recall|f1|support
+---|---|---|---
+BIBLIOGRAPHICAL_REFERENCE|0.92|0.95|0.93
+SEARCH_REPORT|1.0|0.92|0.96
+OFFICE_ACTION|0.99|0.93|0.96
+DATABASE|0.89|0.73|0.8
+WEBPAGE|0.53|0.53|0.53
+PATENT|0.91|0.94|0.93
+NA|1.0|1.0|1.0
+PRODUCT_DOCUMENTATION|0.44|0.43|0.44
+NORM_STANDARD|0.86|0.6|0.71
+LITIGATION|0.25|0.11|0.15
+
+
+#### `en_core_web_sm_npl-class-ensemble-1.0`
+
+Same as en_core_web_sm_npl-class-ensemble-1.0 but trained on full dataset to maximize performance. Model used to create the npl_class field.
+
+
 
 
 ### Ideas
@@ -210,3 +243,4 @@ Research directions for future improvements include
 - Architecture (`bow` and `simple-cnn`)
 - Add examples of under-represented classes
 - Training data augmentations (e.g. generate examples from truncated npl_biblio)
+- Active learning: label by hand examples with score close to threshold
