@@ -30,7 +30,7 @@ So far, we have:
     !!! more
         From the 16 million USPTO patents, we have:
 
-        1. extracted](./vocabulary#extract) and [**parsed**](./vocabulary#parse) 70 million in-text bibliographical references and 80 million patent citations[^nvy].
+        1. [**extracted**](./vocabulary#extract) and [**parsed**](./vocabulary#parse) 70 million in-text bibliographical references and 80 million patent citations[^nvy].
         2. found a [**DOI**](./vocabulary#digital-object-identifier-doi) for 13+ million in-text bibliographical references (18%)[^nvy].
 
 
