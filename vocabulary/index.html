@@ -1,0 +1,842 @@
+
+
+
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      
+        <meta name="description" content="Making Patent Citations Uncool Again">
+      
+      
+      
+        <meta name="author" content="Cyril Verluise & Gaétan de Rassenfosse">
+      
+      
+        <meta name="lang:clipboard.copy" content="Copy to clipboard">
+      
+        <meta name="lang:clipboard.copied" content="Copied to clipboard">
+      
+        <meta name="lang:search.language" content="en">
+      
+        <meta name="lang:search.pipeline.stopwords" content="True">
+      
+        <meta name="lang:search.pipeline.trimmer" content="True">
+      
+        <meta name="lang:search.result.none" content="No matching documents">
+      
+        <meta name="lang:search.result.one" content="1 matching document">
+      
+        <meta name="lang:search.result.other" content="# matching documents">
+      
+        <meta name="lang:search.tokenizer" content="[\s\-]+">
+      
+      <link rel="shortcut icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.0.4, mkdocs-material-4.6.3">
+    
+    
+      
+        <title>Vocabulary - PatCit</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/application.adb8469c.css">
+      
+        <link rel="stylesheet" href="../assets/stylesheets/application-palette.a8b3c06d.css">
+      
+      
+        
+        
+        <meta name="theme-color" content="#3f51b5">
+      
+    
+    
+      <script src="../assets/javascripts/modernizr.86422ebf.js"></script>
+    
+    
+      
+        <link href="https://fonts.gstatic.com" rel="preconnect" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto","Helvetica Neue",Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono","Courier New",Courier,monospace}</style>
+      
+    
+    <link rel="stylesheet" href="../assets/fonts/material-icons.css">
+    
+      <link rel="manifest" type="application/manifest+json" href="../manifest.webmanifest" crossorigin="use-credentials">
+    
+    
+    
+      
+    
+    
+  </head>
+  
+    
+    
+    <body dir="ltr" data-md-color-primary="indigo" data-md-color-accent="indigo">
+  
+    <svg class="md-svg">
+      <defs>
+        
+        
+          <svg xmlns="http://www.w3.org/2000/svg" width="416" height="448" viewBox="0 0 416 448" id="__github"><path fill="currentColor" d="M160 304q0 10-3.125 20.5t-10.75 19T128 352t-18.125-8.5-10.75-19T96 304t3.125-20.5 10.75-19T128 256t18.125 8.5 10.75 19T160 304zm160 0q0 10-3.125 20.5t-10.75 19T288 352t-18.125-8.5-10.75-19T256 304t3.125-20.5 10.75-19T288 256t18.125 8.5 10.75 19T320 304zm40 0q0-30-17.25-51T296 232q-10.25 0-48.75 5.25Q229.5 240 208 240t-39.25-2.75Q130.75 232 120 232q-29.5 0-46.75 21T56 304q0 22 8 38.375t20.25 25.75 30.5 15 35 7.375 37.25 1.75h42q20.5 0 37.25-1.75t35-7.375 30.5-15 20.25-25.75T360 304zm56-44q0 51.75-15.25 82.75-9.5 19.25-26.375 33.25t-35.25 21.5-42.5 11.875-42.875 5.5T212 416q-19.5 0-35.5-.75t-36.875-3.125-38.125-7.5-34.25-12.875T37 371.5t-21.5-28.75Q0 312 0 260q0-59.25 34-99-6.75-20.5-6.75-42.5 0-29 12.75-54.5 27 0 47.5 9.875t47.25 30.875Q171.5 96 212 96q37 0 70 8 26.25-20.5 46.75-30.25T376 64q12.75 25.5 12.75 54.5 0 21.75-6.75 42 34 40 34 99.5z"/></svg>
+        
+      </defs>
+    </svg>
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" data-md-component="overlay" for="__drawer"></label>
+    
+      <a href="#accuracy" tabindex="0" class="md-skip">
+        Skip to content
+      </a>
+    
+    
+      <header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid">
+    <div class="md-flex">
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <a href=".." title="PatCit" aria-label="PatCit" class="md-header-nav__button md-logo">
+          
+            <i class="md-icon"></i>
+          
+        </a>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        <label class="md-icon md-icon--menu md-header-nav__button" for="__drawer"></label>
+      </div>
+      <div class="md-flex__cell md-flex__cell--stretch">
+        <div class="md-flex__ellipsis md-header-nav__title" data-md-component="title">
+          
+            <span class="md-header-nav__topic">
+              PatCit
+            </span>
+            <span class="md-header-nav__topic">
+              
+                Vocabulary
+              
+            </span>
+          
+        </div>
+      </div>
+      <div class="md-flex__cell md-flex__cell--shrink">
+        
+          <label class="md-icon md-icon--search md-header-nav__button" for="__search"></label>
+          
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" aria-label="search" name="query" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="query" data-md-state="active">
+      <label class="md-icon md-search__icon" for="__search"></label>
+      <button type="reset" class="md-icon md-search__icon" data-md-component="reset" tabindex="-1">
+        &#xE5CD;
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="result">
+          <div class="md-search-result__meta">
+            Type to start searching
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+        
+      </div>
+      
+        <div class="md-flex__cell md-flex__cell--shrink">
+          <div class="md-header-nav__source">
+            
+
+
+  
+
+<a href="https://github.com/cverluise/PatCit/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    cverluise/PatCit
+  </div>
+</a>
+          </div>
+        </div>
+      
+    </div>
+  </nav>
+</header>
+    
+    <div class="md-container">
+      
+        
+      
+      
+      <main class="md-main" role="main">
+        <div class="md-main__inner md-grid" data-md-component="container">
+          
+            
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    <nav class="md-nav md-nav--primary" data-md-level="0">
+  <label class="md-nav__title md-nav__title--site" for="__drawer">
+    <a href=".." title="PatCit" class="md-nav__button md-logo">
+      
+        <i class="md-icon"></i>
+      
+    </a>
+    PatCit
+  </label>
+  
+    <div class="md-nav__source">
+      
+
+
+  
+
+<a href="https://github.com/cverluise/PatCit/" title="Go to repository" class="md-source" data-md-source="github">
+  
+    <div class="md-source__icon">
+      <svg viewBox="0 0 24 24" width="24" height="24">
+        <use xlink:href="#__github" width="24" height="24"></use>
+      </svg>
+    </div>
+  
+  <div class="md-source__repository">
+    cverluise/PatCit
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-1" type="checkbox" id="nav-1">
+    
+    <label class="md-nav__link" for="nav-1">
+      About
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-1">
+        About
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href=".." title="Project" class="md-nav__link">
+      Project
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../roadmap/" title="Roadmap" class="md-nav__link">
+      Roadmap
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../team/" title="Team" class="md-nav__link">
+      Team
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../update/" title="Keep me updated" class="md-nav__link">
+      Keep me updated
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3">
+    
+    <label class="md-nav__link" for="nav-3">
+      Data
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        Data
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../download/" title="Download" class="md-nav__link">
+      Download
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../explore/" title="Explore" class="md-nav__link">
+      Explore
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4">
+    
+    <label class="md-nav__link" for="nav-4">
+      Contribute
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        Contribute
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../contributing/" title="Contributions" class="md-nav__link">
+      Contributions
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../code-of-conduct/" title="Code of Conduct" class="md-nav__link">
+      Code of Conduct
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item">
+    <a href="../awesome/" title="Awesome resources" class="md-nav__link">
+      Awesome resources
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-toggle md-nav__toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Vocabulary
+      </label>
+    
+    <a href="./" title="Vocabulary" class="md-nav__link md-nav__link--active">
+      Vocabulary
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#accuracy" class="md-nav__link">
+    Accuracy
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consolidate" class="md-nav__link">
+    Consolidate
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#crossref" class="md-nav__link">
+    Crossref
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#epo-worldwide-bibliographic-data-docdb" class="md-nav__link">
+    EPO worldwide bibliographic data (DOCDB)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#digital-object-identifier-doi" class="md-nav__link">
+    Digital Object Identifier (DOI)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extract" class="md-nav__link">
+    Extract
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#non-patent-literature-npl" class="md-nav__link">
+    Non Patent Literature (NPL)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parse" class="md-nav__link">
+    Parse
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#precision" class="md-nav__link">
+    Precision
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pubmed" class="md-nav__link">
+    PubMed
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+    
+    <label class="md-nav__link" for="nav-7">
+      License
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-7">
+        License
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../license-mit/" title="MIT2" class="md-nav__link">
+      MIT2
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../license-cc/" title="CC4" class="md-nav__link">
+      CC4
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc">
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary">
+  
+  
+  
+    <label class="md-nav__title" for="__toc">Table of contents</label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#accuracy" class="md-nav__link">
+    Accuracy
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#consolidate" class="md-nav__link">
+    Consolidate
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#crossref" class="md-nav__link">
+    Crossref
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#epo-worldwide-bibliographic-data-docdb" class="md-nav__link">
+    EPO worldwide bibliographic data (DOCDB)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#digital-object-identifier-doi" class="md-nav__link">
+    Digital Object Identifier (DOI)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#extract" class="md-nav__link">
+    Extract
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#non-patent-literature-npl" class="md-nav__link">
+    Non Patent Literature (NPL)
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#parse" class="md-nav__link">
+    Parse
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#precision" class="md-nav__link">
+    Precision
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#pubmed" class="md-nav__link">
+    PubMed
+  </a>
+  
+</li>
+      
+      
+      
+      
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/cverluise/PatCit/edit/master/docs/vocabulary.md" title="Edit this page" class="md-icon md-content__icon">&#xE3C9;</a>
+                
+                
+                  <h1>Vocabulary</h1>
+                
+                <h4 id="accuracy">Accuracy<a class="headerlink" href="#accuracy" title="Permanent link">&para;</a></h4>
+<p>Accuracy<sup id="fnref:acc"><a class="footnote-ref" href="#fn:acc">1</a></sup> is one metric for evaluating classification models. Informally, accuracy is the fraction of predictions our model got right. Formally, accuracy has the following definition:</p>
+<p>$$
+Accuracy=\frac{Number~of~correct~predictions}{Total~number~of~predictions}
+$$</p>
+<h4 id="consolidate">Consolidate<a class="headerlink" href="#consolidate" title="Permanent link">&para;</a></h4>
+<p>Match the standardized bibliographical attributes with high quality bibliographical databases. Enrich the final output with additional attributes such as the DOI, the PMID and the open access url inter allia.</p>
+<details class="example"><summary>In practice</summary><p>Let's consider the following free-form NPL citation:</p>
+<blockquote>
+<p>"Z. Yang, D. Williams, and A. J. Russell, J. Am. Chem. Soc., 1995, vol. 117, 4843."</p>
+</blockquote>
+<p>Matching it with Crossref, we can <a href="./vocabulary#consolidate"><strong>consolidate</strong></a> the bibliographical attributes found in the text with the following enriched attributes:</p>
+<blockquote>
+<ul>
+<li><code>Article title</code>: "Activity and Stability of Enzymes Incorporated into Acrylic Polymers"</li>
+<li><code>Journal title</code>: Journal of the American Chemical Society</li>
+<li><code>DOI</code>: 10.1021/ja00122a014</li>
+<li>`ISSN: 0002-7863</li>
+</ul>
+</blockquote>
+</details>
+<h4 id="crossref">Crossref<a class="headerlink" href="#crossref" title="Permanent link">&para;</a></h4>
+<p>Crossref interlinks millions of items from a variety of content types, including journals, books, conference proceedings, working papers, technical reports, and data sets. Linked content includes materials from Scientific, Technical and Medical (STM) and Social Sciences and Humanities (SSH) disciplines.</p>
+<h4 id="epo-worldwide-bibliographic-data-docdb">EPO worldwide bibliographic data (DOCDB)<a class="headerlink" href="#epo-worldwide-bibliographic-data-docdb" title="Permanent link">&para;</a></h4>
+<p>The EPO worldwide bibliographic data<sup id="fnref:docdb"><a class="footnote-ref" href="#fn:docdb">3</a></sup> includes bibliographic data from over 90 countries worldwide. The data goes back as far as the 1830s for some patent authorities.</p>
+<h4 id="digital-object-identifier-doi">Digital Object Identifier (DOI)<a class="headerlink" href="#digital-object-identifier-doi" title="Permanent link">&para;</a></h4>
+<p>A digital object identifier (DOI) is a persistent identifier or handle used to identify objects uniquely, standardized by the International Organization for Standardization (ISO). DOIs are in wide use mainly to identify academic, professional, and government information, such as journal articles, research reports and data sets <em>inter allia</em>. Publisher quality bibliographical attributes can be retrieved from the DOI. </p>
+<h4 id="extract">Extract<a class="headerlink" href="#extract" title="Permanent link">&para;</a></h4>
+<p>Detect and stage entity, NPL and patent citations in plain text documents.</p>
+<details class="example"><summary>In practice</summary><p>Let's consider an excerpt from <a href="https://patents.google.com/patent/US5914367?oq=US5914367A">US-5914367-A</a>:</p>
+<blockquote>
+<p>"Another disadvantage of this process is that such modified enzymes usually show low solubility in organic solvents, thereby limiting the enzyme loading to about 0.02% by weight in the final polymer products. Sea Z. Yang, D. Williams, and A. J. Russell, J. Am. Chem. Soc., 1995, vol. 117, 4843. The solubilized enzyme of this process also shows lower activity (...)"</p>
+</blockquote>
+<p>The NPL extraction task consists in detecting and staging the following NPL citation: </p>
+<blockquote>
+<p>"Z. Yang, D. Williams, and A. J. Russell, J. Am. Chem. Soc., 1995, vol. 117, 4843"</p>
+</blockquote>
+</details>
+<h4 id="non-patent-literature-npl">Non Patent Literature (NPL)<a class="headerlink" href="#non-patent-literature-npl" title="Permanent link">&para;</a></h4>
+<p>Any literature which is publicly available and not a patent or a pending/expired publication in a patent office can be an NPL.</p>
+<h4 id="parse">Parse<a class="headerlink" href="#parse" title="Permanent link">&para;</a></h4>
+<p>Structure a free-form NPL or patent citations into standard bibliographic attributes (e.g. title, authors, journal, etc)</p>
+<details class="example"><summary>In practice</summary><p>Let's consider the following free-form <a href="./vocabulary#non-patent-literature-npl"><strong>NPL</strong></a> citation:</p>
+<blockquote>
+<p>"Z. Yang, D. Williams, and A. J. Russell, J. Am. Chem. Soc., 1995, vol. 117, 4843."</p>
+</blockquote>
+<p>The parsing task consists in structuring this sequence into the following standardized bibliographical attributes:</p>
+<blockquote>
+<ul>
+<li>`Authors: Z. Yang, D. Williams, A. J. Russell</li>
+<li><code>Journal</code>: J. Am. Chem. Soc.</li>
+<li><code>Date</code>: 1995</li>
+<li><code>Volume</code>: 117</li>
+<li><code>Page</code>: 4843</li>
+</ul>
+</blockquote>
+</details>
+<h4 id="precision">Precision<a class="headerlink" href="#precision" title="Permanent link">&para;</a></h4>
+<p>Precision<sup id="fnref:prec"><a class="footnote-ref" href="#fn:prec">2</a></sup> attempts to answer the following question: "What proportion of positive identifications was actually correct?". Formerly, precision is defined as: </p>
+<p>$$
+Precision = \frac{True~Positive}{True~Positive + False~Positive}
+$$</p>
+<h4 id="pubmed">PubMed<a class="headerlink" href="#pubmed" title="Permanent link">&para;</a></h4>
+<p>PubMed is a free search engine accessing primarily the MEDLINE database of references and abstracts on life sciences and biomedical topics.    </p>
+<div class="footnote">
+<hr />
+<ol>
+<li id="fn:acc">
+<p>More at https://developers.google.com/machine-learning/crash-course/classification/accuracy&#160;<a class="footnote-backref" href="#fnref:acc" title="Jump back to footnote 1 in the text">&#8617;</a></p>
+</li>
+<li id="fn:prec">
+<p>More at https://developers.google.com/machine-learning/crash-course/classification/precision-and-recall&#160;<a class="footnote-backref" href="#fnref:prec" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:docdb">
+<p>More at https://www.epo.org/searching-for-patents/data/bulk-data-sets/docdb.html#tab-1&#160;<a class="footnote-backref" href="#fnref:docdb" title="Jump back to footnote 3 in the text">&#8617;</a></p>
+</li>
+</ol>
+</div>
+                
+                  
+                
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid">
+        
+          <a href="../awesome/" title="Awesome resources" class="md-flex md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-back md-footer-nav__button"></i>
+            </div>
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Awesome resources
+              </span>
+            </div>
+          </a>
+        
+        
+          <a href="../license-mit/" title="MIT2" class="md-flex md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-flex__cell md-flex__cell--stretch md-footer-nav__title">
+              <span class="md-flex__ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                MIT2
+              </span>
+            </div>
+            <div class="md-flex__cell md-flex__cell--shrink">
+              <i class="md-icon md-icon--arrow-forward md-footer-nav__button"></i>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+          <div class="md-footer-copyright__highlight">
+            Copyright; 2019 Gaétan de Rassenfosse and Cyril Verluise
+          </div>
+        
+        powered by
+        <a href="https://www.mkdocs.org" target="_blank" rel="noopener">MkDocs</a>
+        and
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs</a>
+      </div>
+      
+  <div class="md-footer-social">
+    <link rel="stylesheet" href="../assets/fonts/font-awesome.css">
+    
+      <a href="https://github.com/cverluise" target="_blank" rel="noopener" title="github" class="md-footer-social__link fa fa-github"></a>
+    
+      <a href="https://twitter.com/cyrilverluise" target="_blank" rel="noopener" title="twitter" class="md-footer-social__link fa fa-twitter"></a>
+    
+      <a href="https://www.linkedin.com/in/cyril-verluise-80184347/" target="_blank" rel="noopener" title="linkedin" class="md-footer-social__link fa fa-linkedin"></a>
+    
+  </div>
+
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="../assets/javascripts/application.c33a9706.js"></script>
+      
+      <script>app.initialize({version:"1.0.4",url:{base:".."}})</script>
+      
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML"></script>
+      
+    
+  </body>
+</html>
