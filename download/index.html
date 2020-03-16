@@ -628,7 +628,7 @@
                 
                 <h2 id="before-you-start">Before you start<a class="headerlink" href="#before-you-start" title="Permanent link">&para;</a></h2>
 <h4 id="dataset-structure">Dataset structure<a class="headerlink" href="#dataset-structure" title="Permanent link">&para;</a></h4>
-<p>The PatCit dataset has the following structure: </p>
+<p>The PatCit dataset has the following structure:</p>
 <div class="codehilite"><pre><span></span><code>📁 patcit
 ├── 📝 README.md
 ├── 📁 npl
@@ -645,9 +645,9 @@
 <li><code>intext</code> refers to the in-text citations data</li>
 </ul>
 <h4 id="data-format">Data format<a class="headerlink" href="#data-format" title="Permanent link">&para;</a></h4>
-<p>Each sub-dataset is available in 2 flavors: </p>
+<p>Each sub-dataset is available in 2 flavors:</p>
 <ul>
-<li>newline delimited <code>json</code> - <em>recommended</em>  </li>
+<li>newline delimited <code>json</code> - <em>recommended</em></li>
 <li><code>csv</code></li>
 </ul>
 <div class="admonition info">
@@ -656,19 +656,19 @@
 <p>We are also aware that some users might be used to <code>csv</code> and relational databases. We thus provide the dataset in this flavor although we believe that it implies overhead time-costs.</p>
 </div>
 <h4 id="additional-information">Additional information<a class="headerlink" href="#additional-information" title="Permanent link">&para;</a></h4>
-<p>Each sub-folder (e.g. <code>patcit/npl/json</code>) contains a specific <code>README*.md</code> file which will give you additional information on how to load and use it.                  </p>
+<p>Each sub-folder (e.g. <code>patcit/npl/json</code>) contains a specific <code>README*.md</code> file which will give you additional information on how to load and use it.</p>
 <h2 id="download-from-google-cloud-storage-recommended">Download from Google Cloud Storage - <small><em>recommended</em></small><a class="headerlink" href="#download-from-google-cloud-storage-recommended" title="Permanent link">&para;</a></h2>
 <details class="tip"><summary>Google Storage Quickstart</summary><p>If you are new to GCP and want to learn the basics of Google Storage (the storage service of GCP), you can take the
 Google Storage <a href="https://cloud.google.com/storage/docs/quickstarts-console">Quickstart</a>. This should not take more than 2 minutes and might help a lot !</p>
 </details>
-<p>This is the best way to experiment a customizable, smooth and resilient download process. We will make sure that the latest version of the dataset is always available on the <a href="https://console.cloud.google.com/storage/browser/patcit/">gs://patcit</a> bucket. </p>
+<p>This is the best way to experiment a customizable, smooth and resilient download process. We will make sure that the latest version of the dataset is always available on the <a href="https://console.cloud.google.com/storage/browser/patcit/">gs://patcit</a> bucket.</p>
 <div class="codehilite"><pre><span></span><code>gsutil  -u &lt;your-billing-project&gt; <span class="se">\ </span><span class="c1"># specify your billing project</span>
--m cp -r gs://patcit/ &lt;your/destination/folder-or-uri&gt; 
+-m cp -r gs://patcit/ &lt;your/destination/folder-or-uri&gt;
 </code></pre></div>
 
 <div class="admonition info">
 <p class="admonition-title">Info</p>
-<p>You can download a specific subset of the dataset by specifying the source folder. E.g. <code>gs://patcit/npl/json</code> (instead of <code>gs://patcit</code>) will get you only the latest version of the <code>npl</code> dataset in its json version. </p>
+<p>You can download a specific subset of the dataset by specifying the source folder. E.g. <code>gs://patcit/npl/json</code> (instead of <code>gs://patcit</code>) will get you only the latest version of the <code>npl</code> dataset in its json version.</p>
 </div>
 <h2 id="download-from-zenodo">Download from Zenodo<a class="headerlink" href="#download-from-zenodo" title="Permanent link">&para;</a></h2>
 <p>The dataset can also be downloaded from Zenodo<sup id="fnref:zen"><a class="footnote-ref" href="#fn:zen">2</a></sup>. Follow the <a href="https://zenodo.org/record/3710994#.Xm_uE5NKhEI">link</a>!</p>
