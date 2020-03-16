@@ -10,12 +10,9 @@
 [gder]:http://www.gder.info/
 [cverluise]:https://github.com/cverluise
 [cver]:https://cverluise.github.io/
-[^1]: Patent text contain patent, NPL, software, database, product, etc citations.
-[^2]: Bibliographical reference, office action, patent, webpage, norm & standard, product documentation, database and litigation
 [patcit-data]:https://console.cloud.google.com/bigquery?project=brv-patent&p=npl-parsing&d=patcit&page=dataset
 [nl]:https://tinyletter.com/patcit
 [doc-website]:https://cverluise.github.io/parseEPO/
-
 
 # <small>Welcome to</small> PatCit
 
@@ -25,7 +22,7 @@
 
 Patents are at the crossroads of many innovation nodes: science, industry, products, competition, etc. Such interactions can be identified through citations *in a broad sense*.
 
-It is now common to use patent-to-patent citations to study some aspects of the innovation system. However, **there is much more buried in the Non Patent Literature (NPL) citations and in the patent text itself**.[^1]
+It is now common to use patent-to-patent citations to study some aspects of the innovation system. However, **there is much more buried in the Non Patent Literature (NPL) citations and in the patent text itself**. For instance, patent texts can contain citations to patents, bibliographical references, softwares, databases, products, etc.
 
 Good news, Natural Language Processing (NLP) tools now enable social scientists to excavate and structure this long hidden information. **That's the purpose of this project**.
 
@@ -33,7 +30,7 @@ Good news, Natural Language Processing (NLP) tools now enable social scientists 
 
 So far, we have:
 
-1. **classified** the 40 million NPL citations reported in the **DOCDB** database in 9 distinct research oriented classes[^2] with a 90% accuracy rate.
+1. **classified** the 40 million NPL citations reported in the **DOCDB** database in 9 distinct research oriented classes with a 90% accuracy rate.<sup>1</sup>
 2. **parsed** and **consolidated** the 27 million **NPL** citations classified as bibliographical references.
 
 	<details>
@@ -66,7 +63,7 @@ So far, we have:
 #### Comprehensive
 
 - We address *worldwide patents*, as long as the data is available.
-- We address *all classes of citations*[^2], not only bibliographical references.
+- We address *all classes of citations*<sup>1</sup>, not only bibliographical references.
 - We address front-page and in-text citations.
 
 #### Highest standards
@@ -77,6 +74,8 @@ So far, we have:
 
 
 ## Data access
+
+The `PatCit` dataset is licensed under [CC4](./docs/license-cc.md).
 
 #### Explore in BigQuery
 
@@ -114,7 +113,7 @@ PatCit is a fast moving and fast improving project. Make sure that you are aware
 
 ### Join our mail diffusion list
 
-<form style="border:1px solid #ccc;padding:3px;text-align:center;" action="https://tinyletter.com/patcit" method="post" target="popupwindow" onsubmit="window.open('https://tinyletter.com/patcit', 'popupwindow', 'scrollbars=yes,width=800,height=600');return true"><p><label for="tlemail">Enter your email address</label></p><p><input type="text" style="width:140px" name="email" id="tlemail" /></p><input type="hidden" value="1" name="embed"/><input type="submit" value="Subscribe" /><p><a href="https://tinyletter.com" target="_blank">powered by TinyLetter</a></p></form>
+Click [here][nl], that's as simple as that.
 
 <small>Expect 1 mail every 2 months. You can unsubscribe at any moment. We won't sell your information, ever.</small>
 
@@ -154,3 +153,7 @@ These services are articulated in an efficient data pipeline in the cloud to pro
 This project is maintained by [G. de Rassenfosse][gder] ([@gderasse][gderasse]) and [C. Verluise][cver] ([@cverluise][cverluise]).
 
 We are especially thankful to [@kermitt2](https://github.com/kermitt2) [@FGer8](https://github.com/FGer8), [@gg4u](https://github.com/gg4u), [@SuperMayo](https://github.com/SuperMayo) and [@leflix311](https://github.com/leflix311). We are also thankful to the many people who help us shape this project through useful comments shared by emails, twitter and direct interactions.
+
+---
+
+<sup>1</sup>  Bibliographical reference, office action, patent, webpage, norm & standard, product documentation, database and litigation)
