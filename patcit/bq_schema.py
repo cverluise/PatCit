@@ -76,7 +76,7 @@ def _get_index(bq_schema, name):
                 return i
 
 
-def make_aug_npl_schema(flavor):
+def make_aug_npl_schema(flavor, to_api_repr=False):
     assert flavor in ["v01", "v02"]
     tmp = npl_citation.copy()
 
@@ -100,4 +100,9 @@ def make_aug_npl_schema(flavor):
             tmp.insert(idx_nplclass, npl_class[i])
             for i in reversed(range(len(npl_class)))
         ]
+    if to_api_repr:
+        tmp_ = []
+        for e in tmp:
+            tmp_ += [e.to_api_repr()]
+        tmp = tmp_
     return tmp
