@@ -1,23 +1,23 @@
 # Project information
-site_name: 'SciCit'
-site_description: 'Making patent citations uncool again'
+site_name: 'PatCit'
+site_description: 'Making Patent Citations Uncool Again'
 site_author: 'Cyril Verluise & Gaétan de Rassenfosse'
-#site_url: 'https://cverluise.github.io/SciCit/'
+#site_url: 'https://cverluise.github.io/PatCit/'
 
 # Repository
-repo_name: 'cverluise/parseEPO'
-repo_url: 'https://github.com/cverluise/SciCit'
+repo_name: 'cverluise/PatCit'
+repo_url: 'https://github.com/cverluise/PatCit'
 
 # Copyright
-copyright: 'Copyright; 2020 Cyril Verluise & Gaétan de Rassenfosse'
+copyright: 'Copyright; 2019 Gaétan de Rassenfosse and Cyril Verluise'
 
 # Configuration
 theme:
   name: 'material'
   language: 'en'
   palette:
-    primary: 'green'
-    accent: 'green'
+    primary: 'indigo'
+    accent: 'indigo'
   font:
     text: 'Roboto'
     code: 'Roboto Mono'
@@ -40,7 +40,10 @@ extra:
 
 # Extensions
 markdown_extensions:
+  - toc:
+      permalink: true
   - admonition
+  - footnotes
   - codehilite:
       guess_lang: false
   - toc:
@@ -49,16 +52,33 @@ markdown_extensions:
       custom_checkbox: true
   - pymdownx.superfences:
   - pymdownx.details:
+  - pymdownx.emoji:
+      emoji_index: !!python/name:pymdownx.emoji.twemoji
+      emoji_generator: !!python/name:pymdownx.emoji.to_svg
+
+extra_javascript:
+  - 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'
+
 
 # Page tree
 
 nav:
-  - About: index.md
-#  - Quick start:
-#  - Developers:
-#    - Set-up: set-up.md
-#    - Extract: extract.md
-#    - Transform: transform.md
-#    - Load: load.md
-#    - Before starting: before.md
-#  - License: license.md
+  - About:
+    - Project: index.md
+    - Roadmap: roadmap.md
+    - Team: team.md
+  - Keep me updated: update.md
+  - Data:
+    - Download: download.md
+    - Explore: explore.md
+  - Contribute:
+    - Contributions: contributing.md
+    - Code of Conduct: code-of-conduct.md
+#  - How it works:
+#      - Extract, Parse, Consolidate: extract-parse-consolidate.md
+#      - Classify: classify.md
+  - Awesome resources: awesome.md
+  - Vocabulary: vocabulary.md
+  - License:
+    - MIT2: license-mit.md
+    - CC4: license-cc.md

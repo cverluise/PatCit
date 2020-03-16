@@ -1,5 +1,4 @@
-# doc
-docs/
+
 
 # Confidential
 **/npl-parsing-cdda13f10f36.json
@@ -22,6 +21,7 @@ data/
 dev*.py
 example.py
 eda/
+data-release/
 
 # System files
 **/.DS_Store

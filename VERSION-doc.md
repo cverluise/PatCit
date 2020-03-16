@@ -5,9 +5,11 @@
 
 # VERSIONS
 
-## :new: Patent Contextual Citations dataset
+## v0.1 Patent Contextual Citations dataset (December 2019)
 
-### :new: Beta (November 2019)
+Extends the Beta to all USTPO patents (all-time)
+
+### Beta (November 2019)
 
 Sandbox for data tests and user feedbacks. Includes 250k US Patents.
 
@@ -15,6 +17,11 @@ Access the data [here][db] (tables *beta\_contextualNPL* and *beta\_contextualPa
 
 
 ## Worldwide Patent-to-Science Citations dataset
+
+### v0.2 (March 2020)
+
+- Add `npl_class`
+- Propagate `ISSN` based on `title_j` (+1.8 million)
 
 ### v0.1 (November 2019)
 

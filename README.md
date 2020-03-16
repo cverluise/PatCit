@@ -1,11 +1,8 @@
 [DOCDB]:https://www.epo.org/searching-for-patents/data/bulk-data-sets/docdb.html#tab-1
-[user-guide]:user-guide/user-guide.md
-[db]:https://console.cloud.google.com/bigquery?project=npl-parsing&p=npl-parsing&d=patcit&page=dataset
 [grobid]:https://github.com/kermitt2/grobid
 [biblio-glutton]:https://github.com/kermitt2/biblio-glutton
 [issues-create]:https://github.com/cverluise/SciCit/issues/new/choose
 [issues]:https://github.com/cverluise/SciCit/issues
-[polls]:https://github.com/cverluise/SciCit/issues?q=is%3Aissue+is%3Aopen+label%3APolls
 [good-first-issue]:https://github.com/cverluise/SciCit/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22
 [help-wanted]:https://github.com/cverluise/SciCit/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22
 [issue-10]:https://github.com/cverluise/SciCit/issues/10
@@ -13,160 +10,147 @@
 [gder]:http://www.gder.info/
 [cverluise]:https://github.com/cverluise
 [cver]:https://cverluise.github.io/
-[v01]:https://console.cloud.google.com/bigquery?project=npl-parsing&p=npl-parsing&d=patcit&t=v01_npl&page=table
-[v02]:https://console.cloud.google.com/bigquery?project=npl-parsing&p=npl-parsing&d=patcit&t=v02_npl&page=table
-[beta-npl]:https://console.cloud.google.com/bigquery?project=npl-parsing&p=npl-parsing&d=patcit&t=beta_contextualNPL&page=table
-[beta-pat]:https://console.cloud.google.com/bigquery?project=npl-parsing&p=npl-parsing&d=patcit&t=beta_contextualPat&page=table
-[v01-npl]:https://console.cloud.google.com/bigquery?cloudshell=false&project=npl-parsing&p=npl-parsing&d=patcit&t=v01_UScontextualNPL&page=table
-[v01-pat]:https://console.cloud.google.com/bigquery?cloudshell=false&project=npl-parsing&p=npl-parsing&d=patcit&t=v01_UScontextualPat&page=table
-[US5914367A]:https://patents.google.com/patent/US5914367A/en
+[^1]: Patent text contain patent, NPL, software, database, product, etc citations.
+[^2]: Bibliographical reference, office action, patent, webpage, norm & standard, product documentation, database and litigation
+[patcit-data]:https://console.cloud.google.com/bigquery?project=brv-patent&p=npl-parsing&d=patcit&page=dataset
+[nl]:https://tinyletter.com/patcit
+[doc-website]:https://cverluise.github.io/parseEPO/
 
 
-# READ ME
+# <small>Welcome to</small> PatCit
 
-## Dataset
+[Website][doc-website], [Newsletter][nl]
+
+*Making Patent Citations Uncool Again*
+
+Patents are at the crossroads of many innovation nodes: science, industry, products, competition, etc. Such interactions can be identified through citations *in a broad sense*.
+
+It is now common to use patent-to-patent citations to study some aspects of the innovation system. However, **there is much more buried in the Non Patent Literature (NPL) citations and in the patent text itself**.[^1]
+
+Good news, Natural Language Processing (NLP) tools now enable social scientists to excavate and structure this long hidden information. **That's the purpose of this project**.
+
+## Achievements
+
+So far, we have:
+
+1. **classified** the 40 million NPL citations reported in the **DOCDB** database in 9 distinct research oriented classes[^2] with a 90% accuracy rate.
+2. **parsed** and **consolidated** the 27 million **NPL** citations classified as bibliographical references.
+
+	<details>
+
+	>ℹ From the 27 million bibliographical references:
+	>
+	> 1. 11 million (40%) were matched with a **DOI** with a 99% **precision** rate
+	> 2. the main bibliographic attributes were parsed with **accuracy** rates ranging between 71% and 92% for the remaining 16 million (60%)
+
+	</details>
+
+3. **extracted**, **parsed** and **consolidated** in-text bibliographical references and patent citations from the body of all time USPTO patents.
+
+	<details>
+
+	>ℹ From the 16 million USPTO patents, we have:
+	>
+	> 1. **extracted** and **parsed** 70 million in-text bibliographical references and 80 million patent citations.
+	> 2. found a **DOI** for 13+ million in-text bibliographical references (18%).
+
+	</details>
+
+## Features
+
+#### Open
+
+- The code is licensed under MIT-2 and the dataset is licensed under CC4. Two highly permissive licenses.
+- The project is thought to be *dynamically improved by and for the community*. Anyone should feel free to open discussions, raise issues, request features and contribute to the project.
+
+#### Comprehensive
+
+- We address *worldwide patents*, as long as the data is available.
+- We address *all classes of citations*[^2], not only bibliographical references.
+- We address front-page and in-text citations.
+
+#### Highest standards
+
+- We use and implement state-of-the art machine learning solutions.
+- We take great care to implement only the most efficient solutions. We believe that computational resources should be used sparsely, for both environmental sustainability and long term financial sustainability of the project.
 
 
-**License.** The dataset is licensed under a <a rel="license" href="http://creativecommons.org/licenses/by/4.0/">Creative Commons Attribution 4.0 International License</a>.
+
+## Data access
+
+#### Explore in BigQuery
+
+The `PatCit` dataset is publicly available on Google Cloud BigQuery (GBQ). Follow the [link][patcit-data]! For those who have a smattering of SQL, we believe that this is the perfect environment to play with the data.
+
+> 💡 If you are new to GCP and want to learn the basics of Google BigQuery (GBQ), you can take the GBQ [Quickstart][gbq-quickstart]. This should not take more than 2 minutes and might help a lot !
 
 
-### :new: Worldwide NPL v0.2
-
-**What's in there?** We parse and consolidate the 40 million Non Patent Literature (NPL) citations reported in the [DOCDB][DOCDB] database.
+#### Download from Google Cloud Storage - *recommended*
 
 
-**Give it a try!** We just released the *[v0.2-npl][v02]*. It builds on previous versions and adds a `npl_class` field which classifies the NPL publications in 9 different classes (bibliographical reference, office action, patent, search report, etc). We also extend the number of bibliographical reference with a ISSN (journal identifier) to 10.8 million (versus 8.9 million in v.01).
-
-**Data quality**:
-
- - The classifier producing the `npl_class` achieves 89.9% accuracy
- - In the subset of bibliographical references (27.5 million), there are 3 main quality levels:
-
-|Quality degree| Characterization| Share of the [DOCDB][DOCDB]|
-|---|---|---|
-|1|Matched with a Digital Object Identifier (DOI)| 40%|
-|2|Parsed *at least* a document title (journal, conference, article), excl 1.| 40%|
-|3|Neither 1. nor 2.| 20%|
-
- - When we match a DOI, this is the right one in 99% of the cases
-
-And we can do even better! Quality will keep improving fast, [stay up to date](#update) and [contribute](#contribute).
-
-### Patent Contextual Citations
-
-**What's in there?** We extract, parse and consolidate *in-text* "patent-to-NPL" and "patent-to-patent" citations from patents description.
-
-**Give it a try!** We just released the full US dataset. It includes the contextual NPL and patent   citations for all US patents.
-
-**Data quality.** Data quality is under review. Any comments is most welcome. At this point, we know that we matched more than 13 million contextual NPL citations with a DOI. Overall, we extracted more than 70 million contextal NPL citations.
+This is the best way to experiment a customizable, smooth and resilient download process. We will make sure that the latest version of the dataset is always available on the [gs://patcit][gs-patcit] bucket.
 
 
-## In practice
-
-### Data access
-
-Our dataset is open access and publicly available on Google Cloud BigQuery. No gatekeeper, no request time. Plus, for anyone having a smattering of SQL, we believe that this is the perfect environment to play with the data.
-
-Just follow this [link][db] and navigate to your favourite table!
-
-|Data| Table (clickable link)|
-|---|---|
-|Worldwide NPL - v0.2| [v0.2-npl][v02]|
-|Worldwide NPL - v0.1| [v0.1-npl][v01]|
-|Patent-to-*NPL* Contextual Citations| [v01_UScontextualNPL][v01-npl]|
-|Patent-to-*patent* Contextual Citations| [v01_UScontextualPat][v01-pat]|
-
-Need a quickstart with BigQuery? Follow our [User Guide][user-guide].
+```bash
+gsutil  -u <your-billing-project> \ # specify your billing project
+-m cp -r gs://patcit/ <your/destination/folder-or-uri>
+```
 
 
-### Vocabulary
+> 💡 You can download a specific subset of the dataset by specifying the source folder. E.g. `gs://patcit/npl/json` (instead of `gs://patcit`) will get you only the latest version of the `npl` dataset in its json version.
 
-Not sure to fully understand what we mean?
+#### Download from Zenodo
 
-- **Extract**: We *detect* NPL and patent citations in plain text documents.
+The dataset can also be downloaded from Zenodo[^zen]. Follow the [link][zen-patcit]!
 
-<details>
-Let's consider an extract from [US5914367A][US5914367A]:
+> 💡 Older versions of the dataset will be archived on Zenodo as of `v0.15`.
 
-> "Another disadvantage of this process is that such modified enzymes usually show low solubility in organic solvents, thereby limiting the enzyme loading to about 0.02% by weight in the final polymer products. Sea Z. Yang, D. Williams, and A. J. Russell, J. Am. Chem. Soc., 1995, vol. 117, 4843. The solubilized enzyme of this process also shows lower activity (...)"
 
-The extraction task consists in detecting the NPL citation
+## Keep me updated
 
-> "Z. Yang, D. Williams, and A. J. Russell, J. Am. Chem. Soc., 1995, vol. 117, 4843"
 
-</details>
+PatCit is a fast moving and fast improving project. Make sure that you are aware of the project most recent developments.
 
-- **Parse**: We *structure* free-form NPL and patent citations into standard bibliographic attributes (e.g. title, authors, journal, etc).
 
-<details>
+### Join our mail diffusion list
 
-Let's consider the following free-form NPL citation:
+<form style="border:1px solid #ccc;padding:3px;text-align:center;" action="https://tinyletter.com/patcit" method="post" target="popupwindow" onsubmit="window.open('https://tinyletter.com/patcit', 'popupwindow', 'scrollbars=yes,width=800,height=600');return true"><p><label for="tlemail">Enter your email address</label></p><p><input type="text" style="width:140px" name="email" id="tlemail" /></p><input type="hidden" value="1" name="embed"/><input type="submit" value="Subscribe" /><p><a href="https://tinyletter.com" target="_blank">powered by TinyLetter</a></p></form>
 
->"Z. Yang, D. Williams, and A. J. Russell, J. Am. Chem. Soc., 1995, vol. 117, 4843."
+<small>Expect 1 mail every 2 months. You can unsubscribe at any moment. We won't sell your information, ever.</small>
 
-The parsing task consists in structuring this sequence into standardized bibliographical attributes, e.g.:
+### Follow the `PatCit` project on GitHub
 
->- `Authors`: Z. Yang, D. Williams, A. J. Russell
->- `Journal`: J. Am. Chem. Soc.
->- `Date`: 1995
->- `Volume`: 117
->- `Page`: 4843
-
-</details>
-
-- **Consolidate**: We match the standardized bibliographical attributes with the Crossref, Pubmed and Unpaywall databases. Hence, we are able to enrich the final output with additional attributes such as the DOI, the PMID and the open access url *inter allia*.
-
-<details>
-
-Let's consider the following free-form NPL citation:
-
->"Z. Yang, D. Williams, and A. J. Russell, J. Am. Chem. Soc., 1995, vol. 117, 4843."
-
-Matching it with Crossref, we can consolidate the bibliographical attribute found in the text with additional attributes, e.g.:
-
-> - `Article title`: "Activity and Stability of Enzymes Incorporated into Acrylic Polymers"
-> - `Journal title`: Journal of the American Chemical Society
-> - `DOI`: 10.1021/ja00122a014
-> - `ISSN`: 0002-7863
-
-</details>
+- ![](https://img.shields.io/github/stars/cverluise/PatCit?style=social): GitHub users can star the project repository. Project updates will be automatically added to their GitHub news feed.
+- ![](https://img.shields.io/github/watchers/cverluise/PatCit?style=social): involved users and contributors are also invited to "watch" the project repository. They will be notified of releases, conversations, etc.
 
 
 
 ## By and for the community
 
 
-**Help us improve.** We want to make this dataset truly useful to the community. We are thus very happy for feedback. Our most pressing questions include:
+#### Help us improve.
+We want to make this dataset truly useful to the community. We are thus very happy for feedback.
 
-1. Your ideal level of [documentation][issues-create]
-2. Any recommendations to make the dataset more user-friendly
-3. Information on any recurrent mistake in the data
-4. Your [feature requests][issues-create] to meet your use-case
-5. :new: Your vote in the [polls][polls] we have created for you
+#### Let's grow the community.
+We believe that discussions are much more valuable if they are publicly shared, so that more people can benefit from it. Hence, we strongly encourage you to share your feedback on our GitHub repository [issue][issues] section.
 
-**Let's grow the community.** We believe that these discussions are much more valuable if they are publicly shared, so that more people can benefit from it. Hence, we strongly encourage you to share your feedback on our GitHub repository [issue][issues] section.
-
-**Don't want to miss any updates?** Give us a :star:
-<a name="update"></a>
-
-**Want to contribute?** Even better! We will be more than happy to receive any contributions from you and the community. We have already started to tag some [issues][issues-create] with [`good first issue`][good-first-issue] and [`help wanted`][help-wanted]. Ready? You can start as of now! Let's do it all together.
+#### Want to contribute?
+Even better! We will be more than happy to receive any contributions from you and the community. We have already started to tag some [issues][issues-create] with [`good first issue`][good-first-issue] and [`help wanted`][help-wanted]. Ready? You can start as of now! Let's do it all together.
 
 <a name="contribute"></a>
 
-## Tell me more
+## Under the hood.
 
-Still reading? Curious? We tell you more!
+We build on large range of open-source tools? In particular, the project heavily relies on two great open source libraries:
 
-**What's next?** We plan to keep improving the Worldwide Patent-to-Science Citations dataset in the coming months.
+- [Grobid][grobid], a Machine Learning library for extracting, parsing and restructuring raw documents
+- [biblio-glutton][biblio-glutton], a framework dedicated to bibliographic information with a powerful bibliographical matching service.
 
-**Under the hood.** We build on two great open source libraries: [Grobid][grobid], a Machine Learning library for extracting, parsing and restructuring raw documents and [biblio-glutton][biblio-glutton], a framework dedicated to bibliographic information with a powerful bibliographical matching service. These services are articulated in an efficient data pipeline in the cloud to process up to 2 million citations per day.
+These services are articulated in an efficient data pipeline in the cloud to process up to 2 million citations per day.
 
-**Values.**
-
-1. Fresh data - Our full dataset will be released as soon as possible
-2. Open source - Visit our GitHub, raise [issues][issues-create], request [features][issues-create] and contribute!
-3. Worldwide data - We put a specific emphasis on releasing data with a large geographical scope to stimulate research on non-US countries.
 
 ## Team
 
 This project is maintained by [G. de Rassenfosse][gder] ([@gderasse][gderasse]) and [C. Verluise][cver] ([@cverluise][cverluise]).
+
+We are especially thankful to [@kermitt2](https://github.com/kermitt2) [@FGer8](https://github.com/FGer8), [@gg4u](https://github.com/gg4u), [@SuperMayo](https://github.com/SuperMayo) and [@leflix311](https://github.com/leflix311). We are also thankful to the many people who help us shape this project through useful comments shared by emails, twitter and direct interactions.
