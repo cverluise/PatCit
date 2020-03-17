@@ -12,7 +12,7 @@
 [cver]:https://cverluise.github.io/
 [patcit-data]:https://console.cloud.google.com/bigquery?project=brv-patent&p=npl-parsing&d=patcit&page=dataset
 [nl]:https://tinyletter.com/patcit
-[doc-website]:https://cverluise.github.io/parseEPO/
+[doc-website]:https://cverluise.github.io/PatCit/
 [zen-patcit]:https://zenodo.org/record/3710994#.Xm_uE5NKhEI
 
 # <small>Welcome to</small> PatCit
