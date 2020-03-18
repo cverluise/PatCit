@@ -71,12 +71,13 @@ nav:
   - Data:
     - Download: download.md
     - Explore: explore.md
+    - Versions: versions.md
   - Contribute:
     - Contributions: contributing.md
     - Code of Conduct: code-of-conduct.md
-#  - How it works:
-#      - Extract, Parse, Consolidate: extract-parse-consolidate.md
-#      - Classify: classify.md
+  - How it works:
+     - Extract, Parse, Consolidate: extract-parse-consolidate.md
+     - Classify: classify.md
   - Awesome resources: awesome.md
   - Vocabulary: vocabulary.md
   - License:
