@@ -391,6 +391,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#download-a-query-result-from-bigquery" class="md-nav__link">
+    Download a query result from BigQuery
+  </a>
+  
+</li>
+      
       
       
       
@@ -410,6 +417,18 @@
   <li class="md-nav__item">
     <a href="../explore/" title="Explore" class="md-nav__link">
       Explore
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../versions/" title="Versions" class="md-nav__link">
+      Versions
     </a>
   </li>
 
@@ -472,6 +491,54 @@
       
 
 
+  <li class="md-nav__item md-nav__item--nested">
+    
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5">
+    
+    <label class="md-nav__link" for="nav-5">
+      How it works
+    </label>
+    <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        How it works
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../extract-parse-consolidate/" title="Extract, Parse, Consolidate" class="md-nav__link">
+      Extract, Parse, Consolidate
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  <li class="md-nav__item">
+    <a href="../classify/" title="Classify" class="md-nav__link">
+      Classify
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
   <li class="md-nav__item">
     <a href="../awesome/" title="Awesome resources" class="md-nav__link">
       Awesome resources
@@ -498,13 +565,13 @@
 
   <li class="md-nav__item md-nav__item--nested">
     
-      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-7" type="checkbox" id="nav-7">
+      <input class="md-toggle md-nav__toggle" data-md-toggle="nav-8" type="checkbox" id="nav-8">
     
-    <label class="md-nav__link" for="nav-7">
+    <label class="md-nav__link" for="nav-8">
       License
     </label>
     <nav class="md-nav" data-md-component="collapsible" data-md-level="1">
-      <label class="md-nav__title" for="nav-7">
+      <label class="md-nav__title" for="nav-8">
         License
       </label>
       <ul class="md-nav__list" data-md-scrollfix>
@@ -605,6 +672,13 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#download-a-query-result-from-bigquery" class="md-nav__link">
+    Download a query result from BigQuery
+  </a>
+  
+</li>
+      
       
       
       
@@ -674,8 +748,36 @@ Google Storage <a href="https://cloud.google.com/storage/docs/quickstarts-consol
 <p>The dataset can also be downloaded from Zenodo<sup id="fnref:zen"><a class="footnote-ref" href="#fn:zen">2</a></sup>. Follow the <a href="https://zenodo.org/record/3710994#.Xm_uE5NKhEI">link</a>!</p>
 <div class="admonition info">
 <p class="admonition-title">PatCit versioning on Zenodo</p>
-<p>Older versions of the dataset will be archived on Zenodo as of <code>v0.15</code>.</p>
+<p>Older versions of the dataset will be archived on Zenodo as of <code>v0.15-patcit</code>.</p>
 </div>
+<h2 id="download-a-query-result-from-bigquery">Download a query result from BigQuery<a class="headerlink" href="#download-a-query-result-from-bigquery" title="Permanent link">&para;</a></h2>
+<p>In many cases, you don't need the whole dataset for your research. In order to avoid tedious filtering and post-processing on your local machine, we recommend that you adopt the following strategy:</p>
+<ol>
+<li>Query the <code>PatCit</code> dataset using the BigQuery public release of the dataset. See our BigQuery <a href="../explore/">exploration guide</a> if you are new to BigQuery.</li>
+<li>Save the resulting table<sup id="fnref:bq-save"><a class="footnote-ref" href="#fn:bq-save">3</a></sup>. Here you go!</li>
+</ol>
+<details class="example"><summary>Example</summary><p>Let's assume that you are interested in the ranking of journals by the number of articles cited by patents and published in the 1980s.</p>
+<p>The related query is the following:</p>
+<div class="codehilite"><pre><span></span><code><span class="k">SELECT</span>
+  <span class="n">title_j</span><span class="p">,</span>
+  <span class="k">COUNT</span><span class="p">(</span><span class="n">title_j</span><span class="p">)</span> <span class="k">AS</span> <span class="n">nb_article_cited</span>
+<span class="k">FROM</span>
+  <span class="o">`</span><span class="n">npl</span><span class="o">-</span><span class="n">parsing</span><span class="p">.</span><span class="n">patcit</span><span class="p">.</span><span class="n">v02_npl</span><span class="o">`</span>
+<span class="k">WHERE</span>
+  <span class="n">npl_class</span> <span class="o">=</span> <span class="ss">&quot;BIBLIOGRAPHICAL_REFERENCE&quot;</span>
+  <span class="k">AND</span> <span class="k">year</span> <span class="k">BETWEEN</span> <span class="mi">1980</span>
+  <span class="k">AND</span> <span class="mi">1990</span>
+<span class="k">GROUP</span> <span class="k">BY</span>
+  <span class="n">title_j</span>
+<span class="k">ORDER</span> <span class="k">BY</span>
+  <span class="n">nb_article_cited</span> <span class="k">DESC</span>
+</code></pre></div>
+
+<p><strong>Run the query</strong></p>
+<p><img alt="" src="../img/bq-save-1.png" /></p>
+<p><strong>Save the query</strong></p>
+<p><img alt="" src="../img/bq-save-2.png" /></p>
+</details>
 <div class="footnote">
 <hr />
 <ol>
@@ -684,6 +786,9 @@ Google Storage <a href="https://cloud.google.com/storage/docs/quickstarts-consol
 </li>
 <li id="fn:zen">
 <p>Zenodo is a general-purpose open-access repository developed under the European OpenAIRE program and operated by CERN&#160;<a class="footnote-backref" href="#fnref:zen" title="Jump back to footnote 2 in the text">&#8617;</a></p>
+</li>
+<li id="fn:bq-save">
+<p>You can save small tables (less than 16,000 rows) to clipboard, locally or to Google sheets. You can save mid-size (less than 1Gb) tables to Google Drive. Larger tables have to be saved to BigQuery, then to Google Cloud Storage and from there you can get them locally.&#160;<a class="footnote-backref" href="#fnref:bq-save" title="Jump back to footnote 3 in the text">&#8617;</a></p>
 </li>
 </ol>
 </div>
