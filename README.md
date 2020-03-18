@@ -5,25 +5,31 @@
 [issues]:https://github.com/cverluise/SciCit/issues
 [good-first-issue]:https://github.com/cverluise/SciCit/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22
 [help-wanted]:https://github.com/cverluise/SciCit/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22
-[issue-10]:https://github.com/cverluise/SciCit/issues/10
+[gbq-quickstart]:https://cloud.google.com/bigquery/docs/quickstarts/quickstart-web-ui
 [gderasse]:https://github.com/gderasse
 [gder]:http://www.gder.info/
 [cverluise]:https://github.com/cverluise
 [cver]:https://cverluise.github.io/
-[patcit-data]:https://console.cloud.google.com/bigquery?project=brv-patent&p=npl-parsing&d=patcit&page=dataset
 [nl]:https://tinyletter.com/patcit
 [doc-website]:https://cverluise.github.io/PatCit/
+[bq-patcit]:https://console.cloud.google.com/bigquery?project=brv-patent&p=npl-parsing&d=patcit&page=dataset
+[gs-patcit]:https://console.cloud.google.com/storage/browser/patcit?forceOnBucketsSortingFiltering=false&project=npl-parsing&userProject=npl-parsing
 [zen-patcit]:https://zenodo.org/record/3710994#.Xm_uE5NKhEI
+[cc-by]: http://creativecommons.org/licenses/by/4.0/
+[cc-by-shield]: https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg?label=Data
 
-# <small>Welcome to</small> PatCit
 
-[Website][doc-website], [Newsletter][nl]
+# PatCit
 
 *Making Patent Citations Uncool Again*
 
+[Website][doc-website], [Newsletter][nl], [BigQuery][bq-patcit], [G-Storage][gs-patcit] [Zenodo][zen-patcit]
+
+![](https://img.shields.io/github/license/cverluise/PatCit?label=Code) [![CC BY 4.0][cc-by-shield]][cc-by] ![](https://img.shields.io/github/last-commit/cverluise/PatCit)
+
 Patents are at the crossroads of many innovation nodes: science, industry, products, competition, etc. Such interactions can be identified through citations *in a broad sense*.
 
-It is now common to use patent-to-patent citations to study some aspects of the innovation system. However, **there is much more buried in the Non Patent Literature (NPL) citations and in the patent text itself**. For instance, patent texts can contain citations to patents, bibliographical references, softwares, databases, products, etc.
+It is now common to use patent-to-patent citations to study some aspects of the innovation system. However, **there is much more buried in the Non Patent Literature (NPL) citations and in the patent text itself**. For instance, patent texts can contain citations to patents, bibliographical references, softwares, databases, products, etc. Similarly, NPL citations point to bibliographical references, office actions, patents, search reports, webpages, norm & standards, product documentations, databases and litigation documents.
 
 Good news, Natural Language Processing (NLP) tools now enable social scientists to excavate and structure this long hidden information. **That's the purpose of this project**.
 
@@ -80,7 +86,7 @@ The `PatCit` dataset is licensed under [CC4](./docs/license-cc.md).
 
 #### Explore in BigQuery
 
-The `PatCit` dataset is publicly available on Google Cloud BigQuery (GBQ). Follow the [link][patcit-data]! For those who have a smattering of SQL, we believe that this is the perfect environment to play with the data.
+The `PatCit` dataset is publicly available on Google Cloud BigQuery (GBQ). Follow the [link][bq-patcit]! For those who have a smattering of SQL, we believe that this is the perfect environment to play with the data.
 
 > 💡 If you are new to GCP and want to learn the basics of Google BigQuery (GBQ), you can take the GBQ [Quickstart][gbq-quickstart]. This should not take more than 2 minutes and might help a lot !
 
@@ -103,7 +109,7 @@ gsutil  -u <your-billing-project> \ # specify your billing project
 
 The dataset can also be downloaded from Zenodo. Follow the [link][zen-patcit]!
 
-> 💡 Older versions of the dataset will be archived on Zenodo as of `v0.15`.
+> 💡 Versions of the dataset will be archived on Zenodo as of `v0.15-patcit`.
 
 
 ## Keep me updated
@@ -155,6 +161,24 @@ This project is maintained by [G. de Rassenfosse][gder] ([@gderasse][gderasse]) 
 
 We are especially thankful to [@kermitt2](https://github.com/kermitt2) [@FGer8](https://github.com/FGer8), [@gg4u](https://github.com/gg4u), [@SuperMayo](https://github.com/SuperMayo) and [@leflix311](https://github.com/leflix311). We are also thankful to the many people who help us shape this project through useful comments shared by emails, twitter and direct interactions.
 
+
+## Citation
+
+```
+@dataset{gaetan_de_rassenfosse_2020_3710994,
+  author       = {Gaétan de Rassenfosse and
+                  Cyril Verluise},
+  title        = {{PatCit: A Comprehensive Dataset of Patent
+                   Citations}},
+  month        = mar,
+  year         = 2020,
+  publisher    = {Zenodo},
+  version      = {0.15},
+  doi          = {10.5281/zenodo.3710994},
+  url          = {https://doi.org/10.5281/zenodo.3710994}
+}
+```
+
 ---
 
-<sup>1</sup>  Bibliographical reference, office action, patent, webpage, norm & standard, product documentation, database and litigation)
+<sup>1</sup>  Bibliographical reference, office action, patent, search report, webpage, norm & standard, product documentation, database and litigation
