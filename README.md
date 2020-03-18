@@ -60,6 +60,8 @@ So far, we have:
 
 	</details>
 
+:speech_balloon: A detailed presentation of the current state of the project is available in our [March 2020 presentation](./dissemination/IIPP-CEMI_03032020.pdf).
+
 ## Features
 
 #### Open
