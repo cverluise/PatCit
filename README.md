@@ -23,7 +23,7 @@
 
 *Making Patent Citations Uncool Again*
 
-[Website][doc-website], [Newsletter][nl], [BigQuery][bq-patcit], [G-Storage][gs-patcit] [Zenodo][zen-patcit]
+[Website][doc-website], [Newsletter][nl], [BigQuery][bq-patcit], [G-Storage][gs-patcit], [Zenodo][zen-patcit]
 
 ![](https://img.shields.io/github/license/cverluise/PatCit?label=Code) [![CC BY 4.0][cc-by-shield]][cc-by] ![](https://img.shields.io/github/last-commit/cverluise/PatCit)
 
@@ -164,12 +164,10 @@ We are especially thankful to [@kermitt2](https://github.com/kermitt2) [@FGer8](
 
 ## Citation
 
-```
+```bibtex
 @dataset{gaetan_de_rassenfosse_2020_3710994,
-  author       = {Gaétan de Rassenfosse and
-                  Cyril Verluise},
-  title        = {{PatCit: A Comprehensive Dataset of Patent
-                   Citations}},
+  author       = {Gaétan de Rassenfosse and Cyril Verluise},
+  title        = {{PatCit: A Comprehensive Dataset of Patent Citations}},
   month        = mar,
   year         = 2020,
   publisher    = {Zenodo},
