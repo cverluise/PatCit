@@ -1,5 +1,5 @@
-[^1]: Patent text contain patent, [**NPL**](./vocabulary#non-patent-literature-npl), software, database, product, etc citations.
-[^2]: Bibliographical reference, office action, patent, webpage, norm & standard, product documentation, database and litigation
+[^1]: Patent text contain patent, [**NPL**](./vocabulary#non-patent-literature-npl), software, database, product, etc citations and NPL citations contain bibliographical references, office actions, search reports, patents, webpages, norms & standards, product documentations, databases and litigations.
+[^2]: Bibliographical reference, office action, search report, patent, webpage, norm & standard, product documentation, database and litigation
 [^nvy]: <span style="color:red">Not validated yet</span>
 
 # <small>Welcome to</small> PatCit

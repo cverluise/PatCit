@@ -1,7 +1,7 @@
-[cverluise-web]:(https://cverluise.github.io/)
-[gderasse-web]:(https://gder.phpnet.org/rassenfosse/bio.html)
-[cverluise]:(https://github.com/cverluise)
-[gderasse]:(https://github.com/gderasse)
+[cverluise-web]:https://cverluise.github.io/
+[gderasse-web]:https://gder.phpnet.org/rassenfosse/bio.html
+[cverluise]:https://github.com/cverluise
+[gderasse]:https://github.com/gderasse
 [innov-lab]:https://www.college-de-france.fr/site/philippe-aghion/index.htm
 [iipp]:https://www.epfl.ch/labs/iipp/
 
