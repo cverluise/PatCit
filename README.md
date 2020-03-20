@@ -18,9 +18,9 @@
 [cc-by]: http://creativecommons.org/licenses/by/4.0/
 [cc-by-shield]: https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg?label=Data
 
-# PatCit
+<a href="https://cverluise.github.io/PatCit/"><img src="https://github.com/cverluise/PatCit/blob/master/dissemination/logo-250x250.jpeg" width="125" height="125" align="right" /></a>
 
-*Making Patent Citations Uncool Again*
+# PatCit: Making Patent Citations Uncool Again
 
 [Website][doc-website], [Newsletter][nl], [BigQuery][bq-patcit], [G-Storage][gs-patcit], [Zenodo][zen-patcit]
 
