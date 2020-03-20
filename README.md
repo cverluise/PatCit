@@ -18,7 +18,6 @@
 [cc-by]: http://creativecommons.org/licenses/by/4.0/
 [cc-by-shield]: https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg?label=Data
 
-
 # PatCit
 
 *Making Patent Citations Uncool Again*
@@ -60,7 +59,7 @@ So far, we have:
 
 	</details>
 
-:speech_balloon: A detailed presentation of the current state of the project is available in our [March 2020 presentation](./dissemination/IIPP-CEMI_03032020.pdf).
+> 💬 A detailed presentation of the current state of the project is available in our [March 2020 presentation](./dissemination/IIPP-CEMI_03032020.pdf).
 
 ## Features
 
@@ -149,7 +148,7 @@ Even better! We will be more than happy to receive any contributions from you an
 
 ## Under the hood.
 
-We build on large range of open-source tools? In particular, the project heavily relies on two great open source libraries:
+We build on large range of open-source tools. In particular, the project heavily relies on two great open source libraries:
 
 - [Grobid][grobid], a Machine Learning library for extracting, parsing and restructuring raw documents
 - [biblio-glutton][biblio-glutton], a framework dedicated to bibliographic information with a powerful bibliographical matching service.
@@ -159,9 +158,11 @@ These services are articulated in an efficient data pipeline in the cloud to pro
 
 ## Team
 
-This project is maintained by [G. de Rassenfosse][gder] ([@gderasse][gderasse]) and [C. Verluise][cver] ([@cverluise][cverluise]).
+This project is initiated by [G. de Rassenfosse][gder] ([@gderasse][gderasse]) and [C. Verluise][cver] ([@cverluise][cverluise]).
 
-We are especially thankful to [@kermitt2](https://github.com/kermitt2) [@FGer8](https://github.com/FGer8), [@gg4u](https://github.com/gg4u), [@SuperMayo](https://github.com/SuperMayo) and [@leflix311](https://github.com/leflix311). We are also thankful to the many people who help us shape this project through useful comments shared by emails, twitter and direct interactions.
+It benefits from valuable help from to [@kermitt2](https://github.com/kermitt2) [@FGer8](https://github.com/FGer8), [@gg4u](https://github.com/gg4u), [@SuperMayo](https://github.com/SuperMayo) and [@leflix311](https://github.com/leflix311).
+
+We are also thankful to the many people who help us shape this project through useful comments shared by emails, twitter and direct interactions.
 
 
 ## Citation
