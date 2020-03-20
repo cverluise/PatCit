@@ -14,6 +14,13 @@
 - spaCy ([GitHub][spaCy-gh], [Doc][spaCy-doc]) is an Industrial-Strength Natural Language Processing Python library.
 - Doccano ([GitHub][doccano-gh], [Demo][doccano-demo]) is an open source text annotation tool for machine learning practitioners.
 
+## Data
+
+- [Crossref](https://www.crossref.org) interlinks millions of items from a variety of content types, including journals, books, conference proceedings, working papers, technical reports, and data sets. Linked content includes materials from Scientific, Technical and Medical (STM) and Social Sciences and Humanities (SSH) disciplines.
+- [PubMed](https://www.ncbi.nlm.nih.gov/pubmed/) is a free search engine accessing primarily the MEDLINE database of references and abstracts on life sciences and biomedical topics.
+- [Unpaywall](https://unpaywall.org) is an open database of 25+ million free scholarly articles.
+- [Lens.org](https://www.lens.org) is a free and open search platform for patents and scholarly articles.
+
 ## Articles
 
 - Sutton, Charles and McCallum, Andrew  (2012), *An Introduction to Conditional Random Fields*, Foundations and Trends® in Machine Learning: Vol. 4: No. 4, pp 267-373. [http://dx.doi.org/10.1561/2200000013](http://dx.doi.org/10.1561/2200000013)
