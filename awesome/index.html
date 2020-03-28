@@ -71,6 +71,31 @@
     
     
       
+        
+<script>
+  window.ga = window.ga || function() {
+    (ga.q = ga.q || []).push(arguments)
+  }
+  ga.l = +new Date
+  /* Setup integration and send page view */
+  ga("create", "UA-156947083-2", "auto")
+  ga("set", "anonymizeIp", true)
+  ga("send", "pageview")
+  /* Register handler to log search on blur */
+  document.addEventListener("DOMContentLoaded", () => {
+    if (document.forms.search) {
+      var query = document.forms.search.query
+      query.addEventListener("blur", function() {
+        if (this.value) {
+          var path = document.location.pathname;
+          ga("send", "pageview", path + "?q=" + this.value)
+        }
+      })
+    }
+  })
+</script>
+<script async src="https://www.google-analytics.com/analytics.js"></script>
+      
     
     
   </head>
@@ -486,6 +511,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#data" class="md-nav__link">
+    Data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#articles" class="md-nav__link">
     Articles
   </a>
@@ -589,6 +621,13 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#data" class="md-nav__link">
+    Data
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#articles" class="md-nav__link">
     Articles
   </a>
@@ -622,6 +661,13 @@
 <li>Biblio-glutton (<a href="https://github.com/kermitt2/biblio-glutton">GitHub</a>) is a bibliographical reference matching service. From an input such as a raw bibliographical reference and/or a combination of key metadata, the service returns the disambiguated bibliographical object with in particular its DOI and a set of metadata aggregated from <a href="./vocabulary#crossref"><strong>CrossRef</strong></a>, <a href="./vocabulary#pubmed"><strong>PubMed</strong></a> and other awesome bibliographical resources.</li>
 <li>spaCy (<a href="https://github.com/explosion/spaCy">GitHub</a>, <a href="https://spacy.io/">Doc</a>) is an Industrial-Strength Natural Language Processing Python library.</li>
 <li>Doccano (<a href="https://github.com/doccano/doccano">GitHub</a>, <a href="https://doccano.herokuapp.com/">Demo</a>) is an open source text annotation tool for machine learning practitioners.</li>
+</ul>
+<h2 id="data">Data<a class="headerlink" href="#data" title="Permanent link">&para;</a></h2>
+<ul>
+<li><a href="https://www.crossref.org">Crossref</a> interlinks millions of items from a variety of content types, including journals, books, conference proceedings, working papers, technical reports, and data sets. Linked content includes materials from Scientific, Technical and Medical (STM) and Social Sciences and Humanities (SSH) disciplines.</li>
+<li><a href="https://www.ncbi.nlm.nih.gov/pubmed/">PubMed</a> is a free search engine accessing primarily the MEDLINE database of references and abstracts on life sciences and biomedical topics.</li>
+<li><a href="https://unpaywall.org">Unpaywall</a> is an open database of 25+ million free scholarly articles.</li>
+<li><a href="https://www.lens.org">Lens.org</a> is a free and open search platform for patents and scholarly articles.</li>
 </ul>
 <h2 id="articles">Articles<a class="headerlink" href="#articles" title="Permanent link">&para;</a></h2>
 <ul>
