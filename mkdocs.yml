@@ -34,9 +34,9 @@ extra:
       link: 'https://www.linkedin.com/in/cyril-verluise-80184347/'
 
 # Google Analytics
-#google_analytics:
-#  - 'UA-XXXXXXXX-X'
-#  - 'auto'
+google_analytics:
+  - 'UA-156947083-2'
+  - 'auto'
 
 # Extensions
 markdown_extensions:
