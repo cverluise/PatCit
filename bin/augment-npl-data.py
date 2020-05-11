@@ -11,6 +11,9 @@ msg = Printer()
 config = Config()
 client = config.client()
 
+# TODO check that the LEFT queries do what they should
+# https://stackoverflow.com/questions/406294/left-join-vs-left-outer-join-in-sql-server
+
 
 def create_table_with_schema(out_ref, flavor):
     table = bq.Table(out_ref, schema=bq_schema.make_aug_npl_schema(flavor))
@@ -261,7 +264,7 @@ def propagate_issn(out_ref):
 @click.option("--flavor", help="Flavor of the table. E.g. v01, v02, etc")
 @click.option("--dest", help="Bq path to the dest table")
 @click.option(
-    "--src", default="npl-parsing.patcit.raw", help="Bq path to the npl table"
+    "--src", default="npl-parsing.patcit.npl_v0", help="Bq path to the npl table"
 )
 @click.option(
     "--tls211",
