@@ -14,7 +14,7 @@ from tqdm import tqdm
 @click.option(
     "--flavor",
     default="sm",
-    help="Examples reported if <flavor> is lg. Default " "<falvor> is sm.",
+    help="Examples reported if <flavor> is lg. Default <flavor> is sm.",
 )
 @click.option("--limit", default=None, type=int, help="Break after <limit> iterations")
 def main(path, tar, flavor, limit):
