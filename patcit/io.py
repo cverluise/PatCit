@@ -35,10 +35,12 @@ header_fin_tls214 = [
 header_fin_fulltext_us = ["publication_number", "description"]
 
 
-def process_biblio_tls214(input_file: str):
+def process_biblio_tls214(
+    input_file: str, consolidate: int = 1, capitalize: bool = True
+):
     tmp = input_file.split("/")
     output_file = "/".join(tmp[:-1]) + "/processed_" + ".".join(tmp[-1].split(".")[:-1])
-    data = {"citations": None, "consolidateCitations": 1}  # init
+    data = {"citations": None, "consolidateCitations": consolidate}  # init
     with open(input_file, mode="r") as fin:
         fin_reader = csv.DictReader(
             fin,
@@ -62,8 +64,13 @@ def process_biblio_tls214(input_file: str):
                     pass
 
                 else:
-                    # print(line_count)
-                    data.update({"citations": line["npl_biblio"].title()})
+                    print(line_count)
+                    npl_biblio_ = (
+                        line["npl_biblio"].title() if capitalize else line["npl_biblio"]
+                    )
+                    print(line["npl_biblio"])
+                    data.update({"citations": npl_biblio_})
+                    print(data)
                     # Seems that .title() improves output
                     # TODO discuss with @kermitt2
                     response = requests.post(
