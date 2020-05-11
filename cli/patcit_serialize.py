@@ -146,6 +146,10 @@ def serialize_prep_validate_intext_cits(id_, citations):
 
 @app.command()
 def in_text(path: str, max_workers: int = None):
+    """Serialize in-text citations
+
+    Notes: Assume original file names ('processed_' in, 'serialized_' out)"""
+
     def serialize(input_file):
         root = os.path.dirname(input_file)
         f_name = (os.path.split(input_file)[-1]).split(".")[0]
