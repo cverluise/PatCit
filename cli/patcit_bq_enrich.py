@@ -1,4 +1,4 @@
-import click
+import typer
 from google.cloud import bigquery as bq
 from wasabi import Printer
 
@@ -6,13 +6,11 @@ from patcit import bq_schema
 from patcit.config import Config
 from patcit.utils import str_to_bq_ref, ref_to_bq_path
 
+app = typer.Typer()
 msg = Printer()
 
 config = Config()
 client = config.client()
-
-# TODO check that the LEFT queries do what they should
-# https://stackoverflow.com/questions/406294/left-join-vs-left-outer-join-in-sql-server
 
 
 def create_table_with_schema(out_ref, flavor):
@@ -260,40 +258,27 @@ def propagate_issn(out_ref):
     return job
 
 
-@click.command()
-@click.option("--flavor", help="Flavor of the table. E.g. v01, v02, etc")
-@click.option("--dest", help="Bq path to the dest table")
-@click.option(
-    "--src", default="npl-parsing.patcit.npl_v0", help="Bq path to the npl table"
-)
-@click.option(
-    "--tls211",
-    default="usptobias.patstat.tls211",
-    help="Bq path to the PatStat tls211 table",
-)
-@click.option(
-    "--tls212",
-    default="usptobias.patstat.tls212",
-    help="Bq path to the PatStat tls212 table",
-)
-@click.option(
-    "--citedby",
-    default="npl-parsing.external.npl_cited_by",
-    help="Bq path to the " "citedby table",
-)
-@click.option(
-    "--crossref",
-    default="npl-parsing.external.crossref",
-    help="Bq path to the crossref table",
-)
-@click.option(
-    "--npl_class",
-    default="npl-parsing.external.npl_class",
-    help="Bq path to the npl_class table",
-)
-@click.option("--tmp", default="npl-parsing.tmp.tmp", help="Bq path to the tmp table")
-def main(dest, src, flavor, tls211, tls212, citedby, crossref, npl_class, tmp):
-    assert flavor in ["v01", "v02"]
+@app.command()
+def from_all(
+    dest: str,
+    src: str,
+    version_flavor: str,
+    tls211: str = None,
+    tls212: str = None,
+    citedby: str = None,
+    crossref: str = None,
+    npl_class: str = None,
+    tmp: str = None,
+):
+    """
+    Enrich grobid data from external data
+
+    E.g. python cli/patcit_bq.py enrich from-all npl-parsing.patcit.npl_v<xx>
+    npl-parsing.patcit.npl_v00 vxx --tls211 usptobias.patstat.tls211 --tls212
+    usptobias.patstat.tls212 --citedby npl-parsing.external.npl_cited_by --crossref npl-parsing.external.crossref --npl_class
+    npl-parsing.external.npl_class
+    """
+    assert version_flavor in ["v01", "v02"]
     tls211_ref = str_to_bq_ref(tls211)
     tls212_ref = str_to_bq_ref(tls212)
     citedby_ref = str_to_bq_ref(citedby)
@@ -303,7 +288,7 @@ def main(dest, src, flavor, tls211, tls212, citedby, crossref, npl_class, tmp):
     tmp_ref = str_to_bq_ref(tmp)
     dest_ref = str_to_bq_ref(dest)
 
-    if flavor == "v01":
+    if version_flavor == "v01":
         npl_cited_by_table(tls211_ref, tls212_ref, citedby_ref)
         add_cited_by(src_ref, citedby_ref, tmp_ref)
         add_crossref(crossref_ref, tmp_ref, dest_ref)
@@ -314,4 +299,4 @@ def main(dest, src, flavor, tls211, tls212, citedby, crossref, npl_class, tmp):
 
 
 if __name__ == "__main__":
-    main()
+    app()
