@@ -1111,6 +1111,14 @@ version = "0.2.8"
 pyasn1 = ">=0.4.6,<0.5.0"
 
 [[package]]
+category = "main"
+description = "Python bindings around Google Chromium's embedded compact language detection library (CLD2)"
+name = "pycld2"
+optional = false
+python-versions = "*"
+version = "0.41"
+
+[[package]]
 category = "dev"
 description = "Python style guide checker"
 name = "pycodestyle"
@@ -1627,7 +1635,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools"]
 
 [metadata]
-content-hash = "d8103d1ac2a9c282b97e9615416c69d38c20cd436510908c15f9b47a9e857ec8"
+content-hash = "824ae5bf3dbb0167bf3c4d3e4e89f4393e6de6f8b3dec00e6df6a27c31c353d1"
 python-versions = "^3.7"
 
 [metadata.files]
@@ -2188,6 +2196,9 @@ pyasn1-modules = [
     {file = "pyasn1_modules-0.2.8-py3.5.egg", hash = "sha256:426edb7a5e8879f1ec54a1864f16b882c2837bfd06eee62f2c982315ee2473ed"},
     {file = "pyasn1_modules-0.2.8-py3.6.egg", hash = "sha256:cbac4bc38d117f2a49aeedec4407d23e8866ea4ac27ff2cf7fb3e5b570df19e0"},
     {file = "pyasn1_modules-0.2.8-py3.7.egg", hash = "sha256:c29a5e5cc7a3f05926aff34e097e84f8589cd790ce0ed41b67aed6857b26aafd"},
+]
+pycld2 = [
+    {file = "pycld2-0.41.tar.gz", hash = "sha256:a42f6e974df8fdd70685c2baa8a9f523069a260e1140ce604fb9f1fb6c3064df"},
 ]
 pycodestyle = [
     {file = "pycodestyle-2.5.0-py2.py3-none-any.whl", hash = "sha256:95a2219d12372f05704562a14ec30bc76b05a5b297b21a5dfe3f6fac3491ae56"},
