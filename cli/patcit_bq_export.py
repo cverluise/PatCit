@@ -183,7 +183,7 @@ def to_gs(
         --dest-format: CSV or NEWLINE_DELIMITED_JSON
         --npl-flavor: 'front-page' or 'in-text'
 
-    E.g. python bin/export-bq-table.py npl-parsing.patcit.v02_npl
+    E.g. python bin/patcit-cli.py bq export to-gs "npl-parsing.patcit.v02_npl"
     "gs://patcit/npl-latest/v02-npl*" --dest-format "CSV" --compression --staging-table
     "npl-parsing.tmp.tmp" --npl-flavor "front-page"
     """

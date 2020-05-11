@@ -273,10 +273,10 @@ def from_all(
     """
     Enrich grobid data from external data
 
-    E.g. python cli/patcit_bq.py enrich from-all npl-parsing.patcit.npl_v<xx>
-    npl-parsing.patcit.npl_v00 vxx --tls211 usptobias.patstat.tls211 --tls212
-    usptobias.patstat.tls212 --citedby npl-parsing.external.npl_cited_by --crossref npl-parsing.external.crossref --npl_class
-    npl-parsing.external.npl_class
+    E.g. python cli/patcit_bq.py enrich from-all 'npl-parsing.patcit.npl_v<xx>'
+    'npl-parsing.patcit.npl_v00' '<vxx>' --tls211 'usptobias.patstat.tls211' --tls212
+    'usptobias.patstat.tls212' --citedby 'npl-parsing.external.npl_cited_by' --crossref
+    'npl-parsing.external.crossref' --npl_class 'npl-parsing.external.npl_class'
     """
     assert version_flavor in ["v01", "v02"]
     tls211_ref = str_to_bq_ref(tls211)
