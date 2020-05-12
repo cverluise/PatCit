@@ -5,6 +5,9 @@
 **/npl-parsing-3412b4cafd20.json
 **/config.json
 
+# Models
+models/**/en_*/**
+
 # Large files
 data/
 *results-*.csv
