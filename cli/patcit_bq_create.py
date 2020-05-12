@@ -1,30 +1,25 @@
-import click
+import typer
 from google.cloud import bigquery as bq
 from wasabi import Printer
 
 from patcit.config import Config
 from patcit.utils import str_to_bq_ref
 
+app = typer.Typer()
 
-@click.command(
-    help="python bin/create-bq-table.py --uri 'gs://npl-parsing/serialized_tls214/*.jsonl' "
-    "--table_path 'npl-parsing.patcit.beta' --schema 'schema/npl_citation_schema.json' "
-    "--write_mode 'CREATE_NEW'"
-)
-@click.option("--uri", help="E.g. 'gs://npl-parsing/serialized_tls214/*.jsonl'")
-@click.option(
-    "--table_path", help="BQ path of the target table (e.g 'npl-parsing.patcit.beta')."
-)
-@click.option("--schema", help="json file defining the table schema")
-@click.option(
-    "--write_mode",
-    default="CREATE_NEW",
-    help="'CREATE_NEW' to create a new table, "
-    "disregarding pre-existence; "
-    "'WRITE_APPEND' to append data to the "
-    "pre-existing table (if any)",
-)
-def main(uri, table_path, schema, write_mode):
+
+@app.command()
+def from_gs(uri: str, table_path: str, schema: str, write_mode: str = "CREATE_NEW"):
+    """
+    Load data from Google Storage to Big Query
+
+    Notes:
+        --write-mode: 'CREATE_NEW' or 'WRITE_APPEND'
+
+    E.g. python cli/patcit_bq.py create from-gs 'gs://npl-parsing/serialized_tls214/*.jsonl'
+    'npl-parsing.patcit.npl_v00' 'schema/npl_citation_schema.json'
+    """
+
     msg = Printer()
     project_id, dataset_id, _ = table_path.split(".")
     config = Config(project_id=project_id, dataset_id=dataset_id)
@@ -60,4 +55,4 @@ def main(uri, table_path, schema, write_mode):
 
 
 if __name__ == "__main__":
-    main()
+    app()

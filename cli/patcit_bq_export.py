@@ -6,6 +6,7 @@ from wasabi import Printer
 
 from patcit.config import Config
 
+app = typer.Typer()
 msg = Printer()
 AUTHORIZED_FORMATS = ["CSV", "NEWLINE_DELIMITED_JSON"]
 AUTHORIZED_SUB_TABLES = ["cited_by", "authors", "crossref", "bibl"]
@@ -166,50 +167,43 @@ def flatten_npl(
         )
 
 
-def main(
-    src_table: str,
-    destination_uri: str,
-    destination_format: str = typer.Option(
-        default="NEWLINE_DELIMITED_JSON", help="CSV or NEWLINE_DELIMITED_JSON"
-    ),
-    compression: bool = typer.Option(default=True),
-    npl_flavor: str = typer.Option(default=None, help="front-page or in-text"),
-    staging_table: str = typer.Option(default=None, help="E.g. npl-parsing.tmp.tmp"),
+@app.command()
+def to_gs(
+    src: str,
+    dest: str,
+    dest_format: str,
+    gzip: bool = True,
+    npl_flavor: str = None,
+    staging_table: str = None,
 ):
     """
-    CLI to export BQ tables to GS
-    - CSV and NEWLINE_DELIMITED_JSON formats supported
-    - GZIP compression supported
+    Export patcit on BQ tables to google Storage
 
-     python bin/export-bq-table.py npl-parsing.patcit.v02_npl
-     "gs://patcit/npl-latest/v02-npl*" --destination-format "CSV" --compression --staging-table
-     "npl-parsing.tmp.tmp" --flavor "front-page"
+    Notes:
+        --dest-format: CSV or NEWLINE_DELIMITED_JSON
+        --npl-flavor: 'front-page' or 'in-text'
+
+    E.g. python bin/patcit-cli.py bq export to-gs "npl-parsing.patcit.v02_npl"
+    "gs://patcit/npl-latest/v02-npl*" --dest-format "CSV" --compression --staging-table
+    "npl-parsing.tmp.tmp" --npl-flavor "front-page"
     """
-    project_id, dataset_id, table_id = src_table.split(".")
+    project_id, dataset_id, table_id = src.split(".")
     config = Config(project_id=project_id, dataset_id=dataset_id)
     client = config.client()
 
-    if destination_format not in AUTHORIZED_FORMATS:
+    if dest_format not in AUTHORIZED_FORMATS:
         typer.echo(
-            f"The destination_format must be in {AUTHORIZED_FORMATS}. destination_format is"
-            f" {destination_format}"
+            f"The dest_format must be in {AUTHORIZED_FORMATS}. dest_format is"
+            f" {dest_format}"
         )
         raise typer.Abort()
 
-    if destination_format == "CSV" and npl_flavor:
-        flatten_npl(
-            npl_flavor,
-            client,
-            destination_format,
-            compression,
-            src_table,
-            staging_table,
-            destination_uri,
-        )
+    if dest_format == "CSV" and npl_flavor:
+        flatten_npl(npl_flavor, client, dest_format, gzip, src, staging_table, dest)
     else:
         table_ref = config.table_ref(table_id)
-        store_table(table_ref, client, destination_format, compression, destination_uri)
+        store_table(table_ref, client, dest_format, gzip, dest)
 
 
 if __name__ == "__main__":
-    typer.run(main)
+    app()

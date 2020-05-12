@@ -6,9 +6,12 @@
 find "$1"/*.zip | parallel unzip -o
 echo "UNZIP: DONE"
 mkdir -p "$1"/small_chunks
-parallel split -l100000 "$1/tls214_part0{}.txt" "$1/small_chunks/tls214_part0{}.txt.sub-" ::: 1 2 3 4 5
+parallel split -l100000 "$1/tls214_part0{}.txt" "$1/small_chunks/tls214_part0{}_sub-" ::: 1 2 3 4 5
 echo "SPLIT: DONE"
-python3 ./bin/rename-tls214.py "$1"/small_chunks/
+for file in $(find "$1"/small_chunks/tls214_part0*_sub-*);
+  do mv "$file" "$file".txt;
+done
+#python3 ./bin/rename-tls214.py "$1"/small_chunks/ -> deprecated
 echo "RENAME: DONE"
 for file in $(find "$1"/small_chunks/*aa.txt); do
   sed -i '' 1d "$file"  # remove header(only *aa have one)
