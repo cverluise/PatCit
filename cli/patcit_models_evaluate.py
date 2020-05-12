@@ -257,5 +257,20 @@ def textcat(
     msg.good(f"{file} saved")
 
 
+@app.command()
+def spacy_model(model: str, pipes: str = "ner"):
+    """Evaluate model"""
+
+    scores = json.loads(open(os.path.join(model, "meta.json"), "r").read())["accuracy"]
+
+    pipes = pipes.split(",")
+    if "ner" in pipes:
+        p, r, f = scores["ents_p"], scores["ents_r"], scores["ents_f"]
+        typer.secho("NER Scores", fg=typer.colors.BLUE)
+        typer.secho(f"{pd.DataFrame.from_dict(scores['ents_per_type']).T}")
+        typer.echo("-" * 37)
+        typer.echo(f"ALL   %.6f  %.6f  %.6f" % (p, r, f))
+
+
 if __name__ == "__main__":
     app()
