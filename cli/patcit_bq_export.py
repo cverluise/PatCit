@@ -14,6 +14,17 @@ IN_TEXT_SUB_TABLES = ["authors", "bibl"]  # add as in-text get richer content
 AUTHORIZED_NPL_FLAVORS = ["front-page", "in-text"]
 NESTED_VAR_FP = ["cited_by", "authors", "funder", "subject", "issues"]
 NESTED_VAR_IT = ["authors"]  # add as in-text get richer content
+AUTHORIZED_CATS = [
+    "BIBLIOGRAPHICAL_REFERENCE",
+    "PATENT",
+    "SEARCH_REPORT",
+    "DATABASE",
+    "OFFICE_ACTION",
+    "WEBPAGE",
+    "PRODUCT_DOCUMENTATION",
+    "NORM_STANDARD",
+    "LITIGATION",
+]
 
 
 def extract_cited_by(src_table):
@@ -203,6 +214,58 @@ def to_gs(
     else:
         table_ref = config.table_ref(table_id)
         store_table(table_ref, client, dest_format, gzip, dest)
+
+
+@app.command()
+def extract_category(
+    cat_table: str,
+    category: str,
+    staging_table: str = None,
+    destination_uri: str = None,
+    tls214_table: str = None,
+):
+    assert category in AUTHORIZED_CATS
+    query = f"""
+     SELECT
+        npl_publn_id,
+        npl_class
+      FROM
+        `{cat_table}`
+      WHERE
+        npl_class="{category}"
+        """
+    if tls214_table:
+        query = f"""WITH
+          tmp AS ({query})
+        SELECT
+          tmp.npl_publn_id,
+          npl_biblio
+        FROM
+          tmp
+        INNER JOIN (
+          SELECT
+            npl_publn_id,
+            npl_biblio
+          FROM
+            `{tls214_table}`) tls214
+        ON
+          tls214.npl_publn_id = tmp.npl_publn_id"""
+
+    config = Config()
+    client = config.client()
+    staging_project, staging_dataset, staging_table = staging_table.split(".")
+    staging_table_ref = Config(
+        project_id=staging_project, dataset_id=staging_dataset
+    ).table_ref(staging_table)
+
+    job_config = bq.QueryJobConfig()
+    job_config.destination = staging_table_ref
+    job_config.write_disposition = bq.WriteDisposition.WRITE_TRUNCATE
+    client.query(query, job_config=job_config).result()
+
+    store_table(
+        staging_table_ref, client, "NEWLINE_DELIMITED_JSON", True, destination_uri
+    )
 
 
 if __name__ == "__main__":
