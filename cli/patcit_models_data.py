@@ -1,15 +1,21 @@
+import csv
 import json
 import os
 import random
+import sys
 from glob import glob
 
+import numpy as np
 import pandas as pd
 import spacy
 import typer
+from bs4 import BeautifulSoup
+from smart_open import open
 from wasabi import Printer
 
 app = typer.Typer()
 msg = Printer()
+csv.field_size_limit(sys.maxsize)
 
 NPL_LABELS = {
     4: "BIBLIOGRAPHICAL_REFERENCE",
@@ -158,6 +164,92 @@ def prep_doccano4spacy(path: str, train_share: float = 0.8):
 
     dump_data(path, (train_texts, train_cats, dev_texts, dev_gold))
     # return train_texts, train_cats, dev_texts, dev_gold
+
+
+@app.command()
+def prep_spacy_sam(texts_file: str = None, citations_file: str = None):
+    """Prep spacy simple annotation model from 2 csv files
+
+    texts_file: publication_number, text
+    citations_file: publication_number, grobid_citations
+    """
+
+    def prep_citations_spans(citations_file):
+        with open(citations_file, "r") as fin:
+            reader = csv.DictReader(fin, fieldnames=["publication_number", "citations"])
+            out = {}
+            for l in reader:
+                soup = BeautifulSoup(l["citations"], features="lxml")
+                patents = soup.find_all("biblstruct", {"type": "patent"})
+                spans = []
+                for patent in patents:
+                    span_grobid = patent.find("ptr")["target"].replace(
+                        "#string-range", ""
+                    )
+                    _, start, length = span_grobid.split(",")
+                    length = length.replace(")", "")
+                    spans += [
+                        {
+                            "start": int(start),
+                            "end": int(start) + int(length),
+                            "label": "PATENT",
+                        }
+                    ]
+                out.update({l["publication_number"]: spans})
+            return out
+
+    citations_span = prep_citations_spans(citations_file)
+    with open(texts_file, "r") as fin:
+        reader = csv.DictReader(fin, fieldnames=["publication_number", "text"])
+        for l in reader:
+            sam = {
+                "publication_number": l["publication_number"],
+                "text": l["text"],
+                "spans": citations_span[l["publication_number"]],
+            }
+            typer.echo(json.dumps(sam))
+
+
+@app.command()
+def align_spans(file: str, model: str = "en"):
+    """Align spans with MODEL actual tokens"""
+    with open(file, "r") as fin:
+        if len(model) == 2:
+            nlp = spacy.blank(model)
+        else:
+            nlp = spacy.load(model)
+
+        for line in fin:
+            sam = json.loads(line)
+            tokens = nlp(sam["text"]).to_json()["tokens"]
+            spacy_starts = np.array([tok["start"] for tok in tokens])
+            spacy_ends = np.array([tok["end"] for tok in tokens])
+            spans = []
+            for span in sam["spans"]:
+                start, end = (span["start"], span["end"])
+                center_starts = start - spacy_starts
+                i_start = np.where(
+                    center_starts
+                    == np.min(list(filter(lambda x: x >= 0, center_starts)))
+                )[0][0]
+                center_ends = spacy_ends - end
+                i_end = np.where(
+                    center_ends == np.min(list(filter(lambda x: x >= 0, center_ends)))
+                )[0][0]
+                start_aligned = int(spacy_starts[i_start])
+                end_aligned = int(spacy_ends[i_end])
+                span.update(
+                    {
+                        "start": start_aligned,
+                        "end": end_aligned,
+                        "start_o": start,
+                        "end_o": end,
+                    }
+                )
+
+                spans += [span]
+            sam.update({"spans": spans})
+            typer.echo(json.dumps(sam))
 
 
 if __name__ == "__main__":
