@@ -168,10 +168,11 @@ def prep_doccano4spacy(path: str, train_share: float = 0.8):
 
 @app.command()
 def prep_spacy_sam(texts_file: str = None, citations_file: str = None):
-    """Prep spacy simple annotation model from 2 csv files
+    """Prep spaCy Simple Annotation Model from Grobid Patent citations annotation
 
-    texts_file: publication_number, text
-    citations_file: publication_number, grobid_citations
+    Expect 2 csv files
+    - texts_file: publication_number, text
+    - citations_file: publication_number, grobid_citations
     """
 
     def prep_citations_spans(citations_file):
@@ -210,9 +211,55 @@ def prep_spacy_sam(texts_file: str = None, citations_file: str = None):
             typer.echo(json.dumps(sam))
 
 
+def align_spans_(sam, nlp):
+    def remove_space(start, end, text):
+        label_span = text[start:end]
+        tmp = label_span.lstrip()
+        start = start + (len(label_span) - len(tmp))
+        tmp = label_span.rstrip()
+        end = end - (len(label_span) - len(tmp))
+        return start, end
+
+    tmp = sam.copy()
+
+    tokens = nlp(tmp["text"]).to_json()["tokens"]
+    spacy_starts = np.array([tok["start"] for tok in tokens])
+    spacy_ends = np.array([tok["end"] for tok in tokens])
+    text = tmp["text"]
+
+    spans = []
+    for span in tmp["spans"]:
+        start, end = (span["start"], span["end"])
+        start, end = remove_space(start, end, text)
+
+        center_starts = start - spacy_starts
+        i_start = np.where(
+            center_starts == np.min(list(filter(lambda x: x >= 0, center_starts)))
+        )[0][0]
+        center_ends = spacy_ends - end
+        i_end = np.where(
+            center_ends == np.min(list(filter(lambda x: x >= 0, center_ends)))
+        )[0][0]
+        start_aligned = int(spacy_starts[i_start])
+        end_aligned = int(spacy_ends[i_end])
+
+        span_ = {
+            "start": start_aligned,
+            "end": end_aligned,
+            "label": span["label"],
+            "start_o": start,
+            "end_o": end,
+        }
+
+        spans += [span_]
+    return spans
+
+
 @app.command()
 def align_spans(file: str, model: str = "en"):
-    """Align spans with MODEL actual tokens"""
+    """Align spans with MODEL actual tokens
+
+    Expect a jsonl file where each line is consistent with spaCy Simple Annotation Model (SAM)"""
     with open(file, "r") as fin:
         if len(model) == 2:
             nlp = spacy.blank(model)
@@ -221,35 +268,45 @@ def align_spans(file: str, model: str = "en"):
 
         for line in fin:
             sam = json.loads(line)
-            tokens = nlp(sam["text"]).to_json()["tokens"]
-            spacy_starts = np.array([tok["start"] for tok in tokens])
-            spacy_ends = np.array([tok["end"] for tok in tokens])
-            spans = []
-            for span in sam["spans"]:
-                start, end = (span["start"], span["end"])
-                center_starts = start - spacy_starts
-                i_start = np.where(
-                    center_starts
-                    == np.min(list(filter(lambda x: x >= 0, center_starts)))
-                )[0][0]
-                center_ends = spacy_ends - end
-                i_end = np.where(
-                    center_ends == np.min(list(filter(lambda x: x >= 0, center_ends)))
-                )[0][0]
-                start_aligned = int(spacy_starts[i_start])
-                end_aligned = int(spacy_ends[i_end])
-                span.update(
-                    {
-                        "start": start_aligned,
-                        "end": end_aligned,
-                        "start_o": start,
-                        "end_o": end,
-                    }
-                )
-
-                spans += [span]
-            sam.update({"spans": spans})
+            aligned_spans = align_spans_(sam, nlp)
+            sam.update({"spans": aligned_spans})
             typer.echo(json.dumps(sam))
+
+
+@app.command()
+def report_alignment(file: str, context_window: int = 10):
+    """Prepare alignment report
+
+    Expect output from align-spans as input"""
+    typer.echo(f"Aligned|Orig Span|Aligned Span")
+    typer.echo(f"---|---|---")
+    with open(file, "r") as fin:
+        for line in fin:
+            sam = json.loads(line)
+            text = sam["text"]
+            spans = sam["spans"]
+            for span in spans:
+                label = span["label"]
+                start_o, end_o = (span["start_o"], span["end_o"])
+                start, end = (span["start"], span["end"])
+                before_, after_ = (start - context_window, end + context_window)
+                contextualized_span_o = (
+                    text[before_:start_o]
+                    + "`"
+                    + text[start_o:end_o]
+                    + f" {label}`"
+                    + text[end_o:after_]
+                )
+                contextualized_span = (
+                    text[before_:start]
+                    + "`"
+                    + text[start:end]
+                    + f" {label}`"
+                    + text[end:after_]
+                )
+                aligned = start != start_o or end != end_o
+                typer.echo(f"{aligned}|{contextualized_span_o}|{contextualized_span}")
+                break
 
 
 if __name__ == "__main__":
