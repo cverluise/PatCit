@@ -212,6 +212,7 @@ def prep_spacy_sam(texts_file: str = None, citations_file: str = None):
 
 
 def align_spans_(sam, nlp):
+    # TODO implement tests
     def remove_space(start, end, text):
         label_span = text[start:end]
         tmp = label_span.lstrip()
@@ -257,7 +258,7 @@ def align_spans_(sam, nlp):
 
 @app.command()
 def align_spans(file: str, model: str = "en"):
-    """Align spans with MODEL actual tokens
+    """Align spans with MODEL tokenizer. Required for prodigy
 
     Expect a jsonl file where each line is consistent with spaCy Simple Annotation Model (SAM)"""
     with open(file, "r") as fin:
@@ -296,17 +297,16 @@ def report_alignment(file: str, context_window: int = 10):
                     + text[start_o:end_o]
                     + f" {label}`"
                     + text[end_o:after_]
-                )
+                ).replace("\n", "")
                 contextualized_span = (
                     text[before_:start]
                     + "`"
                     + text[start:end]
                     + f" {label}`"
                     + text[end:after_]
-                )
+                ).replace("\n", "")
                 aligned = start != start_o or end != end_o
                 typer.echo(f"{aligned}|{contextualized_span_o}|{contextualized_span}")
-                break
 
 
 if __name__ == "__main__":
