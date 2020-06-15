@@ -13,7 +13,8 @@ def parsing_check(dataset, source, attr):
     The annotator gets a contextualized patent citation displayed
     - the patent citation is highlighted
     - the title (h3 + bold + purple) is the value of the parsed attribute (e.g. orgname)
-    - the citation has an href linking to the patent webpage (on google patents), in case further inspection is needed. Note, There is no guarantee that the link actually exists.
+    - the citation has an href linking to the patent webpage (on google patents), in case further
+    inspection is needed. Note, There is no guarantee that the link actually exists.
     The annotator faces a binary choice ACCEPT or REJECT.
     """
 
@@ -29,11 +30,13 @@ def parsing_check(dataset, source, attr):
             span_ = text[start:end]
             after = text[end:]
 
-            task[
-                "html"
-            ] = f"<span style='color: #775ec2'><h3><b>{span[attr]}</b></h3></span> \
+            task["html"] = (
+                f"<span style='background-color:#775ec2;color:white;font-size:130%;font-weight:bold;'>  "
+                f"{span[attr]}  </span><br> \
                            {before} <span style='background-color: #fae284'><a \
-                           href={root + suffix}>{span_}</a></span> {after}"
+                           href={root + suffix}>{span_}</a></span> \
+                           {after}"
+            )
             yield task
 
     stream = JSONL(source)
