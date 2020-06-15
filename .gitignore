@@ -14,6 +14,7 @@ data/
 *results-*.txt
 *prep*.csv
 *prep*.json
+*eval_*.csv
 
 # spaCy models
 **/en_core_web_sm*/
