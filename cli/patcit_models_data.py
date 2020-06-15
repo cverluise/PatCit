@@ -1,3 +1,4 @@
+import asyncio
 import csv
 import json
 import os
@@ -12,6 +13,8 @@ import typer
 from bs4 import BeautifulSoup
 from smart_open import open
 from wasabi import Printer
+
+from patcit.serialize import contextual_citation
 
 app = typer.Typer()
 msg = Printer()
@@ -177,6 +180,15 @@ def prep_spacy_sam(texts_file: str = None, citations_file: str = None):
 
     def prep_citations_spans(citations_file):
         with open(citations_file, "r") as fin:
+
+            def get_text_span(patent):
+                # TODO -> move to contextual_citation.fetch_patent
+                span = patent.find("ptr")["target"].replace("#string-range", "")
+                _, start, length = span.split(",")
+                length = length.replace(")", "")
+                start, end = (int(start), int(start) + int(length))
+                return start, end
+
             reader = csv.DictReader(fin, fieldnames=["publication_number", "citations"])
             out = {}
             for l in reader:
@@ -184,18 +196,15 @@ def prep_spacy_sam(texts_file: str = None, citations_file: str = None):
                 patents = soup.find_all("biblstruct", {"type": "patent"})
                 spans = []
                 for patent in patents:
-                    span_grobid = patent.find("ptr")["target"].replace(
-                        "#string-range", ""
+                    start, end = get_text_span(patent)
+                    span = asyncio.run(
+                        contextual_citation.fetch_patent(
+                            l["publication_number"], patent
+                        )
                     )
-                    _, start, length = span_grobid.split(",")
-                    length = length.replace(")", "")
-                    spans += [
-                        {
-                            "start": int(start),
-                            "end": int(start) + int(length),
-                            "label": "PATENT",
-                        }
-                    ]
+                    span.update({"start": start, "end": end, "label": "PATENT"})
+
+                    spans += [span]
                 out.update({l["publication_number"]: spans})
             return out
 
@@ -244,16 +253,53 @@ def align_spans_(sam, nlp):
         start_aligned = int(spacy_starts[i_start])
         end_aligned = int(spacy_ends[i_end])
 
-        span_ = {
-            "start": start_aligned,
-            "end": end_aligned,
-            "label": span["label"],
-            "start_o": start,
-            "end_o": end,
-        }
+        span.update(
+            {
+                "start": start_aligned,
+                "end": end_aligned,
+                "label": span["label"],
+                "start_o": start,
+                "end_o": end,
+            }
+        )
 
-        spans += [span_]
+        spans += [span]
     return spans
+
+
+def contextualize_spans_(sam, nlp, context_window=10, attr=None):
+    tmp = sam.copy()
+    text = tmp["text"]
+    tokens = nlp(tmp["text"]).to_json()["tokens"]
+    spacy_starts = np.array([tok["start"] for tok in tokens])
+    spacy_ends = np.array([tok["end"] for tok in tokens])
+    for span in tmp["spans"]:
+        span_ = span.copy()
+        i_start = max(
+            np.where(span_["start"] == spacy_starts)[0][0] - context_window, 0
+        )
+        i_end = min(
+            np.where(span_["end"] == spacy_ends)[0][0] + context_window, len(spacy_ends)
+        )
+
+        context_start = int(spacy_starts[i_start])
+        context_end = int(spacy_ends[i_end])
+
+        out = {"text": text[context_start:context_end].replace("\n", "")}
+        span_.update(
+            {
+                "start": span_["start"] - context_start,
+                "end": span_["end"] - context_start,
+            }
+        )
+
+        assert span_["start"] in list(map(int, spacy_starts - context_start))
+        assert span_["end"] in list(map(int, spacy_ends - context_start))
+
+        out.update({"spans": [span_]})
+        if attr:
+            out.update({"label": span_[attr]})
+        typer.echo(json.dumps(out))
 
 
 @app.command()
@@ -307,6 +353,22 @@ def report_alignment(file: str, context_window: int = 10):
                 ).replace("\n", "")
                 aligned = start != start_o or end != end_o
                 typer.echo(f"{aligned}|{contextualized_span_o}|{contextualized_span}")
+
+
+@app.command()
+def contextualize_spans(file: str, model: str = "en", attr: str = None):
+    """Contextualize spans
+
+    Expect jsonl with Simple Annotation Model lines
+    Return one json object by span to stdout"""
+    if len(model) == 2:
+        nlp = spacy.blank(model)
+    else:
+        nlp = spacy.load(model)
+    with open(file, "r") as fin:
+        for line in fin:
+            sam = json.loads(line)
+            contextualize_spans_(sam, nlp, attr=attr)
 
 
 if __name__ == "__main__":
