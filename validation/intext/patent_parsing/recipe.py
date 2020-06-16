@@ -1,5 +1,6 @@
 import prodigy
-from prodigy.components.loaders import JSONL
+from prodigy.components.loaders import JSONL, JSON
+import os
 
 
 @prodigy.recipe(
@@ -39,7 +40,8 @@ def parsing_check(dataset, source, attr):
             )
             yield task
 
-    stream = JSONL(source)
+    fmt = os.path.splitext(source)[-1]
+    stream = JSONL(source) if fmt == ".jsonl" else JSON(source)
     stream = add_html(stream)
 
     # return {"view_id": "classification",
