@@ -89,7 +89,7 @@ def process_biblio_tls214(
 def process_full_text(input_file: str):
     tmp = input_file.split("/")
     output_file = "/".join(tmp[:-1]) + "/processed_" + ".".join(tmp[-1].split(".")[:-1])
-    data = {"input": None, "consolidateCitations": 1}  # init
+    data = {"input": None, "consolidateCitations": 1, "includeRawCitations": 1}  # init
 
     with open(input_file, mode="r") as fin:
         fin_reader = csv.DictReader(
