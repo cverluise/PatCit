@@ -3,6 +3,7 @@ import csv
 import json
 import os
 import random
+import re
 import sys
 from glob import glob
 
@@ -11,6 +12,7 @@ import pandas as pd
 import spacy
 import typer
 from bs4 import BeautifulSoup
+from fuzzysearch import find_near_matches
 from smart_open import open
 from wasabi import Printer
 
@@ -169,15 +171,7 @@ def prep_doccano4spacy(path: str, train_share: float = 0.8):
     # return train_texts, train_cats, dev_texts, dev_gold
 
 
-@app.command()
-def prep_spacy_sam(texts_file: str = None, citations_file: str = None):
-    """Prep spaCy Simple Annotation Model from Grobid Patent citations annotation
-
-    Expect 2 csv files
-    - texts_file: publication_number, text
-    - citations_file: publication_number, grobid_citations
-    """
-
+def prep_spacy_sam_patents(texts_file: str = None, citations_file: str = None):
     def prep_citations_spans(citations_file):
         with open(citations_file, "r") as fin:
 
@@ -218,6 +212,74 @@ def prep_spacy_sam(texts_file: str = None, citations_file: str = None):
                 "spans": citations_span[l["publication_number"]],
             }
             typer.echo(json.dumps(sam))
+
+
+def prep_spacy_sam_bibrefs(
+    texts_file: str = None, citations_file: str = None, max_l_dist: int = 3
+):
+    citations = list(
+        csv.DictReader(
+            open(citations_file, "r"), fieldnames=["publication_number", "citations"]
+        )
+    )
+    texts = list(
+        csv.DictReader(open(texts_file, "r"), fieldnames=["publication_number", "text"])
+    )
+
+    stdize = lambda s: re.sub(" +", " ", s.replace("\n", "").replace("&amp;", "&"))
+    # boilerplate to stdize texts "encoding" reported in raw_reference and the src text
+
+    missed = []
+    for i in range(len(citations)):
+        if i == 0:
+            pass  # handle header
+        else:
+            assert citations[i]["publication_number"] == texts[i]["publication_number"]
+
+            # populate src objects
+            citations_ = citations[i]["citations"]
+            text_ = texts[i]["text"]
+            sam = {"publication_number": citations[i]["publication_number"]}
+
+            soup = BeautifulSoup(citations_, features="lxml")
+            bibrefs, _ = contextual_citation.split_pats_npls(soup)
+
+            spans = []
+            for bibref in bibrefs:
+                bibref_ = stdize(bibref.find("note", {"type": "raw_reference"}).text)
+                text_ = stdize(text_)
+                match = find_near_matches(bibref_, text_, max_l_dist=max_l_dist)
+                if bibref_ and not match:
+                    missed += [bibref_]
+                if match:
+                    start, end = match[0].start, match[0].end
+                    spans += [{"start": start, "end": end, "label": "BIBREF"}]
+            sam.update({"text": text_, "spans": spans})
+            typer.echo(json.dumps(sam))
+    typer.echo(
+        json.dumps(
+            {"text": "", "missed": missed, "spans": [], "nb_missed": len(missed)}
+        )
+    )
+
+
+@app.command()
+def prep_spacy_sam(
+    texts_file: str = None, citations_file: str = None, flavor: str = "patents"
+):
+    """Prep spaCy Simple Annotation Model from Grobid citations annotation
+
+    Expect 2 csv files
+    - texts_file: publication_number, text
+    - citations_file: publication_number, grobid_citations
+
+    Nb: bibrefs requires raw_reference (not default)
+    """
+    assert flavor in ["patents", "bibrefs"]
+    if flavor == "patents":
+        prep_spacy_sam_patents(texts_file, citations_file)
+    else:
+        prep_spacy_sam_bibrefs(texts_file, citations_file)
 
 
 def align_spans_(sam, nlp):
