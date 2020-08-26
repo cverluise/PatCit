@@ -264,6 +264,38 @@ def prep_spacy_sam_bibrefs(
 
 
 @app.command()
+def prep_spacy_sam_bibref_silver_to_gold(file: str):
+    """
+    Prepare in text bibref serialized data for silver to gold classification task
+
+    Expect jsonl file as v01_USintextNPL
+    """
+
+    def get_dict_values(d):
+        s = ""
+        for k, v in d.items():
+            if v:
+                s = " ".join([s, v])
+        return s.strip()
+
+    with open(file, "r") as lines:
+        for line in lines:
+            text = ""
+            eg = json.loads(line)
+            eg.pop("publication_number_o", None)
+            authors = eg.get("authors")
+            if authors:
+                for author in authors:
+                    text_ = get_dict_values(author)
+                    text = " ".join([text, text_])
+            eg.pop("authors", None)
+            text = " ".join([text, get_dict_values(eg)])
+            out = {"text": text.strip()}
+            if out["text"]:
+                typer.echo(json.dumps(out))
+
+
+@app.command()
 def prep_spacy_sam(
     texts_file: str = None, citations_file: str = None, flavor: str = "patents"
 ):
@@ -430,7 +462,11 @@ def contextualize_spans(file: str, model: str = "en", attr: str = None):
     with open(file, "r") as fin:
         for line in fin:
             sam = json.loads(line)
-            contextualize_spans_(sam, nlp, attr=attr)
+            try:
+                contextualize_spans_(sam, nlp, attr=attr)
+            except IndexError:  # arises when the window exceeds the size of the doc
+                # E.g. IndexError: index 1191 is out of bounds for axis 0 with size 1191
+                pass
 
 
 if __name__ == "__main__":
