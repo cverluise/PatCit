@@ -7,7 +7,7 @@ import typer
 app = typer.Typer()
 
 app.add_typer(patcit_models_data.app, name="data")
-app.add_typer(patcit_models_evaluate.app, name="eval")
+app.add_typer(patcit_models_evaluate.app, name="evaluate")
 app.add_typer(patcit_models_train.app, name="train")
 app.add_typer(patcit_models_process.app, name="process")
 

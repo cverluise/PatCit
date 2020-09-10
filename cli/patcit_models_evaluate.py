@@ -1,7 +1,6 @@
 import json
 import os
 from collections import Counter
-from functools import reduce
 
 import numpy as np
 import pandas as pd
@@ -274,6 +273,7 @@ def spacy_model(model: str, pipes: str = "ner"):
         typer.echo(f"ALL   %.6f  %.6f  %.6f" % (p, r, f))
 
 
+@app.command()
 def grobid_intext(pred: str, gold: str, leniency: int = 0):
     """Evaluate grobid predictions for in-text citations (BIBREF and PATENTS)."""
 
@@ -337,7 +337,11 @@ def grobid_intext(pred: str, gold: str, leniency: int = 0):
         "leniency": leniency,
     }
 
-    return out
+    res = pd.DataFrame.from_dict(out, orient="index")
+    res.to_clipboard()
+
+    typer.secho(res.T.to_string(), fg=typer.colors.BLUE)
+    typer.secho(f"Results copied to clipboard!", fg=typer.colors.YELLOW)
 
 
 if __name__ == "__main__":
