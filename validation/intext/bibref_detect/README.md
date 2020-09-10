@@ -1,6 +1,32 @@
 # READ ME
 
-## Detect
+## Results
+
+var|	value| value
+---|---|---
+*Nb documents*|	203|  203
+*Nb preds*|	534| 534
+*Nb golds*|	343| 343
+*Nb true positives*|	220| 230
+*Nb false positives*|	314| 304
+*Nb false negatives*|	123| 113
+*Precision*|	**0.41**| **0.43**
+*Recall*|	**0.64**| **0.67**
+*Leniency*|	0| 20
+
+<details><summary>More</details>
+
+````shell script
+
+ python cli/patcit-cli.py models evaluate grobid-intext validation/intext/bibref_detect/val_detect.jsonl validation/intext/bibref_detect/val_detect.gold.jsonl --leniency 0/20
+
+````
+</details>
+
+
+## Data
+
+### detect
 
 #### `detect.jsonl`
 
@@ -44,7 +70,7 @@ jq '{publication_number,spans}' validation/intext/bibref_detect/detect.jsonl  -c
 
 
 
-## Silver to gold
+### Silver to gold
 
 #### `silver.jsonl`
 

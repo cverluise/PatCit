@@ -1,8 +1,6 @@
 # GUIDELINES
 
-**Thanks**
-
-- [@lucas-violon](https://github.com/lucas-violon)
+:hugging_face: [@lucas-violon](https://github.com/lucas-violon)
 
 ## Background
 
