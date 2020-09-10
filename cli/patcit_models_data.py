@@ -264,7 +264,7 @@ def prep_spacy_sam_bibrefs(
 
 
 @app.command()
-def prep_spacy_sam_bibref_silver_to_gold(file: str):
+def prep_bibref_silver_to_gold(file: str):
     """
     Prepare in text bibref serialized data for silver to gold classification task
 
