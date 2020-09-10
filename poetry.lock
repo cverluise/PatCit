@@ -1834,7 +1834,7 @@ docs = ["sphinx", "jaraco.packaging (>=3.2)", "rst.linker (>=1.9)"]
 testing = ["jaraco.itertools"]
 
 [metadata]
-content-hash = "e502cd224a2791b6715404e33967ea41612d8ed5f7858647ecb20a8da96dfb34"
+content-hash = "5c77278e254c380dfa9f3b7d3343d69fdf50c7e500bf2479b610a17295e94932"
 python-versions = "^3.7"
 
 [metadata.files]
@@ -2275,6 +2275,7 @@ nbformat = [
 ]
 nodeenv = [
     {file = "nodeenv-1.3.5-py2.py3-none-any.whl", hash = "sha256:5b2438f2e42af54ca968dd1b374d14a1194848955187b0e5e4be1f73813a5212"},
+    {file = "nodeenv-1.3.5.tar.gz", hash = "sha256:7389d06a7ea50c80ca51eda1b185db7b9ec38af1304d12d8b8299d6218486e91"},
 ]
 notebook = [
     {file = "notebook-6.0.3-py3-none-any.whl", hash = "sha256:3edc616c684214292994a3af05eaea4cc043f6b4247d830f3a2f209fa7639a80"},
