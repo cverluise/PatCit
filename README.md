@@ -65,7 +65,7 @@ So far, we have:
 
 #### Open
 
-- The code is licensed under MIT-2 and the dataset is licensed under CC4. Two highly permissive licenses.
+- The code is licensed under MIT-2 and the dataset is licensed under CC-BY. Two highly permissive licenses.
 - The project is thought to be *dynamically improved by and for the community*. Anyone should feel free to open discussions, raise issues, request features and contribute to the project.
 
 #### Comprehensive
@@ -83,7 +83,7 @@ So far, we have:
 
 ## Data access
 
-The `PatCit` dataset is licensed under [CC4](./docs/license-cc.md).
+The `PatCit` dataset is licensed under Creative Commons Attribution International 4.0 [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/).
 
 #### Explore in BigQuery
 
