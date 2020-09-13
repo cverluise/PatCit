@@ -14,7 +14,7 @@ var|	value| value
 *Recall*|	**0.64**| **0.67**
 *Leniency*|	0| 20
 
-<details><summary>More</details>
+<details><summary>More</summary>
 
 ````shell script
 

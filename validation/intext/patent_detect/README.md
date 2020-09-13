@@ -15,12 +15,13 @@ var|value
 *Recall*|	**0.82**
 *Leniency*|	0
 
-<details><summary>More</details>
+<details><summary>More</summary>
 
 ````shell script
  python cli/patcit-cli.py models evaluate grobid-intext validation/intext/patent_detect/val_detect.jsonl validation/intext/patent_detect/val_detect.gold.jsonl
 
 ````
+
 </details>
 
 
