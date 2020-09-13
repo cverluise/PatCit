@@ -20,6 +20,7 @@ data/
 **/bibref_detect/val_silver_to_gold.jsonl
 **/patent_detect/detect*.jsonl
 **/patent_parsing/val_parsing.jsonl
+models/bibref-cat/bibref-cat_0.0/
 
 # spaCy models
 **/en_core_web_sm*/
