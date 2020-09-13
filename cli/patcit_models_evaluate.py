@@ -1,5 +1,6 @@
 import json
 import os
+from collections import Counter
 
 import numpy as np
 import pandas as pd
@@ -270,6 +271,77 @@ def spacy_model(model: str, pipes: str = "ner"):
         typer.secho(f"{pd.DataFrame.from_dict(scores['ents_per_type']).T}")
         typer.echo("-" * 37)
         typer.echo(f"ALL   %.6f  %.6f  %.6f" % (p, r, f))
+
+
+@app.command()
+def grobid_intext(pred: str, gold: str, leniency: int = 0):
+    """Evaluate grobid predictions for in-text citations (BIBREF and PATENTS)."""
+
+    def get_index(file: str, key: str = "publication_number", value: str = "spans"):
+        """Return an index {publication_number: spans} from a jsonl where each line is as follows
+         {'publication_number':publication_number, 'spans': spans}"""
+
+        index = {}
+        with open(file, "r") as lines:
+            for line in lines:
+                line = json.loads(line)
+                key_ = line[key]  # e.g. key_ "US-1234-A"
+                if index.get(
+                    key_
+                ):  # in case there are more than 1 line with a given key
+                    index[key_] = index[key_] + line[value]
+                else:
+                    index.update({key_: line[value]})
+
+            index = {
+                k: list(set([(v["start"], v["end"]) for v in vals]))
+                for k, vals in index.items()
+            }
+        return index
+
+    def has_sibling(dot, arr, leniency):
+        """Return a boolean with value True if there is 'at least' 1 element of arr which distance
+        wrt to dot is less than leniency. Dist is defined by sum(abs((dot[0]-arr_[0], dot[1]-arr_[
+        1]))). Else False. """
+        is_sibling = list(map(lambda a: sum(np.abs(dot - a)) <= leniency, arr))
+        return any(is_sibling)
+
+    gold_index = get_index(gold)
+    pred_index = {k: v for k, v in get_index(pred).items() if k in gold_index.keys()}
+    # we restrict the pred_index to the keys of the docs which were actually hand-labelled
+    # ie the keys which can be found in gold_index
+
+    pos_types = []
+    for k, golds in gold_index.items():
+        preds = pred_index[k]
+        for pred_ in preds:  # true/false positives
+            pos_types += [has_sibling(np.array(pred_), np.array(golds), leniency)]
+
+    pos_types = Counter(pos_types)  # Now of the form {True:int, False:int}
+
+    n_preds = sum(list(map(lambda x: len(x), pred_index.values())))
+    n_golds = sum(list(map(lambda x: len(x), gold_index.values())))
+
+    precision = pos_types[True] / (pos_types[True] + pos_types[False])
+    recall = pos_types[True] / n_golds  # nb golds is the number of actual positives
+
+    out = {
+        "n_keys": len(gold_index.keys()),
+        "n_preds": n_preds,
+        "n_golds": n_golds,
+        "true_positives": pos_types[True],
+        "false_positives": pos_types[False],
+        "false_negatives": n_golds - pos_types[True],
+        "precision": precision,
+        "recall": recall,
+        "leniency": leniency,
+    }
+
+    res = pd.DataFrame.from_dict(out, orient="index")
+    res.to_clipboard()
+
+    typer.secho(res.T.to_string(), fg=typer.colors.BLUE)
+    typer.secho(f"Results copied to clipboard!", fg=typer.colors.YELLOW)
 
 
 if __name__ == "__main__":

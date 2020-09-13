@@ -15,6 +15,7 @@ smart_open = "^1.9.0"
 pandas = "^1.0.2"
 pycld2 = "^0.41"
 streamlit = "^0.59.0"
+fuzzysearch = "^0.7.3"
 
 [tool.poetry.dev-dependencies]
 google-cloud-bigquery = "^1.24.0"
@@ -40,6 +41,7 @@ psutil = "^5.7.0"
 mkdocs-material = "^4.6.3"
 tabulate = "^0.8.6"
 pyperclip = "^1.7.0"
+fuzzysearch = "^0.7.3"
 
 [build-system]
 requires = ["poetry>=0.12"]
