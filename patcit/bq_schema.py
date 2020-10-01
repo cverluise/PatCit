@@ -4,7 +4,7 @@ from patcit.config import Config
 
 client = Config().client()
 
-npl_citation = client.schema_from_json("schema/npl_citation_schema.json")
+npl_citation = client.schema_from_json("schema/frontpage_bibref_bq.json")
 
 cited_by = [
     SchemaField(
@@ -55,7 +55,7 @@ crossref = [
     ),
 ]
 
-# nb: we could get it directly from crossref_schema.json but more variables at this point
+# nb: we could get it directly from crossref_bq.json but more variables at this point
 
 npl_class = [
     SchemaField(
