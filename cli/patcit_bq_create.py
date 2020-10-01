@@ -17,7 +17,7 @@ def from_gs(uri: str, table_path: str, schema: str, write_mode: str = "CREATE_NE
         --write-mode: 'CREATE_NEW' or 'WRITE_APPEND'
 
     E.g. python cli/patcit_bq.py create from-gs 'gs://npl-parsing/serialized_tls214/*.jsonl'
-    'npl-parsing.patcit.npl_v00' 'schema/npl_citation_schema.json'
+    'npl-parsing.patcit.npl_v00' 'schema/frontpage_bibref_bq.json'
     """
 
     msg = Printer()

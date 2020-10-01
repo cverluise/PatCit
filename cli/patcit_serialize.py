@@ -30,59 +30,52 @@ app = typer.Typer()
 # TODO: relax assumption on file names?
 # TODO: fix path. This will break with windows
 
+# def prep_grobid_for_crossref():
+
+
+def serialize_prep_validate_fp_cit(line):
+    npl_publn_id, npl_grobid = line.get("npl_publn_id"), line.get("npl_grobid")
+    if npl_grobid:
+        soup = BeautifulSoup(npl_grobid, "lxml")
+        out = asyncio.run(fetch_all_tags(npl_publn_id, soup))
+
+        issues = asyncio.run(eval_issues(out))
+        out.update({"issues": issues})
+        out = solve_issues(out, issues)
+        out = prep_and_pop(out, get_schema("npl"))
+
+        try:
+            validate(instance=out, schema=get_schema("npl"))
+        except Exception as e:
+            out = {
+                "npl_publn_id": out["npl_publn_id"],
+                "exception": str(e),
+                "issues": [0],
+            }
+    else:
+        out = {
+            "npl_publn_id": npl_publn_id,
+            "exception": "GrobidException",
+            "issues": [0],
+        }
+    typer.echo(json.dumps(out))
+
 
 @app.command()
 def front_page(path: str, max_workers: int = None):
-    """Serialize front page citations
-
-    Notes: Assume original file names ('processed_' in, 'serialized_' out)"""
-
-    def serialize_fp_file(input_file, batch_size=1000):
-        def serialize_prep_validate_fp_cit(x):
-            npl_publn_id, npl_grobid = x
-            if npl_grobid:
-                soup = BeautifulSoup(npl_grobid, "lxml")
-                out = asyncio.run(fetch_all_tags(npl_publn_id, soup))
-
-                issues = asyncio.run(eval_issues(out))
-                out.update({"issues": issues})
-                out = solve_issues(out, issues)
-                out = prep_and_pop(out, get_schema("npl"))
-
-                try:
-                    validate(instance=out, schema=get_schema("npl"))
-                except Exception as e:
-                    out = {
-                        "npl_publn_id": out["npl_publn_id"],
-                        "exception": str(e),
-                        "issues": [0],
-                    }
-            else:
-                out = {
-                    "npl_publn_id": npl_publn_id,
-                    "exception": "GrobidException",
-                    "issues": [0],
-                }
-            return json.dumps(out)
-
-        tmp = input_file.split("/")
-        output_file = "/".join(tmp[:-1]) + "/" + tmp[-1].split(".")[0] + ".jsonl"
-        output_file = output_file.replace("processed_", "serialized_")
-        data = pd.read_csv(input_file, compression="gzip")[
-            ["npl_publn_id", "npl_grobid"]
-        ]
-
-        serialized_grobid = []
-        for i in tqdm(np.arange(0, len(data), batch_size)):
-            tmp = data.iloc[i : i + batch_size]
-            serialized_grobid += tmp.apply(
-                serialize_prep_validate_fp_cit, axis=1
-            ).to_list()
-        np.savetxt(output_file, serialized_grobid, fmt="%s", delimiter="\n")
+    """Serialize front page citations from GROBID parsing
+    """
 
     files = glob(path)
-    with concurrent.futures.ProcessPoolExecutor(max_workers=max_workers) as executor:
-        executor.map(serialize_fp_file, files)
+    for file in files:
+        with open(file, "r") as fin:
+            lines = csv.DictReader(
+                fin, delimiter=",", quotechar='"', quoting=csv.QUOTE_MINIMAL
+            )
+            with concurrent.futures.ThreadPoolExecutor(
+                max_workers=max_workers
+            ) as executor:
+                executor.map(serialize_prep_validate_fp_cit, lines)
 
 
 async def prep_validate_intext_cits(id_, ccits, flavor):
