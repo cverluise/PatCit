@@ -1,0 +1,38 @@
+[
+  {
+        "description": "npl_publn_id from PATSTAT TLS214 2018b",
+        "name": "npl_publn_id",
+        "type": "INTEGER",
+        "mode": "REQUIRED"
+    },
+  {
+        "description": "Item of the Wiki page",
+        "name": "item",
+        "type": "STRING",
+        "mode": "REPEATED"
+    },
+  {
+        "description": "Url of the Wiki page",
+        "name": "url",
+        "type": "STRING",
+        "mode": "REPEATED"
+    },
+  {
+        "description": "Hostname of the Wiki page",
+        "name": "hostname",
+        "type": "STRING",
+        "mode": "REPEATED"
+    },
+  {
+        "description": "Natural language date (creation, last modification, accesssion)",
+        "name": "date",
+        "type": "STRING",
+        "mode": "REPEATED"
+    },
+  {
+        "description": "yyyymmdd date (creation, last modification, accesssion)",
+        "name": "date_num",
+        "type": "INTEGER",
+        "mode": "REPEATED"
+    }
+]
