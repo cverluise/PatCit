@@ -1,3 +1,4 @@
+Warning: The lock file is not up to date with the latest changes in pyproject.toml. You may be getting outdated dependencies. Run update to update them.
 aiohttp==3.6.2 \
     --hash=sha256:1e984191d1ec186881ffaed4581092ba04f7c61582a177b187d3a2f07ed9719e \
     --hash=sha256:50aaad128e6ac62e7bf7bd1f0c0a24bc968a0c0590a726d5a955af193544bcec \
@@ -89,6 +90,23 @@ entrypoints==0.3 \
 enum-compat==0.0.3 \
     --hash=sha256:3677daabed56a6f724451d585662253d8fb4e5569845aafa8bb0da36b1a8751e \
     --hash=sha256:88091b617c7fc3bbbceae50db5958023c48dc40b50520005aa3bf27f8f7ea157
+fuzzysearch==0.7.3 \
+    --hash=sha256:1ed619f24303a41e59d33fc01bf959439df40b2bf096d00607eff7e0c5a26290 \
+    --hash=sha256:de93de038e8bd50cfc05beb03d1543f6772ce93b52775ded778d04aa918accf8 \
+    --hash=sha256:93a18d596df2af6419b5f705e5842e4e28752c4abb2a264e1bcdc2f302d7f377 \
+    --hash=sha256:751143fb6b1b590e313a8350775c0edef3dc6a46409572f0c2ea0e9f9bea7b2a \
+    --hash=sha256:3e8f601d612781afb784bc177f7e860b0944ad703be8824d734f6cb2a72589ad \
+    --hash=sha256:fba65a49444ec8a408f4e9a822ba26de34eb8755713b19d9fc642fe9b610d9ee \
+    --hash=sha256:46237a2b70c50ed1d01555af7e8d11c77446243dd3ccc58d6e4c1b76b8008d7b \
+    --hash=sha256:9f18ff4761bbe2d1efebdbc64041a42f788b27a2191839ebf7fd7c2ac34c55bd \
+    --hash=sha256:3f60730060de44f534a0b3c33ddc4e06172dd0eea8a025c4da31a7b7aeb1fff2 \
+    --hash=sha256:2e8c6d34b2687779288861ec5b67bdbc9a46659d731417960e281a3d8d713eae \
+    --hash=sha256:261f65f12dd919e5c8b73da8a70ac4d46fa7a0de639529ffb36cc05b6bb5a6f4 \
+    --hash=sha256:f88c3412f198b0252c6cfc640db636a0e47ad33fe7b6a3de907b77c748c7b1d2 \
+    --hash=sha256:42c518fd174b37bc39ae6737025b7b8efb93b3746ea539d7784ca9718780f2b4 \
+    --hash=sha256:bbf3047d3ed3fd80b69d38c7a07fdef5c9738436249586095e27f32397c8ad2e \
+    --hash=sha256:f3def5f55c90300ae1c4f3da830ff3ed8bf7827ace1e3cecff819c9de5f23aa7 \
+    --hash=sha256:d5a1b114ceee50a5e181b2fe1ac1b4371ac8db92142770a48fed49ecbc37ca4c
 idna==2.8 \
     --hash=sha256:ea8b7f6188e6fa117537c3df7da9fc686d485087abf6ac197f9c46432f7e4a3c \
     --hash=sha256:c357b3f628cf53ae2c4c05627ecc484553142ca23264e593d327bcde5e9c3407
