@@ -1,5 +1,5 @@
 from dateutil.parser import parse
-from patcit.validation.shape import is_date_format
+from patcit.validation.typing import is_date_format
 
 
 def solve_issue_4(serialized_citation: dict, issues: list):

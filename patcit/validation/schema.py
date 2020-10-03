@@ -1,5 +1,5 @@
 def get_schema(flavor, primary_key="npl_publn_id", pk_type="number"):
-    assert flavor in ["npl", "pat", "crossref"]
+    assert flavor in ["npl", "pat", "bibref"]
     if flavor == "npl":
         schema = {
             "type": "object",
@@ -56,149 +56,76 @@ def get_schema(flavor, primary_key="npl_publn_id", pk_type="number"):
         schema = {
             "type": "object",
             "properties": {
-                "DOI": {"type": "string"},
-                "PMID": {"type": "string"},
-                "PMCID": {"type": "string"},
-                "ISBN": {"type": "array", "items": {"type": "string"}},
-                "ISSN": {"type": "array", "items": {"type": "string"}},
-                "URL": {"type": "string"},
-                "abstract": {"type": "string"},
-                "accepted": {"type": "string"},
-                "article-number": {"type": "string"},
+                "DOI": {"type": ["string", "null"]},
+                "ISSN": {"type": "array", "items": {"type": ["string", "null"]}},
+                "ISBN": {"type": "array", "items": {"type": ["string", "null"]}},
+                "PMCID": {"type": ["string", "null"]},
+                "PMID": {"type": ["string", "null"]},
+                "URL": {"type": ["string", "null"]},
                 "author": {
                     "type": "array",
                     "items": {
                         "type": "object",
                         "properties": {
-                            "affiliation": {"type": "string"},
-                            "family": {"type": "string"},
-                            "given": {"type": "string"},
-                            "sequence": {"type": "string"},
+                            "affiliation": {"type": ["string", "null"]},
+                            "family": {"type": ["string", "null"]},
+                            "given": {"type": ["string", "null"]},
+                            "sequence": {"type": ["string", "null"]},
                         },
                     },
                 },
-                "container-title": {"type": "array", "items": {"type": "string"}},
-                "edition-number": {"type": "string"},
-                "editor": {
-                    "type": "array",
-                    "items": {
-                        "type": "object",
-                        "properties": {
-                            "affiliation": {"type": "string"},
-                            "family": {"type": "string"},
-                            "given": {"type": "string"},
-                            "sequence": {"type": "string"},
-                        },
-                    },
-                },
+                "title": {"type": ["string", "null"]},
+                "journal_title": {"type": ["string", "null"]},
+                "journal_title_abbrev": {"type": ["string", "null"]},
                 "event": {
                     "type": "object",
                     "properties": {
-                        "acronym": {"type": "string"},
-                        "end": {"type": "number"},
-                        "location": {"type": "string"},
-                        "name": {"type": "string"},
-                        "start": {"type": "number"},
+                        "name": {"type": ["string", "null"]},
+                        "acronym": {"type": ["string", "null"]},
+                        "location": {"type": ["string", "null"]},
                     },
+                },
+                "date": {"type": ["number", "null"]},
+                "page": {"type": ["string", "null"]},
+                "issue": {"type": ["string", "null"]},
+                "volume": {"type": ["string", "null"]},
+                "abstract": {"type": ["string", "null"]},
+                "subject": {"type": "array", "items": {"type": ["string", "null"]}},
+                "institution": {
+                    "type": "object",
+                    "properties": {
+                        "acronym": {
+                            "type": "array",
+                            "items": {"type": ["string", "null"]},
+                        },
+                        "name": {"type": ["string", "null"]},
+                        "place": {
+                            "type": "array",
+                            "items": {"type": ["string", "null"]},
+                        },
+                    },
+                },
+                "reference_count": {"type": ["number", "null"]},
+                "is_referenced_by_count": {"type": ["number", "null"]},
+                "reference_doi": {
+                    "type": "array",
+                    "items": {"type": ["string", "null"]},
                 },
                 "funder": {
                     "type": "array",
                     "items": {
                         "type": "object",
                         "properties": {
-                            "DOI": {"type": "string"},
-                            "award": {"type": "string"},
-                            "doi-asserted-by": {"type": "string"},
-                            "name": {"type": "string"},
+                            "DOI": {"type": ["string", "null"]},
+                            "award": {"type": ["string", "null"]},
+                            "doi_asserted_by": {"type": ["string", "null"]},
+                            "name": {"type": ["string", "null"]},
                         },
                     },
                 },
-                "institution": {
-                    "type": "object",
-                    "properties": {
-                        "acronym": {"type": "array", "items": {"type": "string"}},
-                        "name": {"type": "string"},
-                        "place": {"type": "array", "items": {"type": "string"}},
-                    },
-                },
-                "is-referenced-by-count": {"type": "number"},
-                "issue": {"type": "string"},
-                "issued": {"type": "number"},
-                "journal-issue": {"type": "string"},
-                "original-title": {"type": "array", "items": {"type": "string"}},
-                "page": {"type": "string"},
-                "prefix": {"type": "string"},
-                "publisher": {"type": "string"},
-                "publisher-location": {"type": "string"},
-                "reference-count": {"type": "number"},
-                "short-container-title": {"type": "array", "items": {"type": "string"}},
-                "short-title": {"type": "array", "items": {"type": "string"}},
-                "source": {"type": "string"},
-                "standards-body": {"type": "string"},
-                "subject": {"type": "array", "items": {"type": "string"}},
-                "title": {"type": "array", "items": {"type": "string"}},
-                "volume": {"type": "string"},
+                "source": {"type": ["string", "null"]},
             },
-            "required": [],
+            # "required": [],
+            "default": {},
         }
     return schema
-
-
-BIBREF_EMPTY = {
-    "DOI": None,
-    # "PMID": None,
-    # "PMCID": None,
-    "ISBN": [],
-    "ISSN": [],
-    "URL": None,
-    "abstract": None,
-    "accepted": None,
-    "article-number": None,
-    "author": [{"affiliation": None, "family": None, "given": None, "sequence": None}],
-    "container-title": [],
-    "edition-number": None,
-    "editor": [{"affiliation": None, "family": None, "given": None, "sequence": None}],
-    "event": [
-        {"acronym": None, "end": None, "location": None, "name": None, "start": None}
-    ],
-    "funder": [{"DOI": None, "award": None, "doi-asserted-by": None, "name": None}],
-    "institution": {"acronym": [], "name": None, "place": []},
-    "is-referenced-by-count": None,
-    "issue": None,
-    "issued": None,
-    "journal-issue": None,
-    "original-title": {"type": "array", "items": None},
-    "page": None,
-    "prefix": None,
-    "publisher": None,
-    "publisher-location": None,
-    "reference-count": None,
-    "short-container-title": [],
-    "short-title": [],
-    "source": None,
-    "standards-body": None,
-    "subject": [],
-    "title": [],
-    "volume": None,
-}
-
-GROBID_TO_CROSSREF = {
-    "DOI": "DOI",
-    "ISSN": "ISSN",  # to list
-    "ISSNe": "ISSN",  # to list
-    "PMCID": "PMCID",
-    "PMID": "PMID",
-    "authors": "author",
-    "target": "URL",
-    "title_j": "container-title",  # to list
-    "title_abbrev_j": "short-container-title",  # to list
-    "title_m": "event.name",  # decide priority
-    "title_main_m": "event.name",  # decide priority
-    "title_main_a": {"type": "string"},
-    "year": {"type": "number"},
-    "issue": "journal-issue",  # to str
-    "volume": "volume",  # to str
-    "from": "page",  # to str, merge with to
-    "to": "page",
-    "issues": {"type": "array"},
-}

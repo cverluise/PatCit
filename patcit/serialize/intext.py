@@ -1,5 +1,5 @@
 import asyncio
-from patcit.serialize.npl_citation import fetch_all_tags
+from patcit.serialize.bibref import fetch_all_tags
 
 pk = "publication_number_o"
 

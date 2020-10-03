@@ -16,7 +16,7 @@ from fuzzysearch import find_near_matches
 from smart_open import open
 from wasabi import Printer
 
-from patcit.serialize import contextual_citation
+from patcit.serialize import intext
 
 app = typer.Typer()
 msg = Printer()
@@ -192,9 +192,7 @@ def prep_spacy_sam_patents(texts_file: str = None, citations_file: str = None):
                 for patent in patents:
                     start, end = get_text_span(patent)
                     span = asyncio.run(
-                        contextual_citation.fetch_patent(
-                            l["publication_number"], patent
-                        )
+                        intext.fetch_patent(l["publication_number"], patent)
                     )
                     span.update({"start": start, "end": end, "label": "PATENT"})
 
@@ -242,7 +240,7 @@ def prep_spacy_sam_bibrefs(
             sam = {"publication_number": citations[i]["publication_number"]}
 
             soup = BeautifulSoup(citations_, features="lxml")
-            bibrefs, _ = contextual_citation.split_pats_npls(soup)
+            bibrefs, _ = intext.split_pats_npls(soup)
 
             spans = []
             for bibref in bibrefs:
