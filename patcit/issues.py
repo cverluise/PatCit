@@ -1,5 +1,5 @@
 import asyncio
-from patcit.validation.shape import is_date_format
+from patcit.validation.typing import is_date_format
 
 titles = ["title_j", "title_m", "title_main_a"]
 

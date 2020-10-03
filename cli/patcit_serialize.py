@@ -5,9 +5,8 @@ import json
 import os
 import sys
 from glob import glob
+from itertools import repeat
 
-import numpy as np
-import pandas as pd
 import typer
 from bs4 import BeautifulSoup
 from jsonschema import validate
@@ -15,11 +14,11 @@ from smart_open import open
 from tqdm import tqdm
 
 from patcit.issues import eval_issues
-from patcit.serialize import contextual_citation
-from patcit.serialize.npl_citation import fetch_all_tags
-from patcit.validation.npl_citation import solve_issues
+from patcit.serialize import intext, bibref
+from patcit.serialize.bibref import fetch_all_tags
+from patcit.validation.resolve import solve_issues
 from patcit.validation.schema import get_schema
-from patcit.validation.shape import prep_and_pop
+from patcit.validation.typing import prep_and_pop
 
 csv.field_size_limit(sys.maxsize)
 
@@ -30,59 +29,52 @@ app = typer.Typer()
 # TODO: relax assumption on file names?
 # TODO: fix path. This will break with windows
 
+# def prep_grobid_for_crossref():
+
+
+def serialize_prep_validate_grobid_npl(line):
+    npl_publn_id, npl_grobid = line.get("npl_publn_id"), line.get("npl_grobid")
+    if npl_grobid:
+        soup = BeautifulSoup(npl_grobid, "lxml")
+        out = asyncio.run(fetch_all_tags(npl_publn_id, soup))
+
+        issues = asyncio.run(eval_issues(out))
+        out.update({"issues": issues})
+        out = solve_issues(out, issues)
+        out = prep_and_pop(out, get_schema("npl"))
+
+        try:
+            validate(instance=out, schema=get_schema("npl"))
+        except Exception as e:
+            out = {
+                "npl_publn_id": out["npl_publn_id"],
+                "exception": str(e),
+                "issues": [0],
+            }
+    else:
+        out = {
+            "npl_publn_id": npl_publn_id,
+            "exception": "GrobidException",
+            "issues": [0],
+        }
+    typer.echo(json.dumps(out))
+
 
 @app.command()
-def front_page(path: str, max_workers: int = None):
-    """Serialize front page citations
-
-    Notes: Assume original file names ('processed_' in, 'serialized_' out)"""
-
-    def serialize_fp_file(input_file, batch_size=1000):
-        def serialize_prep_validate_fp_cit(x):
-            npl_publn_id, npl_grobid = x
-            if npl_grobid:
-                soup = BeautifulSoup(npl_grobid, "lxml")
-                out = asyncio.run(fetch_all_tags(npl_publn_id, soup))
-
-                issues = asyncio.run(eval_issues(out))
-                out.update({"issues": issues})
-                out = solve_issues(out, issues)
-                out = prep_and_pop(out, get_schema("npl"))
-
-                try:
-                    validate(instance=out, schema=get_schema("npl"))
-                except Exception as e:
-                    out = {
-                        "npl_publn_id": out["npl_publn_id"],
-                        "exception": str(e),
-                        "issues": [0],
-                    }
-            else:
-                out = {
-                    "npl_publn_id": npl_publn_id,
-                    "exception": "GrobidException",
-                    "issues": [0],
-                }
-            return json.dumps(out)
-
-        tmp = input_file.split("/")
-        output_file = "/".join(tmp[:-1]) + "/" + tmp[-1].split(".")[0] + ".jsonl"
-        output_file = output_file.replace("processed_", "serialized_")
-        data = pd.read_csv(input_file, compression="gzip")[
-            ["npl_publn_id", "npl_grobid"]
-        ]
-
-        serialized_grobid = []
-        for i in tqdm(np.arange(0, len(data), batch_size)):
-            tmp = data.iloc[i : i + batch_size]
-            serialized_grobid += tmp.apply(
-                serialize_prep_validate_fp_cit, axis=1
-            ).to_list()
-        np.savetxt(output_file, serialized_grobid, fmt="%s", delimiter="\n")
+def grobid_npl(path: str, max_workers: int = None):
+    """Serialize npl citations from GROBID parsing
+    """
 
     files = glob(path)
-    with concurrent.futures.ProcessPoolExecutor(max_workers=max_workers) as executor:
-        executor.map(serialize_fp_file, files)
+    for file in files:
+        with open(file, "r") as fin:
+            lines = csv.DictReader(
+                fin, delimiter=",", quotechar='"', quoting=csv.QUOTE_MINIMAL
+            )
+            with concurrent.futures.ThreadPoolExecutor(
+                max_workers=max_workers
+            ) as executor:
+                executor.map(serialize_prep_validate_grobid_npl, lines)
 
 
 async def prep_validate_intext_cits(id_, ccits, flavor):
@@ -95,7 +87,7 @@ async def prep_validate_intext_cits(id_, ccits, flavor):
     """
 
     async def prep_validate_intext_cit(id_, ccit, flavor):
-        pk = contextual_citation.pk
+        pk = intext.pk
         pk_type = "string"
         if flavor == "npl":
             ccit = prep_and_pop(ccit, get_schema(flavor, pk, pk_type))
@@ -121,12 +113,12 @@ def serialize_prep_validate_intext_cits(id_, citations):
     :param citations: grobid output
     :return: (list, list), (npls, pats)
     """
-    pk = contextual_citation.pk
+    pk = intext.pk
     soup = BeautifulSoup(citations, "lxml")
-    npls, pats = contextual_citation.split_pats_npls(soup)
+    npls, pats = intext.split_pats_npls(soup)
 
     if npls:
-        npls = asyncio.run(contextual_citation.fetch_npls(id_, npls))
+        npls = asyncio.run(intext.fetch_npls(id_, npls))
         npls = asyncio.run(prep_validate_intext_cits(id_, npls, "npl"))
     else:
         npls = [json.dumps({pk: id_})]
@@ -134,7 +126,7 @@ def serialize_prep_validate_intext_cits(id_, citations):
         # citations
 
     if pats:
-        pats = asyncio.run(contextual_citation.fetch_patents(id_, pats))
+        pats = asyncio.run(intext.fetch_patents(id_, pats))
         pats = asyncio.run(prep_validate_intext_cits(id_, pats, "pat"))
     else:
         pats = [json.dumps({pk: id_})]
@@ -145,7 +137,7 @@ def serialize_prep_validate_intext_cits(id_, citations):
 
 
 @app.command()
-def in_text(path: str, max_workers: int = None):
+def grobid_intext(path: str, max_workers: int = None):
     """Serialize in-text citations
 
     Notes: Assume original file names ('processed_' in, 'serialized_' out)"""
@@ -189,6 +181,30 @@ def in_text(path: str, max_workers: int = None):
     files = glob(path)
     with concurrent.futures.ProcessPoolExecutor(max_workers=max_workers) as executor:
         executor.map(serialize, files)
+
+
+def patcit_bibref_(line, src_flavor):
+    out = bibref.to_patcit(json.loads(line), src_flavor)
+    try:
+        validate(instance=out, schema=get_schema("bibref"))
+    except Exception as e:
+        out = out.update({"exception": str(e), "issues": [0]})
+        # typer.secho(Exception, fg=typer.colors.RED)
+    typer.echo(json.dumps(out))
+
+
+@app.command()
+def patcit_bibref(path, src_flavor: str = None, max_workers: int = 1):
+    """Serialize bibref from grobid or crossref to a common schema
+
+    Expect JSONL input"""
+    files = glob(path)
+    for file in files:
+        with open(file, "r") as lines:
+            with concurrent.futures.ThreadPoolExecutor(
+                max_workers=max_workers
+            ) as executor:
+                executor.map(patcit_bibref_, lines, repeat(src_flavor))
 
 
 if __name__ == "__main__":
