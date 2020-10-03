@@ -5,9 +5,8 @@ import json
 import os
 import sys
 from glob import glob
+from itertools import repeat
 
-import numpy as np
-import pandas as pd
 import typer
 from bs4 import BeautifulSoup
 from jsonschema import validate
@@ -15,11 +14,11 @@ from smart_open import open
 from tqdm import tqdm
 
 from patcit.issues import eval_issues
-from patcit.serialize import contextual_citation
-from patcit.serialize.npl_citation import fetch_all_tags
-from patcit.validation.npl_citation import solve_issues
+from patcit.serialize import intext, bibref
+from patcit.serialize.bibref import fetch_all_tags
+from patcit.validation.resolve import solve_issues
 from patcit.validation.schema import get_schema
-from patcit.validation.shape import prep_and_pop
+from patcit.validation.typing import prep_and_pop
 
 csv.field_size_limit(sys.maxsize)
 
@@ -33,7 +32,7 @@ app = typer.Typer()
 # def prep_grobid_for_crossref():
 
 
-def serialize_prep_validate_fp_cit(line):
+def serialize_prep_validate_grobid_npl(line):
     npl_publn_id, npl_grobid = line.get("npl_publn_id"), line.get("npl_grobid")
     if npl_grobid:
         soup = BeautifulSoup(npl_grobid, "lxml")
@@ -62,8 +61,8 @@ def serialize_prep_validate_fp_cit(line):
 
 
 @app.command()
-def front_page(path: str, max_workers: int = None):
-    """Serialize front page citations from GROBID parsing
+def grobid_npl(path: str, max_workers: int = None):
+    """Serialize npl citations from GROBID parsing
     """
 
     files = glob(path)
@@ -75,7 +74,7 @@ def front_page(path: str, max_workers: int = None):
             with concurrent.futures.ThreadPoolExecutor(
                 max_workers=max_workers
             ) as executor:
-                executor.map(serialize_prep_validate_fp_cit, lines)
+                executor.map(serialize_prep_validate_grobid_npl, lines)
 
 
 async def prep_validate_intext_cits(id_, ccits, flavor):
@@ -88,7 +87,7 @@ async def prep_validate_intext_cits(id_, ccits, flavor):
     """
 
     async def prep_validate_intext_cit(id_, ccit, flavor):
-        pk = contextual_citation.pk
+        pk = intext.pk
         pk_type = "string"
         if flavor == "npl":
             ccit = prep_and_pop(ccit, get_schema(flavor, pk, pk_type))
@@ -114,12 +113,12 @@ def serialize_prep_validate_intext_cits(id_, citations):
     :param citations: grobid output
     :return: (list, list), (npls, pats)
     """
-    pk = contextual_citation.pk
+    pk = intext.pk
     soup = BeautifulSoup(citations, "lxml")
-    npls, pats = contextual_citation.split_pats_npls(soup)
+    npls, pats = intext.split_pats_npls(soup)
 
     if npls:
-        npls = asyncio.run(contextual_citation.fetch_npls(id_, npls))
+        npls = asyncio.run(intext.fetch_npls(id_, npls))
         npls = asyncio.run(prep_validate_intext_cits(id_, npls, "npl"))
     else:
         npls = [json.dumps({pk: id_})]
@@ -127,7 +126,7 @@ def serialize_prep_validate_intext_cits(id_, citations):
         # citations
 
     if pats:
-        pats = asyncio.run(contextual_citation.fetch_patents(id_, pats))
+        pats = asyncio.run(intext.fetch_patents(id_, pats))
         pats = asyncio.run(prep_validate_intext_cits(id_, pats, "pat"))
     else:
         pats = [json.dumps({pk: id_})]
@@ -138,7 +137,7 @@ def serialize_prep_validate_intext_cits(id_, citations):
 
 
 @app.command()
-def in_text(path: str, max_workers: int = None):
+def grobid_intext(path: str, max_workers: int = None):
     """Serialize in-text citations
 
     Notes: Assume original file names ('processed_' in, 'serialized_' out)"""
@@ -182,6 +181,30 @@ def in_text(path: str, max_workers: int = None):
     files = glob(path)
     with concurrent.futures.ProcessPoolExecutor(max_workers=max_workers) as executor:
         executor.map(serialize, files)
+
+
+def patcit_bibref_(line, src_flavor):
+    out = bibref.to_patcit(json.loads(line), src_flavor)
+    try:
+        validate(instance=out, schema=get_schema("bibref"))
+    except Exception as e:
+        out = out.update({"exception": str(e), "issues": [0]})
+        # typer.secho(Exception, fg=typer.colors.RED)
+    typer.echo(json.dumps(out))
+
+
+@app.command()
+def patcit_bibref(path, src_flavor: str = None, max_workers: int = 1):
+    """Serialize bibref from grobid or crossref to a common schema
+
+    Expect JSONL input"""
+    files = glob(path)
+    for file in files:
+        with open(file, "r") as lines:
+            with concurrent.futures.ThreadPoolExecutor(
+                max_workers=max_workers
+            ) as executor:
+                executor.map(patcit_bibref_, lines, repeat(src_flavor))
 
 
 if __name__ == "__main__":
