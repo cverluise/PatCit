@@ -242,6 +242,7 @@ def get_funder(line, flavor):
 
 
 def to_patcit(line, flavor):
+    """Harmonize schema for grobid & crossref src jsonl input"""
     assert flavor in ["grobid", "crossref"]
     out = BIBREF_EMPTY.copy()
     [out.update({k: v}) for k, v in line.items() if k in out.keys()]
