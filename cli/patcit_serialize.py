@@ -2,6 +2,7 @@ import asyncio
 import concurrent.futures
 import csv
 import json
+import lzma
 import os
 import sys
 from glob import glob
@@ -10,7 +11,7 @@ from itertools import repeat
 import typer
 from bs4 import BeautifulSoup
 from jsonschema import validate
-from smart_open import open
+from smart_open import open, register_compressor
 from tqdm import tqdm
 
 from patcit.issues import eval_issues
@@ -25,11 +26,15 @@ csv.field_size_limit(sys.maxsize)
 app = typer.Typer()
 
 
-# TODO: add coordinates somewhere in the in_text section
 # TODO: relax assumption on file names?
 # TODO: fix path. This will break with windows
 
-# def prep_grobid_for_crossref():
+# add support for xz compressed files
+def _handle_xz(file_obj, mode):
+    return lzma.LZMAFile(filename=file_obj, mode=mode, format=lzma.FORMAT_XZ)
+
+
+register_compressor(".xz", _handle_xz)
 
 
 def serialize_prep_validate_grobid_npl(line):
@@ -184,7 +189,7 @@ def grobid_intext(path: str, max_workers: int = None):
 
 
 def patcit_bibref_(line, src_flavor):
-    out = bibref.to_patcit(json.loads(line), src_flavor)
+    out = asyncio.run(bibref.to_patcit(json.loads(line), src_flavor))
     try:
         validate(instance=out, schema=get_schema("bibref"))
     except Exception as e:

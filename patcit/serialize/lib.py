@@ -39,3 +39,13 @@ BIBREF_EMPTY = {
     "funder": [{"DOI": None, "award": None, "doi_asserted_by": None, "name": None}],
     "source": None,
 }
+
+BIBREF_GROBID_UPDATE = ["ISSN", "URL", "author", "event", "date", "page", "volume"]
+BIBREF_CROSSREF_UPDATE = [
+    "author",
+    "title",
+    "journal_title",
+    "journal_title_abbrev",
+    "reference_doi",
+    "funder",
+]

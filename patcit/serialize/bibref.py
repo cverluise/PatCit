@@ -1,7 +1,14 @@
 import asyncio
 
-from patcit.serialize.lib import tag_list, tag2attr, BIBREF_EMPTY
 from glom import glom
+
+from patcit.serialize.lib import (
+    tag_list,
+    tag2attr,
+    BIBREF_EMPTY,
+    BIBREF_CROSSREF_UPDATE,
+    BIBREF_GROBID_UPDATE,
+)
 
 
 async def fetch_author(auth):
@@ -86,20 +93,20 @@ async def fetch_all_tags(id_, soup, id_name="npl_publn_id"):
 # To patcit bibref
 
 
-def get_issn(line, flavor):
+async def get_issn(line, flavor):
     if flavor == "grobid":
         issn = [line.get("ISSN"), line.get("ISSNe")]
         issn = list(filter(lambda x: x, issn))
-    return issn
+    return {"ISSN": issn}
 
 
-def get_url(line, flavor):
+async def get_url(line, flavor):
     if flavor == "grobid":
         url = line.get("target")
-    return url
+    return {"URL": url}
 
 
-def get_author(line, flavor):
+async def get_author(line, flavor):
     author = []
     if flavor == "grobid":
         if line.get("authors"):
@@ -128,18 +135,18 @@ def get_author(line, flavor):
                 }
                 author += [auth]
 
-    return author
+    return {"author": author}
 
 
-def get_title(line, flavor):
+async def get_title(line, flavor):
     if flavor == "crossref":
         title = line.get("title")
         if title:
             title = "|".join(title)
-    return title
+    return {"title": title}
 
 
-def get_journal_title(line, flavor):
+async def get_journal_title(line, flavor):
     if flavor == "grobid":
         journal_title = line.get("title_j")
     else:
@@ -148,10 +155,10 @@ def get_journal_title(line, flavor):
             if line.get("container-title")
             else None
         )
-    return journal_title
+    return {"journal_title": journal_title}
 
 
-def get_journal_title_abbrev(line, flavor):
+async def get_journal_title_abbrev(line, flavor):
     if flavor == "grobid":
         journal_title_abbrev = line.get("title_abbrev_j")
     else:
@@ -160,10 +167,10 @@ def get_journal_title_abbrev(line, flavor):
             if line.get("short-container-title")
             else None
         )
-    return journal_title_abbrev
+    return {"journal_title_abbrev": journal_title_abbrev}
 
 
-def get_event(line, flavor):
+async def get_event(line, flavor):
     if flavor == "grobid":
         name = [line.get("title_main_m"), line.get("title_m")]
         name = "|".join(filter(lambda x: x, name))
@@ -171,10 +178,10 @@ def get_event(line, flavor):
     else:
         event = line.get("event")
         [event.pop(k, None) for k in ["start", "end"]]
-    return event
+    return {"event": event}
 
 
-def get_date(line, flavor):
+async def get_date(line, flavor):
     if flavor == "grobid":
         date = line.get("year")
         date = int(date * 1e4 + 101) if date else None
@@ -189,27 +196,27 @@ def get_date(line, flavor):
                 date = date_
             else:
                 date = None
-    return date
+    return {"date": date}
 
 
-def get_page(line, flavor):
+async def get_page(line, flavor):
     if flavor == "grobid":
         page = list(filter(lambda x: x, [line.get("from"), line.get("to")]))
         if page:
             page = "-".join(page)
         else:
             page = None
-    return page
+    return {"page": page}
 
 
-def get_volume(line, flavor):
+async def get_volume(line, flavor):
     if flavor == "grobid":
         volume = line.get("volume")
         volume = str(volume) if volume else None
-    return volume
+    return {"volume": volume}
 
 
-def get_reference_doi(line, flavor):
+async def get_reference_doi(line, flavor):
     if flavor == "crossref":
         reference_doi = line.get("reference")
         reference_doi = (
@@ -219,10 +226,10 @@ def get_reference_doi(line, flavor):
             reference_doi = list(filter(lambda x: x, reference_doi))
         else:
             reference_doi = []
-    return reference_doi
+    return {"reference_doi": reference_doi}
 
 
-def get_funder(line, flavor):
+async def get_funder(line, flavor):
     if flavor == "crossref":
         funder = line.get("funder")
 
@@ -238,39 +245,60 @@ def get_funder(line, flavor):
             funder = funder_
         else:
             funder = []
-    return funder
+    return {"funder": funder}
 
 
-def to_patcit(line, flavor):
+async def get_attr(attr, line, flavor):
+    if attr == "ISSN":
+        attr_ = get_issn(line, flavor)
+    elif attr == "URL":
+        attr_ = get_url(line, flavor)
+    elif attr == "author":
+        attr_ = get_author(line, flavor)
+    elif attr == "title":
+        attr_ = get_title(line, flavor)
+    elif attr == "journal_title":
+        attr_ = get_journal_title(line, flavor)
+    elif attr == "journal_title_abbrev":
+        attr_ = get_journal_title_abbrev(line, flavor)
+    elif attr == "event":
+        attr_ = get_event(line, flavor)
+    elif attr == "date":
+        attr_ = get_date(line, flavor)
+    elif attr == "page":
+        attr_ = get_page(line, flavor)
+    elif attr == "volume":
+        attr_ = get_volume(line, flavor)
+    elif attr == "reference_doi":
+        attr_ = get_reference_doi(line, flavor)
+    elif attr == "funder":
+        attr_ = get_funder(line, flavor)
+    return await attr_
+
+
+async def to_patcit(line, flavor):
     """Harmonize schema for grobid & crossref src jsonl input"""
-    assert flavor in ["grobid", "crossref"]
     out = BIBREF_EMPTY.copy()
     [out.update({k: v}) for k, v in line.items() if k in out.keys()]
+    tasks = []
+
+    attrs = BIBREF_GROBID_UPDATE if flavor == "grobid" else BIBREF_CROSSREF_UPDATE
+    for attr in attrs:
+        task = asyncio.create_task(get_attr(attr, line, flavor))
+        tasks.append(task)
+    tasks = await asyncio.gather(*tasks)
+
+    for task in tasks:
+        out.update(task)
+
     if flavor == "grobid":
-        out.update({"ISSN": get_issn(line, flavor)})
-        out.update({"URL": get_url(line, flavor)})
-        out.update({"author": get_author(line, flavor)})
         out.update({"title": line.get("title_main_a")})
         out.update({"journal_title": line.get("title_j")})
         out.update({"journal_title_abbrev": line.get("title_abbrev_j")})
-        out.update({"event": get_event(line, flavor)})
-        out.update({"date": get_date(line, flavor)})
-        out.update({"page": get_page(line, flavor)})
-        out.update({"volume": get_volume(line, flavor)})
         out.update({"npl_publn_id": line.get("npl_publn_id")})
-        out.update({"source": "grobid"})
+        out.update({"source": "Grobid"})
     else:
-        out.update({"author": get_author(line, flavor)})
-        out.update({"title": get_title(line, flavor)})
-        out.update({"journal_title": get_journal_title(line, flavor)})
-        out.update({"journal_title_abbrev": get_journal_title_abbrev(line, flavor)})
-        out.update({"date": get_date(line, flavor)})
         out.update({"reference_count": line.get("reference-count")})
         out.update({"is_referenced_by_count": line.get("is-referenced-by-count")})
-        out.update({"reference_doi": get_reference_doi(line, flavor)})
-        out.update({"funder": get_funder(line, flavor)})
 
     return out
-
-
-test = [{"name": "Clinic for Plastic and Reconstructive Germany"}]
