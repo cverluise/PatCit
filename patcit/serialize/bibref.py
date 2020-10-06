@@ -97,12 +97,16 @@ async def get_issn(line, flavor):
     if flavor == "grobid":
         issn = [line.get("ISSN"), line.get("ISSNe")]
         issn = list(filter(lambda x: x, issn))
+    else:
+        issn = None
     return {"ISSN": issn}
 
 
 async def get_url(line, flavor):
     if flavor == "grobid":
         url = line.get("target")
+    else:
+        url = None
     return {"URL": url}
 
 
@@ -143,6 +147,8 @@ async def get_title(line, flavor):
         title = line.get("title")
         if title:
             title = "|".join(title)
+    else:
+        title = None
     return {"title": title}
 
 
@@ -273,6 +279,8 @@ async def get_attr(attr, line, flavor):
         attr_ = get_reference_doi(line, flavor)
     elif attr == "funder":
         attr_ = get_funder(line, flavor)
+    else:
+        attr_ = None
     return await attr_
 
 

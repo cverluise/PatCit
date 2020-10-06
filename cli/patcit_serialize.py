@@ -189,27 +189,33 @@ def grobid_intext(path: str, max_workers: int = None):
 
 
 def patcit_bibref_(line, src_flavor):
-    out = asyncio.run(bibref.to_patcit(json.loads(line), src_flavor))
     try:
-        validate(instance=out, schema=get_schema("bibref"))
+        line = json.loads(line)
+        format_ok = True
     except Exception as e:
-        out = out.update({"exception": str(e), "issues": [0]})
-        # typer.secho(Exception, fg=typer.colors.RED)
+        format_ok = False
+        out = {"exception": str(e), "line": line}
+        pass
+
+    if format_ok:
+        out = asyncio.run(bibref.to_patcit(line, src_flavor))
+        try:
+            validate(instance=out, schema=get_schema("bibref"))
+        except Exception as e:
+            out = out.update({"exception": str(e), "issues": [0]})
     typer.echo(json.dumps(out))
 
 
 @app.command()
-def patcit_bibref(path, src_flavor: str = None, max_workers: int = 1):
+def patcit_bibref(path, src_flavor: str = None):
     """Serialize bibref from grobid or crossref to a common schema
 
     Expect JSONL input"""
     files = glob(path)
     for file in files:
-        with open(file, "r") as lines:
-            with concurrent.futures.ThreadPoolExecutor(
-                max_workers=max_workers
-            ) as executor:
-                executor.map(patcit_bibref_, lines, repeat(src_flavor))
+        with open(file) as lines:
+            for line in lines:
+                patcit_bibref_(line, src_flavor)
 
 
 if __name__ == "__main__":
