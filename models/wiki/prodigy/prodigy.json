@@ -1,8 +1,0 @@
-{
-  "show_stats":true,
-  "show_flag":true,
-  "instructions":"./GUIDELINES.html",
-  "force_stream_order":true,
-  "swipe":true,
-  "split_sents_threshold":2000
-}
