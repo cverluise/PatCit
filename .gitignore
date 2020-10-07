@@ -6,34 +6,14 @@
 **/config.json
 
 # Models
-models/**/en_*/**
+models/
 
 # Large files
-data/
-*results-*.csv
-*results-*.txt
-*prep*.csv
-*prep*.json
-*eval_*.csv
-**/bibref_detect/detect*.jsonl
-**/bibref_detect/silver.jsonl
-**/bibref_detect/val_silver_to_gold.jsonl
-**/patent_detect/detect*.jsonl
-**/patent_parsing/val_parsing.jsonl
-models/bibref-cat/bibref-cat_0.0/
+data_tmp/
 
 # spaCy models
 **/en_core_web_sm*/
 **/en_core_web_sm*.tar.gz
-
-# wip
-models/norm-standard
-models/litigation
-models/office-action
-models/patent
-models/search-report
-models/product-documentation
-models/webpage
 
 # Dev
 dev*.py
