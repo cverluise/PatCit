@@ -40,7 +40,7 @@
     ```bash
    for file in $(find cited_by*.jsonl); do jq -s -c 'group_by(.npl_publn_id)[] | {npl_publn_id: (.[0].npl_publn_id)|tonumber , cited_by: [ .[] | {publication_number: .publication_number, publication_date: (.publication_date)|tonumber, origin:.origin, appln_id: (.appln_id)|tonumber, docdb_family_id: (.docdb_family_id)| tonumber, inpadoc_family_id: (.inpadoc_family_id)|tonumber }],  is_cited_by_count: length}' ${file} >> "${file}_prep" ; done;
    # or in parallel - recommended. NB: could include the decompression step
-   # ls *.jsonl | paralell -j+0 --eta "jq -s -c 'group_by(.npl_publn_id)[] | {npl_publn_id: (.[0].npl_publn_id)|tonumber , cited_by: [ .[] | {publication_number: .publication_number, publication_date: (.publication_date)|tonumber, origin:.origin, appln_id: (.appln_id)|tonumber, docdb_family_id: (.docdb_family_id)| tonumber, inpadoc_family_id: (.inpadoc_family_id)|tonumber }],  is_cited_by_count: length} {}' >> {.}_prep.jsonl && gzip {.}_prep.jsonl"
+   # ls *.jsonl | cut -d. -f1 | paralell -j+0 --eta "jq -s -c 'group_by(.npl_publn_id)[] | {npl_publn_id: (.[0].npl_publn_id)|tonumber , cited_by: [ .[] | {publication_number: .publication_number, publication_date: (.publication_date)|tonumber, origin:.origin, appln_id: (.appln_id)|tonumber, docdb_family_id: (.docdb_family_id)| tonumber, inpadoc_family_id: (.inpadoc_family_id)|tonumber }],  is_cited_by_count: length} {}.jsonl.gz' >> {}_prep.jsonl && gzip {}_prep.jsonl"
    ```
 
 1. Send back to G-storage and Load table to bq
@@ -68,7 +68,7 @@
 
 1. Process files
    ```bash
-   ls *.jsonl.gz | parallel -j+0 --eta 'python cli/patcit-cli.py serialize npl-properties {} --cat-model models/en_cat_npl_sm >> {.}_prep.jsonl && gzip {.}_prep.jsonl'
+   ls *.jsonl.gz | cut -d. -f1 | parallel -j+0 --eta 'python cli/patcit-cli.py serialize npl-properties {}.jsonl.gz --cat-model models/en_cat_npl_sm/ >> {}_prep.jsonl && gzip {}_prep.jsonl'
    ````
 
 1. Send back to G-storage and Load table to bq
