@@ -18,8 +18,7 @@ var|value
 <details><summary>More</summary>
 
 ````shell script
- python cli/patcit-cli.py models evaluate grobid-intext validation/intext/patent_detect/val_detect.jsonl validation/intext/patent_detect/val_detect.gold.jsonl
-
+ python cli/patcit-cli.py models evaluate grobid-intext data/val_detect_patent_pred.jsonl data/val_detect_patent.gold.jsonl
 ````
 
 </details>

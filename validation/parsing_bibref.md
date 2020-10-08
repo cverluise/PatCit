@@ -52,7 +52,7 @@ WHERE
 
 
 ```
- python bin/eval-results.py --gold validation/ref_parsing/gold-20200222-221204.json --pred validation/ref_parsing/results-20200222-221204.csv --flavor "ref_parsing"
+python cli/patcit-cli.py models evaluate parsing-bibref data/val_parsing_bibref_gold.jsonl data/val_parsing_bibref_pred.csv
 ```
 
 

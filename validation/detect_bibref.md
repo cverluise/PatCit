@@ -18,7 +18,7 @@ var|	value| value
 
 ````shell script
 
- python cli/patcit-cli.py models evaluate grobid-intext validation/intext/bibref_detect/val_detect.jsonl validation/intext/bibref_detect/val_detect.gold.jsonl --leniency 0/20
+ python cli/patcit-cli.py models evaluate grobid-intext data/val_bibref_detect_pred.jsonl data/val_bibref_detect_gold.jsonl --leniency 0/20
 
 ````
 </details>
@@ -35,9 +35,9 @@ Grobid detected BIBREF in shape for prodigy labeling (Grobid prediction correcti
 <details><summary>More</summary>
 
 ````shell script
-python cli/patcit-cli.py models data prep-spacy-sam --texts-file validation/intext/patent_detect/eval_texts_1590481723.csv --citations-file validation/intext/bibref_detect/processed_eval_texts_1590481723.csv --flavor bibrefs >> validation/intext/bibref_detect/tmp.jsonl
-python cli/patcit-cli.py models data align-spans validation/intext/bibref_detect/tmp.jsonl  >> validation/intext/bibref_detect/detect.jsonl
-rm validation/intext/bibref_detect/tmp.jsonl
+python cli/patcit-cli.py models data prep-spacy-sam --texts-file data/val_detect_xx_texts.csv --citations-file data/val_detect_xx_citations.csv --flavor bibrefs >> data_tmp/tmp.jsonl
+python cli/patcit-cli.py models data align-spans data_tmp/tmp.jsonl  >> data_tmp/detect_bibref_pred.jsonl
+rm data_tmp/tmp.jsonl
 ````
 
 ````json
@@ -65,9 +65,6 @@ jq '{publication_number,spans}' validation/intext/bibref_detect/detect.jsonl  -c
 ````
 
 </details>
-
-
-
 
 
 ### Silver to gold
