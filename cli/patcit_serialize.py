@@ -271,7 +271,7 @@ def npl_properties(path, cat_model: str = None, language_codes: str = "en,un"):
         with open(file) as lines:
             for line in lines:
                 line = json.loads(line)
-                line = get_properties(line, nlp)
+                line = get_properties(line, nlp, language_codes)
                 line = json.dumps(line)
                 typer.echo(line)
 
