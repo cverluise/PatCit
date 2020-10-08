@@ -21,7 +21,7 @@ app.command()
 
 
 @app.command()
-def doi_matching(gold):
+def matching_doi(gold):
     """Compute the performance metrics for the DOIs matched by Grobid/biblio-glutton based on a
     hand-labelled GOLD dataset"""
     df = pd.read_csv(gold)
@@ -36,16 +36,11 @@ def doi_matching(gold):
     )
     df_labels = df_labels.fillna(0)
 
-    # Export aggregate data
-    fout = os.path.join(
-        os.path.dirname(gold), gold.split("/")[-1].replace("labels", "eval")
-    )
-    df_labels.describe().loc[["count", "mean"]].to_csv(fout)
-    msg.good(f"{fout} saved")
+    typer.echo(df_labels.describe().loc[["count", "mean"]].to_markdown())
 
 
 @app.command()
-def ref_parsing(gold, pred):
+def parsing_bibref(gold, pred):
     """Compute performance metrics for Grobid PRED parsing compared to hand annotated GOLD
     dataset.
 
@@ -123,7 +118,7 @@ def ref_parsing(gold, pred):
     df_eval = df_eval.reindex(sorted(df_eval.columns), axis=1)
 
     # save intermediary
-    prep_eval_file = prep_gold_file.replace("gold", "eval").replace(".json", ".csv")
+    prep_eval_file = prep_gold_file.replace("gold", "eval").replace(".jsonl", ".csv")
     df_eval.to_csv(prep_eval_file, index=False)
     msg.good(f"Successfully saved {prep_eval_file}")
 
@@ -165,7 +160,7 @@ def ref_parsing(gold, pred):
 # TODO: deprecate in favor of spaCy.Scorer
 
 
-@app.command()
+@app.command(deprecated=True)
 def textcat(
     gold: str,
     texts: str,
@@ -268,9 +263,21 @@ def spacy_model(model: str, pipes: str = "ner"):
     if "ner" in pipes:
         p, r, f = scores["ents_p"], scores["ents_r"], scores["ents_f"]
         typer.secho("NER Scores", fg=typer.colors.BLUE)
-        typer.secho(f"{pd.DataFrame.from_dict(scores['ents_per_type']).T}")
+        typer.secho(
+            f"{pd.DataFrame.from_dict(scores['ents_per_type']).T.round(2).to_markdown()}"
+        )
         typer.echo("-" * 37)
-        typer.echo(f"ALL   %.6f  %.6f  %.6f" % (p, r, f))
+        typer.echo(f"ALL   %.2f  %.2f  %.2f" % (p, r, f))
+
+    if "textcat" in pipes:
+        f = scores["textcat_score"]
+        typer.secho("Textcat scores", fg=typer.colors.BLUE)
+        typer.secho(
+            f""
+            f"{pd.DataFrame.from_dict(scores['textcats_per_cat']).T.round(2).to_markdown()}"
+        )
+        typer.echo("-" * 37)
+        typer.echo(f"ALL   %.2f" % (f))
 
 
 @app.command()
