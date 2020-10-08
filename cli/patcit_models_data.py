@@ -9,11 +9,13 @@ from glob import glob
 
 import numpy as np
 import pandas as pd
+import pycld2 as cld2
 import spacy
 import typer
 from bs4 import BeautifulSoup
 from fuzzysearch import find_near_matches
 from smart_open import open
+from spacy.gold import docs_to_json
 from wasabi import Printer
 
 from patcit.serialize import intext
@@ -68,7 +70,7 @@ def sample(path: str, n: int = 400):
                     typer.secho(f"{fdest}", fg=typer.colors.GREEN)
 
 
-@app.command()
+@app.command(deprecated=True)
 def prep_textcat4doccano(
     path: str,
     sample_size: int = None,
@@ -104,7 +106,7 @@ def prep_textcat4doccano(
         typer.secho(f"{fout} successfully saved.", fg=typer.colors.GREEN)
 
 
-@app.command()
+@app.command(deprecated=True)
 def prep_doccano4spacy(path: str, train_share: float = 0.8):
     """
     Boiler-plate to prepare Doccano npl-cat data for spaCy multi-class textCategorizer training
@@ -465,6 +467,76 @@ def contextualize_spans(file: str, model: str = "en", attr: str = None):
             except IndexError:  # arises when the window exceeds the size of the doc
                 # E.g. IndexError: index 1191 is out of bounds for axis 0 with size 1191
                 pass
+
+
+@app.command()
+def to_spacy_json(
+    texts: str, model: str = None, golds: str = None, language_codes: str = None
+):
+    """
+    Mainly a boilerplate to write npl-cats training set as spacy json but could be used on
+    anylist of texts
+    TEXTS/GOLDS expected to contain list of str
+    MODEL is a spaCy model or a path to a spaCy model
+    LANGUAGE_CODES is a list of comma-separated iso-2 language codes (e.g 'en,un' for english and
+    unknown languages)
+    Note: GOLDS iif adding cats, LANGUAGE_CODES iif restricting to a subset of languages
+    """
+
+    def make_cats(gold_label, labels):
+        labels_ = labels.copy()
+        labels_.remove(gold_label)
+        cats = [{"label": label, "value": 0} for label in labels_]
+        cats += [{"label": gold_label, "value": 1}]
+        return cats
+
+    def keep_lang(texts, language_codes):
+        if language_codes:
+            language_codes = language_codes.split(",")
+            keep_index = []
+            for i, text in enumerate(texts):
+                is_reliable, bytes, details = cld2.detect(text)
+                language, language_code, percent, score = details[0]
+                if language_code in language_codes:
+                    keep_index += [i]
+        else:
+            keep_index = list(range(len(texts)))
+        return keep_index
+
+    nlp = spacy.load(model)
+
+    with open(texts, "r") as texts:
+        texts = json.loads(texts.read())
+
+    keep_index = keep_lang(texts, language_codes)
+    if language_codes:
+        texts = np.array(texts)[keep_index].tolist()
+
+    docs = list(nlp.pipe(texts))
+    docs_json = docs_to_json(docs)
+    docs_json = docs_json["paragraphs"]
+
+    if golds:
+
+        with open(golds) as golds:
+            golds = json.loads(golds.read())
+        if language_codes:
+            golds = np.array(golds)[keep_index].tolist()
+
+        assert len(texts) == len(golds)
+        labels = list(set(golds))  # assume that all labels are in the golds
+
+        out = []
+        i = 0
+        for doc_json, gold_label in zip(docs_json, golds):
+            cats = make_cats(gold_label, labels)
+            doc_json.update({"cats": cats})
+            out += [{"id": i, "paragraphs": [doc_json]}]
+            i += 1
+
+        docs_json = out
+
+    typer.echo(json.dumps(docs_json, indent=1, sort_keys=True))
 
 
 if __name__ == "__main__":
