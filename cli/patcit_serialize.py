@@ -6,7 +6,10 @@ import lzma
 import os
 import sys
 from glob import glob
+from hashlib import md5
 
+import pycld2 as cld2
+import spacy
 import typer
 from bs4 import BeautifulSoup
 from jsonschema import validate
@@ -187,34 +190,87 @@ def grobid_intext(path: str, max_workers: int = None):
         executor.map(serialize, files)
 
 
-def patcit_bibref_(line, src_flavor):
-    try:
-        line = json.loads(line)
-        format_ok = True
-    except Exception as e:
-        format_ok = False
-        out = {"exception": str(e), "line": line}
-        pass
-
-    if format_ok:
-        out = asyncio.run(bibref.to_patcit(line, src_flavor))
-        try:
-            validate(instance=out, schema=get_schema("bibref"))
-        except Exception as e:
-            out = out.update({"exception": str(e), "issues": [0]})
-    typer.echo(json.dumps(out))
-
-
 @app.command()
 def patcit_bibref(path, src_flavor: str = None):
     """Serialize bibref from grobid or crossref to a common schema
 
     Expect JSONL input"""
+
+    def patcit_bibref_(line, src_flavor):
+        try:
+            line = json.loads(line)
+            format_ok = True
+        except Exception as e:
+            format_ok = False
+            out = {"exception": str(e), "line": line}
+            pass
+
+        if format_ok:
+            out = asyncio.run(bibref.to_patcit(line, src_flavor))
+            try:
+                validate(instance=out, schema=get_schema("bibref"))
+            except Exception as e:
+                out = out.update({"exception": str(e), "issues": [0]})
+        typer.echo(json.dumps(out))
+
     files = glob(path)
     for file in files:
         with open(file) as lines:
             for line in lines:
                 patcit_bibref_(line, src_flavor)
+
+
+@app.command()
+def npl_properties(path, cat_model: str = None):
+    """Return the serialized properties
+
+    Expect JSONL input"""
+
+    def get_cat(text, nlp):
+        """"""
+        doc = nlp(text)
+        cats_ = doc.cats
+        pred_ = [k for k, v in cats_.items() if v > 0.5]
+        out = pred_[0] if pred_ else None
+        return {"npl_cat": out}
+
+    def get_md5(text):
+        return {"md5": md5(text.encode("utf-8")).hexdigest()}
+
+    def get_language(text):
+        is_reliable, _, details = cld2.detect(text)
+
+        language, language_code, percent, score = details[0]
+        out = {
+            "language_is_reliable": is_reliable,
+            "language": language,
+            "language_code": language_code,
+            "language_percent": percent,
+            "language_score": score,
+        }
+        return out
+
+    def get_properties(line, nlp):
+        npl_biblio = line.get("npl_biblio")
+
+        line.update(get_md5(npl_biblio))
+        line.update(get_language(npl_biblio))
+        if not line.get("npl_cat"):
+            line.update(get_cat(npl_biblio, nlp))
+        if not line.get("patcit_id"):
+            line.update({"patcit_id": line.get("md5")})
+        return line
+
+    files = glob(path)
+    nlp = spacy.load(cat_model)
+
+    for file in files:
+        with open(file) as lines:
+            for line in lines:
+                line = json.loads(line)
+                line = get_properties(line, nlp)
+                line = json.dumps(line)
+                typer.echo(line)
 
 
 if __name__ == "__main__":
