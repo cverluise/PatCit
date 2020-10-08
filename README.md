@@ -156,14 +156,11 @@ We build on large range of open-source tools. In particular, the project heavily
 These services are articulated in an efficient data pipeline in the cloud to process up to 2 million citations per day.
 
 
-## Team
+## :hugging_face: Team
 
 This project is initiated by [G. de Rassenfosse][gder] ([@gderasse][gderasse]) and [C. Verluise][cver] ([@cverluise][cverluise]).
 
-It benefits from valuable help from to [@kermitt2](https://github.com/kermitt2) [@FGer8](https://github.com/FGer8), [@gg4u](https://github.com/gg4u), [@SuperMayo](https://github.com/SuperMayo) and [@leflix311](https://github.com/leflix311).
-
-We are also thankful to the many people who help us shape this project through useful comments shared by emails, twitter and direct interactions.
-
+It has benefited from many contributions and helpful comments carefully recorded in [CRediT][./CRediT].
 
 ## Citation
 
