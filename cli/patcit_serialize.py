@@ -221,7 +221,7 @@ def patcit_bibref(path, src_flavor: str = None):
 
 
 @app.command()
-def npl_properties(path, cat_model: str = None):
+def npl_properties(path, cat_model: str = None, language_codes: str = "en,un"):
     """Return the serialized properties
 
     Expect JSONL input"""
@@ -250,19 +250,22 @@ def npl_properties(path, cat_model: str = None):
         }
         return out
 
-    def get_properties(line, nlp):
+    def get_properties(line, nlp, language_codes):
         npl_biblio = line.get("npl_biblio")
 
         line.update(get_md5(npl_biblio))
         line.update(get_language(npl_biblio))
-        if not line.get("npl_cat"):
+        if not line.get("npl_cat") and line.get("language_code") in language_codes:
             line.update(get_cat(npl_biblio, nlp))
+        else:
+            line.update({"npl_cat": None})
         if not line.get("patcit_id"):
             line.update({"patcit_id": line.get("md5")})
         return line
 
     files = glob(path)
     nlp = spacy.load(cat_model)
+    language_codes = language_codes.split(",")
 
     for file in files:
         with open(file) as lines:
