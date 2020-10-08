@@ -1,0 +1,3 @@
+{"label":"ACC_NUM", "pattern":[{"shape":"dddd", "length":7},{"orth":"-"},{"shape":"dd", "length":2},{"orth":"-"},{"shape":"d", "length":1}]}
+{"label":"ACC_NUM", "pattern":[{"shape":"XXXddddd"}]}
+{"label":"ACC_NUM", "pattern":[{"shape":"ddd:ddddd"}]}
