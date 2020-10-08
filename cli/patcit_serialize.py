@@ -6,7 +6,6 @@ import lzma
 import os
 import sys
 from glob import glob
-from itertools import repeat
 
 import typer
 from bs4 import BeautifulSoup
