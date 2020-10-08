@@ -7,7 +7,7 @@
 Role | Contributor(s)<sup>1</sup>
 ---|---
 Conceptualization| Gaétan de Rassenfosse, Cyril Verluise
-Data curation|  Cyril Verluise, Lucas Violon<sup>[intext-bibref]</sup>
+Data curation|  Cyril Verluise
 Formal Analysis| Luca Violon<sup>[frontpage-npl]</sup>, Cyril Verluise, Lucas Violon<sup>[intext-bibref]</sup>
 Funding acquisition| Gaétan de Rassenfosse, Cyril Verluise
 Investigation| Cyril Verluise
@@ -16,7 +16,7 @@ Project administration| Gaétan de Rassenfosse, Cyril Verluise
 Resources| EPFL, Collège de France
 Software| Cyril Verluise
 Supervision| Gaétan de Rassenfosse, Cyril Verluise
-Validation|Gabriele Cristelli<sup>[intext-patent]</sup>, Francesco Gerotto<sup>[matching-doi,parsing-bibref]</sup>, Kyle Higham<sup>[intext-patent]</sup>,
+Validation|Gaétan de Rassenfosse<sup>[intext-patent]</sup>,Gabriele Cristelli<sup>[intext-patent]</sup>, Francesco Gerotto<sup>[matching-doi,parsing-bibref]</sup>, Kyle Higham<sup>[intext-patent]</sup>, Cyril Verluise, Lucas Violon<sup>[intext-bibref]</sup>
 Visualization| Cyril Verluise, Luca Violon<sup>[intext-bibref]</sup>
 Writing – original draft| -
 Writing – review & editing| -
@@ -41,7 +41,7 @@ Lucas Violon|HEC Paris|lucas-violon| -
 
 We are also thankful to:
 
-- Domenico Golzio (EPO) for his constant support
+- Domenico Golzio for his constant support
 - [@wetherbeei](https://github.com/wetherbeei), [@kermitt2](https://github.com/kermitt2), [@SuperMayo](https://github.com/SuperMayo) and [@leflix311](https://github.com/leflix311) for helpful comments
 - The many people who help us shape this project through useful comments shared by emails, twitter and direct interactions
 
