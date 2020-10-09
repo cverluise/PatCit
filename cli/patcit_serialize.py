@@ -274,6 +274,7 @@ def npl_properties(path, cat_model: str = None, language_codes: str = "en,un"):
                 line = get_properties(line, nlp, language_codes)
                 line = json.dumps(line)
                 typer.echo(line)
+                del line
 
 
 if __name__ == "__main__":
