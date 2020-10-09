@@ -46,7 +46,7 @@
 1. Send back to G-storage and Load table to bq
    ```bash
    gsutil -m cp ...
-   bq load --source_format NEWLINE_DELIMITED_JSON ----replace <cited_by-table> <*_prep.jsonl.gz> <schema>
+   bq load --source_format NEWLINE_DELIMITED_JSON --replace --autodetect <cited_by-table> <*_prep.jsonl.gz> <schema>
    ```
 
 ### `properties`
@@ -68,11 +68,11 @@
 
 1. Process files
    ```bash
-   ls *.jsonl.gz | cut -d. -f1 | parallel -j+0 --eta 'python cli/patcit-cli.py serialize npl-properties {}.jsonl.gz --cat-model models/en_cat_npl_sm/ >> {}_prep.jsonl && gzip {}_prep.jsonl'
-   ````
+    ls *.jsonl.gz | cut -d. -f1 | parallel -j+0 --eta 'python cli/patcit-cli.py serialize npl-properties {}.jsonl.gz --cat-model models/en_cat_npl_sm/ >> {}_prep.jsonl && gzip {}_prep.jsonl'
+   ```
 
 1. Send back to G-storage and Load table to bq
    ```bash
    gsutil -m cp ...
-   bq load --source_format NEWLINE_DELIMITED_JSON --replace <properties-table> <*_prep.jsonl.gz> <schema>
+   bq load --source_format NEWLINE_DELIMITED_JSON --replace --autodetect <properties-table> <*_prep.jsonl.gz>
    ```
