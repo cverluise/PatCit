@@ -3,6 +3,7 @@ import concurrent.futures
 import csv
 import json
 import lzma
+import operator
 import os
 import sys
 from glob import glob
@@ -229,29 +230,35 @@ def npl_properties(path, cat_model: str = None, language_codes: str = "en,un"):
     async def get_cat(text, nlp):
         """"""
         if "wiki" in text.lower():
-            out = "WIKI"
+            cat, score = "WIKI", 1  # by convention
         else:
             doc = nlp(text)
-            cats_ = doc.cats
-            pred_ = [k for k, v in cats_.items() if v > 0.5]
-            out = pred_[0] if pred_ else None
-        return {"npl_cat": out}
+            cat, score = max(doc.cats.items(), key=operator.itemgetter(1))
+            score = round(score, 2)  # 2 digits only
+        return {"npl_cat": cat, "npl_cat_score": score}
 
     async def get_md5(text):
-        return {"md5": md5(text.encode("utf-8")).hexdigest()}
+        return {"md5": md5(text.lower().encode("utf-8")).hexdigest()}
 
     async def get_language(text):
         is_reliable, _, details = cld2.detect(text)
 
-        language, language_code, _, _ = details[0]
+        _, language_code, _, _ = details[0]
         out = {
             "language_is_reliable": is_reliable,
-            "language": language,
+            # "language": language,
             "language_code": language_code,
             # "language_percent": percent,
             # "language_score": score,
         }
         return out
+
+    def get_npl_cat_language_flag(line, language_codes):
+        if not line.get("language_code") in language_codes:
+            npl_cat_language_flag = True
+        else:
+            npl_cat_language_flag = False
+        return {"npl_cat_language_flag": npl_cat_language_flag}
 
     async def get_properties(line, nlp, language_codes):
         npl_biblio = line.get("npl_biblio")
@@ -264,29 +271,31 @@ def npl_properties(path, cat_model: str = None, language_codes: str = "en,un"):
         if not known_cat:
             cat_task = asyncio.create_task(get_cat(npl_biblio, nlp))
             tasks += [cat_task]
+        else:  # 1 by convention
+            line.update({"npl_cat_score": 1})
 
         tasks = await asyncio.gather(*tasks)
 
         for task in tasks:
             line.update(task)
 
-        if not line.get("language_code") in language_codes:
-            line.update({"npl_cat": None})
+        line.update(get_npl_cat_language_flag(line, language_codes))
         if not line.get("patcit_id"):
             line.update({"patcit_id": line.get("md5")})
 
-        return line
+        typer.echo(json.dumps(line))
+        # return line
 
     files = glob(path)
-    nlp = spacy.load(cat_model)
-    language_codes = language_codes.split(",")
+    nlp_ = spacy.load(cat_model)
+    language_codes_ = language_codes.split(",")
 
     for file in files:
         with open(file) as lines:
-            for line in lines:
-                out = json.loads(line)
-                out = asyncio.run(get_properties(out, nlp, language_codes))
-                typer.echo(json.dumps(out))
+            for line_ in lines:
+                out = json.loads(line_)
+                asyncio.run(get_properties(out, nlp_, language_codes_))
+                # typer.echo(json.dumps(out))
                 # out = None
 
 
