@@ -226,42 +226,56 @@ def npl_properties(path, cat_model: str = None, language_codes: str = "en,un"):
 
     Expect JSONL input"""
 
-    def get_cat(text, nlp):
+    async def get_cat(text, nlp):
         """"""
-        doc = nlp(text)
-        cats_ = doc.cats
-        pred_ = [k for k, v in cats_.items() if v > 0.5]
-        out = pred_[0] if pred_ else None
+        if "wiki" in text.lower():
+            out = "WIKI"
+        else:
+            doc = nlp(text)
+            cats_ = doc.cats
+            pred_ = [k for k, v in cats_.items() if v > 0.5]
+            out = pred_[0] if pred_ else None
         return {"npl_cat": out}
 
-    def get_md5(text):
+    async def get_md5(text):
         return {"md5": md5(text.encode("utf-8")).hexdigest()}
 
-    def get_language(text):
+    async def get_language(text):
         is_reliable, _, details = cld2.detect(text)
 
-        language, language_code, percent, score = details[0]
+        language, language_code, _, _ = details[0]
         out = {
             "language_is_reliable": is_reliable,
             "language": language,
             "language_code": language_code,
-            "language_percent": percent,
-            "language_score": score,
+            # "language_percent": percent,
+            # "language_score": score,
         }
         return out
 
-    def get_properties(dline, nlp, language_codes):
-        npl_biblio = dline.get("npl_biblio")
+    async def get_properties(line, nlp, language_codes):
+        npl_biblio = line.get("npl_biblio")
+        known_cat = bool(line.get("npl_cat"))
 
-        dline.update(get_md5(npl_biblio))
-        dline.update(get_language(npl_biblio))
-        if not dline.get("npl_cat") and dline.get("language_code") in language_codes:
-            dline.update(get_cat(npl_biblio, nlp))
-        else:
-            dline.update({"npl_cat": None})
-        if not dline.get("patcit_id"):
-            dline.update({"patcit_id": dline.get("md5")})
-        return dline
+        md5_task = asyncio.create_task(get_md5(npl_biblio))
+        language_task = asyncio.create_task(get_language(npl_biblio))
+
+        tasks = [md5_task, language_task]
+        if not known_cat:
+            cat_task = asyncio.create_task(get_cat(npl_biblio, nlp))
+            tasks += [cat_task]
+
+        tasks = await asyncio.gather(*tasks)
+
+        for task in tasks:
+            line.update(task)
+
+        if not line.get("language_code") in language_codes:
+            line.update({"npl_cat": None})
+        if not line.get("patcit_id"):
+            line.update({"patcit_id": line.get("md5")})
+
+        return line
 
     files = glob(path)
     nlp = spacy.load(cat_model)
@@ -271,9 +285,8 @@ def npl_properties(path, cat_model: str = None, language_codes: str = "en,un"):
         with open(file) as lines:
             for line in lines:
                 out = json.loads(line)
-                out = get_properties(out, nlp, language_codes)
-                out = json.dumps(out)
-                typer.echo(out)
+                out = asyncio.run(get_properties(out, nlp, language_codes))
+                typer.echo(json.dumps(out))
                 # out = None
 
 
