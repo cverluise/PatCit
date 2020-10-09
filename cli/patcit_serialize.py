@@ -250,18 +250,18 @@ def npl_properties(path, cat_model: str = None, language_codes: str = "en,un"):
         }
         return out
 
-    def get_properties(line, nlp, language_codes):
-        npl_biblio = line.get("npl_biblio")
+    def get_properties(dline, nlp, language_codes):
+        npl_biblio = dline.get("npl_biblio")
 
-        line.update(get_md5(npl_biblio))
-        line.update(get_language(npl_biblio))
-        if not line.get("npl_cat") and line.get("language_code") in language_codes:
-            line.update(get_cat(npl_biblio, nlp))
+        dline.update(get_md5(npl_biblio))
+        dline.update(get_language(npl_biblio))
+        if not dline.get("npl_cat") and dline.get("language_code") in language_codes:
+            dline.update(get_cat(npl_biblio, nlp))
         else:
-            line.update({"npl_cat": None})
-        if not line.get("patcit_id"):
-            line.update({"patcit_id": line.get("md5")})
-        return line
+            dline.update({"npl_cat": None})
+        if not dline.get("patcit_id"):
+            dline.update({"patcit_id": dline.get("md5")})
+        return dline
 
     files = glob(path)
     nlp = spacy.load(cat_model)
@@ -270,11 +270,11 @@ def npl_properties(path, cat_model: str = None, language_codes: str = "en,un"):
     for file in files:
         with open(file) as lines:
             for line in lines:
-                line = json.loads(line)
-                line = get_properties(line, nlp, language_codes)
-                line = json.dumps(line)
-                typer.echo(line)
-                del line
+                out = json.loads(line)
+                out = get_properties(out, nlp, language_codes)
+                out = json.dumps(out)
+                typer.echo(out)
+                # out = None
 
 
 if __name__ == "__main__":
