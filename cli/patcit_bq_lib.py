@@ -60,7 +60,7 @@ def npl_properties(bibref: str = None, tls214: str = None):
       SELECT
         npl_publn_id,
         "BIBLIOGRAPHICAL_REFERENCE" AS npl_cat,
-        DOI AS patcit_id
+        LOWER(DOI) AS patcit_id
       FROM
         `{bibref}` #npl-parsing.external.v03_front_page_bibref
       WHERE
