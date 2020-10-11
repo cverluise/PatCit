@@ -198,7 +198,7 @@ async def get_date(line, flavor):
             if date[0]:
                 date_ = 0
                 for i in range(len(date)):
-                    date_ += date[i] * 10 ^ (4 - 2 * i)
+                    date_ += date[i] * 10 ** (4 - 2 * i)
                 date = date_
             else:
                 date = None

@@ -43,6 +43,7 @@ BIBREF_EMPTY = {
 BIBREF_GROBID_UPDATE = ["ISSN", "URL", "author", "event", "date", "page", "volume"]
 BIBREF_CROSSREF_UPDATE = [
     "author",
+    "date",
     "title",
     "journal_title",
     "journal_title_abbrev",
