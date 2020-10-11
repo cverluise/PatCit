@@ -2,10 +2,12 @@ import typer
 
 app = typer.Typer()
 
+PRIMARY_KEYS = ["npl_publn_id", "patcit_id"]
+
 
 @app.command()
-def npl_cited_by(tls201: str = None, tls211: str = None, tls212: str = None):
-    """Return the npl_cited_by src table query
+def front_page_cited_by(tls201: str = None, tls211: str = None, tls212: str = None):
+    """Return the front_page_cited_by query
     """
     query = f"""SELECT DISTINCT * FROM (
     WITH
@@ -52,8 +54,8 @@ def npl_cited_by(tls201: str = None, tls211: str = None, tls212: str = None):
 
 
 @app.command()
-def npl_properties(bibref: str = None, tls214: str = None):
-    """Return the npl_properties src table"""
+def front_page_properties(bibref: str = None, tls214: str = None):
+    """Return the front_page_properties query"""
     query = f"""
     WITH
       tmp AS (
@@ -76,6 +78,119 @@ def npl_properties(bibref: str = None, tls214: str = None):
     ON
       tls214.npl_publn_id = tmp.npl_publn_id
       """
+    typer.echo(query)
+
+
+@app.command()
+def front_page_meta(
+    properties: str = None, cited_by: str = None, primary_key: str = None
+):
+    """Return the front_page_meta query"""
+    assert primary_key in PRIMARY_KEYS
+    query = f"""
+    (SELECT
+      properties.*,
+      cited_by.* EXCEPT(npl_publn_id)
+    FROM
+      `{properties}` AS properties  #npl-parsing.external.v03_front_page_properties
+    LEFT JOIN
+     `{cited_by}` AS cited_by  #npl-parsing.external.v03_front_page_cited_by
+    ON
+      properties.npl_publn_id=cited_by.npl_publn_id)"""
+
+    if primary_key == "patcit_id":
+        query_prefix = """
+        WITH
+          tmp AS
+          """
+        query_suffix = """
+        SELECT
+          patcit_id,
+          ARRAY_AGG(DISTINCT(npl_publn_id)) AS npl_publn_id,
+          ARRAY_AGG(DISTINCT(md5)) AS md5,
+          ANY_VALUE(npl_cat) AS npl_cat,
+          ANY_VALUE(npl_cat_score) AS npl_cat_score,
+          ANY_VALUE(npl_cat_language_flag) AS npl_cat_language_flag,
+          ANY_VALUE(language_code) AS language_code,
+          ANY_VALUE(language_is_reliable) AS language_is_reliable,
+          COUNT(cited_by.publication_number) AS is_cited_by_count,
+          ARRAY_AGG(cited_by) AS cited_by,
+          ARRAY_AGG(npl_biblio) AS npl_biblio,
+        FROM
+          `npl-parsing.external.v03_front_page_meta`,
+          UNNEST(cited_by) AS cited_by
+        GROUP BY
+          patcit_id
+        """
+
+        query = query_prefix + query + query_suffix
+
+    typer.echo(query)
+
+
+@app.command()
+def front_page_bibref(
+    meta: str = None, bibref_grobid: str = None, bibref_crossref: str = None
+):
+    query = f"""WITH
+      tmp AS (
+      SELECT
+        meta.*  EXCEPT(npl_biblio),
+        meta.npl_publn_id[
+      OFFSET
+        (0)] AS npl_publn_id_join
+      FROM
+        `{meta}` AS meta  #npl-parsing.external.v03_front_page_meta_future
+      LEFT JOIN
+        `{bibref_crossref}` AS bibref_crossref  #npl-parsing.external.patcit_crossref
+      ON
+        LOWER(meta.patcit_id) = LOWER(bibref_crossref.DOI)
+      WHERE
+        bibref_crossref.DOI IS NULL
+        AND meta.npl_cat = "BIBLIOGRAPHICAL_REFERENCE")
+    SELECT
+      tmp.* EXCEPT(npl_publn_id_join),
+      bibref_grobid.* EXCEPT(npl_publn_id)
+    FROM
+      tmp
+    JOIN
+      `{bibref_grobid}` AS bibref_grobid  #npl-parsing.external.v03_front_page_bibref
+    ON
+      tmp.npl_publn_id_join = bibref_grobid.npl_publn_id
+    UNION ALL
+    SELECT
+      meta.* EXCEPT(npl_biblio),
+      bibref_crossref.* EXCEPT(npl_publn_id)
+    FROM
+      `{meta}` AS meta  #npl-parsing.external.v03_front_page_meta_future
+    INNER JOIN
+      `{bibref_crossref}` AS bibref_crossref  #npl-parsing.external.patcit_crossref
+    ON
+      LOWER(meta.patcit_id) = LOWER(bibref_crossref.DOI)
+    """
+
+    typer.echo(query)
+
+
+def update_front_page_bibref(bibref, bibref_grobid):
+    query = f"""
+    UPDATE
+  `{bibref}` AS bibref  #npl-parsing.external.v03_front_page_bibref_future
+    SET
+      bibref.PMCID = bibref_grobid.PMCID,
+      bibref.PMID = bibref_grobid.PMID
+    FROM (
+      SELECT
+        DOI,
+        ANY_VALUE(PMID) as PMID,
+        ANY_VALUE(PMCID) as PMCID
+      FROM
+        `{bibref_grobid}`  #npl-parsing.external.v03_front_page_bibref
+      GROUP BY
+      DOI) bibref_grobid
+    WHERE
+      LOWER(bibref.DOI) = LOWER(bibref_grobid.DOI)"""
+
     typer.echo(query)
 
 
