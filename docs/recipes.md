@@ -123,3 +123,8 @@
     ```bash
     bq query --replace --use_legacy_sql=false --destination_table <bibref-table> --destination_schema schema/frontpage_bibref.json $QUERY
     ```
+
+1. Update table (PMID and PMCID)
+   ```bash
+   # TODO
+   ```
