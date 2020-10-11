@@ -72,7 +72,7 @@ def serialize_prep_validate_grobid_npl(line):
 def grobid_npl(path: str, max_workers: int = None):
     """Serialize npl citations from GROBID parsing
     """
-
+    # TODO add md5 somewhere
     files = glob(path)
     for file in files:
         with open(file, "r") as fin:
