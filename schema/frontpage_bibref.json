@@ -9,7 +9,7 @@
     "name": "npl_publn_id",
     "type": "INTEGER"
   },
-  { "description": "md5 hash of the lower-case NPL citation.",
+  { "description": "Hash of the lower-case NPL citation.",
     "mode": "REPEATED",
     "name": "md5",
     "type": "STRING"
@@ -104,12 +104,12 @@
     "name": "ISSN",
     "type": "STRING"
   },
-  { "description": "International Standard Book Number (ISBN)",
+  { "description": "International Standard Book Number (ISBN).",
     "mode": "REPEATED",
     "name": "ISBN",
     "type": "STRING"
   },
-  { "description": "Document URL",
+  { "description": "Document URL.",
     "mode": "NULLABLE",
     "name": "URL",
     "type": "STRING"
@@ -151,7 +151,7 @@
     "name": "journal_title",
     "type": "STRING"
   },
-  {"description": "Abbreviated journal title",
+  {"description": "Abbreviated journal title.",
     "mode": "NULLABLE",
     "name": "journal_title_abbrev",
     "type": "STRING"
