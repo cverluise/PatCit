@@ -172,7 +172,8 @@ def front_page_bibref(
     typer.echo(query)
 
 
-def update_front_page_bibref(bibref, bibref_grobid):
+@app.command()
+def update_front_page_bibref(bibref: str = None, bibref_grobid: str = None):
     query = f"""
     UPDATE
   `{bibref}` AS bibref  #npl-parsing.external.v03_front_page_bibref_future
