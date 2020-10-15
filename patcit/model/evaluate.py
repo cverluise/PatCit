@@ -10,7 +10,7 @@ import typer
 from sklearn.metrics import confusion_matrix, precision_recall_fscore_support
 from wasabi import Printer
 
-from patcit.validation.typing import to_int, to_number
+from patcit.serialize.validation.typing import to_int, to_number
 
 msg = Printer()
 app = typer.Typer()
