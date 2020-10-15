@@ -5,8 +5,8 @@ import typer
 from smart_open import open
 from spacy.language import Language
 
-from cli.patcit_models_add import UrlsMatcher, UrlsHostname
-from patcit.utils import parse_date
+from patcit.model.add_component import UrlsMatcher, UrlsHostname
+from patcit.utils.tools import parse_date
 
 app = typer.Typer()
 
@@ -21,7 +21,7 @@ def yield_npl_biblio(file):
             yield out
 
 
-def serialize_database(doc, line=None):
+def brew_database(doc, line=None):
     # TODO add date parsing -> or should it be a custom pipeline?
     labels = ["NAME", "DATE", "ACC_NUM"]
     out = {}
@@ -35,7 +35,7 @@ def serialize_database(doc, line=None):
     typer.echo(json.dumps(out))
 
 
-def serialize_wiki(doc, line=None):
+def brew_wiki(doc, line=None):
     labels = ["DATE", "ITEM"]
     out = {}
     ents = doc.ents
@@ -54,11 +54,11 @@ def serialize_wiki(doc, line=None):
     typer.echo(json.dumps(out))
 
 
-CAT_SERIALIZER = {"DATABASE": serialize_database, "WIKI": serialize_wiki}
+CAT_SERIALIZER = {"DATABASE": brew_database, "WIKI": brew_wiki}
 
 
 @app.command()
-def serialize(file: str, model: str = None, category: str = None):
+def main(file: str, model: str = None, category: str = None):
     """Custom category serialization. Expect jsonl FILE {'npl_publn_id': ddd 'npl_biblio':'sss'}"""
     assert category in CAT_SERIALIZER.keys()
     if category == "WIKI":

@@ -17,12 +17,11 @@ from jsonschema import validate
 from smart_open import open, register_compressor
 from tqdm import tqdm
 
-from patcit.issues import eval_issues
 from patcit.serialize import intext, bibref
-from patcit.serialize.bibref import fetch_all_tags
-from patcit.validation.resolve import solve_issues
-from patcit.validation.schema import get_schema
-from patcit.validation.typing import prep_and_pop
+from patcit.serialize.validation.issues import eval_issues
+from patcit.serialize.validation.resolve import solve_issues
+from patcit.serialize.validation.schema import get_schema
+from patcit.serialize.validation.typing import prep_and_pop
 
 csv.field_size_limit(sys.maxsize)
 
@@ -30,7 +29,6 @@ app = typer.Typer()
 
 
 # TODO: relax assumption on file names?
-# TODO: fix path. This will break with windows
 
 # add support for xz compressed files
 def _handle_xz(file_obj, mode):
@@ -44,7 +42,7 @@ def serialize_prep_validate_grobid_npl(line):
     npl_publn_id, npl_grobid = line.get("npl_publn_id"), line.get("npl_grobid")
     if npl_grobid:
         soup = BeautifulSoup(npl_grobid, "lxml")
-        out = asyncio.run(fetch_all_tags(npl_publn_id, soup))
+        out = asyncio.run(bibref.fetch_all_tags(npl_publn_id, soup))
 
         issues = asyncio.run(eval_issues(out))
         out.update({"issues": issues})

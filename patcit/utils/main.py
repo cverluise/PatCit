@@ -4,7 +4,6 @@ from glob import glob
 from pprint import pprint
 
 import pandas as pd
-import pyperclip
 import smart_open
 import typer
 from tqdm import tqdm
@@ -80,8 +79,8 @@ def json2md(file: str):
     for var in TEXTTT_VAR:
         df[var] = df[var].apply(to_texttt)
 
-    pyperclip.copy(df.set_index(ORDERED_VAR[0]).to_markdown())
-    typer.secho(message="Table (.md) copied to clip-board", fg=typer.colors.BLUE)
+    typer.echo(f"{df.set_index(ORDERED_VAR[0])}")
+    # typer.secho(message="Table (.md) copied to clip-board", fg=typer.colors.BLUE)
 
 
 if __name__ == "__main__":
