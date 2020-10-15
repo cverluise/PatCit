@@ -5,8 +5,8 @@ import typer
 from smart_open import open
 from spacy.language import Language
 
-from cli.patcit_models_add import UrlsMatcher, UrlsHostname
-from patcit.utils import parse_date
+from patcit.model.add_component import UrlsMatcher, UrlsHostname
+from patcit.utils.tools import parse_date
 
 app = typer.Typer()
 

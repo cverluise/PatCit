@@ -3,7 +3,7 @@ from glob import glob
 
 import typer
 
-from patcit.io import process_biblio_tls214, process_full_text
+from patcit.grobid.io import process_biblio_tls214, process_full_text
 
 app = typer.Typer()
 
