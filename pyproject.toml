@@ -34,8 +34,7 @@ httpx = "^0.11.1"
 glom = "^19.10.0"
 ipykernel = "^5.1.4"
 autopep8 = "^1.5"
-spacy = "^2.2.3"
-en_core_web_sm = {url = "https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.2.5/en_core_web_sm-2.2.5.tar.gz"}
+en_core_web_sm = {url = "https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.3.1/en_core_web_sm-2.3.1.tar.gz"}
 thinc = "^7.3.1"
 sklearn = "^0.0"
 psutil = "^5.7.0"
@@ -43,6 +42,7 @@ mkdocs-material = "^4.6.3"
 tabulate = "^0.8.6"
 pyperclip = "^1.7.0"
 fuzzysearch = "^0.7.3"
+spacy = "^2.3.2"
 
 [build-system]
 requires = ["poetry>=0.12"]
