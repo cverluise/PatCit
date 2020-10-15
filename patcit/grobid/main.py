@@ -12,7 +12,7 @@ app = typer.Typer()
 
 
 @app.command()
-def process(path: str, max_workers: int = None, flavor: str = None):
+def main(path: str, max_workers: int = None, flavor: str = None):
     """
     Python wrapper for grobid - Multithreaded
 
