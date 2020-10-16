@@ -3,3 +3,5 @@
 /ent_wiki_xx.jsonl
 /val_detect_bibref_gold.jsonl
 /val_detect_bibref_pred.jsonl
+/val_detect_patent_gold.jsonl
+/val_detect_patent_pred.jsonl
