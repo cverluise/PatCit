@@ -5,3 +5,5 @@
 /val_detect_bibref_pred.jsonl
 /val_detect_patent_gold.jsonl
 /val_detect_patent_pred.jsonl
+/val_detect_xx_citations.csv
+/val_detect_xx_texts.csv
