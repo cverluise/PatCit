@@ -1,0 +1,3 @@
+outs:
+- md5: 9187f434351fe988ce5495ecd2934513
+  path: val_detect_bibref_gold.jsonl
