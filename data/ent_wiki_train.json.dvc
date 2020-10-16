@@ -1,0 +1,3 @@
+outs:
+- md5: 02bb3a22b36996e92478ffec9e5d0bcf
+  path: ent_wiki_train.json
