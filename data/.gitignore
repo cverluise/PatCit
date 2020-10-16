@@ -8,3 +8,5 @@
 /val_detect_xx_citations.csv
 /val_detect_xx_texts.csv
 /val_matching_doi.csv
+/val_parsing_bibref_gold.jsonl
+/val_parsing_bibref_pred.csv
