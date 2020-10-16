@@ -10,3 +10,6 @@
 /val_matching_doi.csv
 /val_parsing_bibref_gold.jsonl
 /val_parsing_bibref_pred.csv
+/val_parsing_patent_orgname_gold.jsonl
+/val_parsing_patent_original_number_gold.jsonl
+/val_parsing_patent_xx.jsonl
