@@ -13,3 +13,6 @@
 /val_parsing_patent_orgname_gold.jsonl
 /val_parsing_patent_original_number_gold.jsonl
 /val_parsing_patent_xx.jsonl
+/cat_bibref_test.json
+/cat_bibref_train.json
+/cat_bibref_xx.jsonl

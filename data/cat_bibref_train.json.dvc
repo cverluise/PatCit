@@ -1,0 +1,3 @@
+outs:
+- md5: bbe3a8edfbaa138dec9e3587f5bf8105
+  path: cat_bibref_train.json
