@@ -18,3 +18,5 @@
 /cat_bibref_xx.jsonl
 /cat_npl_test.json
 /cat_npl_train.json
+/ent_database_test.json
+/ent_database_train.json
