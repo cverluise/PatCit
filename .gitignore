@@ -1,15 +1,11 @@
-
-
 # Confidential
 **/npl-parsing-cdda13f10f36.json
 **/npl-parsing-3412b4cafd20.json
 **/config.json
 
-# Models
-models/
-
 # Large files
 data_tmp/
+dev/
 
 # spaCy models
 **/en_core_web_sm*/
@@ -41,4 +37,3 @@ site/
 
 # venv
 /venv
-/data
