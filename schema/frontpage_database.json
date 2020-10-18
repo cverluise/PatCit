@@ -71,28 +71,29 @@
     "name": "cited_by",
     "type": "RECORD"
   },
-  {
-        "description": "Item (main title).",
-        "name": "item",
-        "type": "STRING",
-        "mode": "REPEATED"
-    },
-  {
-        "description": "Hostname.",
-        "name": "hostname",
-        "type": "STRING",
-        "mode": "REPEATED"
-    },
-  {
-        "description": "Url.",
-        "name": "url",
-        "type": "STRING",
-        "mode": "REPEATED"
-    },
-  {
-        "description": "Date (yyyymmdd). Usually the date of access. If there is more than one date, the oldest is usually the webpage creation date, the most recent is the accession date and the intermediary date (if any), the date of the last modification before access.",
-        "name": "date",
-        "type": "INTEGER",
-        "mode": "REPEATED"
-    }
+  { "description": "Database accession number.",
+    "mode": "REPEATED",
+    "name": "acc_num",
+    "type": "STRING"
+  },
+  { "description": "Name of the database.",
+    "mode": "REPEATED",
+    "name": "name",
+    "type": "STRING"
+  },
+  { "description": "Hostname.",
+    "mode": "REPEATED",
+    "name": "hostname",
+    "type": "STRING"
+  },
+  { "description": "Url.",
+    "mode": "REPEATED",
+    "name": "url",
+    "type": "STRING"
+  },
+  { "description": "Usually the accession date. If there is more than one date, the oldest is usually the accession date and the most recent is the retrieval date.",
+    "mode": "REPEATED",
+    "name": "date",
+    "type": "INTEGER"
+  }
 ]
