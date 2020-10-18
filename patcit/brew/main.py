@@ -12,8 +12,11 @@ app = typer.Typer()
 
 LABEL_COLLECTION = {"WIKI": ["DATE", "ITEM"], "DATABASE": ["NAME", "DATE", "ACC_NUM"]}
 URL_EXPRESSION = (
-    "http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+"
+    "http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),\—]|(?:%[0-9a-fA-F][0-9a-fA-F]))+"
 )
+TO_UPPER = {"WIKI": [], "DATABASE": ["NAME"]}
+TO_LOWER = {"WIKI": [], "DATABASE": []}
+PUNCTUATION = """'!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'"""  # from string.punctuation
 
 
 def yield_npl_biblio(file):
@@ -27,16 +30,25 @@ def yield_npl_biblio(file):
 
 
 def brew_date(date: list):
-    print(date)
     date = [parse_date(date_) for date_ in date]
     date = list(set(filter(lambda x: x, date)))
     return date
 
 
 def brew_url_components(doc):
-    urls = re.findall(URL_EXPRESSION, doc.text)
+    urls = re.findall(URL_EXPRESSION, doc.text.encode("utf-8").decode())
+    urls = [url.encode("utf-8").decode().rstrip(PUNCTUATION) for url in urls]
     hostnames = [urlparse(url).hostname for url in urls]
     return urls, hostnames
+
+
+def normalize_labels(out, category):
+    for to_format in [TO_UPPER, TO_LOWER]:
+        for var in to_format[category]:
+            var = var.lower()
+            if out.get(var):
+                out.update({var: list(set([e.upper() for e in out.get(var)]))})
+    return out
 
 
 def brewer(doc, line, category):
@@ -47,7 +59,13 @@ def brewer(doc, line, category):
 
     # Collect labels in general
     for label in labels:
-        out.update({label.lower(): [ent.text for ent in ents if ent.label_ == label]})
+        out.update(
+            {
+                label.lower(): list(
+                    set([ent.text for ent in ents if ent.label_ == label])
+                )
+            }
+        )
 
     # Parse dates as yyyymmdd int
     if out.get("date"):
@@ -57,6 +75,9 @@ def brewer(doc, line, category):
     # Collect urls
     urls, hostnames = brew_url_components(doc)
     out.update({"url": urls, "hostnames": hostnames})
+
+    # Normalize vars
+    out = normalize_labels(out, category)
 
     line.update(out)
 
