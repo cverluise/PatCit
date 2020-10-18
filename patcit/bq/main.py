@@ -195,5 +195,23 @@ def update_front_page_bibref(bibref: str = None, bibref_grobid: str = None):
     typer.echo(query)
 
 
+@app.command()
+def front_page_cat(meta: str = None, cat: str = None):
+    query = f"""
+    SELECT
+      meta.* EXCEPT(npl_biblio,
+        md5,
+        npl_cat),
+      cat.* EXCEPT(patcit_id, npl_biblio)
+    FROM
+      `{meta}` AS meta  # npl-parsing.external.v03_front_page_meta_future
+    RIGHT JOIN
+      `{cat}` AS cat  # npl-parsing.external.v03_front_page_wiki
+    ON
+      meta.patcit_id=cat.patcit_id"""
+
+    typer.echo(query)
+
+
 if __name__ == "__main__":
     app()
