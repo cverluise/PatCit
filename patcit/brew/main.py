@@ -1,14 +1,19 @@
 import json
+import re
+from urllib.parse import urlparse
 
 import spacy
 import typer
 from smart_open import open
-from spacy.language import Language
 
-from patcit.model.add_component import UrlsMatcher, UrlsHostname
 from patcit.utils.tools import parse_date
 
 app = typer.Typer()
+
+LABEL_COLLECTION = {"WIKI": ["DATE", "ITEM"], "DATABASE": ["NAME", "DATE", "ACC_NUM"]}
+URL_EXPRESSION = (
+    "http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),]|(?:%[0-9a-fA-F][0-9a-fA-F]))+"
+)
 
 
 def yield_npl_biblio(file):
@@ -21,57 +26,54 @@ def yield_npl_biblio(file):
             yield out
 
 
-def brew_database(doc, line=None):
-    # TODO add date parsing -> or should it be a custom pipeline?
-    labels = ["NAME", "DATE", "ACC_NUM"]
+def brew_date(date: list):
+    print(date)
+    date = [parse_date(date_) for date_ in date]
+    date = list(set(filter(lambda x: x, date)))
+    return date
+
+
+def brew_url_components(doc):
+    urls = re.findall(URL_EXPRESSION, doc.text)
+    hostnames = [urlparse(url).hostname for url in urls]
+    return urls, hostnames
+
+
+def brewer(doc, line, category):
+    labels = LABEL_COLLECTION[category]
     out = {}
+
     ents = doc.ents
+
+    # Collect labels in general
     for label in labels:
         out.update({label.lower(): [ent.text for ent in ents if ent.label_ == label]})
-    out.update({"url": [tok.text for tok in doc if tok.like_url]})
-    if line:
-        out.update(line)
-        # assert out["npl_biblio"] == doc.text
-    typer.echo(json.dumps(out))
 
+    # Parse dates as yyyymmdd int
+    if out.get("date"):
+        date = brew_date(out.get("date"))
+        out.update({"date": date})
 
-def brew_wiki(doc, line=None):
-    labels = ["DATE", "ITEM"]
-    out = {}
-    ents = doc.ents
-    for label in labels:
-        out.update({label.lower(): [ent.text for ent in ents if ent.label_ == label]})
-    date_ = []
-    for date in out["date"]:
-        date_ += [parse_date(date)]
-    out.update({"date_num": date_})
+    # Collect urls
+    urls, hostnames = brew_url_components(doc)
+    out.update({"url": urls, "hostnames": hostnames})
 
-    out.update({"url": doc._.urls})
-    out.update({"hostname": doc._.hostnames})
+    line.update(out)
 
-    if line:
-        out.update(line)
-    typer.echo(json.dumps(out))
-
-
-CAT_SERIALIZER = {"DATABASE": brew_database, "WIKI": brew_wiki}
+    typer.echo(json.dumps(line))
 
 
 @app.command()
 def main(file: str, model: str = None, category: str = None):
     """Custom category serialization. Expect jsonl FILE {'npl_publn_id': ddd 'npl_biblio':'sss'}"""
-    assert category in CAT_SERIALIZER.keys()
-    if category == "WIKI":
-        Language.factories["urls_matcher"] = lambda nlp, **cfg: UrlsMatcher(nlp, **cfg)
-        Language.factories["urls_hostname"] = lambda nlp, **cfg: UrlsHostname(
-            nlp, **cfg
-        )
+    assert category in LABEL_COLLECTION.keys()
+
     nlp = spacy.load(model)
 
-    serializer = CAT_SERIALIZER[category]
     lines = open(file, "r").readlines()
     for i, doc in enumerate(nlp.pipe(yield_npl_biblio(file))):
-        serializer(doc, json.loads(lines[i]))
+        line = json.loads(lines[i])
+        brewer(doc, line, category)
 
 
 if __name__ == "__main__":
