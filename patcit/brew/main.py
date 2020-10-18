@@ -16,6 +16,7 @@ URL_EXPRESSION = (
 )
 TO_UPPER = {"WIKI": [], "DATABASE": ["NAME"]}
 TO_LOWER = {"WIKI": [], "DATABASE": []}
+TO_STRING = {"WIKI": ["ITEM"], "DATABASE": []}
 PUNCTUATION = """'!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'"""  # from string.punctuation
 
 
@@ -38,16 +39,28 @@ def brew_date(date: list):
 def brew_url_components(doc):
     urls = re.findall(URL_EXPRESSION, doc.text.encode("utf-8").decode())
     urls = [url.encode("utf-8").decode().rstrip(PUNCTUATION) for url in urls]
-    hostnames = [urlparse(url).hostname for url in urls]
+    hostnames = []
+    for url in urls:
+        try:
+            hostname = urlparse(url).hostname
+            hostnames += [hostname]
+        except ValueError:
+            pass
     return urls, hostnames
 
 
-def normalize_labels(out, category):
+def normalize_labels(out, category, sep="|"):
     for to_format in [TO_UPPER, TO_LOWER]:
         for var in to_format[category]:
             var = var.lower()
             if out.get(var):
                 out.update({var: list(set([e.upper() for e in out.get(var)]))})
+    # for var in TO_STRING[category]:  # left for later
+    #     var = var.lower()
+    #     if out.get(var):
+    #         els = out.get(var)
+    #         els.sort()  # sort to make sure that the join is always done is a consistent way
+    #         out.update({var: f"{sep}".join(els)})
     return out
 
 
@@ -74,7 +87,7 @@ def brewer(doc, line, category):
 
     # Collect urls
     urls, hostnames = brew_url_components(doc)
-    out.update({"url": urls, "hostnames": hostnames})
+    out.update({"url": urls, "hostname": hostnames})
 
     # Normalize vars
     out = normalize_labels(out, category)
