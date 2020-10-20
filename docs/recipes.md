@@ -128,3 +128,17 @@
    ```bash
    # TODO
    ```
+
+## cat
+
+```bash
+bq load --source_format=NEWLINE_DELIMITED_JSON --max_bad_records=100 --ignore_unknown_values --replace --autodetect npl-parsing:external.v03_front_page_wiki gs://patcit_dev/frontpage/wiki_03.jsonl.gz
+```
+
+```
+QUERY=$(python patcit/main.py bq front-page-cat --meta npl-parsing.external.v03_front_page_meta_future --cat npl-parsing.external.v03_front_page_wiki)
+```
+
+```
+ bq query --replace --use_legacy_sql=false --replace --destination_table patcit-public-data:frontpage.wiki --destination_schema schema/frontpage_wiki.json $QUERY
+```
