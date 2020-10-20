@@ -1,0 +1,1045 @@
+{"label": "BODY", "pattern": [{"lower": "10"}, {"lower": "gigabit"}, {"lower": "ethernet"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "100vg"}, {"lower": "-"}, {"lower": "anylan"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "1355"}, {"lower": "association"}]}
+{"label": "BODY", "pattern": [{"lower": "1394"}, {"lower": "high"}, {"lower": "performance"}, {"lower": "serial"}, {"lower": "bus"}, {"lower": "trade"}, {"lower": "association"}]}
+{"label": "BODY", "pattern": [{"lower": "3d"}, {"lower": "industry"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "3dif"}]}
+{"label": "BODY", "pattern": [{"lower": "3gamericas"}]}
+{"label": "BODY", "pattern": [{"lower": "3gpp"}]}
+{"label": "BODY", "pattern": [{"lower": "3gpp2"}]}
+{"label": "BODY", "pattern": [{"lower": "3rd"}, {"lower": "generation"}, {"lower": "partnership"}, {"lower": "project"}]}
+{"label": "BODY", "pattern": [{"lower": "aaf"}]}
+{"label": "BODY", "pattern": [{"lower": "aami"}]}
+{"label": "BODY", "pattern": [{"lower": "abs"}, {"lower": "classifications"}]}
+{"label": "BODY", "pattern": [{"lower": "acif"}]}
+{"label": "BODY", "pattern": [{"lower": "acm"}]}
+{"label": "BODY", "pattern": [{"lower": "acord"}]}
+{"label": "BODY", "pattern": [{"lower": "acsi33"}]}
+{"label": "BODY", "pattern": [{"lower": "adl"}]}
+{"label": "BODY", "pattern": [{"lower": "aes"}]}
+{"label": "BODY", "pattern": [{"lower": "afei"}]}
+{"label": "BODY", "pattern": [{"lower": "agift"}]}
+{"label": "BODY", "pattern": [{"lower": "aham"}]}
+{"label": "BODY", "pattern": [{"lower": "aiag"}]}
+{"label": "BODY", "pattern": [{"lower": "aiim"}]}
+{"label": "BODY", "pattern": [{"lower": "aim"}]}
+{"label": "BODY", "pattern": [{"lower": "ams"}]}
+{"label": "BODY", "pattern": [{"lower": "amwa"}]}
+{"label": "BODY", "pattern": [{"lower": "anec"}]}
+{"label": "BODY", "pattern": [{"lower": "ansi"}]}
+{"label": "BODY", "pattern": [{"lower": "ant"}]}
+{"label": "BODY", "pattern": [{"lower": "apwg"}]}
+{"label": "BODY", "pattern": [{"lower": "arcnet"}, {"lower": "trade"}, {"lower": "association"}]}
+{"label": "BODY", "pattern": [{"lower": "arso"}]}
+{"label": "BODY", "pattern": [{"lower": "arts"}]}
+{"label": "BODY", "pattern": [{"lower": "as"}, {"lower": "/"}, {"lower": "nzs7799.2001"}]}
+{"label": "BODY", "pattern": [{"lower": "as4590"}]}
+{"label": "BODY", "pattern": [{"lower": "asc"}]}
+{"label": "BODY", "pattern": [{"lower": "ascx12"}]}
+{"label": "BODY", "pattern": [{"lower": "ascx9"}]}
+{"label": "BODY", "pattern": [{"lower": "asi"}, {"lower": "sig"}]}
+{"label": "BODY", "pattern": [{"lower": "asis"}, {"lower": "international"}]}
+{"label": "BODY", "pattern": [{"lower": "aspic"}]}
+{"label": "BODY", "pattern": [{"lower": "asprs"}]}
+{"label": "BODY", "pattern": [{"lower": "astm"}, {"lower": "international"}]}
+{"label": "BODY", "pattern": [{"lower": "ata"}]}
+{"label": "BODY", "pattern": [{"lower": "atis"}]}
+{"label": "BODY", "pattern": [{"lower": "atm"}]}
+{"label": "BODY", "pattern": [{"lower": "autosar"}, {"lower": "development"}, {"lower": "partnership"}]}
+{"label": "BODY", "pattern": [{"lower": "avnu"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "accellera"}]}
+{"label": "BODY", "pattern": [{"lower": "accredited"}, {"lower": "standards"}, {"lower": "committee"}, {"lower": "x12"}]}
+{"label": "BODY", "pattern": [{"lower": "accredited"}, {"lower": "standards"}, {"lower": "committee"}, {"lower": "x9"}]}
+{"label": "BODY", "pattern": [{"lower": "advanced"}, {"lower": "authority"}, {"lower": "format"}]}
+{"label": "BODY", "pattern": [{"lower": "advanced"}, {"lower": "distributed"}, {"lower": "learning"}]}
+{"label": "BODY", "pattern": [{"lower": "advanced"}, {"lower": "switching"}, {"lower": "interconnect"}, {"lower": "sig"}]}
+{"label": "BODY", "pattern": [{"lower": "african"}, {"lower": "regional"}, {"lower": "organization"}, {"lower": "for"}, {"lower": "standardization"}]}
+{"label": "BODY", "pattern": [{"lower": "airbag"}]}
+{"label": "BODY", "pattern": [{"lower": "alliance"}, {"lower": "for"}, {"lower": "telecommunications"}, {"lower": "industry"}, {"lower": "solutions"}]}
+{"label": "BODY", "pattern": [{"lower": "american"}, {"lower": "national"}, {"lower": "standards"}, {"lower": "institute"}]}
+{"label": "BODY", "pattern": [{"lower": "american"}, {"lower": "society"}, {"lower": "for"}, {"lower": "photogrammetry"}, {"lower": "and"}, {"lower": "remote"}, {"lower": "sensing"}]}
+{"label": "BODY", "pattern": [{"lower": "american"}, {"lower": "society"}, {"lower": "for"}, {"lower": "testing"}, {"lower": "and"}, {"lower": "materials"}]}
+{"label": "BODY", "pattern": [{"lower": "anti"}, {"lower": "-"}, {"lower": "phishing"}, {"lower": "working"}, {"lower": "group"}]}
+{"label": "BODY", "pattern": [{"lower": "anti"}, {"lower": "-"}, {"lower": "spyware"}, {"lower": "coalition"}]}
+{"label": "BODY", "pattern": [{"lower": "apache"}, {"lower": "xml"}, {"lower": "project"}]}
+{"label": "BODY", "pattern": [{"lower": "apdex"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "application"}, {"lower": "home"}, {"lower": "initiative"}]}
+{"label": "BODY", "pattern": [{"lower": "application"}, {"lower": "service"}, {"lower": "provider"}, {"lower": "industry"}, {"lower": "consortium"}, {"lower": ","}, {"lower": "inc"}]}
+{"label": "BODY", "pattern": [{"lower": "asia"}, {"lower": "-"}, {"lower": "pacific"}, {"lower": "economic"}, {"lower": "cooperation"}]}
+{"label": "BODY", "pattern": [{"lower": "association"}, {"lower": "connecting"}, {"lower": "electronic"}, {"lower": "industries"}]}
+{"label": "BODY", "pattern": [{"lower": "association"}, {"lower": "management"}, {"lower": "solutions"}]}
+{"label": "BODY", "pattern": [{"lower": "association"}, {"lower": "for"}, {"lower": "automatic"}, {"lower": "identification"}, {"lower": "and"}, {"lower": "mobility"}]}
+{"label": "BODY", "pattern": [{"lower": "association"}, {"lower": "for"}, {"lower": "cooperative"}, {"lower": "operations"}, {"lower": "research"}, {"lower": "and"}, {"lower": "development"}]}
+{"label": "BODY", "pattern": [{"lower": "association"}, {"lower": "for"}, {"lower": "enterprise"}, {"lower": "integration"}]}
+{"label": "BODY", "pattern": [{"lower": "association"}, {"lower": "for"}, {"lower": "information"}, {"lower": "and"}, {"lower": "image"}, {"lower": "management"}]}
+{"label": "BODY", "pattern": [{"lower": "association"}, {"lower": "for"}, {"lower": "retail"}, {"lower": "technology"}, {"lower": "standards"}]}
+{"label": "BODY", "pattern": [{"lower": "association"}, {"lower": "for"}, {"lower": "suppliers"}, {"lower": "of"}, {"lower": "printing"}, {"lower": ","}, {"lower": "publishing"}, {"lower": "and"}, {"lower": "converting"}, {"lower": "technologies"}]}
+{"label": "BODY", "pattern": [{"lower": "association"}, {"lower": "for"}, {"lower": "the"}, {"lower": "advancement"}, {"lower": "of"}, {"lower": "medical"}, {"lower": "instrumentation"}]}
+{"label": "BODY", "pattern": [{"lower": "association"}, {"lower": "of"}, {"lower": "computing"}, {"lower": "machinery"}]}
+{"label": "BODY", "pattern": [{"lower": "association"}, {"lower": "of"}, {"lower": "home"}, {"lower": "appliance"}, {"lower": "manufacturers"}]}
+{"label": "BODY", "pattern": [{"lower": "asymmetric"}, {"lower": "digital"}, {"lower": "subscriber"}, {"lower": "line"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "asynchronous"}, {"lower": "transfer"}, {"lower": "mode"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "audio"}, {"lower": "engineering"}, {"lower": "society"}]}
+{"label": "BODY", "pattern": [{"lower": "australian"}, {"lower": "communications"}, {"lower": "industry"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "automotive"}, {"lower": "industry"}, {"lower": "action"}, {"lower": "group"}]}
+{"label": "BODY", "pattern": [{"lower": "bcdf"}]}
+{"label": "BODY", "pattern": [{"lower": "bda"}]}
+{"label": "BODY", "pattern": [{"lower": "bima"}]}
+{"label": "BODY", "pattern": [{"lower": "birn"}]}
+{"label": "BODY", "pattern": [{"lower": "bpm"}]}
+{"label": "BODY", "pattern": [{"lower": "bpm"}, {"lower": "standards"}, {"lower": "group"}]}
+{"label": "BODY", "pattern": [{"lower": "bpmi"}]}
+{"label": "BODY", "pattern": [{"lower": "bsf"}]}
+{"label": "BODY", "pattern": [{"lower": "bsi"}, {"lower": "global"}]}
+{"label": "BODY", "pattern": [{"lower": "basel"}, {"lower": "convention"}, {"lower": "on"}, {"lower": "the"}, {"lower": "control"}, {"lower": "of"}, {"lower": "transboundary"}, {"lower": "movements"}, {"lower": "of"}, {"lower": "hazardous"}, {"lower": "wastes"}, {"lower": "and"}, {"lower": "their"}, {"lower": "disposal"}]}
+{"label": "BODY", "pattern": [{"lower": "bicsi"}]}
+{"label": "BODY", "pattern": [{"lower": "bioapi"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "bioforge"}]}
+{"label": "BODY", "pattern": [{"lower": "biomedical"}, {"lower": "informatics"}, {"lower": "research"}, {"lower": "network"}]}
+{"label": "BODY", "pattern": [{"lower": "biometric"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "blu"}, {"lower": "-"}, {"lower": "ray"}, {"lower": "disc"}, {"lower": "association"}]}
+{"label": "BODY", "pattern": [{"lower": "bluetooth"}, {"lower": "sig"}]}
+{"label": "BODY", "pattern": [{"lower": "british"}, {"lower": "interactive"}, {"lower": "multimedia"}, {"lower": "association"}]}
+{"label": "BODY", "pattern": [{"lower": "broadband"}, {"lower": "content"}, {"lower": "delivery"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "broadband"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "broadband"}, {"lower": "services"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "buildingsmart"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "buildingsmart"}, {"lower": "international"}, {"lower": "alliance"}, {"lower": "for"}, {"lower": "interoperability"}]}
+{"label": "BODY", "pattern": [{"lower": "business"}, {"lower": "process"}, {"lower": "management"}, {"lower": "initiative"}]}
+{"label": "BODY", "pattern": [{"lower": "cam-1"}]}
+{"label": "BODY", "pattern": [{"lower": "canena"}]}
+{"label": "BODY", "pattern": [{"lower": "cbol"}]}
+{"label": "BODY", "pattern": [{"lower": "ccia"}]}
+{"label": "BODY", "pattern": [{"lower": "ccsds"}]}
+{"label": "BODY", "pattern": [{"lower": "cdisc"}]}
+{"label": "BODY", "pattern": [{"lower": "cdma"}, {"lower": "development"}, {"lower": "group"}]}
+{"label": "BODY", "pattern": [{"lower": "cdsb"}]}
+{"label": "BODY", "pattern": [{"lower": "ce4a"}]}
+{"label": "BODY", "pattern": [{"lower": "cea"}]}
+{"label": "BODY", "pattern": [{"lower": "celf"}]}
+{"label": "BODY", "pattern": [{"lower": "cen"}]}
+{"label": "BODY", "pattern": [{"lower": "cen"}, {"lower": "/"}, {"lower": "iss"}]}
+{"label": "BODY", "pattern": [{"lower": "cenelec"}]}
+{"label": "BODY", "pattern": [{"lower": "censa"}]}
+{"label": "BODY", "pattern": [{"lower": "cgc"}]}
+{"label": "BODY", "pattern": [{"lower": "cgm"}, {"lower": "open"}]}
+{"label": "BODY", "pattern": [{"lower": "ches"}]}
+{"label": "BODY", "pattern": [{"lower": "cidx"}]}
+{"label": "BODY", "pattern": [{"lower": "cie"}]}
+{"label": "BODY", "pattern": [{"lower": "cipa"}]}
+{"label": "BODY", "pattern": [{"lower": "coast"}]}
+{"label": "BODY", "pattern": [{"lower": "copant"}]}
+{"label": "BODY", "pattern": [{"lower": "copras"}]}
+{"label": "BODY", "pattern": [{"lower": "core"}]}
+{"label": "BODY", "pattern": [{"lower": "cpexchange"}]}
+{"label": "BODY", "pattern": [{"lower": "crf"}]}
+{"label": "BODY", "pattern": [{"lower": "csa"}]}
+{"label": "BODY", "pattern": [{"lower": "csia"}]}
+{"label": "BODY", "pattern": [{"lower": "ctia"}]}
+{"label": "BODY", "pattern": [{"lower": "cvc"}]}
+{"label": "BODY", "pattern": [{"lower": "cxp"}]}
+{"label": "BODY", "pattern": [{"lower": "cable"}, {"lower": "labs"}]}
+{"label": "BODY", "pattern": [{"lower": "calendaring"}, {"lower": "and"}, {"lower": "scheduling"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "camera"}, {"lower": "and"}, {"lower": "imaging"}, {"lower": "products"}, {"lower": "association"}]}
+{"label": "BODY", "pattern": [{"lower": "canadian"}, {"lower": "standards"}, {"lower": "association"}]}
+{"label": "BODY", "pattern": [{"lower": "car2car"}, {"lower": "communication"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "cellular"}, {"lower": "telecommunications"}, {"lower": "&"}, {"lower": "internet"}, {"lower": "association"}]}
+{"label": "BODY", "pattern": [{"lower": "chemical"}, {"lower": "industry"}, {"lower": "data"}, {"lower": "exchange"}]}
+{"label": "BODY", "pattern": [{"lower": "climate"}, {"lower": "disclosure"}, {"lower": "standards"}, {"lower": "board"}]}
+{"label": "BODY", "pattern": [{"lower": "climate"}, {"lower": "savers"}, {"lower": "computing"}, {"lower": "initiative"}]}
+{"label": "BODY", "pattern": [{"lower": "clinical"}, {"lower": "data"}, {"lower": "interchange"}, {"lower": "standards"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "clinical"}, {"lower": "groupware"}, {"lower": "collaborative"}]}
+{"label": "BODY", "pattern": [{"lower": "cloud"}, {"lower": "communications"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "cloud"}, {"lower": "computing"}, {"lower": "interoperability"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "cloud"}, {"lower": "security"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "cloudy"}, {"lower": "integration"}]}
+{"label": "BODY", "pattern": [{"lower": "coaxpress"}]}
+{"label": "BODY", "pattern": [{"lower": "coalition"}, {"lower": "for"}, {"lower": "healthcare"}, {"lower": "estandards"}, {"lower": "inc."}]}
+{"label": "BODY", "pattern": [{"lower": "codeplex"}, {"lower": "foundation"}]}
+{"label": "BODY", "pattern": [{"lower": "cognea"}]}
+{"label": "BODY", "pattern": [{"lower": "cognitive"}, {"lower": "networking"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "collaborative"}, {"lower": "electronic"}, {"lower": "notebook"}, {"lower": "systems"}, {"lower": "association"}]}
+{"label": "BODY", "pattern": [{"lower": "collaborative"}, {"lower": "labeling"}, {"lower": "and"}, {"lower": "appliance"}, {"lower": "standards"}, {"lower": "program"}]}
+{"label": "BODY", "pattern": [{"lower": "comcare"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "commerce"}, {"lower": "xml"}, {"lower": "resource"}]}
+{"label": "BODY", "pattern": [{"lower": "commercenet"}]}
+{"label": "BODY", "pattern": [{"lower": "communications"}, {"lower": "alliance"}, {"lower": "ltd"}]}
+{"label": "BODY", "pattern": [{"lower": "communications"}, {"lower": "platform"}, {"lower": "trade"}, {"lower": "association"}]}
+{"label": "BODY", "pattern": [{"lower": "comptia"}]}
+{"label": "BODY", "pattern": [{"lower": "compellent"}]}
+{"label": "BODY", "pattern": [{"lower": "compliance"}, {"lower": "consortium"}, {"lower": "corporation"}]}
+{"label": "BODY", "pattern": [{"lower": "componenet"}, {"lower": "vendor"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "computer"}, {"lower": "graphics"}, {"lower": "metafile"}, {"lower": "open"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "computer"}, {"lower": "and"}, {"lower": "communications"}, {"lower": "industry"}, {"lower": "association"}]}
+{"label": "BODY", "pattern": [{"lower": "computing"}, {"lower": "technology"}, {"lower": "industry"}, {"lower": "association"}]}
+{"label": "BODY", "pattern": [{"lower": "connected"}, {"lower": "media"}, {"lower": "experiences"}, {"lower": ","}, {"lower": "inc."}]}
+{"label": "BODY", "pattern": [{"lower": "consortium"}, {"lower": "for"}, {"lower": "advanced"}, {"lower": "manufacturing"}, {"lower": "international"}]}
+{"label": "BODY", "pattern": [{"lower": "consortium"}, {"lower": "for"}, {"lower": "the"}, {"lower": "barcode"}, {"lower": "of"}, {"lower": "life"}]}
+{"label": "BODY", "pattern": [{"lower": "consotrium"}, {"lower": "of"}, {"lower": "anti"}, {"lower": "-"}, {"lower": "spyware"}, {"lower": "technology"}, {"lower": "vendors"}]}
+{"label": "BODY", "pattern": [{"lower": "consultative"}, {"lower": "committee"}, {"lower": "for"}, {"lower": "space"}, {"lower": "data"}, {"lower": "systems"}]}
+{"label": "BODY", "pattern": [{"lower": "consumer"}, {"lower": "electronics"}, {"lower": "association"}]}
+{"label": "BODY", "pattern": [{"lower": "consumer"}, {"lower": "electronics"}, {"lower": "linux"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "consumer"}, {"lower": "electronics"}, {"lower": "for"}, {"lower": "automotive"}]}
+{"label": "BODY", "pattern": [{"lower": "consumer"}, {"lower": "goods"}, {"lower": "and"}, {"lower": "construction"}]}
+{"label": "BODY", "pattern": [{"lower": "content"}, {"lower": "reference"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "continua"}, {"lower": "health"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "controlnet"}, {"lower": "international"}]}
+{"label": "BODY", "pattern": [{"lower": "cooperation"}, {"lower": "platform"}, {"lower": "for"}, {"lower": "research"}, {"lower": "and"}, {"lower": "standards"}]}
+{"label": "BODY", "pattern": [{"lower": "coral"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "council"}, {"lower": "for"}, {"lower": "harmonization"}, {"lower": "of"}, {"lower": "electrotechnical"}, {"lower": "standardization"}, {"lower": "of"}, {"lower": "the"}, {"lower": "nations"}, {"lower": "of"}, {"lower": "the"}, {"lower": "americas"}]}
+{"label": "BODY", "pattern": [{"lower": "council"}, {"lower": "of"}, {"lower": "registrars"}]}
+{"label": "BODY", "pattern": [{"lower": "cyber"}, {"lower": "security"}, {"lower": "industry"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "daml"}]}
+{"label": "BODY", "pattern": [{"lower": "darpa"}, {"lower": "agent"}, {"lower": "markup"}, {"lower": "language"}]}
+{"label": "BODY", "pattern": [{"lower": "dash7"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "davic"}]}
+{"label": "BODY", "pattern": [{"lower": "dci"}]}
+{"label": "BODY", "pattern": [{"lower": "dcml"}]}
+{"label": "BODY", "pattern": [{"lower": "ddex"}]}
+{"label": "BODY", "pattern": [{"lower": "ddr"}, {"lower": "phy"}, {"lower": "interface"}]}
+{"label": "BODY", "pattern": [{"lower": "ddwg"}]}
+{"label": "BODY", "pattern": [{"lower": "dece"}]}
+{"label": "BODY", "pattern": [{"lower": "dect"}]}
+{"label": "BODY", "pattern": [{"lower": "dfi"}]}
+{"label": "BODY", "pattern": [{"lower": "dicom"}]}
+{"label": "BODY", "pattern": [{"lower": "dif"}]}
+{"label": "BODY", "pattern": [{"lower": "dig"}, {"lower": "64"}]}
+{"label": "BODY", "pattern": [{"lower": "din"}]}
+{"label": "BODY", "pattern": [{"lower": "din"}, {"lower": "en"}, {"lower": "iso"}]}
+{"label": "BODY", "pattern": [{"lower": "disa"}]}
+{"label": "BODY", "pattern": [{"lower": "dke"}]}
+{"label": "BODY", "pattern": [{"lower": "dlms"}, {"lower": "user"}, {"lower": "association"}]}
+{"label": "BODY", "pattern": [{"lower": "dlna"}]}
+{"label": "BODY", "pattern": [{"lower": "dmsc"}]}
+{"label": "BODY", "pattern": [{"lower": "dns"}]}
+{"label": "BODY", "pattern": [{"lower": "dodssp"}]}
+{"label": "BODY", "pattern": [{"lower": "doe"}]}
+{"label": "BODY", "pattern": [{"lower": "dosa"}]}
+{"label": "BODY", "pattern": [{"lower": "drm"}]}
+{"label": "BODY", "pattern": [{"lower": "drsg"}]}
+{"label": "BODY", "pattern": [{"lower": "dsi"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "dsl"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "dvb"}]}
+{"label": "BODY", "pattern": [{"lower": "dvd"}, {"lower": "cca"}]}
+{"label": "BODY", "pattern": [{"lower": "dvd"}, {"lower": "copy"}, {"lower": "control"}, {"lower": "association"}]}
+{"label": "BODY", "pattern": [{"lower": "dvd"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "dvd"}, {"lower": "rewritable"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "dvd+rw"}]}
+{"label": "BODY", "pattern": [{"lower": "dwa"}]}
+{"label": "BODY", "pattern": [{"lower": "daisy"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "data"}, {"lower": "center"}, {"lower": "markup"}, {"lower": "language"}, {"lower": "organization"}]}
+{"label": "BODY", "pattern": [{"lower": "data"}, {"lower": "interchange"}, {"lower": "standards"}, {"lower": "association"}]}
+{"label": "BODY", "pattern": [{"lower": "dataportability"}, {"lower": "project"}]}
+{"label": "BODY", "pattern": [{"lower": "debian"}, {"lower": "project"}]}
+{"label": "BODY", "pattern": [{"lower": "demand"}, {"lower": "reponse"}, {"lower": "and"}, {"lower": "smart"}, {"lower": "grid"}, {"lower": "coalition"}]}
+{"label": "BODY", "pattern": [{"lower": "department"}, {"lower": "of"}, {"lower": "defense"}, {"lower": "single"}, {"lower": "stock"}, {"lower": "point"}, {"lower": "for"}, {"lower": "military"}, {"lower": "specifications"}, {"lower": ","}, {"lower": "standards"}, {"lower": "and"}, {"lower": "related"}, {"lower": "publications"}]}
+{"label": "BODY", "pattern": [{"lower": "department"}, {"lower": "of"}, {"lower": "energy"}]}
+{"label": "BODY", "pattern": [{"lower": "desktop"}, {"lower": "linux"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "digital"}, {"lower": "audio"}, {"lower": "visual"}, {"lower": "counsel"}]}
+{"label": "BODY", "pattern": [{"lower": "digital"}, {"lower": "cinema"}, {"lower": "initiatives"}, {"lower": ","}, {"lower": "llc"}]}
+{"label": "BODY", "pattern": [{"lower": "digital"}, {"lower": "data"}, {"lower": "exchange"}]}
+{"label": "BODY", "pattern": [{"lower": "digital"}, {"lower": "display"}, {"lower": "working"}, {"lower": "group"}]}
+{"label": "BODY", "pattern": [{"lower": "digital"}, {"lower": "enhanced"}, {"lower": "cordless"}, {"lower": "telecommunications"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "digital"}, {"lower": "entertainment"}, {"lower": "contect"}, {"lower": "ecosystem"}]}
+{"label": "BODY", "pattern": [{"lower": "digital"}, {"lower": "imaging"}, {"lower": "and"}, {"lower": "communications"}, {"lower": "in"}, {"lower": "medicine"}]}
+{"label": "BODY", "pattern": [{"lower": "digital"}, {"lower": "interoperability"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "digital"}, {"lower": "living"}, {"lower": "network"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "digital"}, {"lower": "radio"}, {"lower": "mondiale"}]}
+{"label": "BODY", "pattern": [{"lower": "digital"}, {"lower": "video"}, {"lower": "broadcasting"}, {"lower": "project"}]}
+{"label": "BODY", "pattern": [{"lower": "digital"}, {"lower": "watermarking"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "digitaleurope"}]}
+{"label": "BODY", "pattern": [{"lower": "dimensional"}, {"lower": "metrology"}, {"lower": "standards"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "distributed"}, {"lower": "management"}, {"lower": "taskforce"}, {"lower": ","}, {"lower": "inc."}]}
+{"label": "BODY", "pattern": [{"lower": "distributed"}, {"lower": "-"}, {"lower": "power"}, {"lower": "open"}, {"lower": "standards"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "dossia"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "dublin"}, {"lower": "core"}, {"lower": "metadata"}, {"lower": "initiative"}]}
+{"label": "BODY", "pattern": [{"lower": "eacs"}]}
+{"label": "BODY", "pattern": [{"lower": "ebl"}]}
+{"label": "BODY", "pattern": [{"lower": "ebrc"}]}
+{"label": "BODY", "pattern": [{"lower": "ebu"}]}
+{"label": "BODY", "pattern": [{"lower": "ecbs"}]}
+{"label": "BODY", "pattern": [{"lower": "echonet"}]}
+{"label": "BODY", "pattern": [{"lower": "ecma"}]}
+{"label": "BODY", "pattern": [{"lower": "eda"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "edi"}, {"lower": "forum"}, {"lower": "for"}, {"lower": "companies"}, {"lower": "with"}, {"lower": "interest"}, {"lower": "in"}, {"lower": "computing"}, {"lower": "and"}, {"lower": "electronics"}]}
+{"label": "BODY", "pattern": [{"lower": "edifice"}]}
+{"label": "BODY", "pattern": [{"lower": "eema"}]}
+{"label": "BODY", "pattern": [{"lower": "eembc"}]}
+{"label": "BODY", "pattern": [{"lower": "ehr"}, {"lower": "association"}]}
+{"label": "BODY", "pattern": [{"lower": "eia"}]}
+{"label": "BODY", "pattern": [{"lower": "eic"}]}
+{"label": "BODY", "pattern": [{"lower": "emc-3d"}]}
+{"label": "BODY", "pattern": [{"lower": "emerge"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "epcglobal"}]}
+{"label": "BODY", "pattern": [{"lower": "esta"}]}
+{"label": "BODY", "pattern": [{"lower": "etis"}]}
+{"label": "BODY", "pattern": [{"lower": "etsi"}]}
+{"label": "BODY", "pattern": [{"lower": "eurorec"}, {"lower": "institute"}]}
+{"label": "BODY", "pattern": [{"lower": "eurosmart"}]}
+{"label": "BODY", "pattern": [{"lower": "eclipse"}, {"lower": "foundation"}]}
+{"label": "BODY", "pattern": [{"lower": "electrical"}, {"lower": "engineering"}, {"lower": "("}, {"lower": "w/o"}, {"lower": "telecommunication"}, {"lower": ")"}]}
+{"label": "BODY", "pattern": [{"lower": "electronic"}, {"lower": "business"}, {"lower": "xml"}, {"lower": "initiative"}]}
+{"label": "BODY", "pattern": [{"lower": "electronic"}, {"lower": "commerce"}, {"lower": "promotion"}, {"lower": "council"}, {"lower": "of"}, {"lower": "japan"}]}
+{"label": "BODY", "pattern": [{"lower": "electronic"}, {"lower": "frontier"}, {"lower": "foundation"}]}
+{"label": "BODY", "pattern": [{"lower": "electronic"}, {"lower": "health"}, {"lower": "records"}, {"lower": "association"}]}
+{"label": "BODY", "pattern": [{"lower": "electronic"}, {"lower": "industries"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "embedded"}, {"lower": "linux"}, {"lower": "conosortium"}]}
+{"label": "BODY", "pattern": [{"lower": "embedded"}, {"lower": "microprocessor"}, {"lower": "benchmark"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "emdebian"}, {"lower": "project"}]}
+{"label": "BODY", "pattern": [{"lower": "emergency"}, {"lower": "interoperability"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "enocean"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "energistics"}, {"lower": ","}, {"lower": "the"}, {"lower": "energy"}, {"lower": "standards"}, {"lower": "resource"}, {"lower": "centre"}]}
+{"label": "BODY", "pattern": [{"lower": "energy"}, {"lower": "conservation"}, {"lower": "and"}, {"lower": "home"}, {"lower": "network"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "energy"}, {"lower": "star"}]}
+{"label": "BODY", "pattern": [{"lower": "enhanced"}, {"lower": "business"}, {"lower": "reporting"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "enterprise"}, {"lower": "grid"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "entertainment"}, {"lower": "services"}, {"lower": "&"}, {"lower": "technology"}, {"lower": "association"}]}
+{"label": "BODY", "pattern": [{"lower": "ethernet"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "euro"}, {"lower": "asian"}, {"lower": "council"}, {"lower": "for"}, {"lower": "standardization"}]}
+{"label": "BODY", "pattern": [{"lower": "eurorec"}]}
+{"label": "BODY", "pattern": [{"lower": "european"}, {"lower": "broadcasting"}, {"lower": "union"}]}
+{"label": "BODY", "pattern": [{"lower": "european"}, {"lower": "committee"}, {"lower": "for"}, {"lower": "banking"}, {"lower": "standards"}]}
+{"label": "BODY", "pattern": [{"lower": "european"}, {"lower": "committee"}, {"lower": "for"}, {"lower": "electrotechnical"}, {"lower": "standardization"}]}
+{"label": "BODY", "pattern": [{"lower": "european"}, {"lower": "committee"}, {"lower": "for"}, {"lower": "standarization"}]}
+{"label": "BODY", "pattern": [{"lower": "european"}, {"lower": "computer"}, {"lower": "manufacturers"}, {"lower": "association"}]}
+{"label": "BODY", "pattern": [{"lower": "european"}, {"lower": "cooperation"}, {"lower": "for"}, {"lower": "space"}, {"lower": "standardization"}]}
+{"label": "BODY", "pattern": [{"lower": "european"}, {"lower": "electronic"}, {"lower": "messaging"}, {"lower": "association"}]}
+{"label": "BODY", "pattern": [{"lower": "european"}, {"lower": "forum"}, {"lower": "for"}, {"lower": "energy"}, {"lower": "business"}, {"lower": "information"}, {"lower": "exchange"}]}
+{"label": "BODY", "pattern": [{"lower": "european"}, {"lower": "information"}, {"lower": "and"}, {"lower": "communication"}, {"lower": "technology"}, {"lower": "industry"}, {"lower": "association"}]}
+{"label": "BODY", "pattern": [{"lower": "european"}, {"lower": "photonic"}, {"lower": "industry"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "european"}, {"lower": "smart"}, {"lower": "card"}, {"lower": "industry"}, {"lower": "association"}]}
+{"label": "BODY", "pattern": [{"lower": "european"}, {"lower": "telecommunications"}, {"lower": "informatics"}, {"lower": "services"}]}
+{"label": "BODY", "pattern": [{"lower": "european"}, {"lower": "telecommunications"}, {"lower": "standards"}, {"lower": "institute"}]}
+{"label": "BODY", "pattern": [{"lower": "fcia"}]}
+{"label": "BODY", "pattern": [{"lower": "fda"}]}
+{"label": "BODY", "pattern": [{"lower": "fiatech"}]}
+{"label": "BODY", "pattern": [{"lower": "fipa"}]}
+{"label": "BODY", "pattern": [{"lower": "fosi"}]}
+{"label": "BODY", "pattern": [{"lower": "fsg"}]}
+{"label": "BODY", "pattern": [{"lower": "fstc"}]}
+{"label": "BODY", "pattern": [{"lower": "ftp"}]}
+{"label": "BODY", "pattern": [{"lower": "ftth"}, {"lower": "council"}, {"lower": "europe"}]}
+{"label": "BODY", "pattern": [{"lower": "family"}, {"lower": "online"}, {"lower": "safety"}, {"lower": "institute"}]}
+{"label": "BODY", "pattern": [{"lower": "femto"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "fibre"}, {"lower": "channel"}, {"lower": "industry"}, {"lower": "association"}]}
+{"label": "BODY", "pattern": [{"lower": "filetek"}, {"lower": ","}, {"lower": "inc."}]}
+{"label": "BODY", "pattern": [{"lower": "financial"}, {"lower": "services"}, {"lower": "technology"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "flexray"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "flextech"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "foundation"}, {"lower": "for"}, {"lower": "intelligent"}, {"lower": "physical"}, {"lower": "agents"}]}
+{"label": "BODY", "pattern": [{"lower": "free"}, {"lower": "standards"}, {"lower": "group"}]}
+{"label": "BODY", "pattern": [{"lower": "geia"}]}
+{"label": "BODY", "pattern": [{"lower": "genivi"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "giais"}]}
+{"label": "BODY", "pattern": [{"lower": "giif"}]}
+{"label": "BODY", "pattern": [{"lower": "gml"}]}
+{"label": "BODY", "pattern": [{"lower": "gnu"}, {"lower": "project"}]}
+{"label": "BODY", "pattern": [{"lower": "go"}, {"lower": "-"}, {"lower": "mvip"}]}
+{"label": "BODY", "pattern": [{"lower": "gs1"}, {"lower": "uk"}]}
+{"label": "BODY", "pattern": [{"lower": "gs1"}, {"lower": "us"}]}
+{"label": "BODY", "pattern": [{"lower": "gsa"}]}
+{"label": "BODY", "pattern": [{"lower": "gsdi"}]}
+{"label": "BODY", "pattern": [{"lower": "gsm"}, {"lower": "association"}]}
+{"label": "BODY", "pattern": [{"lower": "gwac"}]}
+{"label": "BODY", "pattern": [{"lower": "gaming"}, {"lower": "standards"}, {"lower": "association"}]}
+{"label": "BODY", "pattern": [{"lower": "gated"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "gesi"}]}
+{"label": "BODY", "pattern": [{"lower": "gelato"}, {"lower": "federation"}]}
+{"label": "BODY", "pattern": [{"lower": "genomic"}, {"lower": "standards"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "german"}, {"lower": "institute"}, {"lower": "for"}, {"lower": "standardization"}]}
+{"label": "BODY", "pattern": [{"lower": "global"}, {"lower": "infrastructure"}, {"lower": "alliance"}, {"lower": "for"}, {"lower": "internet"}, {"lower": "safety"}]}
+{"label": "BODY", "pattern": [{"lower": "global"}, {"lower": "integrated"}, {"lower": "services"}, {"lower": "digital"}, {"lower": "network"}, {"lower": "industry"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "global"}, {"lower": "inventures"}]}
+{"label": "BODY", "pattern": [{"lower": "global"}, {"lower": "organization"}, {"lower": "for"}, {"lower": "multi"}, {"lower": "-"}, {"lower": "vendor"}, {"lower": "integration"}, {"lower": "protocol"}]}
+{"label": "BODY", "pattern": [{"lower": "global"}, {"lower": "semiconductor"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "global"}, {"lower": "spatial"}, {"lower": "data"}, {"lower": "infrastructure"}]}
+{"label": "BODY", "pattern": [{"lower": "global"}, {"lower": "standards"}, {"lower": "collaboration"}]}
+{"label": "BODY", "pattern": [{"lower": "global"}, {"lower": "system"}, {"lower": "for"}, {"lower": "mobile"}, {"lower": "association"}]}
+{"label": "BODY", "pattern": [{"lower": "global"}, {"lower": "e"}, {"lower": "-"}, {"lower": "sustainability"}, {"lower": "initiative"}]}
+{"label": "BODY", "pattern": [{"lower": "globalplatform"}, {"lower": ","}, {"lower": "inc."}]}
+{"label": "BODY", "pattern": [{"lower": "globus"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "government"}, {"lower": "electronics"}, {"lower": "&"}, {"lower": "information"}, {"lower": "technology"}, {"lower": "association"}]}
+{"label": "BODY", "pattern": [{"lower": "green"}, {"lower": "grid"}]}
+{"label": "BODY", "pattern": [{"lower": "greenhouse"}, {"lower": "gas"}, {"lower": "protocol"}]}
+{"label": "BODY", "pattern": [{"lower": "grid"}, {"lower": "-"}, {"lower": "interop"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "gridecon"}]}
+{"label": "BODY", "pattern": [{"lower": "gridwise"}, {"lower": "architecture"}, {"lower": "council"}]}
+{"label": "BODY", "pattern": [{"lower": "hana"}]}
+{"label": "BODY", "pattern": [{"lower": "havi"}]}
+{"label": "BODY", "pattern": [{"lower": "hdmi"}, {"lower": "licensing"}, {"lower": ","}, {"lower": "llc"}]}
+{"label": "BODY", "pattern": [{"lower": "hdcctv"}]}
+{"label": "BODY", "pattern": [{"lower": "hgi"}]}
+{"label": "BODY", "pattern": [{"lower": "hibcc"}]}
+{"label": "BODY", "pattern": [{"lower": "himss"}]}
+{"label": "BODY", "pattern": [{"lower": "hitsp"}]}
+{"label": "BODY", "pattern": [{"lower": "hl7"}]}
+{"label": "BODY", "pattern": [{"lower": "hr"}, {"lower": "-"}, {"lower": "xml"}]}
+{"label": "BODY", "pattern": [{"lower": "hr"}, {"lower": "-"}, {"lower": "xml"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "http"}]}
+{"label": "BODY", "pattern": [{"lower": "https"}]}
+{"label": "BODY", "pattern": [{"lower": "health"}, {"lower": "industry"}, {"lower": "business"}, {"lower": "communications"}, {"lower": "council"}]}
+{"label": "BODY", "pattern": [{"lower": "health"}, {"lower": "information"}, {"lower": "technology"}, {"lower": "standards"}, {"lower": "panel"}]}
+{"label": "BODY", "pattern": [{"lower": "health"}, {"lower": "level"}, {"lower": "seven"}]}
+{"label": "BODY", "pattern": [{"lower": "healthcare"}, {"lower": "information"}, {"lower": "and"}, {"lower": "management"}, {"lower": "systems"}, {"lower": "society"}]}
+{"label": "BODY", "pattern": [{"lower": "high"}, {"lower": "-"}, {"lower": "definition"}, {"lower": "audop"}, {"lower": "-"}, {"lower": "video"}, {"lower": "network"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "home"}, {"lower": "audio"}, {"lower": "visual"}, {"lower": "organization"}]}
+{"label": "BODY", "pattern": [{"lower": "home"}, {"lower": "gateway"}, {"lower": "initiative"}]}
+{"label": "BODY", "pattern": [{"lower": "homegrid"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "homepna"}]}
+{"label": "BODY", "pattern": [{"lower": "homeplug"}, {"lower": "powerline"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "homerf"}, {"lower": "working"}, {"lower": "group"}]}
+{"label": "BODY", "pattern": [{"lower": "hotlinks"}, {"lower": "protocol"}]}
+{"label": "BODY", "pattern": [{"lower": "hypertransport"}, {"lower": "technology"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "i3c"}]}
+{"label": "BODY", "pattern": [{"lower": "iab"}]}
+{"label": "BODY", "pattern": [{"lower": "iac"}]}
+{"label": "BODY", "pattern": [{"lower": "iai"}]}
+{"label": "BODY", "pattern": [{"lower": "iasb"}]}
+{"label": "BODY", "pattern": [{"lower": "ica"}]}
+{"label": "BODY", "pattern": [{"lower": "icann"}, {"lower": "-"}, {"lower": "protocol"}, {"lower": "supporting"}, {"lower": "organization"}]}
+{"label": "BODY", "pattern": [{"lower": "icc"}]}
+{"label": "BODY", "pattern": [{"lower": "ices"}]}
+{"label": "BODY", "pattern": [{"lower": "ich"}]}
+{"label": "BODY", "pattern": [{"lower": "icroa"}]}
+{"label": "BODY", "pattern": [{"lower": "ict"}, {"lower": "standards"}, {"lower": "board"}]}
+{"label": "BODY", "pattern": [{"lower": "ictsb"}]}
+{"label": "BODY", "pattern": [{"lower": "idealliance"}]}
+{"label": "BODY", "pattern": [{"lower": "idema"}]}
+{"label": "BODY", "pattern": [{"lower": "idpf"}]}
+{"label": "BODY", "pattern": [{"lower": "iea"}]}
+{"label": "BODY", "pattern": [{"lower": "iec"}]}
+{"label": "BODY", "pattern": [{"lower": "ieee"}]}
+{"label": "BODY", "pattern": [{"lower": "ieee"}, {"lower": "computer"}, {"lower": "society"}]}
+{"label": "BODY", "pattern": [{"lower": "ieee"}, {"lower": "industry"}, {"lower": "standards"}, {"lower": "and"}, {"lower": "technology"}, {"lower": "organization"}]}
+{"label": "BODY", "pattern": [{"lower": "ieeecs"}]}
+{"label": "BODY", "pattern": [{"lower": "iest"}]}
+{"label": "BODY", "pattern": [{"lower": "ietf"}]}
+{"label": "BODY", "pattern": [{"lower": "ifast"}]}
+{"label": "BODY", "pattern": [{"lower": "ifip"}]}
+{"label": "BODY", "pattern": [{"lower": "ifsf"}]}
+{"label": "BODY", "pattern": [{"lower": "ihe"}]}
+{"label": "BODY", "pattern": [{"lower": "ihtsdo"}]}
+{"label": "BODY", "pattern": [{"lower": "iia"}]}
+{"label": "BODY", "pattern": [{"lower": "iipc"}]}
+{"label": "BODY", "pattern": [{"lower": "imc"}]}
+{"label": "BODY", "pattern": [{"lower": "imda"}]}
+{"label": "BODY", "pattern": [{"lower": "ims"}]}
+{"label": "BODY", "pattern": [{"lower": "ims"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "ims"}, {"lower": "global"}, {"lower": "learning"}, {"lower": "consortium"}, {"lower": ","}, {"lower": "inc."}]}
+{"label": "BODY", "pattern": [{"lower": "imtc"}]}
+{"label": "BODY", "pattern": [{"lower": "imts"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "incits"}]}
+{"label": "BODY", "pattern": [{"lower": "ipc"}]}
+{"label": "BODY", "pattern": [{"lower": "ipl"}]}
+{"label": "BODY", "pattern": [{"lower": "ipso"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "iptc"}]}
+{"label": "BODY", "pattern": [{"lower": "isa"}]}
+{"label": "BODY", "pattern": [{"lower": "isacc"}]}
+{"label": "BODY", "pattern": [{"lower": "isc"}]}
+{"label": "BODY", "pattern": [{"lower": "isdn"}]}
+{"label": "BODY", "pattern": [{"lower": "isec"}]}
+{"label": "BODY", "pattern": [{"lower": "isf"}]}
+{"label": "BODY", "pattern": [{"lower": "isma"}]}
+{"label": "BODY", "pattern": [{"lower": "iso"}]}
+{"label": "BODY", "pattern": [{"lower": "isoc"}]}
+{"label": "BODY", "pattern": [{"lower": "isto"}]}
+{"label": "BODY", "pattern": [{"lower": "istpa"}]}
+{"label": "BODY", "pattern": [{"lower": "it"}, {"lower": "service"}, {"lower": "management"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "ita"}]}
+{"label": "BODY", "pattern": [{"lower": "itac"}]}
+{"label": "BODY", "pattern": [{"lower": "itic"}]}
+{"label": "BODY", "pattern": [{"lower": "itu"}]}
+{"label": "BODY", "pattern": [{"lower": "ivi"}, {"lower": "foundation"}]}
+{"label": "BODY", "pattern": [{"lower": "incommon"}, {"lower": "federation"}]}
+{"label": "BODY", "pattern": [{"lower": "industry"}, {"lower": "advisory"}, {"lower": "council"}]}
+{"label": "BODY", "pattern": [{"lower": "information"}, {"lower": "security"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "information"}, {"lower": "technology"}, {"lower": "industry"}, {"lower": "council"}]}
+{"label": "BODY", "pattern": [{"lower": "information"}, {"lower": "and"}, {"lower": "communications"}, {"lower": "technology"}, {"lower": "standards"}, {"lower": "advisory"}, {"lower": "council"}, {"lower": "of"}, {"lower": "canada"}]}
+{"label": "BODY", "pattern": [{"lower": "infrared"}, {"lower": "data"}, {"lower": "association"}]}
+{"label": "BODY", "pattern": [{"lower": "inifiniband"}, {"lower": "trade"}, {"lower": "association"}]}
+{"label": "BODY", "pattern": [{"lower": "initiative"}, {"lower": "for"}, {"lower": "open"}, {"lower": "authentication"}]}
+{"label": "BODY", "pattern": [{"lower": "innovation"}, {"lower": "value"}, {"lower": "institute"}]}
+{"label": "BODY", "pattern": [{"lower": "institute"}, {"lower": "of"}, {"lower": "electrical"}, {"lower": "and"}, {"lower": "electronics"}, {"lower": "engineers"}]}
+{"label": "BODY", "pattern": [{"lower": "institute"}, {"lower": "of"}, {"lower": "electronic"}, {"lower": "and"}, {"lower": "electrical"}, {"lower": "engineers"}]}
+{"label": "BODY", "pattern": [{"lower": "institute"}, {"lower": "of"}, {"lower": "enviromental"}, {"lower": "sciences"}, {"lower": "and"}, {"lower": "technology"}]}
+{"label": "BODY", "pattern": [{"lower": "instruments"}]}
+{"label": "BODY", "pattern": [{"lower": "integrating"}, {"lower": "healthcare"}, {"lower": "enterprise"}]}
+{"label": "BODY", "pattern": [{"lower": "interforum"}]}
+{"label": "BODY", "pattern": [{"lower": "international"}, {"lower": "committee"}, {"lower": "for"}, {"lower": "information"}, {"lower": "technology"}, {"lower": "standards"}]}
+{"label": "BODY", "pattern": [{"lower": "interactive"}, {"lower": "advertising"}, {"lower": "bureau"}]}
+{"label": "BODY", "pattern": [{"lower": "interchangeable"}, {"lower": "virtual"}, {"lower": "instruments"}]}
+{"label": "BODY", "pattern": [{"lower": "intergovernmental"}, {"lower": "panel"}, {"lower": "of"}, {"lower": "climate"}, {"lower": "change"}]}
+{"label": "BODY", "pattern": [{"lower": "international"}, {"lower": "accounting"}, {"lower": "standards"}, {"lower": "board"}]}
+{"label": "BODY", "pattern": [{"lower": "international"}, {"lower": "alliance"}, {"lower": "for"}, {"lower": "interoperability"}]}
+{"label": "BODY", "pattern": [{"lower": "international"}, {"lower": "carbon"}, {"lower": "reduction"}, {"lower": "and"}, {"lower": "offset"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "international"}, {"lower": "code"}, {"lower": "council"}]}
+{"label": "BODY", "pattern": [{"lower": "international"}, {"lower": "commision"}, {"lower": "on"}, {"lower": "illumination"}]}
+{"label": "BODY", "pattern": [{"lower": "international"}, {"lower": "communications"}, {"lower": "association"}]}
+{"label": "BODY", "pattern": [{"lower": "international"}, {"lower": "conference"}, {"lower": "on"}, {"lower": "harmonisation"}, {"lower": "of"}, {"lower": "technical"}]}
+{"label": "BODY", "pattern": [{"lower": "international"}, {"lower": "cooperation"}, {"lower": "for"}, {"lower": "education"}, {"lower": "about"}, {"lower": "standardization"}]}
+{"label": "BODY", "pattern": [{"lower": "international"}, {"lower": "digital"}, {"lower": "enterprise"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "international"}, {"lower": "digital"}, {"lower": "publishing"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "international"}, {"lower": "disk"}, {"lower": "drive"}, {"lower": "equipment"}, {"lower": "and"}, {"lower": "materials"}, {"lower": "association"}]}
+{"label": "BODY", "pattern": [{"lower": "international"}, {"lower": "electronics"}, {"lower": "manufacturing"}, {"lower": "initiative"}]}
+{"label": "BODY", "pattern": [{"lower": "international"}, {"lower": "electrotechnical"}, {"lower": "commision"}]}
+{"label": "BODY", "pattern": [{"lower": "international"}, {"lower": "electrotechnical"}, {"lower": "commission"}]}
+{"label": "BODY", "pattern": [{"lower": "international"}, {"lower": "energy"}, {"lower": "agency"}]}
+{"label": "BODY", "pattern": [{"lower": "international"}, {"lower": "federation"}, {"lower": "for"}, {"lower": "information"}, {"lower": "processing"}]}
+{"label": "BODY", "pattern": [{"lower": "international"}, {"lower": "forecourts"}, {"lower": "standards"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "international"}, {"lower": "forum"}, {"lower": "on"}, {"lower": "ansi31"}, {"lower": "standards"}, {"lower": "technology"}]}
+{"label": "BODY", "pattern": [{"lower": "international"}, {"lower": "health"}, {"lower": "terminology"}, {"lower": "standards"}, {"lower": "development"}, {"lower": "organizations"}]}
+{"label": "BODY", "pattern": [{"lower": "international"}, {"lower": "imaging"}, {"lower": "industry"}, {"lower": "association"}]}
+{"label": "BODY", "pattern": [{"lower": "international"}, {"lower": "information"}, {"lower": "systems"}, {"lower": "security"}, {"lower": "certification"}, {"lower": "consortium"}, {"lower": ","}, {"lower": "inc."}]}
+{"label": "BODY", "pattern": [{"lower": "international"}, {"lower": "internet"}, {"lower": "preservation"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "international"}, {"lower": "multimedia"}, {"lower": "telecommunication"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "international"}, {"lower": "organization"}, {"lower": "for"}, {"lower": "standardization"}]}
+{"label": "BODY", "pattern": [{"lower": "international"}, {"lower": "press"}, {"lower": "telecommunications"}, {"lower": "council"}]}
+{"label": "BODY", "pattern": [{"lower": "international"}, {"lower": "security"}, {"lower": "trust"}, {"lower": "&"}, {"lower": "privacy"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "international"}, {"lower": "society"}, {"lower": "of"}, {"lower": "automation"}]}
+{"label": "BODY", "pattern": [{"lower": "international"}, {"lower": "space"}, {"lower": "elevator"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "international"}, {"lower": "telecommunication"}, {"lower": "union"}]}
+{"label": "BODY", "pattern": [{"lower": "international"}, {"lower": "telework"}, {"lower": "association"}, {"lower": "and"}, {"lower": "council"}]}
+{"label": "BODY", "pattern": [{"lower": "internet"}, {"lower": "2"}]}
+{"label": "BODY", "pattern": [{"lower": "internet"}, {"lower": "corporation"}, {"lower": "for"}, {"lower": "assigned"}, {"lower": "names"}, {"lower": "and"}, {"lower": "numbers"}]}
+{"label": "BODY", "pattern": [{"lower": "internet"}, {"lower": "engineering"}, {"lower": "task"}, {"lower": "force"}]}
+{"label": "BODY", "pattern": [{"lower": "internet"}, {"lower": "industry"}, {"lower": "association"}]}
+{"label": "BODY", "pattern": [{"lower": "internet"}, {"lower": "mail"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "internet"}, {"lower": "media"}, {"lower": "device"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "internet"}, {"lower": "society"}]}
+{"label": "BODY", "pattern": [{"lower": "internet"}, {"lower": "streaming"}, {"lower": "media"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "internet"}, {"lower": "system"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "interoperability"}, {"lower": "clearinghouse"}]}
+{"label": "BODY", "pattern": [{"lower": "interoperable"}, {"lower": "informatics"}, {"lower": "infrastructure"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "interoperable"}, {"lower": "pdk"}, {"lower": "libraries"}]}
+{"label": "BODY", "pattern": [{"lower": "ipv6"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "irda"}]}
+{"label": "BODY", "pattern": [{"lower": "italian"}, {"lower": "organization"}, {"lower": "for"}, {"lower": "standardization"}]}
+{"label": "BODY", "pattern": [{"lower": "itanium"}, {"lower": "solutions"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "j"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "jcf"}]}
+{"label": "BODY", "pattern": [{"lower": "jcp"}]}
+{"label": "BODY", "pattern": [{"lower": "jedec"}, {"lower": "solid"}, {"lower": "state"}, {"lower": "technology"}, {"lower": "association"}]}
+{"label": "BODY", "pattern": [{"lower": "jsa"}]}
+{"label": "BODY", "pattern": [{"lower": "japanese"}, {"lower": "standards"}, {"lower": "association"}]}
+{"label": "BODY", "pattern": [{"lower": "java"}, {"lower": "card"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "java"}, {"lower": "community"}, {"lower": "process"}]}
+{"label": "BODY", "pattern": [{"lower": "jericho"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "jini"}]}
+{"label": "BODY", "pattern": [{"lower": "knx"}, {"lower": "group"}]}
+{"label": "BODY", "pattern": [{"lower": "kantara"}, {"lower": "initiative"}]}
+{"label": "BODY", "pattern": [{"lower": "kavi"}, {"lower": "corporation"}]}
+{"label": "BODY", "pattern": [{"lower": "khronos"}, {"lower": "group"}]}
+{"label": "BODY", "pattern": [{"lower": "lcms"}, {"lower": "council"}]}
+{"label": "BODY", "pattern": [{"lower": "ldc"}]}
+{"label": "BODY", "pattern": [{"lower": "leitsc"}]}
+{"label": "BODY", "pattern": [{"lower": "lin"}]}
+{"label": "BODY", "pattern": [{"lower": "lsb"}]}
+{"label": "BODY", "pattern": [{"lower": "lsb"}, {"lower": "project"}]}
+{"label": "BODY", "pattern": [{"lower": "law"}, {"lower": "enforcement"}, {"lower": "information"}, {"lower": "technology"}, {"lower": "standards"}, {"lower": "council"}]}
+{"label": "BODY", "pattern": [{"lower": "learning"}, {"lower": "content"}, {"lower": "management"}, {"lower": "system"}]}
+{"label": "BODY", "pattern": [{"lower": "leonardo"}, {"lower": "academy"}]}
+{"label": "BODY", "pattern": [{"lower": "liberty"}, {"lower": "alliance"}, {"lower": "project"}]}
+{"label": "BODY", "pattern": [{"lower": "linguistic"}, {"lower": "data"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "linux"}]}
+{"label": "BODY", "pattern": [{"lower": "linux"}, {"lower": "foundation"}]}
+{"label": "BODY", "pattern": [{"lower": "local"}, {"lower": "interconnect"}, {"lower": "network"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "lonmark"}, {"lower": "international"}]}
+{"label": "BODY", "pattern": [{"lower": "maawg"}]}
+{"label": "BODY", "pattern": [{"lower": "mb"}, {"lower": "project"}]}
+{"label": "BODY", "pattern": [{"lower": "mcpc"}]}
+{"label": "BODY", "pattern": [{"lower": "mda"}]}
+{"label": "BODY", "pattern": [{"lower": "mef"}]}
+{"label": "BODY", "pattern": [{"lower": "mfpa"}]}
+{"label": "BODY", "pattern": [{"lower": "mhl"}]}
+{"label": "BODY", "pattern": [{"lower": "midi"}, {"lower": "manufacturers"}, {"lower": "association"}]}
+{"label": "BODY", "pattern": [{"lower": "mime"}]}
+{"label": "BODY", "pattern": [{"lower": "mipc"}]}
+{"label": "BODY", "pattern": [{"lower": "mipi"}]}
+{"label": "BODY", "pattern": [{"lower": "mismo"}]}
+{"label": "BODY", "pattern": [{"lower": "mits"}]}
+{"label": "BODY", "pattern": [{"lower": "mmac"}, {"lower": "-"}, {"lower": "pc"}]}
+{"label": "BODY", "pattern": [{"lower": "mmca"}]}
+{"label": "BODY", "pattern": [{"lower": "moca"}]}
+{"label": "BODY", "pattern": [{"lower": "mpeg"}, {"lower": "industry"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "mpegif"}]}
+{"label": "BODY", "pattern": [{"lower": "mpsia"}]}
+{"label": "BODY", "pattern": [{"lower": "msf"}]}
+{"label": "BODY", "pattern": [{"lower": "msic"}]}
+{"label": "BODY", "pattern": [{"lower": "multos"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "mwg"}]}
+{"label": "BODY", "pattern": [{"lower": "marinade"}, {"lower": "limited"}]}
+{"label": "BODY", "pattern": [{"lower": "mashssl"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "mass"}, {"lower": "technology"}, {"lower": "leadership"}, {"lower": "council"}]}
+{"label": "BODY", "pattern": [{"lower": "massachusetts"}, {"lower": "software"}, {"lower": "and"}, {"lower": "internet"}, {"lower": "council"}]}
+{"label": "BODY", "pattern": [{"lower": "mechanical"}, {"lower": "engineering"}]}
+{"label": "BODY", "pattern": [{"lower": "messaging"}, {"lower": "anti"}, {"lower": "-"}, {"lower": "abuse"}, {"lower": "working"}, {"lower": "group"}]}
+{"label": "BODY", "pattern": [{"lower": "metadata"}, {"lower": "working"}, {"lower": "group"}]}
+{"label": "BODY", "pattern": [{"lower": "metro"}, {"lower": "ethernet"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "mobey"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "mobilcash"}]}
+{"label": "BODY", "pattern": [{"lower": "mobile"}, {"lower": "computing"}, {"lower": "promotion"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "mobile"}, {"lower": "data"}, {"lower": "association"}]}
+{"label": "BODY", "pattern": [{"lower": "mobile"}, {"lower": "high"}, {"lower": "-"}, {"lower": "definition"}, {"lower": "link"}]}
+{"label": "BODY", "pattern": [{"lower": "mobile"}, {"lower": "imaging"}, {"lower": "and"}, {"lower": "printing"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "mobile"}, {"lower": "industry"}, {"lower": "processor"}, {"lower": "interface"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "mobile"}, {"lower": "pc"}, {"lower": "extended"}, {"lower": "battery"}, {"lower": "life"}, {"lower": "working"}, {"lower": "group"}]}
+{"label": "BODY", "pattern": [{"lower": "mobile"}, {"lower": "phone"}, {"lower": "security"}, {"lower": "industry"}, {"lower": "association"}]}
+{"label": "BODY", "pattern": [{"lower": "mortgage"}, {"lower": "industry"}, {"lower": "standards"}, {"lower": "mantenance"}, {"lower": "organizations"}]}
+{"label": "BODY", "pattern": [{"lower": "mozilla"}]}
+{"label": "BODY", "pattern": [{"lower": "multifundtion"}, {"lower": "products"}, {"lower": "association"}]}
+{"label": "BODY", "pattern": [{"lower": "multimediacard"}, {"lower": "association"}]}
+{"label": "BODY", "pattern": [{"lower": "multispeak"}]}
+{"label": "BODY", "pattern": [{"lower": "multifamily"}, {"lower": "information"}, {"lower": "and"}, {"lower": "transactions"}, {"lower": "standards"}]}
+{"label": "BODY", "pattern": [{"lower": "multimedia"}, {"lower": "mobile"}, {"lower": "access"}, {"lower": "communications"}, {"lower": "systems"}, {"lower": "promotion"}, {"lower": "council"}]}
+{"label": "BODY", "pattern": [{"lower": "multimedia"}, {"lower": "over"}, {"lower": "coax"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "multiservice"}, {"lower": "switching"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "nafems"}]}
+{"label": "BODY", "pattern": [{"lower": "ncoic"}]}
+{"label": "BODY", "pattern": [{"lower": "ncpdp"}]}
+{"label": "BODY", "pattern": [{"lower": "ncsp"}]}
+{"label": "BODY", "pattern": [{"lower": "nema"}]}
+{"label": "BODY", "pattern": [{"lower": "nemi"}]}
+{"label": "BODY", "pattern": [{"lower": "nena"}]}
+{"label": "BODY", "pattern": [{"lower": "nerc"}]}
+{"label": "BODY", "pattern": [{"lower": "nfc"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "ngmn"}]}
+{"label": "BODY", "pattern": [{"lower": "nil"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "nilcom"}]}
+{"label": "BODY", "pattern": [{"lower": "nipd"}]}
+{"label": "BODY", "pattern": [{"lower": "niso"}]}
+{"label": "BODY", "pattern": [{"lower": "nist"}]}
+{"label": "BODY", "pattern": [{"lower": "nlets"}]}
+{"label": "BODY", "pattern": [{"lower": "nntp"}]}
+{"label": "BODY", "pattern": [{"lower": "npes"}]}
+{"label": "BODY", "pattern": [{"lower": "nsf"}, {"lower": "international"}]}
+{"label": "BODY", "pattern": [{"lower": "ntaf"}]}
+{"label": "BODY", "pattern": [{"lower": "national"}, {"lower": "association"}, {"lower": "of"}, {"lower": "finite"}, {"lower": "elements"}, {"lower": "methods"}, {"lower": "and"}, {"lower": "standards"}]}
+{"label": "BODY", "pattern": [{"lower": "national"}, {"lower": "council"}, {"lower": "for"}, {"lower": "prescription"}, {"lower": "drug"}, {"lower": "programs"}, {"lower": ","}, {"lower": "inc."}]}
+{"label": "BODY", "pattern": [{"lower": "national"}, {"lower": "cyber"}, {"lower": "security"}, {"lower": "partnership"}]}
+{"label": "BODY", "pattern": [{"lower": "national"}, {"lower": "electrical"}, {"lower": "manufacturers"}, {"lower": "association"}]}
+{"label": "BODY", "pattern": [{"lower": "national"}, {"lower": "emergency"}, {"lower": "number"}, {"lower": "association"}]}
+{"label": "BODY", "pattern": [{"lower": "national"}, {"lower": "information"}, {"lower": "standards"}, {"lower": "organization"}]}
+{"label": "BODY", "pattern": [{"lower": "national"}, {"lower": "institute"}, {"lower": "of"}, {"lower": "standards"}, {"lower": "and"}, {"lower": "technology"}]}
+{"label": "BODY", "pattern": [{"lower": "national"}, {"lower": "law"}, {"lower": "enforcement"}, {"lower": "telecommunication"}, {"lower": "system"}]}
+{"label": "BODY", "pattern": [{"lower": "national"}, {"lower": "sanitation"}, {"lower": "forum"}, {"lower": "international"}]}
+{"label": "BODY", "pattern": [{"lower": "near"}, {"lower": "field"}, {"lower": "communication"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "network"}, {"lower": "centric"}, {"lower": "operations"}, {"lower": "industry"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "network"}, {"lower": "ips"}, {"lower": "product"}, {"lower": "developers"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "network"}, {"lower": "processing"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "network"}, {"lower": "test"}, {"lower": "automation"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "next"}, {"lower": "generation"}, {"lower": "mobile"}, {"lower": "network"}]}
+{"label": "BODY", "pattern": [{"lower": "nexus"}, {"lower": "500"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "north"}, {"lower": "american"}, {"lower": "electric"}, {"lower": "reliability"}, {"lower": "corporation"}]}
+{"label": "BODY", "pattern": [{"lower": "oag"}]}
+{"label": "BODY", "pattern": [{"lower": "oai"}]}
+{"label": "BODY", "pattern": [{"lower": "oasis"}]}
+{"label": "BODY", "pattern": [{"lower": "oath"}]}
+{"label": "BODY", "pattern": [{"lower": "oc"}, {"lower": "-"}, {"lower": "pip"}]}
+{"label": "BODY", "pattern": [{"lower": "occ"}]}
+{"label": "BODY", "pattern": [{"lower": "odva"}]}
+{"label": "BODY", "pattern": [{"lower": "oecd"}]}
+{"label": "BODY", "pattern": [{"lower": "ogc"}]}
+{"label": "BODY", "pattern": [{"lower": "ogf"}]}
+{"label": "BODY", "pattern": [{"lower": "oidf"}]}
+{"label": "BODY", "pattern": [{"lower": "oif"}]}
+{"label": "BODY", "pattern": [{"lower": "oisf"}]}
+{"label": "BODY", "pattern": [{"lower": "olap"}]}
+{"label": "BODY", "pattern": [{"lower": "olap"}, {"lower": "council"}, {"lower": "ltd."}]}
+{"label": "BODY", "pattern": [{"lower": "oma"}]}
+{"label": "BODY", "pattern": [{"lower": "omac"}]}
+{"label": "BODY", "pattern": [{"lower": "omg"}]}
+{"label": "BODY", "pattern": [{"lower": "omtp"}]}
+{"label": "BODY", "pattern": [{"lower": "omvc"}]}
+{"label": "BODY", "pattern": [{"lower": "onami"}]}
+{"label": "BODY", "pattern": [{"lower": "onvif"}]}
+{"label": "BODY", "pattern": [{"lower": "opa"}]}
+{"label": "BODY", "pattern": [{"lower": "opc"}]}
+{"label": "BODY", "pattern": [{"lower": "osaf"}]}
+{"label": "BODY", "pattern": [{"lower": "osc"}]}
+{"label": "BODY", "pattern": [{"lower": "osci"}]}
+{"label": "BODY", "pattern": [{"lower": "oscre"}]}
+{"label": "BODY", "pattern": [{"lower": "osgeo"}]}
+{"label": "BODY", "pattern": [{"lower": "osgi"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "osi"}]}
+{"label": "BODY", "pattern": [{"lower": "ossi"}]}
+{"label": "BODY", "pattern": [{"lower": "ota"}]}
+{"label": "BODY", "pattern": [{"lower": "oauth"}]}
+{"label": "BODY", "pattern": [{"lower": "object"}, {"lower": "linking"}, {"lower": "and"}, {"lower": "embedding"}, {"lower": "for"}, {"lower": "process"}, {"lower": "control"}, {"lower": "foundation"}]}
+{"label": "BODY", "pattern": [{"lower": "object"}, {"lower": "management"}, {"lower": "group"}]}
+{"label": "BODY", "pattern": [{"lower": "object"}, {"lower": "web"}]}
+{"label": "BODY", "pattern": [{"lower": "oexchange"}]}
+{"label": "BODY", "pattern": [{"lower": "omniair"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "online"}, {"lower": "privacy"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "open"}, {"lower": "applications"}, {"lower": "group"}]}
+{"label": "BODY", "pattern": [{"lower": "open"}, {"lower": "archives"}, {"lower": "initiative"}]}
+{"label": "BODY", "pattern": [{"lower": "open"}, {"lower": "cloud"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "open"}, {"lower": "core"}, {"lower": "protocol"}, {"lower": "international"}, {"lower": "partnership"}]}
+{"label": "BODY", "pattern": [{"lower": "open"}, {"lower": "data"}, {"lower": "protocol"}]}
+{"label": "BODY", "pattern": [{"lower": "open"}, {"lower": "design"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "open"}, {"lower": "devicenet"}, {"lower": "vendor"}, {"lower": "association"}]}
+{"label": "BODY", "pattern": [{"lower": "open"}, {"lower": "geospatial"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "open"}, {"lower": "grid"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "open"}, {"lower": "identity"}, {"lower": "group"}]}
+{"label": "BODY", "pattern": [{"lower": "open"}, {"lower": "information"}, {"lower": "security"}, {"lower": "foundation"}]}
+{"label": "BODY", "pattern": [{"lower": "open"}, {"lower": "mashup"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "open"}, {"lower": "mobile"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "open"}, {"lower": "mobile"}, {"lower": "terminal"}, {"lower": "platform"}, {"lower": "group"}]}
+{"label": "BODY", "pattern": [{"lower": "open"}, {"lower": "mobile"}, {"lower": "video"}, {"lower": "coalition"}]}
+{"label": "BODY", "pattern": [{"lower": "open"}, {"lower": "modular"}, {"lower": "architecture"}, {"lower": "controls"}, {"lower": "users"}, {"lower": "group"}]}
+{"label": "BODY", "pattern": [{"lower": "open"}, {"lower": "network"}, {"lower": "video"}, {"lower": "interface"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "open"}, {"lower": "patent"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "open"}, {"lower": "security"}, {"lower": "exchange"}]}
+{"label": "BODY", "pattern": [{"lower": "open"}, {"lower": "source"}, {"lower": "applications"}, {"lower": "foundation"}]}
+{"label": "BODY", "pattern": [{"lower": "open"}, {"lower": "source"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "open"}, {"lower": "source"}, {"lower": "geospatial"}, {"lower": "foundation"}]}
+{"label": "BODY", "pattern": [{"lower": "open"}, {"lower": "source"}, {"lower": "initiative"}]}
+{"label": "BODY", "pattern": [{"lower": "open"}, {"lower": "source"}, {"lower": "liberty"}]}
+{"label": "BODY", "pattern": [{"lower": "open"}, {"lower": "source"}, {"lower": "software"}, {"lower": "institute"}]}
+{"label": "BODY", "pattern": [{"lower": "open"}, {"lower": "standards"}, {"lower": "consortium"}, {"lower": "for"}, {"lower": "real"}, {"lower": "estate"}]}
+{"label": "BODY", "pattern": [{"lower": "open"}, {"lower": "systemc"}, {"lower": "initiative"}]}
+{"label": "BODY", "pattern": [{"lower": "open"}, {"lower": "travel"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "open"}, {"lower": "video"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "open"}, {"lower": "web"}, {"lower": "foundation"}]}
+{"label": "BODY", "pattern": [{"lower": "openajax"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "openfabrics"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "openforum"}, {"lower": "europe"}]}
+{"label": "BODY", "pattern": [{"lower": "openid"}, {"lower": "foundation"}]}
+{"label": "BODY", "pattern": [{"lower": "openliberty"}]}
+{"label": "BODY", "pattern": [{"lower": "openoffice"}]}
+{"label": "BODY", "pattern": [{"lower": "optical"}, {"lower": "internetworking"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "oregon"}, {"lower": "nanoscience"}, {"lower": "and"}, {"lower": "microtechnologies"}, {"lower": "institute"}]}
+{"label": "BODY", "pattern": [{"lower": "organization"}, {"lower": "for"}, {"lower": "the"}, {"lower": "advancement"}, {"lower": "of"}, {"lower": "structered"}, {"lower": "information"}, {"lower": "standards"}]}
+{"label": "BODY", "pattern": [{"lower": "organizations"}, {"lower": "for"}, {"lower": "economic"}, {"lower": "cooperation"}, {"lower": "and"}, {"lower": "development"}]}
+{"label": "BODY", "pattern": [{"lower": "ostatus"}]}
+{"label": "BODY", "pattern": [{"lower": "pasc"}]}
+{"label": "BODY", "pattern": [{"lower": "pc"}, {"lower": "gaming"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "pc104"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "pcca"}]}
+{"label": "BODY", "pattern": [{"lower": "pci"}, {"lower": "industrial"}, {"lower": "computer"}, {"lower": "manufacturers"}, {"lower": "group"}, {"lower": ","}, {"lower": "inc."}]}
+{"label": "BODY", "pattern": [{"lower": "pci"}, {"lower": "-"}, {"lower": "sig"}]}
+{"label": "BODY", "pattern": [{"lower": "pcisa"}]}
+{"label": "BODY", "pattern": [{"lower": "phdsc"}]}
+{"label": "BODY", "pattern": [{"lower": "picmg"}]}
+{"label": "BODY", "pattern": [{"lower": "pki"}]}
+{"label": "BODY", "pattern": [{"lower": "plcopen"}]}
+{"label": "BODY", "pattern": [{"lower": "pmi"}]}
+{"label": "BODY", "pattern": [{"lower": "ppisc"}]}
+{"label": "BODY", "pattern": [{"lower": "psia"}]}
+{"label": "BODY", "pattern": [{"lower": "pslx"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "ptig"}]}
+{"label": "BODY", "pattern": [{"lower": "pwg"}]}
+{"label": "BODY", "pattern": [{"lower": "pxi"}, {"lower": "systems"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "pacific"}, {"lower": "area"}, {"lower": "standards"}, {"lower": "congress"}]}
+{"label": "BODY", "pattern": [{"lower": "pan"}, {"lower": "american"}, {"lower": "standards"}, {"lower": "commission"}]}
+{"label": "BODY", "pattern": [{"lower": "paycircle"}]}
+{"label": "BODY", "pattern": [{"lower": "payment"}, {"lower": "card"}, {"lower": "industry"}, {"lower": "security"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "payments"}, {"lower": "processing"}, {"lower": "information"}, {"lower": "sharing"}, {"lower": "council"}]}
+{"label": "BODY", "pattern": [{"lower": "peripheral"}, {"lower": "component"}, {"lower": "interconnect"}, {"lower": "special"}, {"lower": "interests"}, {"lower": "group"}]}
+{"label": "BODY", "pattern": [{"lower": "physical"}, {"lower": "security"}, {"lower": "interoperability"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "physician"}, {"lower": "consortium"}, {"lower": "for"}, {"lower": "performance"}, {"lower": "improvement"}]}
+{"label": "BODY", "pattern": [{"lower": "portable"}, {"lower": "computer"}, {"lower": "and"}, {"lower": "communications"}, {"lower": "association"}]}
+{"label": "BODY", "pattern": [{"lower": "power"}]}
+{"label": "BODY", "pattern": [{"lower": "power"}, {"lower": "management"}, {"lower": "bus"}]}
+{"label": "BODY", "pattern": [{"lower": "printer"}, {"lower": "working"}, {"lower": "group"}]}
+{"label": "BODY", "pattern": [{"lower": "protects"}]}
+{"label": "BODY", "pattern": [{"lower": "process"}, {"lower": "engineering"}]}
+{"label": "BODY", "pattern": [{"lower": "project"}, {"lower": "25"}, {"lower": "technology"}, {"lower": "interest"}, {"lower": "group"}]}
+{"label": "BODY", "pattern": [{"lower": "project"}, {"lower": "jxta"}]}
+{"label": "BODY", "pattern": [{"lower": "project"}, {"lower": "management"}, {"lower": "institute"}]}
+{"label": "BODY", "pattern": [{"lower": "project"}, {"lower": "mesa"}]}
+{"label": "BODY", "pattern": [{"lower": "promotion"}, {"lower": "of"}, {"lower": "two"}, {"lower": "-"}, {"lower": "way"}, {"lower": "emergency"}, {"lower": "communication"}, {"lower": "and"}, {"lower": "tracking"}, {"lower": "systems"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "public"}, {"lower": "health"}, {"lower": "data"}, {"lower": "standards"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "public"}, {"lower": "-"}, {"lower": "key"}, {"lower": "infrastructure"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "qstar"}, {"lower": "technologies"}]}
+{"label": "BODY", "pattern": [{"lower": "rans"}]}
+{"label": "BODY", "pattern": [{"lower": "rdf"}]}
+{"label": "BODY", "pattern": [{"lower": "rdma"}]}
+{"label": "BODY", "pattern": [{"lower": "rets"}]}
+{"label": "BODY", "pattern": [{"lower": "rfid"}, {"lower": "international"}, {"lower": "business"}, {"lower": "association"}]}
+{"label": "BODY", "pattern": [{"lower": "rfidba"}]}
+{"label": "BODY", "pattern": [{"lower": "rtca"}]}
+{"label": "BODY", "pattern": [{"lower": "rvu"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "rapidio"}, {"lower": "trade"}, {"lower": "association"}]}
+{"label": "BODY", "pattern": [{"lower": "real"}, {"lower": "estate"}, {"lower": "transaction"}, {"lower": "standard"}]}
+{"label": "BODY", "pattern": [{"lower": "remote"}, {"lower": "direct"}, {"lower": "memory"}, {"lower": "access"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "requirements"}, {"lower": "for"}, {"lower": "registration"}, {"lower": "of"}, {"lower": "pharmaceuticals"}, {"lower": "for"}, {"lower": "human"}, {"lower": "use"}]}
+{"label": "BODY", "pattern": [{"lower": "rosettanet"}]}
+{"label": "BODY", "pattern": [{"lower": "russian"}, {"lower": "association"}, {"lower": "for"}, {"lower": "networks"}, {"lower": "and"}, {"lower": "services"}]}
+{"label": "BODY", "pattern": [{"lower": "sae"}]}
+{"label": "BODY", "pattern": [{"lower": "saforum"}]}
+{"label": "BODY", "pattern": [{"lower": "saml"}]}
+{"label": "BODY", "pattern": [{"lower": "sata"}, {"lower": "-"}, {"lower": "io"}]}
+{"label": "BODY", "pattern": [{"lower": "scc"}]}
+{"label": "BODY", "pattern": [{"lower": "scope"}]}
+{"label": "BODY", "pattern": [{"lower": "scsi"}, {"lower": "trade"}, {"lower": "association"}]}
+{"label": "BODY", "pattern": [{"lower": "scte"}]}
+{"label": "BODY", "pattern": [{"lower": "sd"}, {"lower": "card"}, {"lower": "association"}]}
+{"label": "BODY", "pattern": [{"lower": "sematech"}]}
+{"label": "BODY", "pattern": [{"lower": "semi"}]}
+{"label": "BODY", "pattern": [{"lower": "ses"}]}
+{"label": "BODY", "pattern": [{"lower": "sif"}]}
+{"label": "BODY", "pattern": [{"lower": "sip"}]}
+{"label": "BODY", "pattern": [{"lower": "siso"}]}
+{"label": "BODY", "pattern": [{"lower": "smime"}]}
+{"label": "BODY", "pattern": [{"lower": "smpte"}]}
+{"label": "BODY", "pattern": [{"lower": "smtp"}]}
+{"label": "BODY", "pattern": [{"lower": "snc"}]}
+{"label": "BODY", "pattern": [{"lower": "snia"}]}
+{"label": "BODY", "pattern": [{"lower": "soa"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "soap"}, {"lower": "/"}, {"lower": "xmlp"}]}
+{"label": "BODY", "pattern": [{"lower": "soi"}, {"lower": "industry"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "spc"}]}
+{"label": "BODY", "pattern": [{"lower": "spec"}]}
+{"label": "BODY", "pattern": [{"lower": "spmi"}]}
+{"label": "BODY", "pattern": [{"lower": "spva"}]}
+{"label": "BODY", "pattern": [{"lower": "spwg"}]}
+{"label": "BODY", "pattern": [{"lower": "ssi"}]}
+{"label": "BODY", "pattern": [{"lower": "sta"}]}
+{"label": "BODY", "pattern": [{"lower": "salmon"}, {"lower": "protocol"}]}
+{"label": "BODY", "pattern": [{"lower": "schools"}, {"lower": "interoperability"}, {"lower": "framework"}]}
+{"label": "BODY", "pattern": [{"lower": "scope"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "secure"}, {"lower": "pos"}, {"lower": "vendor"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "security"}, {"lower": "assertion"}, {"lower": "markup"}, {"lower": "language"}]}
+{"label": "BODY", "pattern": [{"lower": "security"}, {"lower": "industry"}, {"lower": "association"}]}
+{"label": "BODY", "pattern": [{"lower": "semiconductor"}, {"lower": "equipment"}, {"lower": "and"}, {"lower": "materials"}, {"lower": "international"}]}
+{"label": "BODY", "pattern": [{"lower": "semiconductor"}, {"lower": "manufacturing"}, {"lower": "technology"}]}
+{"label": "BODY", "pattern": [{"lower": "sendmail"}]}
+{"label": "BODY", "pattern": [{"lower": "sensor"}, {"lower": "network"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "serial"}, {"lower": "ata"}, {"lower": "international"}, {"lower": "organization"}]}
+{"label": "BODY", "pattern": [{"lower": "serial"}, {"lower": "port"}, {"lower": "memory"}, {"lower": "technology"}]}
+{"label": "BODY", "pattern": [{"lower": "server"}, {"lower": "system"}, {"lower": "infrastructure"}]}
+{"label": "BODY", "pattern": [{"lower": "service"}, {"lower": "availability"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "session"}, {"lower": "initiation"}, {"lower": "protocol"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "si2"}]}
+{"label": "BODY", "pattern": [{"lower": "silicon"}, {"lower": "integration"}, {"lower": "initiative"}]}
+{"label": "BODY", "pattern": [{"lower": "simulation"}, {"lower": "interoperability"}, {"lower": "standards"}, {"lower": "organization"}]}
+{"label": "BODY", "pattern": [{"lower": "small"}, {"lower": "form"}, {"lower": "factor"}, {"lower": "special"}, {"lower": "interest"}, {"lower": "group"}]}
+{"label": "BODY", "pattern": [{"lower": "smart"}, {"lower": "card"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "society"}, {"lower": "for"}, {"lower": "automotive"}, {"lower": "engineers"}]}
+{"label": "BODY", "pattern": [{"lower": "society"}, {"lower": "of"}, {"lower": "automotive"}, {"lower": "engineers"}]}
+{"label": "BODY", "pattern": [{"lower": "society"}, {"lower": "of"}, {"lower": "cable"}, {"lower": "telecommunications"}, {"lower": "engineers"}]}
+{"label": "BODY", "pattern": [{"lower": "society"}, {"lower": "of"}, {"lower": "motion"}, {"lower": "picture"}, {"lower": "and"}, {"lower": "television"}, {"lower": "engineers"}]}
+{"label": "BODY", "pattern": [{"lower": "software"}, {"lower": "productivity"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "sourceforge"}]}
+{"label": "BODY", "pattern": [{"lower": "spectra"}, {"lower": "logic"}]}
+{"label": "BODY", "pattern": [{"lower": "spirit"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "standard"}, {"lower": "panels"}, {"lower": "working"}, {"lower": "group"}]}
+{"label": "BODY", "pattern": [{"lower": "standard"}, {"lower": "performance"}, {"lower": "evaluation"}, {"lower": "corporation"}]}
+{"label": "BODY", "pattern": [{"lower": "standards"}, {"lower": "council"}, {"lower": "of"}, {"lower": "canada"}]}
+{"label": "BODY", "pattern": [{"lower": "standards"}, {"lower": "engineering"}, {"lower": "society"}]}
+{"label": "BODY", "pattern": [{"lower": "stop"}, {"lower": "badware"}]}
+{"label": "BODY", "pattern": [{"lower": "storage"}, {"lower": "networking"}, {"lower": "industry"}, {"lower": "association"}]}
+{"label": "BODY", "pattern": [{"lower": "storage"}, {"lower": "performance"}, {"lower": "council"}]}
+{"label": "BODY", "pattern": [{"lower": "sunspec"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "sustainability"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "system"}, {"lower": "management"}, {"lower": "interface"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "t"}, {"lower": "-"}, {"lower": "engine"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "tags"}]}
+{"label": "BODY", "pattern": [{"lower": "tahi"}]}
+{"label": "BODY", "pattern": [{"lower": "tcg"}]}
+{"label": "BODY", "pattern": [{"lower": "tco"}, {"lower": "development"}]}
+{"label": "BODY", "pattern": [{"lower": "tcp"}, {"lower": "/"}, {"lower": "ip"}]}
+{"label": "BODY", "pattern": [{"lower": "tei"}, {"lower": "-"}, {"lower": "c"}]}
+{"label": "BODY", "pattern": [{"lower": "tia"}]}
+{"label": "BODY", "pattern": [{"lower": "tina"}, {"lower": "-"}, {"lower": "c"}]}
+{"label": "BODY", "pattern": [{"lower": "tls"}]}
+{"label": "BODY", "pattern": [{"lower": "tm"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "tta"}]}
+{"label": "BODY", "pattern": [{"lower": "tv"}, {"lower": "anytime"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "tagvault"}]}
+{"label": "BODY", "pattern": [{"lower": "telecommunications"}, {"lower": "industry"}, {"lower": "association"}]}
+{"label": "BODY", "pattern": [{"lower": "telecommunications"}, {"lower": "information"}, {"lower": "networking"}, {"lower": "architecture"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "telecommunications"}, {"lower": "technology"}, {"lower": "association"}]}
+{"label": "BODY", "pattern": [{"lower": "telemanagement"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "telework"}, {"lower": "advisory"}, {"lower": "group"}, {"lower": "of"}, {"lower": "worldatwork"}]}
+{"label": "BODY", "pattern": [{"lower": "tesla"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "text"}, {"lower": "encoding"}, {"lower": "initiative"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "the"}, {"lower": "advanced"}, {"lower": "media"}, {"lower": "workflow"}, {"lower": "association"}, {"lower": ","}, {"lower": "inc."}]}
+{"label": "BODY", "pattern": [{"lower": "the"}, {"lower": "open"}, {"lower": "group"}]}
+{"label": "BODY", "pattern": [{"lower": "third"}, {"lower": "generation"}, {"lower": "partnership"}, {"lower": "project"}, {"lower": "no"}, {"lower": "."}, {"lower": "2"}]}
+{"label": "BODY", "pattern": [{"lower": "transferjet"}]}
+{"label": "BODY", "pattern": [{"lower": "trusted"}, {"lower": "computing"}, {"lower": "group"}]}
+{"label": "BODY", "pattern": [{"lower": "u"}, {"lower": "-"}, {"lower": "snap"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "u.s."}, {"lower": "food"}, {"lower": "and"}, {"lower": "drug"}, {"lower": "administration"}]}
+{"label": "BODY", "pattern": [{"lower": "ucif"}]}
+{"label": "BODY", "pattern": [{"lower": "uddi"}]}
+{"label": "BODY", "pattern": [{"lower": "udp"}]}
+{"label": "BODY", "pattern": [{"lower": "uml"}]}
+{"label": "BODY", "pattern": [{"lower": "un/"}, {"lower": "cefact"}]}
+{"label": "BODY", "pattern": [{"lower": "uni"}]}
+{"label": "BODY", "pattern": [{"lower": "unicode"}, {"lower": "transformation"}, {"lower": "format"}, {"lower": "8"}, {"lower": "bit"}]}
+{"label": "BODY", "pattern": [{"lower": "urisa"}]}
+{"label": "BODY", "pattern": [{"lower": "usb"}, {"lower": "implementers"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "usb"}, {"lower": "-"}, {"lower": "if"}]}
+{"label": "BODY", "pattern": [{"lower": "utf-8"}]}
+{"label": "BODY", "pattern": [{"lower": "uniform"}, {"lower": "-"}, {"lower": "international"}, {"lower": "association"}, {"lower": "of"}, {"lower": "open"}, {"lower": "systems"}, {"lower": "professionals"}]}
+{"label": "BODY", "pattern": [{"lower": "unicode"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "unified"}, {"lower": "communications"}, {"lower": "interoperability"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "united"}, {"lower": "nations"}, {"lower": "centre"}, {"lower": "for"}, {"lower": "trade"}, {"lower": "facilitation"}, {"lower": "and"}, {"lower": "electronic"}, {"lower": "business"}]}
+{"label": "BODY", "pattern": [{"lower": "universal"}, {"lower": "plug"}, {"lower": "and"}, {"lower": "play"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "upnp"}]}
+{"label": "BODY", "pattern": [{"lower": "urban"}, {"lower": "and"}, {"lower": "regional"}, {"lower": "information"}, {"lower": "systems"}, {"lower": "association"}]}
+{"label": "BODY", "pattern": [{"lower": "vde"}]}
+{"label": "BODY", "pattern": [{"lower": "vesa"}]}
+{"label": "BODY", "pattern": [{"lower": "vfea"}, {"lower": "international"}, {"lower": "trade"}, {"lower": "association"}]}
+{"label": "BODY", "pattern": [{"lower": "vics"}]}
+{"label": "BODY", "pattern": [{"lower": "vita"}]}
+{"label": "BODY", "pattern": [{"lower": "vlcc"}]}
+{"label": "BODY", "pattern": [{"lower": "voipsa"}]}
+{"label": "BODY", "pattern": [{"lower": "vpnc"}]}
+{"label": "BODY", "pattern": [{"lower": "vsi"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "vtm"}, {"lower": ","}, {"lower": "inc."}]}
+{"label": "BODY", "pattern": [{"lower": "vxibus"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "video"}, {"lower": "electronics"}, {"lower": "standards"}, {"lower": "association"}]}
+{"label": "BODY", "pattern": [{"lower": "virtual"}, {"lower": "private"}, {"lower": "network"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "visible"}, {"lower": "light"}, {"lower": "communications"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "volga"}]}
+{"label": "BODY", "pattern": [{"lower": "voice"}, {"lower": "over"}, {"lower": "ip"}, {"lower": "security"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "voice"}, {"lower": "over"}, {"lower": "lte"}, {"lower": "via"}, {"lower": "generic"}, {"lower": "acces"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "voice"}, {"lower": "xml"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "voluntary"}, {"lower": "carbon"}, {"lower": "standard"}]}
+{"label": "BODY", "pattern": [{"lower": "voluntary"}, {"lower": "interindustry"}, {"lower": "commerce"}, {"lower": "standards"}, {"lower": "association"}]}
+{"label": "BODY", "pattern": [{"lower": "w3c"}]}
+{"label": "BODY", "pattern": [{"lower": "wap"}]}
+{"label": "BODY", "pattern": [{"lower": "wasc"}]}
+{"label": "BODY", "pattern": [{"lower": "wctg"}]}
+{"label": "BODY", "pattern": [{"lower": "wedi"}]}
+{"label": "BODY", "pattern": [{"lower": "wfmc"}]}
+{"label": "BODY", "pattern": [{"lower": "what"}]}
+{"label": "BODY", "pattern": [{"lower": "whdi"}]}
+{"label": "BODY", "pattern": [{"lower": "wina"}]}
+{"label": "BODY", "pattern": [{"lower": "ws"}, {"lower": "-"}, {"lower": "i"}]}
+{"label": "BODY", "pattern": [{"lower": "wsdl"}]}
+{"label": "BODY", "pattern": [{"lower": "wssn"}]}
+{"label": "BODY", "pattern": [{"lower": "wstf"}]}
+{"label": "BODY", "pattern": [{"lower": "web"}, {"lower": "applications"}, {"lower": "security"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "web"}, {"lower": "hypertext"}, {"lower": "application"}, {"lower": "technology"}, {"lower": "working"}, {"lower": "group"}]}
+{"label": "BODY", "pattern": [{"lower": "web"}, {"lower": "services"}]}
+{"label": "BODY", "pattern": [{"lower": "web"}, {"lower": "services"}, {"lower": "interoperability"}, {"lower": "organization"}]}
+{"label": "BODY", "pattern": [{"lower": "web"}, {"lower": "services"}, {"lower": "test"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "web3d"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "wi"}, {"lower": "-"}, {"lower": "fi"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "wigig"}]}
+{"label": "BODY", "pattern": [{"lower": "wimax"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "wimedia"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "wireless"}, {"lower": "access"}, {"lower": "protocol"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "wireless"}, {"lower": "communications"}, {"lower": "technologies"}, {"lower": "group"}]}
+{"label": "BODY", "pattern": [{"lower": "wireless"}, {"lower": "gigabit"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "wireless"}, {"lower": "home"}, {"lower": "digital"}, {"lower": "interface"}]}
+{"label": "BODY", "pattern": [{"lower": "wireless"}, {"lower": "industrial"}, {"lower": "networking"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "wireless"}, {"lower": "innovation"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "wireless"}, {"lower": "power"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "wirelesshd"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "workflow"}, {"lower": "management"}, {"lower": "coalition"}]}
+{"label": "BODY", "pattern": [{"lower": "workgroup"}, {"lower": "for"}, {"lower": "electronics"}, {"lower": "data"}, {"lower": "interchange"}]}
+{"label": "BODY", "pattern": [{"lower": "world"}, {"lower": "business"}, {"lower": "council"}, {"lower": "for"}, {"lower": "sustainable"}, {"lower": "development"}]}
+{"label": "BODY", "pattern": [{"lower": "world"}, {"lower": "dab"}, {"lower": "forum"}]}
+{"label": "BODY", "pattern": [{"lower": "world"}, {"lower": "standards"}, {"lower": "services"}, {"lower": "network"}]}
+{"label": "BODY", "pattern": [{"lower": "world"}, {"lower": "wide"}, {"lower": "web"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "x"}]}
+{"label": "BODY", "pattern": [{"lower": "xbrl"}]}
+{"label": "BODY", "pattern": [{"lower": "xdi"}]}
+{"label": "BODY", "pattern": [{"lower": "xfree86"}, {"lower": "project"}, {"lower": ","}, {"lower": "inc."}, {"lower": ","}, {"lower": "tm"}]}
+{"label": "BODY", "pattern": [{"lower": "xml"}]}
+{"label": "BODY", "pattern": [{"lower": "xml"}, {"lower": "industry"}, {"lower": "portal"}]}
+{"label": "BODY", "pattern": [{"lower": "xmpp"}, {"lower": "standards"}, {"lower": "foundation"}]}
+{"label": "BODY", "pattern": [{"lower": "xri"}, {"lower": "data"}, {"lower": "interchange"}]}
+{"label": "BODY", "pattern": [{"lower": "xsl"}]}
+{"label": "BODY", "pattern": [{"lower": "xiph"}, {"lower": "foundation"}]}
+{"label": "BODY", "pattern": [{"lower": "z"}, {"lower": "-"}, {"lower": "wave"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "zero"}, {"lower": "energy"}, {"lower": "commercial"}, {"lower": "buildings"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "zhaga"}, {"lower": "consortium"}]}
+{"label": "BODY", "pattern": [{"lower": "zigbee"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "ahit"}, {"lower": "!"}]}
+{"label": "BODY", "pattern": [{"lower": "cxml"}]}
+{"label": "BODY", "pattern": [{"lower": "ehealth"}, {"lower": "initiative"}]}
+{"label": "BODY", "pattern": [{"lower": "ensemble"}, {"lower": "multi"}, {"lower": "-"}, {"lower": "core"}, {"lower": "alliance"}]}
+{"label": "BODY", "pattern": [{"lower": "extensible"}, {"lower": "business"}, {"lower": "reporting"}, {"lower": "language"}, {"lower": "international"}]}
+{"label": "BODY", "pattern": [{"lower": "ebix"}]}
+{"label": "BODY", "pattern": [{"lower": "ebxml"}]}
+{"label": "BODY", "pattern": [{"lower": "i3a"}]}
+{"label": "BODY", "pattern": [{"lower": "itsmf"}]}
+{"label": "BODY", "pattern": [{"lower": "mtld"}]}
+{"label": "BODY", "pattern": [{"lower": "mtld"}, {"lower": "top"}, {"lower": "level"}, {"lower": "domain"}, {"lower": ","}, {"lower": "ltd."}]}
+{"label": "BODY", "pattern": [{"lower": "openehr"}]}
+{"label": "TYPE", "pattern": [{"lower": "agenda"}]}
+{"label": "TYPE", "pattern": [{"lower": "dicsussion"}]}
+{"label": "TYPE", "pattern": [{"lower": "draft"}]}
+{"label": "TYPE", "pattern": [{"lower": "draft"}, {"lower": "tr"}]}
+{"label": "TYPE", "pattern": [{"lower": "draft"}, {"lower": "technical"}, {"lower": "request"}]}
+{"label": "TYPE", "pattern": [{"lower": "draft"}, {"lower": "ts"}]}
+{"label": "TYPE", "pattern": [{"lower": "draft"}, {"lower": "technical"}, {"lower": "specification"}]}
+{"label": "TYPE", "pattern": [{"lower": "ls"}, {"lower": "in"}]}
+{"label": "TYPE", "pattern": [{"lower": "ls"}, {"lower": "out"}]}
+{"label": "TYPE", "pattern": [{"lower": "pcr"}]}
+{"label": "TYPE", "pattern": [{"lower": "report"}]}
+{"label": "TYPE", "pattern": [{"lower": "response"}]}
+{"label": "TYPE", "pattern": [{"lower": "sid"}, {"lower": "new"}]}
+{"label": "TYPE", "pattern": [{"lower": "sid"}, {"lower": "revised"}]}
+{"label": "TYPE", "pattern": [{"lower": "tor"}]}
+{"label": "TYPE", "pattern": [{"lower": "ts"},{"lower": "or"},{"lower": "tr"},{"lower": "cover"}]}
+{"label": "TYPE", "pattern": [{"lower": "wi"},{"lower": "exception"},{"lower": "request"}]}
+{"label": "TYPE", "pattern": [{"lower": "wi"},{"lower": "status"},{"lower": "report"}]}
+{"label": "TYPE", "pattern": [{"lower": "wi"},{"lower": "summary"}]}
+{"label": "TYPE", "pattern": [{"lower": "wi"},{"lower": "revised"}]}
+{"label": "TYPE", "pattern": [{"lower": "wi"},{"lower": "summary"}]}
+{"label": "TYPE", "pattern": [{"lower": "work"},{"lower": "plan"}]}
+{"label": "TYPE", "pattern": [{"lower": "rfc"}]}
+{"label": "TYPE", "pattern": [{"lower": "request"}, {"lower": "for"}, {"lower": "comments"}]}
+{"label": "TYPE", "pattern": [{"lower": "ts"}]}
+{"label": "TYPE", "pattern": [{"lower": "technical"}, {"lower": "specification"}]}
+{"label": "TYPE", "pattern": [{"lower": "tr"}]}
+{"label": "TYPE", "pattern": [{"lower": "technical"}, {"lower": "report"}]}
+{"label": "TYPE", "pattern": [{"lower": "cr"}]}
+{"label": "TYPE", "pattern": [{"lower": "change"}, {"lower": "request"}]}
+{"label": "TYPE", "pattern": [{"lower": "cr"}, {"lower": "pack"}]}
+{"label": "TYPE", "pattern": [{"lower": "change"}, {"lower": "request"}, {"lower": "pack"}]}
+{"label": "TDOC_NUM","pattern":[{"text":{"REGEX":"[A-Z]{1}[0-9]"}},{"text":{"lower":"-"}},{"text":{"REGEX":"[0-9]{6}"}}]}
+{"label": "TDOC_NUM","pattern":[{"text":{"REGEX":"[0-9]{5}"}},{"lower":"-"},{"text":{"REGEX":"[0-9]{1}"}}, {"lower":":"},{"text":{"REGEX":"[0-9]{4}"}}]}
+{"label": "MEETING","pattern":[{"text":{"REGEX":"[A-Z]+[#][0-9]+"}}]}
+{"label": "MEETING","pattern":[{"lower":"#"},{"text":{"REGEX":"[0-9]+"}}]}
+{"label": "WG","pattern":[{"text":{"REGEX":"WG[0-9]+"}}]}
+{"label": "VERSION","pattern":[{"text":{"REGEX":"[vV][0-9.]+"}}]}
+{"label": "VERSION","pattern":[{"lower":"version"},{"text":{"REGEX":"[0-9.]+"}}]}
+{"label": "REF","pattern":[{"text":{"REGEX":"[0-9]{2}[.][0-9]{3}"}}]}
+{"label": "TSG","pattern":[{"text":{"REGEX":"RAN[0-9]?"}}]}
+{"label": "TSG","pattern":[{"lower":"radio"},{"lower":"access"},{"lower":"network"}]}
+{"label": "TSG", "pattern": [{"text": "CT"}]}
+{"label": "TSG","pattern":[{"text":{"REGEX":"SA[0-9]+"}}]}
+{"label": "TSG","pattern":[{"text":"SA"}]}
+{"label": "TSG","pattern":[{"text":{"REGEX":"GERAN[0-9]?"}}]}
+{"label": "TSG","pattern":[{"text":{"REGEX":"T[0-9]+"}}]}
+{"label": "TSG","pattern":[{"text":"T"}]}
+{"label": "TSG","pattern":[{"text":{"REGEX":"CN[0-9]?"}}]}
+{"label": "TSG", "pattern": [{"lower": "elections"},{"lower": "and"},{"lower": "technical"},{"lower": "votes"}]}
+{"label": "TSG", "pattern": [{"lower": "liaison"},{"lower": "statement"}]}
+{"label": "TSG", "pattern": [{"lower": "e"},{"lower": "-"},{"lower": "mail"},{"lower": "lists"}]}
+{"label": "TSG", "pattern": [{"lower": "working"},{"lower": "procedures"}]}
+{"label": "TSG", "pattern": [{"lower": "working"},{"lower": "agreements"}]}
+{"label": "TSG", "pattern": [{"lower": "delegates"},{"lower": "corner"}]}
+{"label": "TSG", "pattern": [{"lower": "meeting"},{"lower": "document"},{"lower": "templates"}]}
+{"label": "TSG", "pattern": [{"text": "3G"}]}
+{"label": "TSG", "pattern": [{"text": "5G"}]}
+{"label": "TSG", "pattern": [{"text": "4G"}]}
+{"label": "TSG", "pattern": [{"text": "3GU"}]}
+{"label": "TECH", "pattern": [{"text": "CODECs"}]}
+{"label": "TECH", "pattern": [{"text": "Data"}]}
+{"label": "TECH", "pattern": [{"text": "EDGE"}]}
+{"label": "TECH", "pattern": [{"text": "E"},{"text": "-"},{"text": "UTRAN"}]}
+{"label": "TECH", "pattern": [{"lower": "evolved", "OP": "?"},{"lower": "universal"},{"lower": "terrestrial"},{"lower": "radio"},{"lower": "access"},{"lower": "network", "OP": "?"}]}
+{"label": "TECH", "pattern": [{"text": "E"},{"text": "-"},{"text": "UTRA"}]}
+{"label": "TECH", "pattern": [{"text": "GERAN"}]}
+{"label": "TECH", "pattern": [{"text": "GPRS"}]}
+{"label": "TECH", "pattern": [{"text": "GSM"}]}
+{"label": "TECH", "pattern": [{"text": "Home"},{"text": "NodeB"}]}
+{"label": "TECH", "pattern": [{"text": "OAM&P"},{"text": "and"},{"text": "Charging"}]}
+{"label": "TECH", "pattern": [{"text": "Radio"},{"text": "aspect"}]}
+{"label": "TECH", "pattern": [{"text": "Requirements"}]}
+{"label": "TECH", "pattern": [{"text": "Security"},{"text": "aspects"}]}
+{"label": "TECH", "pattern": [{"text": "Security"},{"text": "algorithms"}]}
+{"label": "TECH", "pattern": [{"text": "Service"},{"text": "aspects"}]}
+{"label": "TECH", "pattern": [{"text": "Network"},{"text": "signalling"},{"text": "protocols"}]}
+{"label": "TECH", "pattern": [{"text": "Network"}]}
+{"label": "TECH", "pattern": [{"text": "SIM"}]}
+{"label": "TECH", "pattern": [{"text": "USIM"}]}
+{"label": "TECH", "pattern": [{"text": "UE"}]}

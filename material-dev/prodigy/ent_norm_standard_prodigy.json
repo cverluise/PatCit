@@ -1,0 +1,23 @@
+{
+  "show_stats":true,
+  "show_flag":true,
+  "instructions":"./GUIDELINES.html",
+  "swipe":true,
+  "split_sents": true,
+  "split_sents_threshold":2000,
+  "force_stream_order": true,
+  "custom_theme" : {"labels": {
+        "BODY" : "#E6B0AA",
+        "REF" : "#F5B7B1",
+        "TYPE": "#D7BDE2 ",
+        "VERSION": "#A9CCE3 ",
+        "MEETING": "#A3E4D7",
+        "TDOC_NUM": "#F7DC6F",
+        "TSG": "#F0B27A",
+        "DATE": "#AEB6BF",
+        "SOURCE": "#FFA07A",
+        "TITLE": "#BB8FCE",
+        "WG": "#7DCEA0",
+        "TECH": "#A2D9CE"
+  } }
+}
