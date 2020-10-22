@@ -1,4 +1,7 @@
 import asyncio
+
+import requests
+
 from patcit.serialize.bibref import fetch_all_tags
 
 pk = "publication_number_o"
@@ -57,3 +60,19 @@ async def fetch_patents(id_, patents):
     """
     pats = [fetch_patent(id_, pat) for pat in patents]
     return await asyncio.gather(*pats)
+
+
+def get_publication_number(country_code, original):
+    """Return the publication_number based on the country code and original number using the
+    google patents linking api"""
+    root = "https://patents.google.com/api/match?pubnum="
+    if all([country_code, original]):
+        pubnum = country_code + original
+        r = requests.get(root + pubnum)
+        publication_number = r.text
+        publication_number = (
+            publication_number if publication_number != "notfound" else None
+        )
+    else:
+        publication_number = None
+    return publication_number
