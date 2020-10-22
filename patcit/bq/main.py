@@ -129,6 +129,18 @@ def front_page_meta(
 
 
 @app.command()
+def front_page_meta_public(meta: str = None):
+    query = f"""
+    SELECT
+      * EXCEPT(npl_biblio,
+        md5),
+      md5 AS hash_id
+    FROM
+      `{meta}`"""  # npl-parsing.external.v03_front_page_meta_future
+    typer.echo(query)
+
+
+@app.command()
 def front_page_bibref(
     meta: str = None, bibref_grobid: str = None, bibref_crossref: str = None
 ):
