@@ -75,7 +75,7 @@ This is the identification number of the technical document under consideration.
 
 ## The tag `TSG`
 
-This is the Technical Specification Group. This is a specialized subgroup within a body working on a specific technology. There is a finite set of TSGs. TSG include RAN*, GRAN*, etc. A longer list is provided in the patterns file.
+This is the Technical Specification Group. This is a specialized subgroup within a body working on a specific technology. There is a finite set of TSGs. TSG include RAN, GRAN, etc. A longer list is provided in the patterns file.
 
 **Examples**
 
