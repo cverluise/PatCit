@@ -142,3 +142,13 @@ QUERY=$(python patcit/main.py bq front-page-cat --meta npl-parsing.external.v03_
 ```
  bq query --replace --use_legacy_sql=false --replace --destination_table patcit-public-data:frontpage.wiki --destination_schema schema/frontpage_wiki.json $QUERY
 ```
+
+
+## In text
+
+### Patent
+
+
+```bash
+ls pat_serialized_*.jsonl | parallel -j +0 --eta "jq -s -c 'group_by(.publication_number)[] | {publication_number_o: .[0].publication_number_o, citation: [ .[] | {country_code: .orgname, status: .status, original: .original, epodoc: .epodoc}]}' {} >> patcit_{}"
+```
