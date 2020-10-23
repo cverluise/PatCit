@@ -148,6 +148,13 @@ QUERY=$(python patcit/main.py bq front-page-cat --meta npl-parsing.external.v03_
 
 ### Patent
 
+```sql
+SELECT
+  DISTINCT(CONCAT(orgname,original)) AS pubnum
+FROM
+  `npl-parsing.patcit.v01_UScontextualPat`
+```
+
 
 ```bash
 ls pat_serialized_*.jsonl | parallel -j +0 --eta "jq -s -c 'group_by(.publication_number)[] | {publication_number_o: .[0].publication_number_o, citation: [ .[] | {country_code: .orgname, status: .status, original: .original, epodoc: .epodoc}]}' {} >> patcit_{}"
