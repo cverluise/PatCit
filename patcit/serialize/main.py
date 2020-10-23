@@ -8,7 +8,6 @@ import os
 import sys
 from glob import glob
 from hashlib import md5
-from itertools import repeat
 
 import pycld2 as cld2
 import spacy
@@ -298,33 +297,23 @@ def npl_properties(path, cat_model: str = None, language_codes: str = "en,un"):
                 # out = None
 
 
-def add_publication_number(line, verbose):
+def add_publication_number(line):
     line = json.loads(line)
+    pubnum = line.get("pubnum")
 
-    citation = []
-    for eg in line["citation"]:
-        country_code = eg.get("country_code")
-        original = eg.get("original")
-        try:
-            publication_number = intext.get_publication_number(country_code, original)
-            eg.update({"publication_number": publication_number})
-            citation += [eg]
-        except Exception as e:
-            if verbose:
-                typer.secho(str(e), fg=typer.colors.RED)
-            else:
-                pass
-    line.update({"citation": citation})
+    publication_number = intext.get_publication_number(pubnum)
+    line.update({"publication_number": publication_number})
+
     typer.echo(json.dumps(line))
 
 
 @app.command()
-def pat_add_pubnum(file, max_workers: int = 10, verbose: bool = False):
+def pat_add_pubnum(file, max_workers: int = 10):
     """Add a publication number to patents detected in the text itself based on serialized grobid
     attributes and the google patents linking api"""
     with open(file, "r") as lines:
         with concurrent.futures.ThreadPoolExecutor(max_workers) as executor:
-            executor.map(add_publication_number, lines, repeat(verbose))
+            executor.map(add_publication_number, lines)
 
 
 if __name__ == "__main__":

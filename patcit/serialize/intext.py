@@ -62,12 +62,11 @@ async def fetch_patents(id_, patents):
     return await asyncio.gather(*pats)
 
 
-def get_publication_number(country_code, original):
+def get_publication_number(pubnum):
     """Return the publication_number based on the country code and original number using the
     google patents linking api"""
     root = "https://patents.google.com/api/match?pubnum="
-    if all([country_code, original]):
-        pubnum = country_code + original
+    if pubnum:
         r = requests.get(root + pubnum)
         publication_number = r.text
         publication_number = (
