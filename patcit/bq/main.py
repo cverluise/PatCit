@@ -6,6 +6,42 @@ PRIMARY_KEYS = ["npl_publn_id", "patcit_id"]
 
 
 @app.command()
+def patstat_patent_properties(tls201: str = None, tls211: str = None):
+    """Return query to create the patstat_patent_properties table.
+    Table to enrich patent data based on publication number. """
+    query = f"""WITH
+    tls211
+    AS(
+        SELECT
+    REPLACE(CONCAT(publn_auth, "-", publn_nr, "-", publn_kind), " ", "")
+    AS
+    publication_number,
+    CAST(REPLACE(CAST(publn_date
+    AS
+    STRING), "-", "") AS
+    INT64) AS
+    publication_date,
+    appln_id,
+    pat_publn_id
+    FROM
+    `{tls211}`)  # usptobias.patstat.tls211
+    SELECT
+    tls211. *,
+    tls201.docdb_family_id,
+    tls201.inpadoc_family_id
+    FROM
+    tls211
+    JOIN
+    `{tls201}`  # usptobias.patstat.tls201
+    AS
+    tls201
+    ON
+    tls211.appln_id = tls201.appln_id"""
+
+    return query
+
+
+@app.command()
 def front_page_cited_by(tls201: str = None, tls211: str = None, tls212: str = None):
     """Return the front_page_cited_by query
     """
@@ -223,6 +259,65 @@ def front_page_cat(meta: str = None, cat: str = None):
       meta.patcit_id=cat.patcit_id"""
 
     typer.echo(query)
+
+
+def intext_patent_add_publication_number(
+    grobid_intext_patent: str = None, pubnum2publication_number: str = None
+):
+    """Query to add publication_number to grobid_intext_patent based on CONCAT(orgname, original) (
+    aka pubnum)"""
+    query = f"""
+    WITH
+      tmp AS(
+      SELECT
+        *,
+        CONCAT(orgname, original) AS pubnum
+      FROM
+        `{grobid_intext_patent}`)  # npl-parsing.patcit.v01_UScontextualPat
+    SELECT
+      tmp.* EXCEPT(status, epodoc),
+      crossover.* EXCEPT(pubnum)
+    FROM
+      tmp
+    LEFT JOIN
+      `{pubnum2publication_number}` AS crossover  # npl-parsing.external.v03_intext_pat_pubnum
+    ON
+      tmp.pubnum=crossover.pubnum"""
+    return query
+
+
+def intext_patent(
+    grobid_intext_patent: str = None, patstat_patent_properties: str = None
+):
+    """Return query to create the intext_patent table"""
+    query = f"""
+    WITH
+      tmp AS (
+      SELECT
+        intext_patent.*,
+        patent_properties.* EXCEPT(publication_number)
+      FROM
+        `{grobid_intext_patent}` AS intext_patent  # npl-parsing.external.v03_intext_pat
+      LEFT JOIN
+        `{patstat_patent_properties}` AS patent_properties
+        # npl-parsing.external.patstat_patent_properties
+      ON
+        intext_patent.publication_number =patent_properties.publication_number)
+    SELECT
+      patent_properties.publication_date AS publication_date_o,
+      patent_properties.appln_id AS appln_id_o,
+      patent_properties.pat_publn_id AS pat_publn_id_o,
+      patent_properties.docdb_family_id AS docdb_family_id_o,
+      patent_properties.inpadoc_family_id AS inpadoc_family_id_o,
+      tmp.*
+    FROM
+      tmp
+    LEFT JOIN
+      `npl-parsing.external.patstat_patent_properties` AS patent_properties
+    ON
+      tmp.publication_number_o= patent_properties.publication_number
+    """
+    return query
 
 
 if __name__ == "__main__":
