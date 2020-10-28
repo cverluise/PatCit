@@ -148,14 +148,25 @@ QUERY=$(python patcit/main.py bq front-page-cat --meta npl-parsing.external.v03_
 
 ### Patent
 
-```sql
-SELECT
-  DISTINCT(CONCAT(orgname,original)) AS pubnum
-FROM
-  `npl-parsing.patcit.v01_UScontextualPat`
-```
 
+- Add `publication_number`
+
+- Add patent properties
+
+- Make sure it is ordered along the primary key
+
+- Extract table to gs
+    ```sql
+    SELECT
+      DISTINCT(CONCAT(orgname,original)) AS pubnum
+    FROM
+      `npl-parsing.patcit.v01_UScontextualPat`
+    ```
+
+- prep table
 
 ```bash
-ls pat_serialized_*.jsonl | parallel -j +0 --eta "jq -s -c 'group_by(.publication_number)[] | {publication_number_o: .[0].publication_number_o, citation: [ .[] | {country_code: .orgname, status: .status, original: .original, epodoc: .epodoc}]}' {} >> patcit_{}"
+ls intext_patent_flat_0000000000*.jsonl | parallel -j +0 --eta "sort {} | uniq >> distinct_{}"
+ls distinct_intext_patent_flat_0000000000*.jsonl | parallel -j +0 --eta "jq -s -c 'group_by(.publication_number_o)[] | {publication_number: .[0].publication_number_o, publication_date: .[0].publication_date_o, appln_id: .[0].appln_id_o, pat_publn_id: .[0].pat_publn_id_o, docdb_family_id: .[0].docdb_family_id_o, inpadoc_family_id: .[0].inpadoc_family_id_o, citation: [ .[] | {country_code: .orgname, original_number: .original, publication_number: .publication_number, publication_date: .publication_date, appln_id: .appln_id, pat_publn_id: .pat_publn_id, docdb_family_id: .docdb_family_id, inpadoc_family_id: .inpadoc_family_id} ]}' {} >> $(sed -e 's/_flat//g') && gzip $(sed -e 's/_flat//g')"
+bq load --source_format=NEWLINE_DELIMITED_JSON --max_bad_records=100 --ignore_unknown_values --replace patcit-public-data:intext.patent "gs://patcit_dev/intext/intext_patent*.jsonl.gz" schema/intext_patent.json
 ```
