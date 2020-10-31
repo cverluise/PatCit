@@ -263,36 +263,72 @@ def prep_spacy_sam_bibrefs(
     )
 
 
+def get_bibref_text(line):
+    """Return the line with a text field concatenating parsed attributes.
+    Expect a serialized bibref citation (grobid flavor)"""
+
+    def get_dict_values(d):
+        s = ""
+        for k, v in d.items():
+            if v:
+                s = " ".join([s, str(v)])
+        return s.strip()
+
+    # line = json.loads(line)
+    eg = line.copy()
+    text = ""
+
+    eg.pop("publication_number_o", None)
+    authors = eg.get("authors")
+    if authors:
+        for author in authors:
+            text_ = get_dict_values(author)
+            text = " ".join([text, text_])
+    eg.pop("authors", None)
+    text = " ".join([text, get_dict_values(eg)])
+    line.update({"text": text.strip()})
+    return line
+
+
 @app.command()
-def prep_bibref_silver_to_gold(file: str):
+def prep_bibref_silver_to_gold_task(file: str):
     """
     Prepare in text bibref serialized data for silver to gold classification task
 
     Expect jsonl file as v01_USintextNPL
     """
 
-    def get_dict_values(d):
-        s = ""
-        for k, v in d.items():
-            if v:
-                s = " ".join([s, v])
-        return s.strip()
-
     with open(file, "r") as lines:
         for line in lines:
-            text = ""
-            eg = json.loads(line)
-            eg.pop("publication_number_o", None)
-            authors = eg.get("authors")
-            if authors:
-                for author in authors:
-                    text_ = get_dict_values(author)
-                    text = " ".join([text, text_])
-            eg.pop("authors", None)
-            text = " ".join([text, get_dict_values(eg)])
-            out = {"text": text.strip()}
-            if out["text"]:
-                typer.echo(json.dumps(out))
+            line = json.loads(line)
+            out = get_bibref_text(line)
+            typer.echo(json.dumps(out))
+
+
+@app.command()
+def bibref_silver_to_gold(file: str, model: str = None):
+    """
+    Return each line in file (corresponding to an extracted npl (Grobid flavor) with an additional
+    bibref_score (in [0,1]) based on <model>'s predictions
+    """
+    nlp = spacy.load(model)
+    with open(file, "r") as lines:
+        for line in lines:
+            line = json.loads(line)
+
+            if line.get("DOI"):
+                # by convention, if there is a DOI match, we know for sure that this is a
+                # bibref
+                line.update({"bibref_score": 1})
+            else:
+                line = get_bibref_text(line)
+                text = line.get("text")
+                if text:
+                    line.update({"bibref_score": nlp(text).cats["BIBREF"]})
+                else:
+                    pass
+                line.pop("text", None)
+            typer.echo(json.dumps(line))
 
 
 @app.command()
