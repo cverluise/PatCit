@@ -10,13 +10,33 @@ from patcit.utils.tools import parse_date
 
 app = typer.Typer()
 
-LABEL_COLLECTION = {"WIKI": ["DATE", "ITEM"], "DATABASE": ["NAME", "DATE", "ACC_NUM"]}
+LABEL_COLLECTION = {
+    "WIKI": ["DATE", "ITEM"],
+    "DATABASE": ["NAME", "DATE", "ACC_NUM"],
+    "NORM_STANDARD": [
+        "BODY",
+        "REF",
+        "TYPE",
+        "VERSION",
+        "MEETING",
+        "WG",
+        "TDOC_NUM",
+        "TSG",
+        "TECH",
+        "DATE",
+        "SOURCE",
+    ],
+}
 URL_EXPRESSION = (
     "http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\),\—]|(?:%[0-9a-fA-F][0-9a-fA-F]))+"
 )
-TO_UPPER = {"WIKI": [], "DATABASE": ["NAME"]}
-TO_LOWER = {"WIKI": [], "DATABASE": []}
-TO_STRING = {"WIKI": ["ITEM"], "DATABASE": []}
+TO_UPPER = {
+    "WIKI": [],
+    "DATABASE": ["NAME"],
+    "NORM_STANDARD": ["BODY", "REF", "TYPE", "MEETING", "WG", "TSG", "TECH", "SOURCE"],
+}
+TO_LOWER = {"WIKI": [], "DATABASE": [], "NORM_STANDARD": []}
+TO_STRING = {"WIKI": ["ITEM"], "DATABASE": [], "NORM_STANDARD": []}
 PUNCTUATION = """'!"#$%&\'()*+,-./:;<=>?@[\\]^_`{|}~'"""  # from string.punctuation
 
 
