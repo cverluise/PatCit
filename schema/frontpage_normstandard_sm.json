@@ -1,0 +1,71 @@
+[{
+    "mode": "NULLABLE",
+    "name": "patcit_id",
+    "type": "STRING"
+  },
+  {
+    "mode": "REPEATED",
+    "name": "body",
+    "type": "STRING"
+  },
+  {
+    "mode": "REPEATED",
+    "name": "tsg",
+    "type": "STRING"
+  },
+  {
+    "mode": "REPEATED",
+    "name": "ref",
+    "type": "STRING"
+  },
+  {
+    "mode": "REPEATED",
+    "name": "tech",
+    "type": "STRING"
+  },
+  {
+    "mode": "REPEATED",
+    "name": "version",
+    "type": "STRING"
+  },
+  {
+    "mode": "REPEATED",
+    "name": "wg",
+    "type": "STRING"
+  },
+  {
+    "mode": "REPEATED",
+    "name": "meeting",
+    "type": "STRING"
+  },
+  {
+    "mode": "REPEATED",
+    "name": "source",
+    "type": "STRING"
+  },
+  {
+    "mode": "REPEATED",
+    "name": "type",
+    "type": "STRING"
+  },
+  {
+    "mode": "REPEATED",
+    "name": "tdoc_num",
+    "type": "STRING"
+  },
+  {
+    "mode": "REPEATED",
+    "name": "date",
+    "type": "INTEGER"
+  },
+  {
+    "mode": "REPEATED",
+    "name": "url",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "text",
+    "type": "STRING"
+  }
+]
