@@ -244,13 +244,15 @@ def update_front_page_bibref(bibref: str = None, bibref_grobid: str = None):
 
 
 @app.command()
-def front_page_cat(meta: str = None, cat: str = None):
+def front_page_cat(meta: str = None, cat: str = None, text_name: str = "npl_biblio"):
     query = f"""
     SELECT
-      meta.* EXCEPT(npl_biblio,
+      meta.* EXCEPT(
+        npl_biblio,
         md5,
         npl_cat),
-      cat.* EXCEPT(patcit_id, npl_biblio)
+      cat.* EXCEPT(patcit_id,
+      {text_name}),
     FROM
       `{meta}` AS meta  # npl-parsing.external.v03_front_page_meta_future
     RIGHT JOIN
