@@ -8,7 +8,7 @@ Role | Contributor(s)<sup>1</sup>
 ---|---
 Conceptualization| Gaétan de Rassenfosse, Cyril Verluise
 Data curation|  Cyril Verluise
-Formal Analysis| Luca Violon<sup>[frontpage-npl]</sup>, Cyril Verluise, Lucas Violon<sup>[intext-bibref]</sup>
+Formal Analysis| Lucas Violon<sup>[frontpage-npl]</sup>, Cyril Verluise, Lucas Violon<sup>[intext-bibref]</sup>
 Funding acquisition| Gaétan de Rassenfosse, Cyril Verluise
 Investigation| Cyril Verluise
 Methodology| Gaétan de Rassenfosse, Cyril Verluise, Tim Simcoe<sup>[norms-standards]</sup>
@@ -17,7 +17,7 @@ Resources| EPFL, Collège de France
 Software| Cyril Verluise
 Supervision| Gaétan de Rassenfosse, Cyril Verluise
 Validation|Gaétan de Rassenfosse<sup>[intext-patent]</sup>,Gabriele Cristelli<sup>[intext-patent]</sup>, Francesco Gerotto<sup>[matching-doi,parsing-bibref]</sup>, Kyle Higham<sup>[intext-patent]</sup>, Cyril Verluise, Lucas Violon<sup>[intext-bibref]</sup>
-Visualization| Cyril Verluise, Luca Violon<sup>[intext-bibref]</sup>
+Visualization| Cyril Verluise, Lucas Violon<sup>[intext-bibref]</sup>
 Writing – original draft| -
 Writing – review & editing| -
 
