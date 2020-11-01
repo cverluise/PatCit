@@ -94,7 +94,7 @@ async def fetch_all_tags(id_, soup, id_name="npl_publn_id"):
 
 
 async def get_issn(line, flavor):
-    if flavor == "grobid":
+    if "grobid" in flavor:
         issn = [line.get("ISSN"), line.get("ISSNe")]
         issn = list(filter(lambda x: x, issn))
     else:
@@ -103,7 +103,7 @@ async def get_issn(line, flavor):
 
 
 async def get_url(line, flavor):
-    if flavor == "grobid":
+    if "grobid" in flavor:
         url = line.get("target")
     else:
         url = None
@@ -112,7 +112,7 @@ async def get_url(line, flavor):
 
 async def get_author(line, flavor):
     author = []
-    if flavor == "grobid":
+    if "grobid" in flavor:
         if line.get("authors"):
             for author_ in line.get("authors"):
                 auth = {
@@ -153,7 +153,7 @@ async def get_title(line, flavor):
 
 
 async def get_journal_title(line, flavor):
-    if flavor == "grobid":
+    if "grobid" in flavor:
         journal_title = line.get("title_j")
     else:
         journal_title = (
@@ -165,7 +165,7 @@ async def get_journal_title(line, flavor):
 
 
 async def get_journal_title_abbrev(line, flavor):
-    if flavor == "grobid":
+    if "grobid" in flavor:
         journal_title_abbrev = line.get("title_abbrev_j")
     else:
         journal_title_abbrev = (
@@ -177,7 +177,7 @@ async def get_journal_title_abbrev(line, flavor):
 
 
 async def get_event(line, flavor):
-    if flavor == "grobid":
+    if "grobid" in flavor:
         name = [line.get("title_main_m"), line.get("title_m")]
         name = "|".join(filter(lambda x: x, name))
         event = {"acronym": None, "location": None, "name": name}
@@ -188,7 +188,7 @@ async def get_event(line, flavor):
 
 
 async def get_date(line, flavor):
-    if flavor == "grobid":
+    if "grobid" in flavor:
         date = line.get("year")
         date = int(date * 1e4 + 101) if date else None
     else:
@@ -206,17 +206,32 @@ async def get_date(line, flavor):
 
 
 async def get_page(line, flavor):
-    if flavor == "grobid":
-        page = list(filter(lambda x: x, [line.get("from"), line.get("to")]))
+    if "grobid" in flavor:
+        page = list(
+            map(
+                lambda x: str(x),
+                filter(lambda x: x, [line.get("from"), line.get("to")]),
+            )
+        )
         if page:
             page = "-".join(page)
         else:
+            # TODO: check that page has no field in crossref
             page = None
     return {"page": page}
 
 
+async def get_issue(line, flavor):
+    if "grobid" in flavor:
+        issue = line.get("issue")
+        issue = str(issue) if issue else None
+    else:
+        issue = line.get("issue")
+    return {"issue": issue}
+
+
 async def get_volume(line, flavor):
-    if flavor == "grobid":
+    if "grobid" in flavor:
         volume = line.get("volume")
         volume = str(volume) if volume else None
     return {"volume": volume}
@@ -273,6 +288,8 @@ async def get_attr(attr, line, flavor):
         attr_ = get_date(line, flavor)
     elif attr == "page":
         attr_ = get_page(line, flavor)
+    elif attr == "issue":
+        attr_ = get_issue(line, flavor)
     elif attr == "volume":
         attr_ = get_volume(line, flavor)
     elif attr == "reference_doi":
@@ -290,7 +307,7 @@ async def to_patcit(line, flavor):
     [out.update({k: v}) for k, v in line.items() if k in out.keys()]
     tasks = []
 
-    attrs = BIBREF_GROBID_UPDATE if flavor == "grobid" else BIBREF_CROSSREF_UPDATE
+    attrs = BIBREF_GROBID_UPDATE if "grobid" in flavor else BIBREF_CROSSREF_UPDATE
     for attr in attrs:
         task = asyncio.create_task(get_attr(attr, line, flavor))
         tasks.append(task)
@@ -299,12 +316,16 @@ async def to_patcit(line, flavor):
     for task in tasks:
         out.update(task)
 
-    if flavor == "grobid":
+    if "grobid" in flavor:
         out.update({"title": line.get("title_main_a")})
         out.update({"journal_title": line.get("title_j")})
         out.update({"journal_title_abbrev": line.get("title_abbrev_j")})
-        out.update({"npl_publn_id": line.get("npl_publn_id")})
         out.update({"source": "Grobid"})
+        if "intext" in flavor:
+            out.update({"publication_number_o": line.get("publication_number_o")})
+            out.update({"bibref_score": line.get("bibref_score")})
+        else:
+            out.update({"npl_publn_id": line.get("npl_publn_id")})
     else:
         out.update({"reference_count": line.get("reference-count")})
         out.update({"is_referenced_by_count": line.get("is-referenced-by-count")})

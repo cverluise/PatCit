@@ -40,7 +40,16 @@ BIBREF_EMPTY = {
     "source": None,
 }
 
-BIBREF_GROBID_UPDATE = ["ISSN", "URL", "author", "event", "date", "page", "volume"]
+BIBREF_GROBID_UPDATE = [
+    "ISSN",
+    "URL",
+    "author",
+    "event",
+    "date",
+    "page",
+    "issue",
+    "volume",
+]
 BIBREF_CROSSREF_UPDATE = [
     "author",
     "date",
