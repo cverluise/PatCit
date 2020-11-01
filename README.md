@@ -1,18 +1,8 @@
-[DOCDB]:https://www.epo.org/searching-for-patents/data/bulk-data-sets/docdb.html#tab-1
-[grobid]:https://github.com/kermitt2/grobid
-[biblio-glutton]:https://github.com/kermitt2/biblio-glutton
-[issues-create]:https://github.com/cverluise/SciCit/issues/new/choose
-[issues]:https://github.com/cverluise/SciCit/issues
-[gderasse]:https://github.com/gderasse
-[gder]:http://www.gder.info/
-[cverluise]:https://github.com/cverluise
-[cver]:https://cverluise.github.io/
-[nl]:https://tinyletter.com/patcit
-[doc-website]:https://cverluise.github.io/PatCit/
 [bq-patcit]:https://console.cloud.google.com/bigquery?project=patcit-public-data&p=patcit-public-data&page=project
 [zen-patcit]:https://zenodo.org/record/3710994#.Xm_uE5NKhEI
 [cc-by]: http://creativecommons.org/licenses/by/4.0/
-
+<!-- Place this tag in your head or just before your close body tag. -->
+<script async defer src="https://buttons.github.io/buttons.js"></script>
 
 <p align="center">
     <br><font style="font-size:10vw">patCit</font>
@@ -38,6 +28,16 @@
     </a>
 </p>
 
+<p align="center">
+	<a class="github-button" href="https://github.com/cverluise/PatCit/subscription" data-icon="octicon-eye" data-show-count="true" aria-label="Watch cverluise/PatCit on GitHub">Watch</a>
+
+	<a class="github-button" href="https://github.com/cverluise/PatCit" data-icon="octicon-star" data-show-count="true" aria-label="Star cverluise/PatCit on GitHub">Star</a>
+
+	<a class="github-button" href="https://github.com/cverluise/PatCit/fork" data-icon="octicon-repo-forked" data-show-count="true" aria-label="Fork cverluise/PatCit on GitHub">Fork</a>
+</p>
+
+
+
 <h3 align="center">
 <p>Building a comprehensive dataset of patent citations
 </h3>
@@ -49,12 +49,12 @@
 
 🔮 patCit is based on state-of-the-art open source projects and libraries such as <a href="https://github.com/kermitt2/grobid" style="color:black">grobid</a>/<a href="https://github.com/kermitt2/biblio-glutton" style="color:black">biblio-glutton</a> and <a href="https://github.com/explosion/spaCy" style="color:black">spaCy</a>. Even better, patCit is continuously improving with the rest of its ecosystem.
 
+🎓 Want to know more? Read patCit <a style="color:black" href="https://docs.google.com/presentation/d/11COlz64EZn8PipXvnDBBZI_bnDD0fpm6tyx1_EqD6lU/edit?usp=sharing">academic presentation</a> or dive into usage and technical guides on patCit <a style="color:black" href="https://cverluise.github.io/PatCit/">documentation website</a>.
+
 💌 Receive project updates in your mails/gitHub feed, join the <a style="color:black" href="https://tinyletter.com/patcit">patCit newsletter</a> and star the repository on gitHub.
 
 
 ## What will you find in patCit?
-
-[Website][doc-website]
 
 Patents are at the crossroads of many innovation nodes: science, open knwoledge, products, competition, etc. At patCit, we are building a *comprehensive* dataset of patent citations to help the community explore this *terra incognita*. patCit is:
 
@@ -66,7 +66,7 @@ Patents are at the crossroads of many innovation nodes: science, open knwoledge,
 
 #### Front-page
 
-patCit builds on the largest database of Non Patent Literature (NPL) citations. First, we deduplicate this corpus and organize it into 10 categories. Then, we design and apply category specific information extraction models. Eventually, when possible, we enrich the data using external domain specific high quality databases.
+patCit builds on <a href="https://www.epo.org/searching-for-patents/data/bulk-data-sets/docdb.html#tab-1" style="color:black">DOCDB</a>, the largest database of Non Patent Literature (NPL) citations. First, we deduplicate this corpus and organize it into 10 categories. Then, we design and apply category specific information extraction models using <a href="https://github.com/explosion/spaCy" style="color:black">spaCy</a>. Eventually, when possible, we enrich the data using external domain specific high quality databases.
 
 Category|Classification (Million docs)|Information extraction|Enrichment|BigQuery table|Colab notebook|
 ----|----|----|----|----|----
@@ -86,66 +86,46 @@ Wiki|<p align="center">✅</p>|<p align="center">✅</p>||<p align="center"><a h
 
 #### In-text
 
+patCit builds on Google Patents corpus of <a href="https://console.cloud.google.com/bigquery?project=patcit-public-data&p=patents-public-data&d=patents&t=publications&page=table" style="color:black">USPTO full-text patents</a>. First, we extract patent and bibliographical reference citations. Then, we parse detected in-text citations into a series of category dependent attributes using <a href="https://github.com/kermitt2/grobid" style="color:black">grobid</a>. Patent citations are matched with a standard publication number using the Google Patents <a href="https://patents.google.com/api/match" style="color:black">matching API</a> and bibliographical references are matched with a DOI using <a href="https://github.com/kermitt2/biblio-glutton" style="color:black">biblio-glutton</a>. Eventually, when possible, we enrich the data using external domain specific high quality databases.
+
 Category|Citation extraction (Million docs)|Information extraction|Enrichment|BigQuery table|Colab notebook|
 ----|----|----|----|----|----
-Bibliographical reference|<p align="center">✅</p>|<p align="center">✅</p>|<p align="center">✅</p>|<p align="center"><a href=""><img  src="https://seeklogo.com/images/G/google-big-query-logo-AC63E7C329-seeklogo.com.png" width="55" height="20"></a></p>|[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)]()
-Patents|<p align="center">✅</p>|<p align="center">✅</p>|<p align="center">✅</p>|<p align="center"><a href=""><img  src="https://seeklogo.com/images/G/google-big-query-logo-AC63E7C329-seeklogo.com.png" width="55" height="20"></a></p>|[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)]()
+Bibliographical reference|<p align="center">✅</p>|<p align="center">✅</p>|<p align="center">✅</p>|<p align="center"><a href="https://console.cloud.google.com/bigquery?project=patcit-public-data&p=patcit-public-data&d=intext&t=bibliographical_reference&page=table"><img  src="https://seeklogo.com/images/G/google-big-query-logo-AC63E7C329-seeklogo.com.png" width="55" height="20"></a></p>|[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)]()
+Patents|<p align="center">✅</p>|<p align="center">✅</p>|<p align="center">✅</p>|<p align="center"><a href="https://console.cloud.google.com/bigquery?project=patcit-public-data&p=patcit-public-data&d=intext&t=patent&page=table"><img  src="https://seeklogo.com/images/G/google-big-query-logo-AC63E7C329-seeklogo.com.png" width="55" height="20"></a></p>|[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)]()
 
 
 
-## patCit FAIR
+## FAIR
 
 📍 **Find** - The patCit dataset is available on <a style="color:black" href="https://console.cloud.google.com/bigquery?project=patcit-public-data&p=patcit-public-data&page=project">BigQuery</a> in an interactive enbironment. For those who have a smattering of SQL, this is the perfect place to explore the data. It can also be downloaded on <a style="color:black" href="https://zenodo.org/record/3710994">Zenodo</a>.
 
 > 👨‍🎓 If you are new to BigQuery and want to learn the basics of Google BigQuery (GBQ), you can take the GBQ <a href="https://cloud.google.com/bigquery/docs/quickstarts/quickstart-web-ui" style="color:grey">Quickstart</a>. This should not take more than 2 minutes and might help a lot !
 
-📖 **Access** - We make sure that
+📖 **Access** - We maintain a detailed documetation on how to access the data once you have found them on BigQuery or Zenodo. See usage notes on the patCit <a href="https://cverluise.github.io/PatCit/" style="color:black">documentation website</a>.
+
+🔀 **Interoperate** - Interoperability is at the core of patCit ambition. We take care to extract unique identifiers whenever it is possible to enable data enrichment for domain specific high quality databases. This includes the DOI, PMID and PMCID for bibliographical references, the Technical Doc Number for standards, the Accession Number for Genetic databases, the publication number for PATSTAT and Claims, etc. See specific table for more details.
+
+🔂 **Reproduce** - You are at the right place. This gitHub repository is the project factory. You can learn more about data recipes and models on the patCit <a href="https://cverluise.github.io/PatCit/" style="color:black">documentation website</a>.
 
 
-
-## Keep me updated
-
-
-PatCit is a fast moving and fast improving project. Make sure that you are aware of the project most recent developments.
-
-
-### Follow the `PatCit` project on GitHub
-
-- ![](https://img.shields.io/github/stars/cverluise/PatCit?style=social): GitHub users can star the project repository. Project updates will be automatically added to their GitHub news feed.
-- ![](https://img.shields.io/github/watchers/cverluise/PatCit?style=social): involved users and contributors are also invited to "watch" the project repository. They will be notified of releases, conversations, etc.
-
-
-
-## How can you contribute?
+## Contributing
 
 There are many ways to contribute to patCit, many do not include coding.
 
-**Help us improve** - We want to make patCit truly useful to the community. We are thus very happy for feedback.
+**Give feedback** - We want to make patCit truly useful to the community. We are thus very happy for feedback.
 
-**Let's grow the community** - We believe that discussions are much more valuable if they are publicly shared. This way, everyone can benefit from it. Hence, we strongly encourage you to share your issues and request on patCit GitHub repository [issue][issues] section.
+**Share your thoughts** - We believe that discussions are much more valuable if they are publicly shared. This way, everyone can benefit from it. Hence, we strongly encourage you to share your issues and request on patCit GitHub repository <a style="color:black" href="https://github.com/cverluise/SciCit/issues">issue</a> section.
 
-**Feel like coding today** - We will be more than happy to receive any contributions from you and the community. We have already started to tag some [issues][issues-create] with [![good first issue](https://img.shields.io/badge/issue-good--first--issue-purple)](https://github.com/cverluise/SciCit/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) and [![help wanted](https://img.shields.io/badge/issue-help--wanted-turquoise)](https://github.com/cverluise/SciCit/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22).
-
-<a name="contribute"></a>
+**Feel like coding today?** - We will be more than happy to receive any contributions from you and the community. We have already started to tag some issues with [![good first issue](https://img.shields.io/badge/issue-good--first--issue-purple)](https://github.com/cverluise/SciCit/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) and [![help wanted](https://img.shields.io/badge/issue-help--wanted-turquoise)](https://github.com/cverluise/SciCit/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22).
 
 
-## 🤗 Team
 
-This project is initiated by [G. de Rassenfosse][gder] ([@gderasse][gderasse]) and [C. Verluise][cver] ([@cverluise][cverluise]).
+## Team
 
-It has benefited from many contributions and helpful comments carefully recorded in [CRediT](./CRediT).
+This project was initiated by <a style="color:black" href="http://www.gder.info/">Gaétan de Rassenfosse</a> (EPFL) and <a style="color:black" href="https://cverluise.github.io/">Cyril Verluise</a> (Collège de France) in 2019.
 
-## Citation
+Since then, it has benefited from the contributions of Gabriele Cristelli (EPFL), Francesco Gerotto (Sciences Po), Kyle Higham (Hitsotsubashi University) and Lucas Violon (HEC Paris).
 
-```bibtex
-@dataset{gaetan_de_rassenfosse_2020_3710994,
-  author       = {Gaétan de Rassenfosse and Cyril Verluise},
-  title        = {{PatCit: A Comprehensive Dataset of Patent Citations}},
-  month        = mar,
-  year         = 2020,
-  publisher    = {Zenodo},
-  version      = {0.3},
-  doi          = {10.5281/zenodo.3710994},
-  url          = {https://doi.org/10.5281/zenodo.3710994}
-}
-```
+We are also thankful to Domenico Golzio for his constant support and to [@leflix311](https://github.com/leflix311), [@kermitt2](https://github.com/kermitt2), Tim Simcoe (Boston University) [@SuperMayo](https://github.com/SuperMayo) and [@wetherbeei](https://github.com/wetherbeei) for their helpful comments.
+
+Contribution details are available in <a style="color:black" href="./CRediT.md">CRediT</a>.
