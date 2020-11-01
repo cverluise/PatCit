@@ -1,13 +1,10 @@
-[bq-patcit]:https://console.cloud.google.com/bigquery?project=patcit-public-data&p=patcit-public-data&page=project
-[zen-patcit]:https://zenodo.org/record/3710994#.Xm_uE5NKhEI
-[cc-by]: http://creativecommons.org/licenses/by/4.0/
 <!-- Place this tag in your head or just before your close body tag. -->
 <script async defer src="https://buttons.github.io/buttons.js"></script>
 
 <p align="center">
-    <br><font style="font-size:10vw">patCit</font>
-    <svg width="40" height="40" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 2C2.44772 2 2 2.44772 2 3V12C2 12.5523 2.44772 13 3 13H12C12.5523 13 13 12.5523 13 12V8.5C13 8.22386 12.7761 8 12.5 8C12.2239 8 12 8.22386 12 8.5V12H3V3L6.5 3C6.77614 3 7 2.77614 7 2.5C7 2.22386 6.77614 2 6.5 2H3ZM12.8536 2.14645C12.9015 2.19439 12.9377 2.24964 12.9621 2.30861C12.9861 2.36669 12.9996 2.4303 13 2.497L13 2.5V2.50049V5.5C13 5.77614 12.7761 6 12.5 6C12.2239 6 12 5.77614 12 5.5V3.70711L6.85355 8.85355C6.65829 9.04882 6.34171 9.04882 6.14645 8.85355C5.95118 8.65829 5.95118 8.34171 6.14645 8.14645L11.2929 3H9.5C9.22386 3 9 2.77614 9 2.5C9 2.22386 9.22386 2 9.5 2H12.4999H12.5C12.5678 2 12.6324 2.01349 12.6914 2.03794C12.7504 2.06234 12.8056 2.09851 12.8536 2.14645Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
-    <br>
+<br><font style="font-size:10vw">patCit</font>
+<svg width="40" height="40" viewBox="0 0 13 13" fill="none" xmlns="http://www.w3.org/2000/svg"><path d="M3 2C2.44772 2 2 2.44772 2 3V12C2 12.5523 2.44772 13 3 13H12C12.5523 13 13 12.5523 13 12V8.5C13 8.22386 12.7761 8 12.5 8C12.2239 8 12 8.22386 12 8.5V12H3V3L6.5 3C6.77614 3 7 2.77614 7 2.5C7 2.22386 6.77614 2 6.5 2H3ZM12.8536 2.14645C12.9015 2.19439 12.9377 2.24964 12.9621 2.30861C12.9861 2.36669 12.9996 2.4303 13 2.497L13 2.5V2.50049V5.5C13 5.77614 12.7761 6 12.5 6C12.2239 6 12 5.77614 12 5.5V3.70711L6.85355 8.85355C6.65829 9.04882 6.34171 9.04882 6.14645 8.85355C5.95118 8.65829 5.95118 8.34171 6.14645 8.14645L11.2929 3H9.5C9.22386 3 9 2.77614 9 2.5C9 2.22386 9.22386 2 9.5 2H12.4999H12.5C12.5678 2 12.6324 2.01349 12.6914 2.03794C12.7504 2.06234 12.8056 2.09851 12.8536 2.14645Z" fill="currentColor" fill-rule="evenodd" clip-rule="evenodd"></path></svg>
+<br>
 <p>
 <p align="center">
     <a>
@@ -29,11 +26,9 @@
 </p>
 
 <p align="center">
-	<a class="github-button" href="https://github.com/cverluise/PatCit/subscription" data-icon="octicon-eye" data-show-count="true" aria-label="Watch cverluise/PatCit on GitHub">Watch</a>
-
-	<a class="github-button" href="https://github.com/cverluise/PatCit" data-icon="octicon-star" data-show-count="true" aria-label="Star cverluise/PatCit on GitHub">Star</a>
-
-	<a class="github-button" href="https://github.com/cverluise/PatCit/fork" data-icon="octicon-repo-forked" data-show-count="true" aria-label="Fork cverluise/PatCit on GitHub">Fork</a>
+<a class="github-button" href="https://github.com/cverluise/PatCit/subscription" data-icon="octicon-eye" data-show-count="true" aria-label="Watch cverluise/PatCit on GitHub">Watch</a>
+<a class="github-button" href="https://github.com/cverluise/PatCit" data-icon="octicon-star" data-show-count="true" aria-label="Star cverluise/PatCit on GitHub">Star</a>
+<a class="github-button" href="https://github.com/cverluise/PatCit/fork" data-icon="octicon-repo-forked" data-show-count="true" aria-label="Fork cverluise/PatCit on GitHub">Fork</a>
 </p>
 
 
@@ -75,7 +70,7 @@ Office action|<p align="center">✅</p>||||
 Patent|<p align="center">✅</p>||||
 Search report|<p align="center">✅</p>||||
 Product documentation|<p align="center">✅</p>||||
-Norm & standard|<p align="center">✅</p>|<p align="center">✅</p>||<p align="center"><a href="https://console.cloud.google.com/bigquery?project=patcit-public-data&p=patcit-public-data&d=frontpage&t=norm_standard&page=table"><img  src="https://seeklogo.com/images/G/google-big-query-logo-AC63E7C329-seeklogo.com.png" width="55"width="55" height="20"></a></p>|[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)]()
+Norm & standard|<p align="center">✅</p>|<p align="center">✅</p>||<p align="center"><a href="https://console.cloud.google.com/bigquery?project=patcit-public-data&p=patcit-public-data&d=frontpage&t=norm_standard&page=table"><img  src="https://seeklogo.com/images/G/google-big-query-logo-AC63E7C329-seeklogo.com.png" width="55" height="20"></a></p>|[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)]()
 Webpage|<p align="center">✅</p>||||
 Database|<p align="center">✅</p>|<p align="center">✅</p>||<p align="center"><a href="https://console.cloud.google.com/bigquery?project=patcit-public-data&p=patcit-public-data&d=frontpage&t=database&page=table"><img  src="https://seeklogo.com/images/G/google-big-query-logo-AC63E7C329-seeklogo.com.png" width="55" height="20"></a></p>|[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)]()
 Litigation|<p align="center">✅</p>||||
