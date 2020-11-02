@@ -316,5 +316,19 @@ def pat_add_pubnum(file, max_workers: int = 10):
             executor.map(add_publication_number, lines)
 
 
+@app.command()
+def add_line_md5(file: str):
+    """Return each line with an additional line_md5 field corresponding to the md5 of the whole
+    line-object.
+    Expect a .jsonl file.
+    """
+    with open(file, "r") as lines:
+        for line in lines:
+            line = json.loads(line)
+            hash = md5(json.dumps(line, sort_keys=True)).hexdigest()
+            line.update({"line_md5": hash})
+            typer.echo(json.dumps(line))
+
+
 if __name__ == "__main__":
     app()
