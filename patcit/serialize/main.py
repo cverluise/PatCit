@@ -325,8 +325,10 @@ def add_line_md5(file: str):
     with open(file, "r") as lines:
         for line in lines:
             line = json.loads(line)
-            hash = md5(json.dumps(line, sort_keys=True)).hexdigest()
-            line.update({"line_md5": hash})
+            line_hash = md5(
+                json.dumps(line, sort_keys=True).lower().encode("utf-8")
+            ).hexdigest()
+            line.update({"line_md5": line_hash})
             typer.echo(json.dumps(line))
 
 
