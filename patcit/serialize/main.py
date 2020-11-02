@@ -317,18 +317,28 @@ def pat_add_pubnum(file, max_workers: int = 10):
 
 
 @app.command()
-def add_line_md5(file: str):
-    """Return each line with an additional line_md5 field corresponding to the md5 of the whole
-    line-object.
+def add_identifier(file: str):
+    """Return each line with identifiers (md5 and patcit_id) - create if not existing, preserve
+    otherwise.
     Expect a .jsonl file.
     """
     with open(file, "r") as lines:
         for line in lines:
             line = json.loads(line)
-            line_hash = md5(
-                json.dumps(line, sort_keys=True).lower().encode("utf-8")
-            ).hexdigest()
-            line.update({"line_md5": line_hash})
+            doi_ = line.get("DOI")
+            md5_ = line.get("md5")
+
+            if not md5_:
+                md5_ = md5(
+                    json.dumps(line, sort_keys=True).lower().encode("utf-8")
+                ).hexdigest()
+                line.update({"md5": md5_})
+
+            if doi_:
+                line.update({"patcit_id": doi_})
+            else:
+                line.update({"patcit_id": md5_})
+
             typer.echo(json.dumps(line))
 
 
