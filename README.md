@@ -63,17 +63,17 @@ patCit builds on [DOCDB][docdb], the largest database of Non Patent Literature (
 
 Category|Classification (Million docs)|Information extraction|Enrichment|BigQuery table|Colab notebook|
 ----|----|----|----|----|----
-Bibliographical reference|<p align="center">✅</p>|<p align="center">✅</p>|<p align="center">✅</p>|<p align="center"><a href="https://console.cloud.google.com/bigquery?project=patcit-public-data&p=patcit-public-data&d=frontpage&t=bibliographical_reference&page=table"><img  src="https://seeklogo.com/images/G/google-big-query-logo-AC63E7C329-seeklogo.com.png" width="55" height="20"></a></p>|[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)]()
+Bibliographical reference|<p align="center">✅</p>|<p align="center">✅</p>|<p align="center">✅</p>|<p align="center"><a href="https://console.cloud.google.com/bigquery?project=patcit-public-data&p=patcit-public-data&d=frontpage&t=bibliographical_reference&page=table"><img  src="https://seeklogo.com/images/G/google-big-query-logo-AC63E7C329-seeklogo.com.png" width="55" height="20"></a></p>|<p align="center">🔜</p>
 Office action|<p align="center">✅</p>||||
 Patent|<p align="center">✅</p>||||
 Search report|<p align="center">✅</p>||||
 Product documentation|<p align="center">✅</p>||||
-Norm & standard|<p align="center">✅</p>|<p align="center">✅</p>||<p align="center"><a href="https://console.cloud.google.com/bigquery?project=patcit-public-data&p=patcit-public-data&d=frontpage&t=norm_standard&page=table"><img  src="https://seeklogo.com/images/G/google-big-query-logo-AC63E7C329-seeklogo.com.png" width="55" height="20"></a></p>|[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)]()
+Norm & standard|<p align="center">✅</p>|<p align="center">✅</p>||<p align="center"><a href="https://console.cloud.google.com/bigquery?project=patcit-public-data&p=patcit-public-data&d=frontpage&t=norm_standard&page=table"><img  src="https://seeklogo.com/images/G/google-big-query-logo-AC63E7C329-seeklogo.com.png" width="55" height="20"></a></p>|[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/cverluise/PatCit/blob/nightly/notebook/frontpage_normstandard.ipynb)
 Webpage|<p align="center">✅</p>||||
-Database|<p align="center">✅</p>|<p align="center">✅</p>||<p align="center"><a href="https://console.cloud.google.com/bigquery?project=patcit-public-data&p=patcit-public-data&d=frontpage&t=database&page=table"><img  src="https://seeklogo.com/images/G/google-big-query-logo-AC63E7C329-seeklogo.com.png" width="55" height="20"></a></p>|[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)]()
+Database|<p align="center">✅</p>|<p align="center">✅</p>||<p align="center"><a href="https://console.cloud.google.com/bigquery?project=patcit-public-data&p=patcit-public-data&d=frontpage&t=database&page=table"><img  src="https://seeklogo.com/images/G/google-big-query-logo-AC63E7C329-seeklogo.com.png" width="55" height="20"></a></p>|<p align="center">🔜</p>
 Litigation|<p align="center">✅</p>||||
-Wiki|<p align="center">✅</p>|<p align="center">✅</p>||<p align="center"><a href="https://console.cloud.google.com/bigquery?project=patcit-public-data&p=patcit-public-data&d=frontpage&t=wiki&page=table"><img  src="https://seeklogo.com/images/G/google-big-query-logo-AC63E7C329-seeklogo.com.png" width="55" height="20"></a></p>|[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)]()
-*All*|<p align="center">✅</p>|<p align="center">NR</p>|<p align="center">✅</p>|<p align="center"><a href="https://console.cloud.google.com/bigquery?project=patcit-public-data&p=patcit-public-data&d=frontpage&t=all_meta&page=table"><img  src="https://seeklogo.com/images/G/google-big-query-logo-AC63E7C329-seeklogo.com.png" width="55" height="20"></a></p>|[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)]()
+Wiki|<p align="center">✅</p>|<p align="center">✅</p>||<p align="center"><a href="https://console.cloud.google.com/bigquery?project=patcit-public-data&p=patcit-public-data&d=frontpage&t=wiki&page=table"><img  src="https://seeklogo.com/images/G/google-big-query-logo-AC63E7C329-seeklogo.com.png" width="55" height="20"></a></p>|[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/cverluise/PatCit/blob/nightly/notebook/frontpage_wiki.ipynb)
+*All*|<p align="center">✅</p>|<p align="center">NR</p>|<p align="center">✅</p>|<p align="center"><a href="https://console.cloud.google.com/bigquery?project=patcit-public-data&p=patcit-public-data&d=frontpage&t=all_meta&page=table"><img  src="https://seeklogo.com/images/G/google-big-query-logo-AC63E7C329-seeklogo.com.png" width="55" height="20"></a></p>|[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/cverluise/PatCit/blob/nightly/notebook/frontpage_all.ipynb)
 
 
 
@@ -86,8 +86,8 @@ patCit builds on Google Patents corpus of [USPTO full-text patents][google-ocr].
 
 Category|Citation extraction (Million docs)|Information extraction|Enrichment|BigQuery table|Colab notebook|
 ----|----|----|----|----|----
-Bibliographical reference|<p align="center">✅</p>|<p align="center">✅</p>|<p align="center">✅</p>|<p align="center"><a href="https://console.cloud.google.com/bigquery?project=patcit-public-data&p=patcit-public-data&d=intext&t=bibliographical_reference&page=table"><img  src="https://seeklogo.com/images/G/google-big-query-logo-AC63E7C329-seeklogo.com.png" width="55" height="20"></a></p>|[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)]()
-Patents|<p align="center">✅</p>|<p align="center">✅</p>|<p align="center">✅</p>|<p align="center"><a href="https://console.cloud.google.com/bigquery?project=patcit-public-data&p=patcit-public-data&d=intext&t=patent&page=table"><img  src="https://seeklogo.com/images/G/google-big-query-logo-AC63E7C329-seeklogo.com.png" width="55" height="20"></a></p>|[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)]()
+Bibliographical reference|<p align="center">✅</p>|<p align="center">✅</p>|<p align="center">✅</p>|<p align="center"><a href="https://console.cloud.google.com/bigquery?project=patcit-public-data&p=patcit-public-data&d=intext&t=bibliographical_reference&page=table"><img  src="https://seeklogo.com/images/G/google-big-query-logo-AC63E7C329-seeklogo.com.png" width="55" height="20"></a></p>|<p align="center">🔜</p>
+Patents|<p align="center">✅</p>|<p align="center">✅</p>|<p align="center">✅</p>|<p align="center"><a href="https://console.cloud.google.com/bigquery?project=patcit-public-data&p=patcit-public-data&d=intext&t=patent&page=table"><img  src="https://seeklogo.com/images/G/google-big-query-logo-AC63E7C329-seeklogo.com.png" width="55" height="20"></a></p>|[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/cverluise/PatCit/blob/nightly/notebook/intext_patent.ipynb)
 
 
 
@@ -96,11 +96,11 @@ Patents|<p align="center">✅</p>|<p align="center">✅</p>|<p align="center">�
 [patcit-zenodo]:https://zenodo.org/record/3710994
 [bq-quickstart]:https://cloud.google.com/bigquery/docs/quickstarts/quickstart-web-ui
 
-📍 **Find** - The patCit dataset is available on [BigQuery][patcit-bq] in an interactive enbironment. For those who have a smattering of SQL, this is the perfect place to explore the data. It can also be downloaded on [Zenodo][patcit-zenodo].
+📍 **Find** - The patCit dataset is available on [BigQuery][patcit-bq] in an interactive environment. For those who have a smattering of SQL, this is the perfect place to explore the data. It can also be downloaded on [Zenodo][patcit-zenodo].
 
 > 👨‍🎓 If you are new to BigQuery and want to learn the basics of Google BigQuery (GBQ), you can take the GBQ [Quickstart][bq-quickstart]. This should not take more than 2 minutes and might help a lot !
 
-📖 **Access** - We maintain a detailed documetation on how to access the data once you have found them on BigQuery or Zenodo. See usage notes on the patCit [documentation website][patcit-website].
+📖 **Access** - We maintain a detailed documentation on how to access the data once you have found them on BigQuery or Zenodo. See usage notes on the patCit [documentation website][patcit-website].
 
 🔀 **Interoperate** - Interoperability is at the core of patCit ambition. We take care to extract unique identifiers whenever it is possible to enable data enrichment for domain specific high quality databases. This includes the DOI, PMID and PMCID for bibliographical references, the Technical Doc Number for standards, the Accession Number for Genetic databases, the publication number for PATSTAT and Claims, etc. See specific table for more details.
 
