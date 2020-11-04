@@ -1,44 +1,41 @@
 [tool.poetry]
 name = "patcit"
-version = "0.1.0"
-description = ""
+version = "0.3.0"
+description = "Unpack the innovation system"
 authors = ["Cyril Verluise <cyril.verluise@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.scripts]
+patcit = "patcit.main:app"
 
 [tool.poetry.dependencies]
 python = "^3.7"
-aiohttp = "^3.6.2"
 numpy = "^1.18.1"
-beautifulsoup4 = "^4.8.2"
-asyncio = "^3.4.3"
-jupyter = "^1.0.0"
-smart_open = "^1.9.0"
 pandas = "^1.0.2"
+beautifulsoup4 = "^4.8.2"
+lxml = "^4.5.2"
+asyncio = "^3.4.3"
+jsonschema = "^3.2.0"
+smart_open = "^1.9.0"
+tqdm = "^4.50.2"
+wasabi = "^0.8.0"
+tabulate = "^0.8.7"
 pycld2 = "^0.41"
+glom = "^20.8.0"
+fuzzysearch = "^0.7.3"
+dateparser = "^0.7.6"
+plotly = "^4.11.0"
+sklearn = "^0.0"
+en_core_web_sm = {url = "https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.3.1/en_core_web_sm-2.3.1.tar.gz"}
+spacy = "^2.3.2"
+spacy-lookups-data = "^0.3.2"
+typer =  {extras = ["all"], version = "^0.3.2"}
 
 [tool.poetry.dev-dependencies]
-google-cloud-bigquery = "^1.24.0"
-tqdm = "^4.42.1"
-click = "^7.0"
-wasabi = "^0.6.0"
-plotly = "^4.5.0"
 pre-commit = "^2.0.1"
-jsonlines = "^1.2.0"
-jsonschema = "^3.2.0"
-lxml = "^4.5.0"
-typer = "^0.0.8"
 mkdocs = "^1.0.4"
-httpx = "^0.11.1"
-glom = "^19.10.0"
-ipykernel = "^5.1.4"
-autopep8 = "^1.5"
-spacy = "^2.2.3"
-en_core_web_sm = {url = "https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.2.5/en_core_web_sm-2.2.5.tar.gz"}
-thinc = "^7.3.1"
-sklearn = "^0.0"
-psutil = "^5.7.0"
 mkdocs-material = "^4.6.3"
-tabulate = "^0.8.6"
-pyperclip = "^1.7.0"
 
 [build-system]
 requires = ["poetry>=0.12"]

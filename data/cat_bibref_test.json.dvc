@@ -1,0 +1,3 @@
+outs:
+- md5: 5ff6ff1df49abccf6df9f2d11139b435
+  path: cat_bibref_test.json

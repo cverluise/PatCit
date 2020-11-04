@@ -1,0 +1,200 @@
+[
+  {
+    "mode": "NULLABLE",
+    "name": "npl_publn_id",
+    "type": "INTEGER"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "DOI",
+    "type": "STRING"
+  },
+    {
+    "mode": "NULLABLE",
+    "name": "PMCID",
+    "type": "STRING"
+  },
+    {
+    "mode": "NULLABLE",
+    "name": "PMID",
+    "type": "INTEGER"
+  },
+  {
+    "mode": "REPEATED",
+    "name": "ISSN",
+    "type": "STRING"
+  },
+  {
+    "mode": "REPEATED",
+    "name": "ISBN",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "URL",
+    "type": "STRING"
+  },
+  {
+    "fields": [
+      {
+        "mode": "NULLABLE",
+        "name": "sequence",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "given",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "family",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "affiliation",
+        "type": "STRING"
+      }
+    ],
+    "mode": "REPEATED",
+    "name": "author",
+    "type": "RECORD"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "title",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "journal_title",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "journal_title_abbrev",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "issue",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "volume",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "page",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "date",
+    "type": "INTEGER"
+  },
+  {
+    "fields": [
+      {
+        "mode": "NULLABLE",
+        "name": "name",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "location",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "acronym",
+        "type": "STRING"
+      }
+    ],
+    "mode": "NULLABLE",
+    "name": "event",
+    "type": "RECORD"
+  },
+  {
+    "mode": "REPEATED",
+    "name": "subject",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "abstract",
+    "type": "STRING"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "is_referenced_by_count",
+    "type": "INTEGER"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "reference_count",
+    "type": "INTEGER"
+  },
+  {
+    "mode": "REPEATED",
+    "name": "reference_doi",
+    "type": "STRING"
+  },
+  {
+    "fields": [
+      {
+        "mode": "NULLABLE",
+        "name": "doi_asserted_by",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "award",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "name",
+        "type": "STRING"
+      },
+      {
+        "mode": "NULLABLE",
+        "name": "DOI",
+        "type": "STRING"
+      }
+    ],
+    "mode": "REPEATED",
+    "name": "funder",
+    "type": "RECORD"
+  },
+{
+    "fields": [
+      {
+        "mode": "NULLABLE",
+        "name": "name",
+        "type": "STRING"
+      },
+      {
+        "mode": "REPEATED",
+        "name": "place",
+        "type": "STRING"
+      },
+      {
+        "mode": "REPEATED",
+        "name": "acronym",
+        "type": "STRING"
+      }
+    ],
+    "mode": "NULLABLE",
+    "name": "institution",
+    "type": "RECORD"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "source",
+    "type": "STRING"
+  }
+]

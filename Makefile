@@ -1,7 +1,10 @@
-.PHONY: clean requirements.txt docs/ models/
+.PHONY: clean requirements.txt docs/ models/ requirements-dev.txt
 
 requirements.txt:
 	poetry export -f requirements.txt > requirements.txt
+
+requirements-dev.txt:
+	poetry export -f requirements.txt --dev > requirements-dev.txt
 
 models/:
 	# tar <dest-name.tar.gz> <src-folder>  ## used for compression

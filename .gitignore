@@ -1,21 +1,16 @@
-
-
 # Confidential
 **/npl-parsing-cdda13f10f36.json
 **/npl-parsing-3412b4cafd20.json
 **/config.json
+token_zenodo.txt
 
 # Large files
-data/
-*results-*.csv
-*results-*.txt
-*prep*.csv
-*prep*.json
+data_tmp/
+dev/
 
 # spaCy models
 **/en_core_web_sm*/
 **/en_core_web_sm*.tar.gz
-
 
 # Dev
 dev*.py
@@ -23,6 +18,7 @@ example.py
 eda/
 data-release/
 site/
+
 # System files
 **/.DS_Store
 .idea/*

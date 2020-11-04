@@ -1,0 +1,281 @@
+[
+  { "description": "PatCit unique id. Consolidated unique id (e.g. DOI, Accession Number, etc) if any, md5 hash otherwise.",
+    "mode": "NULLABLE",
+    "name": "patcit_id",
+    "type": "STRING"
+  },
+    { "description": "PATSTAT Non-Patent Literature publication identification (2018b). Surrogate key for Non-Patent Literature publications.",
+    "mode": "REPEATED",
+    "name": "npl_publn_id",
+    "type": "INTEGER"
+  },
+  { "description": "Hash of the lower-case NPL citation.",
+    "mode": "REPEATED",
+    "name": "md5",
+    "type": "STRING"
+  },
+  { "description": "Number of citations received from patents.",
+    "mode": "NULLABLE",
+    "name": "is_cited_by_count",
+    "type": "INTEGER"
+  },
+  { "description": "Non Patent Literature category.",
+    "mode": "NULLABLE",
+    "name": "npl_cat",
+    "type": "STRING"
+  },
+  { "description": "Classification score of npl_cat (0,1]. By convention, 1 means that the category assigned is based on a rule and not on the classification model used otherwise.",
+    "mode": "NULLABLE",
+    "name": "npl_cat_score",
+    "type": "FLOAT"
+  },
+  { "description": "Flag NPL citations with a detected language different from the classification model's training scope.",
+    "mode": "NULLABLE",
+    "name": "npl_cat_language_flag",
+    "type": "BOOLEAN"
+  },
+  { "description": "ISO-2 language code detected using pycld2 (https://github.com/aboSamoor/pycld2).",
+    "mode": "NULLABLE",
+    "name": "language_code",
+    "type": "STRING"
+  },
+  { "description": "Language reliability boolean.",
+    "mode": "NULLABLE",
+    "name": "language_is_reliable",
+    "type": "BOOLEAN"
+  },
+  {
+    "fields": [
+      { "description": "PATSTAT application identification. Surrogate key: Technical unique identifier without any business meaning.",
+        "mode": "NULLABLE",
+        "name": "appln_id",
+        "type": "INTEGER"
+      },
+      { "description": "Patent publication number (DOCDB compatible), eg: 'US-7650331-B1'.",
+        "mode": "NULLABLE",
+        "name": "publication_number",
+        "type": "STRING"
+      },
+      { "description": "The publication date (yyyymmdd).",
+        "mode": "NULLABLE",
+        "name": "publication_date",
+        "type": "INTEGER"
+      },
+      { "description": "PATSTAT origin of the citation. Provenance of the citation.",
+        "mode": "NULLABLE",
+        "name": "origin",
+        "type": "STRING"
+      },
+      { "description": "Identifier of a DOCDB simple family. Means that most probably the applications share exactly the same priorities (Paris Convention or technical relation or others).",
+        "mode": "NULLABLE",
+        "name": "docdb_family_id",
+        "type": "INTEGER"
+      },
+      { "description": "Identifier of an INPADOC extended priority family. Means that the applications share a priority directly or indirectly via a third application.",
+        "mode": "NULLABLE",
+        "name": "inpadoc_family_id",
+        "type": "INTEGER"
+      }
+    ],
+    "mode": "REPEATED",
+    "name": "cited_by",
+    "type": "RECORD"
+  },
+
+  { "description": "Digital Object Identifier. DOIs are in wide use mainly to identify academic, professional, and government information, such as journal articles, research reports and data sets, and official publications.",
+    "mode": "NULLABLE",
+    "name": "DOI",
+    "type": "STRING"
+  },
+    {
+    "description": "PubMed Central Identifier. The PMCID is a unique reference number or identifier that is assigned to every article that is accepted into PubMed Central -- an archive of full-text journal articles.",
+    "mode": "NULLABLE",
+    "name": "PMCID",
+    "type": "STRING"
+  },
+    {
+    "description": "PubMed Identifier. The PMID is a unique reference number for PubMed citations.",
+    "mode": "NULLABLE",
+    "name": "PMID",
+    "type": "INTEGER"
+  },
+  { "description": "International Standard Serial Number. It is an 8-digit code used to identify newspapers, journals, magazines and periodicals of all kinds and on all media –- print and electronic.",
+    "mode": "REPEATED",
+    "name": "ISSN",
+    "type": "STRING"
+  },
+  { "description": "International Standard Book Number (ISBN).",
+    "mode": "REPEATED",
+    "name": "ISBN",
+    "type": "STRING"
+  },
+  { "description": "Document URL.",
+    "mode": "NULLABLE",
+    "name": "URL",
+    "type": "STRING"
+  },
+  {
+    "fields": [
+      { "description": "Sequence.",
+        "mode": "NULLABLE",
+        "name": "sequence",
+        "type": "STRING"
+      },
+      { "description": "Given name.",
+        "mode": "NULLABLE",
+        "name": "given",
+        "type": "STRING"
+      },
+      { "description": "Family name.",
+        "mode": "NULLABLE",
+        "name": "family",
+        "type": "STRING"
+      },
+      { "description": "Affiliation.",
+        "mode": "NULLABLE",
+        "name": "affiliation",
+        "type": "STRING"
+      }
+    ],
+    "mode": "REPEATED",
+    "name": "author",
+    "type": "RECORD"
+  },
+  {
+    "mode": "NULLABLE",
+    "name": "title",
+    "type": "STRING"
+  },
+  {"description": "Journal title.",
+    "mode": "NULLABLE",
+    "name": "journal_title",
+    "type": "STRING"
+  },
+  {"description": "Abbreviated journal title.",
+    "mode": "NULLABLE",
+    "name": "journal_title_abbrev",
+    "type": "STRING"
+  },
+  { "description": "Issue number of the item holding the bibliographical reference (e.g. journal, proceedings, etc).",
+    "mode": "NULLABLE",
+    "name": "issue",
+    "type": "STRING"
+  },
+  {"description": "Volume number of the item holding the bibliographical reference (e.g. journal, proceedings, etc).",
+    "mode": "NULLABLE",
+    "name": "volume",
+    "type": "STRING"
+  },
+  {"description": "Page(s) of the item in the body it belongs to ('start-end').",
+    "mode": "NULLABLE",
+    "name": "page",
+    "type": "STRING"
+  },
+  { "description": "Publication date (yyyymmdd).",
+    "mode": "NULLABLE",
+    "name": "date",
+    "type": "INTEGER"
+  },
+  {
+    "fields": [
+      {
+        "description": "Name.",
+        "mode": "NULLABLE",
+        "name": "name",
+        "type": "STRING"
+      },
+      { "description": "Location.",
+        "mode": "NULLABLE",
+        "name": "location",
+        "type": "STRING"
+      },
+      { "description": "Acronym.",
+        "mode": "NULLABLE",
+        "name": "acronym",
+        "type": "STRING"
+      }
+    ],
+    "mode": "NULLABLE",
+    "name": "event",
+    "type": "RECORD"
+  },
+  { "description": "Subject.",
+    "mode": "REPEATED",
+    "name": "subject",
+    "type": "STRING"
+  },
+  { "description": "Abstract.",
+    "mode": "NULLABLE",
+    "name": "abstract",
+    "type": "STRING"
+  },
+  { "description": "Number of citations received from bibliographical references (articles, proceedings, etc).",
+    "mode": "NULLABLE",
+    "name": "is_referenced_by_count",
+    "type": "INTEGER"
+  },
+  { "description": "Number of references to bibliographical references (articles, proceedings, etc).",
+    "mode": "NULLABLE",
+    "name": "reference_count",
+    "type": "INTEGER"
+  },
+  { "description": "DOI of the cited bibliographical references (articles, proceedings, etc).",
+    "mode": "REPEATED",
+    "name": "reference_doi",
+    "type": "STRING"
+  },
+  {
+    "fields": [
+      { "description": "Name.",
+        "mode": "NULLABLE",
+        "name": "name",
+        "type": "STRING"
+      },
+      { "description": "Award.",
+        "mode": "NULLABLE",
+        "name": "award",
+        "type": "STRING"
+      },
+      { "description": "Award DOI.",
+        "mode": "NULLABLE",
+        "name": "DOI",
+        "type": "STRING"
+      },
+      { "description": "DOI assertion entity.",
+        "mode": "NULLABLE",
+        "name": "doi_asserted_by",
+        "type": "STRING"
+      }
+    ],
+    "mode": "REPEATED",
+    "name": "funder",
+    "type": "RECORD"
+  },
+{
+    "fields": [
+      { "description": "Name.",
+        "mode": "NULLABLE",
+        "name": "name",
+        "type": "STRING"
+      },
+      { "description": "Place.",
+        "mode": "REPEATED",
+        "name": "place",
+        "type": "STRING"
+      },
+      { "description": "Acronym.",
+        "mode": "REPEATED",
+        "name": "acronym",
+        "type": "STRING"
+      }
+    ],
+    "mode": "NULLABLE",
+    "name": "institution",
+    "type": "RECORD"
+  },
+  { "description": "Source of the bibliographical data.",
+    "mode": "NULLABLE",
+    "name": "source",
+    "type": "STRING"
+  }
+]

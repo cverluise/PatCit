@@ -1,185 +1,139 @@
-[DOCDB]:https://www.epo.org/searching-for-patents/data/bulk-data-sets/docdb.html#tab-1
+<h1 align="center">patCit<img src="./patcit-logo.svg" height="25">
+</h1>
+
+<p align="center">
+<img src="https://img.shields.io/badge/release-0.3.0-yellow">
+<a href="https://cverluise.github.io/PatCit/">
+<img alt="Documentation" src="https://img.shields.io/badge/website-online-brightgreen">
+<img src="https://img.shields.io/badge/code-MIT-green">
+<img src="https://img.shields.io/badge/data-CC%20BY%204.0-blue">
+<a href="https://doi.org/10.5281/zenodo.3710993">
+<img src="https://img.shields.io/badge/zenodo-0.3.0-darkblue">
+</a>
+<img src="https://img.shields.io/badge/models-dvc-purple">
+</p>
+
+<p align="center">
+<img src="https://img.shields.io/github/forks/cverluise/PatCit?style=social">
+<img src="https://img.shields.io/github/stars/cverluise/PatCit?style=social">
+<img src="https://img.shields.io/github/forks/cverluise/PatCit?style=social">
+</p>
+
+
+
+<h3 align="center">
+<p>Building a comprehensive dataset of patent citations
+</h3>
+
+[patcit-bq]:https://console.cloud.google.com/bigquery?project=patcit-public-data&p=patcit-public-data&page=project
 [grobid]:https://github.com/kermitt2/grobid
 [biblio-glutton]:https://github.com/kermitt2/biblio-glutton
-[issues-create]:https://github.com/cverluise/SciCit/issues/new/choose
-[issues]:https://github.com/cverluise/SciCit/issues
-[good-first-issue]:https://github.com/cverluise/SciCit/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22
-[help-wanted]:https://github.com/cverluise/SciCit/issues?q=is%3Aissue+is%3Aopen+label%3A%22help+wanted%22
-[gbq-quickstart]:https://cloud.google.com/bigquery/docs/quickstarts/quickstart-web-ui
-[gderasse]:https://github.com/gderasse
-[gder]:http://www.gder.info/
-[cverluise]:https://github.com/cverluise
-[cver]:https://cverluise.github.io/
-[nl]:https://tinyletter.com/patcit
-[doc-website]:https://cverluise.github.io/PatCit/
-[bq-patcit]:https://console.cloud.google.com/bigquery?project=brv-patent&p=npl-parsing&d=patcit&page=dataset
-[gs-patcit]:https://console.cloud.google.com/storage/browser/patcit?forceOnBucketsSortingFiltering=false&project=npl-parsing&userProject=npl-parsing
-[zen-patcit]:https://zenodo.org/record/3710994#.Xm_uE5NKhEI
-[cc-by]: http://creativecommons.org/licenses/by/4.0/
-[cc-by-shield]: https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg?label=Data
+[spacy]:https://github.com/explosion/spaCy
+[patcit-academic]:https://docs.google.com/presentation/d/11COlz64EZn8PipXvnDBBZI_bnDD0fpm6tyx1_EqD6lU/edit?usp=sharing
+[patcit-website]:https://cverluise.github.io/PatCit/
+[patcit-newsletter]:https://tinyletter.com/patcit
 
-<a href="https://cverluise.github.io/PatCit/"><img src="https://github.com/cverluise/PatCit/blob/master/dissemination/logo-250x250.jpeg" width="125" height="125" align="right" /></a>
+👩‍🔬 Exploring the universe of patent citations has never been easier. No more complicated data set-up, memory issue and queries running for ever, we host [patCit on BigQuery][patcit-bq] for you.
 
-# PatCit: Making Patent Citations Uncool Again
+🤗 patCit is community driven and benefits from the suppport of a reactive team who is eager happy to help and tackle your next request. This is where academics and industry practitioners meet.
 
-[Website][doc-website], [Newsletter][nl], [BigQuery][bq-patcit], [G-Storage][gs-patcit], [Zenodo][zen-patcit]
+🔮 patCit is based on state-of-the-art open source projects and libraries such as [grobid][grobid]/[biblio-glutton][biblio-glutton] and [spaCy][spacy]. Even better, patCit is continuously improving with the rest of its ecosystem.
 
-![](https://img.shields.io/github/license/cverluise/PatCit?label=Code) [![CC BY 4.0][cc-by-shield]][cc-by] ![](https://img.shields.io/github/last-commit/cverluise/PatCit)
+🎓 Want to know more? Read patCit [academic presentation][patcit-academic] or dive into usage and technical guides on patCit [documentation website][patcit-website].
 
-Patents are at the crossroads of many innovation nodes: science, industry, products, competition, etc. Such interactions can be identified through citations *in a broad sense*.
+💌 Receive project updates in your mails/gitHub feed, join the [patCit newsletter][patcit-newsletter] and star the repository on gitHub.
 
-It is now common to use patent-to-patent citations to study some aspects of the innovation system. However, **there is much more buried in the Non Patent Literature (NPL) citations and in the patent text itself**. For instance, patent texts can contain citations to patents, bibliographical references, softwares, databases, products, etc. Similarly, NPL citations point to bibliographical references, office actions, patents, search reports, webpages, norm & standards, product documentations, databases and litigation documents.
 
-Good news, Natural Language Processing (NLP) tools now enable social scientists to excavate and structure this long hidden information. **That's the purpose of this project**.
+## What will you find in patCit?
 
-## Achievements
+Patents are at the crossroads of many innovation nodes: science, open knwoledge, products, competition, etc. At patCit, we are building a *comprehensive* dataset of patent citations to help the community explore this *terra incognita*. patCit is:
 
-So far, we have:
+- 🌎 worlwide coverage
+- 📄 & 📚 front-page and in-text citations
+- 🌈 all sorts of documents, not just scientific articles
 
-1. **classified** the 40 million NPL citations reported in the **DOCDB** database in 9 distinct research oriented classes with a 90% accuracy rate.<sup>1</sup>
-2. **parsed** and **consolidated** the 27 million **NPL** citations classified as bibliographical references.
+> 💡 **How we do?** We use recent progress in Natural Language Processing (NLP) to extract and structure citations into actionable piece of information.
 
-	<details>
+#### Front-page
 
-	>ℹ From the 27 million bibliographical references:
-	>
-	> 1. 11 million (40%) were matched with a **DOI** with a 99% **precision** rate
-	> 2. the main bibliographic attributes were parsed with **accuracy** rates ranging between 71% and 92% for the remaining 16 million (60%)
+[docdb]:https://www.epo.org/searching-for-patents/data/bulk-data-sets/docdb.html#tab-1
 
-	</details>
+patCit builds on [DOCDB][docdb], the largest database of Non Patent Literature (NPL) citations. First, we deduplicate this corpus and organize it into 10 categories. Then, we design and apply category specific information extraction models using [spaCy][spacy]. Eventually, when possible, we enrich the data using external domain specific high quality databases.
 
-3. **extracted**, **parsed** and **consolidated** in-text bibliographical references and patent citations from the body of all time USPTO patents.
 
-	<details>
+Category|Classification (Million docs)|Information extraction|Enrichment|BigQuery table|Colab notebook|
+----|----|----|----|----|----
+Bibliographical reference|<p align="center">✅</p>|<p align="center">✅</p>|<p align="center">✅</p>|<p align="center"><a href="https://console.cloud.google.com/bigquery?project=patcit-public-data&p=patcit-public-data&d=frontpage&t=bibliographical_reference&page=table"><img  src="https://seeklogo.com/images/G/google-big-query-logo-AC63E7C329-seeklogo.com.png" width="55" height="20"></a></p>|<p align="center">🔜</p>
+Office action|<p align="center">✅</p>||||
+Patent|<p align="center">✅</p>||||
+Search report|<p align="center">✅</p>||||
+Product documentation|<p align="center">✅</p>||||
+Norm & standard|<p align="center">✅</p>|<p align="center">✅</p>||<p align="center"><a href="https://console.cloud.google.com/bigquery?project=patcit-public-data&p=patcit-public-data&d=frontpage&t=norm_standard&page=table"><img  src="https://seeklogo.com/images/G/google-big-query-logo-AC63E7C329-seeklogo.com.png" width="55" height="20"></a></p>|[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/cverluise/PatCit/blob/nightly/notebook/frontpage_normstandard.ipynb)
+Webpage|<p align="center">✅</p>||||
+Database|<p align="center">✅</p>|<p align="center">✅</p>||<p align="center"><a href="https://console.cloud.google.com/bigquery?project=patcit-public-data&p=patcit-public-data&d=frontpage&t=database&page=table"><img  src="https://seeklogo.com/images/G/google-big-query-logo-AC63E7C329-seeklogo.com.png" width="55" height="20"></a></p>|<p align="center">🔜</p>
+Litigation|<p align="center">✅</p>||||
+Wiki|<p align="center">✅</p>|<p align="center">✅</p>||<p align="center"><a href="https://console.cloud.google.com/bigquery?project=patcit-public-data&p=patcit-public-data&d=frontpage&t=wiki&page=table"><img  src="https://seeklogo.com/images/G/google-big-query-logo-AC63E7C329-seeklogo.com.png" width="55" height="20"></a></p>|[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/cverluise/PatCit/blob/nightly/notebook/frontpage_wiki.ipynb)
+*All*|<p align="center">✅</p>|<p align="center">NR</p>|<p align="center">✅</p>|<p align="center"><a href="https://console.cloud.google.com/bigquery?project=patcit-public-data&p=patcit-public-data&d=frontpage&t=all_meta&page=table"><img  src="https://seeklogo.com/images/G/google-big-query-logo-AC63E7C329-seeklogo.com.png" width="55" height="20"></a></p>|[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/cverluise/PatCit/blob/nightly/notebook/frontpage_all.ipynb)
 
-	>ℹ From the 16 million USPTO patents, we have:
-	>
-	> 1. **extracted** and **parsed** 70 million in-text bibliographical references and 80 million patent citations.
-	> 2. found a **DOI** for 13+ million in-text bibliographical references (18%).
 
-	</details>
 
-> 💬 A detailed presentation of the current state of the project is available in our [March 2020 presentation](./dissemination/IIPP-CEMI_03032020.pdf).
+#### In-text
 
-## Features
+[google-ocr]:https://console.cloud.google.com/bigquery?project=patcit-public-data&p=patents-public-data&d=patents&t=publications&page=table
+[google-matchapi]:https://patents.google.com/api/match
 
-#### Open
+patCit builds on Google Patents corpus of [USPTO full-text patents][google-ocr]. First, we extract patent and bibliographical reference citations. Then, we parse detected in-text citations into a series of category dependent attributes using [grobid][grobid. Patent citations are matched with a standard publication number using the Google Patents [matching API][google-matchapi] and bibliographical references are matched with a DOI using [biblio-glutton][biblio-glutton]. Eventually, when possible, we enrich the data using external domain specific high quality databases.
 
-- The code is licensed under MIT-2 and the dataset is licensed under CC-BY. Two highly permissive licenses.
-- The project is thought to be *dynamically improved by and for the community*. Anyone should feel free to open discussions, raise issues, request features and contribute to the project.
+Category|Citation extraction (Million docs)|Information extraction|Enrichment|BigQuery table|Colab notebook|
+----|----|----|----|----|----
+Bibliographical reference|<p align="center">✅</p>|<p align="center">✅</p>|<p align="center">✅</p>|<p align="center"><a href="https://console.cloud.google.com/bigquery?project=patcit-public-data&p=patcit-public-data&d=intext&t=bibliographical_reference&page=table"><img  src="https://seeklogo.com/images/G/google-big-query-logo-AC63E7C329-seeklogo.com.png" width="55" height="20"></a></p>|<p align="center">🔜</p>
+Patents|<p align="center">✅</p>|<p align="center">✅</p>|<p align="center">✅</p>|<p align="center"><a href="https://console.cloud.google.com/bigquery?project=patcit-public-data&p=patcit-public-data&d=intext&t=patent&page=table"><img  src="https://seeklogo.com/images/G/google-big-query-logo-AC63E7C329-seeklogo.com.png" width="55" height="20"></a></p>|[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/cverluise/PatCit/blob/nightly/notebook/intext_patent.ipynb)
 
-#### Comprehensive
 
-- We address *worldwide patents*, as long as the data is available.
-- We address *all classes of citations*<sup>1</sup>, not only bibliographical references.
-- We address front-page and in-text citations.
 
-#### Highest standards
+## FAIR
 
-- We use and implement state-of-the art machine learning solutions.
-- We take great care to implement only the most efficient solutions. We believe that computational resources should be used sparsely, for both environmental sustainability and long term financial sustainability of the project.
+[patcit-zenodo]:https://zenodo.org/record/3710994
+[bq-quickstart]:https://cloud.google.com/bigquery/docs/quickstarts/quickstart-web-ui
 
+📍 **Find** - The patCit dataset is available on [BigQuery][patcit-bq] in an interactive environment. For those who have a smattering of SQL, this is the perfect place to explore the data. It can also be downloaded on [Zenodo][patcit-zenodo].
 
+> 👨‍🎓 If you are new to BigQuery and want to learn the basics of Google BigQuery (GBQ), you can take the GBQ [Quickstart][bq-quickstart]. This should not take more than 2 minutes and might help a lot !
 
-## Data access
+📖 **Access** - We maintain a detailed documentation on how to access the data once you have found them on BigQuery or Zenodo. See usage notes on the patCit [documentation website][patcit-website].
 
-The `PatCit` dataset is licensed under Creative Commons Attribution International 4.0 [CC-BY 4.0](https://creativecommons.org/licenses/by/4.0/).
+🔀 **Interoperate** - Interoperability is at the core of patCit ambition. We take care to extract unique identifiers whenever it is possible to enable data enrichment for domain specific high quality databases. This includes the DOI, PMID and PMCID for bibliographical references, the Technical Doc Number for standards, the Accession Number for Genetic databases, the publication number for PATSTAT and Claims, etc. See specific table for more details.
 
-#### Explore in BigQuery
+🔂 **Reproduce** - You are at the right place. This gitHub repository is the project factory. You can learn more about data recipes and models on the patCit [documentation website][patcit-website].
 
-The `PatCit` dataset is publicly available on Google Cloud BigQuery (GBQ). Follow the [link][bq-patcit]! For those who have a smattering of SQL, we believe that this is the perfect environment to play with the data.
 
-> 💡 If you are new to GCP and want to learn the basics of Google BigQuery (GBQ), you can take the GBQ [Quickstart][gbq-quickstart]. This should not take more than 2 minutes and might help a lot !
+## Contributing
 
+[issue]:https://github.com/cverluise/SciCit/issues
 
-#### Download from Google Cloud Storage - *recommended*
+There are many ways to contribute to patCit, many do not include coding.
 
+**Give feedback** - We want to make patCit truly useful to the community. We are thus very happy for feedback.
 
-This is the best way to experiment a customizable, smooth and resilient download process. We will make sure that the latest version of the dataset is always available on the [gs://patcit][gs-patcit] bucket.
+**Share your thoughts** - We believe that discussions are much more valuable if they are publicly shared. This way, everyone can benefit from it. Hence, we strongly encourage you to share your issues and request on patCit GitHub repository [issue][issue] section.
 
+**Feel like coding today?** - We will be more than happy to receive any contributions from you and the community. We have already started to tag some issues with [![good first issue](https://img.shields.io/badge/issue-good--first--issue-purple)](https://github.com/cverluise/SciCit/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22) and [![help wanted](https://img.shields.io/badge/issue-help--wanted-turquoise)](https://github.com/cverluise/SciCit/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22).
 
-```bash
-gsutil  -u <your-billing-project> \ # specify your billing project
--m cp -r gs://patcit/ <your/destination/folder-or-uri>
-```
-
-
-> 💡 You can download a specific subset of the dataset by specifying the source folder. E.g. `gs://patcit/npl/json` (instead of `gs://patcit`) will get you only the latest version of the `npl` dataset in its json version.
-
-#### Download from Zenodo
-
-The dataset can also be downloaded from Zenodo. Follow the [link][zen-patcit]!
-
-> 💡 Versions of the dataset will be archived on Zenodo as of `v0.15-patcit`.
-
-
-## Keep me updated
-
-
-PatCit is a fast moving and fast improving project. Make sure that you are aware of the project most recent developments.
-
-
-### Join our mail diffusion list
-
-Click [here][nl], that's as simple as that.
-
-<small>Expect 1 mail every 2 months. You can unsubscribe at any moment. We won't sell your information, ever.</small>
-
-### Follow the `PatCit` project on GitHub
-
-- ![](https://img.shields.io/github/stars/cverluise/PatCit?style=social): GitHub users can star the project repository. Project updates will be automatically added to their GitHub news feed.
-- ![](https://img.shields.io/github/watchers/cverluise/PatCit?style=social): involved users and contributors are also invited to "watch" the project repository. They will be notified of releases, conversations, etc.
-
-
-
-## By and for the community
-
-
-#### Help us improve.
-We want to make this dataset truly useful to the community. We are thus very happy for feedback.
-
-#### Let's grow the community.
-We believe that discussions are much more valuable if they are publicly shared, so that more people can benefit from it. Hence, we strongly encourage you to share your feedback on our GitHub repository [issue][issues] section.
-
-#### Want to contribute?
-Even better! We will be more than happy to receive any contributions from you and the community. We have already started to tag some [issues][issues-create] with [`good first issue`][good-first-issue] and [`help wanted`][help-wanted]. Ready? You can start as of now! Let's do it all together.
-
-<a name="contribute"></a>
-
-## Under the hood.
-
-We build on large range of open-source tools. In particular, the project heavily relies on two great open source libraries:
-
-- [Grobid][grobid], a Machine Learning library for extracting, parsing and restructuring raw documents
-- [biblio-glutton][biblio-glutton], a framework dedicated to bibliographic information with a powerful bibliographical matching service.
-
-These services are articulated in an efficient data pipeline in the cloud to process up to 2 million citations per day.
 
 
 ## Team
+[credit]:./CRediT.md
+[gabriele]:https://people.epfl.ch/gabriele.cristelli
+[kyle]:https://scholar.google.com/citations?user=Ze-7kTYAAAAJ&hl=en
+[tim]:http://people.bu.edu/tsimcoe/
+[gaétan]:http://www.gder.info/
+[cyril]:https://cverluise.github.io/
 
-This project is initiated by [G. de Rassenfosse][gder] ([@gderasse][gderasse]) and [C. Verluise][cver] ([@cverluise][cverluise]).
 
-It benefits from valuable help from to [@kermitt2](https://github.com/kermitt2) [@FGer8](https://github.com/FGer8), [@gg4u](https://github.com/gg4u), [@SuperMayo](https://github.com/SuperMayo) and [@leflix311](https://github.com/leflix311).
+This project was initiated by [Gaétan de Rassenfosse][gaétan] (EPFL) and [Cyril Verluise][cyril] (Collège de France) in 2019.
 
-We are also thankful to the many people who help us shape this project through useful comments shared by emails, twitter and direct interactions.
+Since then, it has benefited from the contributions of [Gabriele Cristelli][gabriele] (EPFL), Francesco Gerotto (Sciences Po), [Kyle Higham][kyle] (Hitsotsubashi University) and Lucas Violon (HEC Paris).
 
+We are also thankful to Domenico Golzio for constant support and to [@leflix311](https://github.com/leflix311), [@kermitt2](https://github.com/kermitt2), [Tim Simcoe][tim] (Boston University) [@SuperMayo](https://github.com/SuperMayo) and [@wetherbeei](https://github.com/wetherbeei) for helpful comments.
 
-## Citation
-
-```bibtex
-@dataset{gaetan_de_rassenfosse_2020_3710994,
-  author       = {Gaétan de Rassenfosse and Cyril Verluise},
-  title        = {{PatCit: A Comprehensive Dataset of Patent Citations}},
-  month        = mar,
-  year         = 2020,
-  publisher    = {Zenodo},
-  version      = {0.15},
-  doi          = {10.5281/zenodo.3710994},
-  url          = {https://doi.org/10.5281/zenodo.3710994}
-}
-```
-
----
-
-<sup>1</sup>  Bibliographical reference, office action, patent, search report, webpage, norm & standard, product documentation, database and litigation
+Contribution details are available in [CRediT][credit].

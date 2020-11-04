@@ -72,7 +72,8 @@ nav:
     - Download: download.md
     - Explore: explore.md
     - Versions: versions.md
-  - Contribute:
+  - Developper:
+    - Recipes: recipes.md
     - Contributions: contributing.md
     - Code of Conduct: code-of-conduct.md
   - How it works:
@@ -82,4 +83,4 @@ nav:
   - Vocabulary: vocabulary.md
   - License:
     - MIT2: license-mit.md
-    - CC4: license-cc.md
+    - CC-BY-4: license-cc.md

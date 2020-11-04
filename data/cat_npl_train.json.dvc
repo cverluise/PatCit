@@ -1,0 +1,3 @@
+outs:
+- md5: 15a7e12084f3fd42b7fe178eae0d0202
+  path: cat_npl_train.json

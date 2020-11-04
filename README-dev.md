@@ -1,10 +1,12 @@
 # README
 
+> Warning: this is partly deprecated
+
 ## Build Project
 
 ```shell script
 git clone
-cd PscUniverse/
+cd patcit/
 git submodule add https://github.com/kermitt2/grobid.git  # If not done yet
 pipenv install --dev  # or `pip -r requirements.txt` if you don"t use pipenv
 pipenv install -e .  # or `pip install -e .` if you don"t use pipenv

@@ -1,0 +1,84 @@
+[
+  { "description": "PatCit unique id. Consolidated unique id (e.g. DOI, Accession Number, etc) if any, md5 hash otherwise.",
+    "mode": "NULLABLE",
+    "name": "patcit_id",
+    "type": "STRING"
+  },
+    { "description": "PATSTAT Non-Patent Literature publication identification (2018b). Surrogate key for Non-Patent Literature publications.",
+    "mode": "REPEATED",
+    "name": "npl_publn_id",
+    "type": "INTEGER"
+  },
+  { "description": "hash_id of the lower-case NPL citation.",
+    "mode": "REPEATED",
+    "name": "hash_id",
+    "type": "STRING"
+  },
+  { "description": "Number citations of the document identified by patcit_id originated by patents.",
+    "mode": "NULLABLE",
+    "name": "is_cited_by_count",
+    "type": "INTEGER"
+  },
+  { "description": "Non Patent Literature category.",
+    "mode": "NULLABLE",
+    "name": "npl_cat",
+    "type": "STRING"
+  },
+  { "description": "Classification score of npl_cat (0,1]. By convention, 1 means that the category assigned is based on a rule and not on the classification model used otherwise.",
+    "mode": "NULLABLE",
+    "name": "npl_cat_score",
+    "type": "FLOAT"
+  },
+  { "description": "Flag NPL citations with a detected language different from the classification model's training scope.",
+    "mode": "NULLABLE",
+    "name": "npl_cat_language_flag",
+    "type": "BOOLEAN"
+  },
+  { "description": "ISO-2 language code detected using pycld2 (https://github.com/aboSamoor/pycld2).",
+    "mode": "NULLABLE",
+    "name": "language_code",
+    "type": "STRING"
+  },
+  { "description": "Language reliability boolean.",
+    "mode": "NULLABLE",
+    "name": "language_is_reliable",
+    "type": "BOOLEAN"
+  },
+  {
+    "fields": [
+      { "description": "PATSTAT application identification. Surrogate key: Technical unique identifier without any business meaning.",
+        "mode": "NULLABLE",
+        "name": "appln_id",
+        "type": "INTEGER"
+      },
+      { "description": "Patent publication number (DOCDB compatible), eg: 'US-7650331-B1'.",
+        "mode": "NULLABLE",
+        "name": "publication_number",
+        "type": "STRING"
+      },
+      { "description": "The publication date (yyyymmdd).",
+        "mode": "NULLABLE",
+        "name": "publication_date",
+        "type": "INTEGER"
+      },
+      { "description": "PATSTAT origin of the citation. Provenance of the citation.",
+        "mode": "NULLABLE",
+        "name": "origin",
+        "type": "STRING"
+      },
+      { "description": "Identifier of a DOCDB simple family. Means that most probably the applications share exactly the same priorities (Paris Convention or technical relation or others).",
+        "mode": "NULLABLE",
+        "name": "docdb_family_id",
+        "type": "INTEGER"
+      },
+      { "description": "Identifier of an INPADOC extended priority family. Means that the applications share a priority directly or indirectly via a third application.",
+        "mode": "NULLABLE",
+        "name": "inpadoc_family_id",
+        "type": "INTEGER"
+      }
+    ],
+    "mode": "REPEATED",
+    "name": "cited_by",
+    "type": "RECORD"
+  }
+]

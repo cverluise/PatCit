@@ -1,0 +1,3 @@
+outs:
+- md5: f8a7f7cb09e0e02bfa8d5367590fb0a2
+  path: ent_std_train.json
