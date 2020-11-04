@@ -14,7 +14,7 @@
 </p>
 
 <p align="center">
-<img src="https://img.shields.io/github/forks/cverluise/PatCit?style=social">
+<img src="https://img.shields.io/github/watchers/cverluise/PatCit?style=social">
 <img src="https://img.shields.io/github/stars/cverluise/PatCit?style=social">
 <img src="https://img.shields.io/github/forks/cverluise/PatCit?style=social">
 </p>
