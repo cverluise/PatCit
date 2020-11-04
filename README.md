@@ -61,7 +61,7 @@ Patents are at the crossroads of many innovation nodes: science, open knwoledge,
 patCit builds on [DOCDB][docdb], the largest database of Non Patent Literature (NPL) citations. First, we deduplicate this corpus and organize it into 10 categories. Then, we design and apply category specific information extraction models using [spaCy][spacy]. Eventually, when possible, we enrich the data using external domain specific high quality databases.
 
 
-Category|Classification (Million docs)|Information extraction|Enrichment|BigQuery table|Colab notebook|
+Category|Classification|Information extraction|Enrichment|BigQuery table|Colab notebook|
 ----|----|----|----|----|----
 Bibliographical reference|<p align="center">✅</p>|<p align="center">✅</p>|<p align="center">✅</p>|<p align="center"><a href="https://console.cloud.google.com/bigquery?project=patcit-public-data&p=patcit-public-data&d=frontpage&t=bibliographical_reference&page=table"><img  src="https://seeklogo.com/images/G/google-big-query-logo-AC63E7C329-seeklogo.com.png" width="55" height="20"></a></p>|<p align="center">🔜</p>
 Office action|<p align="center">✅</p>||||
@@ -84,7 +84,7 @@ Wiki|<p align="center">✅</p>|<p align="center">✅</p>||<p align="center"><a h
 
 patCit builds on Google Patents corpus of [USPTO full-text patents][google-ocr]. First, we extract patent and bibliographical reference citations. Then, we parse detected in-text citations into a series of category dependent attributes using [grobid][grobid. Patent citations are matched with a standard publication number using the Google Patents [matching API][google-matchapi] and bibliographical references are matched with a DOI using [biblio-glutton][biblio-glutton]. Eventually, when possible, we enrich the data using external domain specific high quality databases.
 
-Category|Citation extraction (Million docs)|Information extraction|Enrichment|BigQuery table|Colab notebook|
+Category|Citation extraction|Information extraction|Enrichment|BigQuery table|Colab notebook|
 ----|----|----|----|----|----
 Bibliographical reference|<p align="center">✅</p>|<p align="center">✅</p>|<p align="center">✅</p>|<p align="center"><a href="https://console.cloud.google.com/bigquery?project=patcit-public-data&p=patcit-public-data&d=intext&t=bibliographical_reference&page=table"><img  src="https://seeklogo.com/images/G/google-big-query-logo-AC63E7C329-seeklogo.com.png" width="55" height="20"></a></p>|<p align="center">🔜</p>
 Patents|<p align="center">✅</p>|<p align="center">✅</p>|<p align="center">✅</p>|<p align="center"><a href="https://console.cloud.google.com/bigquery?project=patcit-public-data&p=patcit-public-data&d=intext&t=patent&page=table"><img  src="https://seeklogo.com/images/G/google-big-query-logo-AC63E7C329-seeklogo.com.png" width="55" height="20"></a></p>|[![Open In Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/cverluise/PatCit/blob/nightly/notebook/intext_patent.ipynb)
