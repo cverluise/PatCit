@@ -8,7 +8,7 @@
 <img src="https://img.shields.io/badge/code-MIT-green">
 <img src="https://img.shields.io/badge/data-CC%20BY%204.0-blue">
 <a href="https://doi.org/10.5281/zenodo.4244176">
-<img src="https://zenodo.org/badge/DOI/10.5281/zenodo.4244176.svg" alt="DOI"></a>
+<img src="https://img.shields.io/badge/zenodo-0.3.0-darkblue" alt="DOI"></a>
 <img src="https://img.shields.io/badge/models-dvc-purple">
 </p>
 
