@@ -7,9 +7,8 @@
 <img alt="Documentation" src="https://img.shields.io/badge/website-online-brightgreen">
 <img src="https://img.shields.io/badge/code-MIT-green">
 <img src="https://img.shields.io/badge/data-CC%20BY%204.0-blue">
-<a href="https://doi.org/10.5281/zenodo.3710993">
-<img src="https://img.shields.io/badge/zenodo-0.3.0-darkblue">
-</a>
+<a href="https://doi.org/10.5281/zenodo.4244176">
+<img src="https://zenodo.org/badge/DOI/10.5281/zenodo.4244176.svg" alt="DOI"></a>
 <img src="https://img.shields.io/badge/models-dvc-purple">
 </p>
 
@@ -93,7 +92,7 @@ Patents|<p align="center">✅</p>|<p align="center">✅</p>|<p align="center">�
 
 ## FAIR
 
-[patcit-zenodo]:https://zenodo.org/record/3710994
+[patcit-zenodo]:https://zenodo.org/record/4244176
 [bq-quickstart]:https://cloud.google.com/bigquery/docs/quickstarts/quickstart-web-ui
 
 📍 **Find** - The patCit dataset is available on [BigQuery][patcit-bq] in an interactive environment. For those who have a smattering of SQL, this is the perfect place to explore the data. It can also be downloaded on [Zenodo][patcit-zenodo].
