@@ -18,6 +18,7 @@ example.py
 eda/
 data-release/
 site/
+docs/draft.md
 
 # System files
 **/.DS_Store
