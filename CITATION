@@ -1,10 +1,15 @@
-@dataset{gaetan_de_rassenfosse_2020_3710994,
-  author       = {Gaétan de Rassenfosse and Cyril Verluise},
-  title        = {{PatCit: A Comprehensive Dataset of Patent Citations}},
+@dataset{cyril_verluise_2020_4244176,
+  author       = {Cyril Verluise and
+                  Gabriele Cristelli and
+                  Kyle Higham and
+                  Lucas Violon and
+                  Gaétan de Rassenfosse},
+  title        = {{PatCit: A Comprehensive Dataset of Patent
+                   Citations}},
   month        = mar,
   year         = 2020,
   publisher    = {Zenodo},
-  version      = {0.3},
-  doi          = {10.5281/zenodo.3710994},
-  url          = {https://doi.org/10.5281/zenodo.3710994}
+  version      = {0.3.0},
+  doi          = {10.5281/zenodo.4244176},
+  url          = {https://doi.org/10.5281/zenodo.4244176}
 }
