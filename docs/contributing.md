@@ -9,8 +9,6 @@
 
 Existing issues are open to contributors. In particular, issues tagged with [`good first issue`][good-first-issue] or [`help-wanted`][help-wanted] might be a good start. Before starting, please, start a discussion. We will make sure that your efforts are consistent with prior work and the overall direction of the project.
 
-You can also have a look at the [roadmap](./roadmap.md). In particular, the **research directions** provide a good overview of the most useful contributions.
-
 ## Found a bug?
 
 If you found a bug in the source code, you can help us by submitting an issue to the [issue tracker][issue-tracker] in our GitHub repository. Even better, you can submit a Pull Request with a fix. Before doing so, please read the submission guidelines.

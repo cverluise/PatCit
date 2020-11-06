@@ -1,53 +1,32 @@
-[^1]: Patent text contain patent, [**NPL**](./vocabulary#non-patent-literature-npl), software, database, product, etc citations and NPL citations contain bibliographical references, office actions, search reports, patents, webpages, norms & standards, product documentations, databases and litigations.
-[^2]: Bibliographical reference, office action, search report, patent, webpage, norm & standard, product documentation, database and litigation
-[^nvy]: <span style="color:red">Not validated yet</span>
+[patcit-bq]:https://console.cloud.google.com/bigquery?project=patcit-public-data&p=patcit-public-data&page=project
+[grobid]:https://github.com/kermitt2/grobid
+[biblio-glutton]:https://github.com/kermitt2/biblio-glutton
+[spacy]:https://github.com/explosion/spaCy
+[patcit-academic]:https://docs.google.com/presentation/d/11COlz64EZn8PipXvnDBBZI_bnDD0fpm6tyx1_EqD6lU/edit?usp=sharing
+[patcit-website]:https://cverluise.github.io/PatCit/
+[patcit-newsletter]:https://tinyletter.com/patcit
+
+[^1]: Front page NPL citations contain bibliographical references, office actions, search reports, patents, webpages, wikis, norms & standards, product documentations, databases and litigations. Patent text notably contain citations of patents, NPL, software, databases and products.
 
 # <small>Welcome to</small> PatCit
 
-*Making Patent Citations Uncool Again*
+*Building a comprehensive dataset of patent citations*
 
-Patents are at the crossroads of many innovation nodes: science, industry, products, competition, etc. Such interactions can be identified through citations *in a broad sense*.
+Patents are at the crossroads of many innovation nodes: science, industry, products, competition, etc. Such interactions can be identified through citations in a broad sense.
 
-It is now common to use patent-to-patent citations to study some aspects of the innovation system. However, **there is much more buried in the [**Non Patent Literature (NPL)**](./vocabulary#non-patent-literature-npl) citations and in the patent text itself**.[^1]
-
-Good news, Natural Language Processing (NLP) tools now enable social scientists to excavate and structure this long hidden information. **That's the purpose of this project**.
-
-## Achievements
-
-So far, we have:
-
-1. **classified** the 40 million NPL citations reported in the [**DOCDB**](./vocabulary#epo-worldwide-bibliographic-data-docdb) database in 9 distinct research oriented classes[^2] with a 90% accuracy rate.
-2. [**parsed**](./vocabulary#parse) and [**consolidated**](./vocabulary#consolidate) the 27 million [**NPL**](./vocabulary#non-patent-literature-npl) citations classified as bibliographical references.
-
-    !!! more
-        From the 27 million bibliographical references:
-
-        1. 11 million (40%) were matched with a [**DOI**](./vocabulary#digital-object-identifier-doi) with a 99% [**precision**](./vocabulary#precision) rate
-        2. the main bibliographic attributes were parsed with [**accuracy**](./vocabulary#accuracy) rates ranging between 71% and 92% for the remaining 16 million (60%)
-
-3. [**extracted**](./vocabulary#extract), [**parsed**](./vocabulary#parse) and [**consolidated**](./vocabulary#consolidate) in-text bibliographical references and patent citations from the body of all time USPTO patents.[^nvy]
-
-    !!! more
-        From the 16 million USPTO patents, we have:
-
-        1. [**extracted**](./vocabulary#extract) and [**parsed**](./vocabulary#parse) 70 million in-text bibliographical references and 80 million patent citations[^nvy].
-        2. found a [**DOI**](./vocabulary#digital-object-identifier-doi) for 13+ million in-text bibliographical references (18%)[^nvy].
+It is now common to use front-page *patent* citations to study some aspects of the innovation system. **Good news, there is much more buried in the front-page Non Patent Literature (NPL) citations and in the patent text itself[^1]. patCit extracts and structures these citations.**
 
 
-## Features
+[Subscribe to our mailing list](https://tinyletter.com/patcit){: .md-button }
 
-#### Open
+### Getting started
 
-- The code is licensed under MIT-2 and the dataset is licensed under CC4. Two highly permissive licenses.
-- The project is thought to be *dynamically improved by and for the community*. Anyone should feel free to open discussions, raise issues, request features and contribute to the project.
+👩‍🔬 Exploring the universe of patent citations has never been easier. No more complicated data set-up, memory issue and queries running for ever, we host [patCit on BigQuery][patcit-bq] for you. We also release public access to [quickstart notebooks](../notebook).
 
-#### Comprehensive
+🤗 patCit is community driven and benefits from the suppport of a reactive team who is eager happy to help and tackle your next request. This is where academics and industry practitioners meet.
 
-- We address *worldwide patents*, as long as the data is available.
-- We address *all classes of citations*[^2], not only bibliographical references.
-- We address front-page and in-text citations.
+🔮 patCit is based on state-of-the-art open source projects and libraries such as [grobid][grobid]/[biblio-glutton][biblio-glutton] and [spaCy][spacy]. Even better, patCit is continuously improving with the rest of its ecosystem.
 
-#### Highest standards
+🎓 Want to know more? Read patCit [academic presentation][patcit-academic] or dive into usage and technical guides on patCit [documentation website][patcit-website].
 
-- We use and implement state-of-the art machine learning solutions.
-- We take great care to implement only the most efficient solutions. We believe that computational resources should be used sparsely, for both environmental sustainability and long term financial sustainability of the project.
+*[NPL]: Any literature which is publicly available and not a patent or a pending/expired publication in a patent office can be an NPL.

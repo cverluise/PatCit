@@ -1,86 +1,91 @@
-# Project information
-site_name: 'PatCit'
-site_description: 'Making Patent Citations Uncool Again'
-site_author: 'Cyril Verluise & Gaétan de Rassenfosse'
-#site_url: 'https://cverluise.github.io/PatCit/'
+site_name: patCit
+site_description: Building a Comprehensive Patent Citations Dataset
+site_author: Cyril Verluise
+site_url: https://cverluise.github.io/PatCit/
 
 # Repository
-repo_name: 'cverluise/PatCit'
-repo_url: 'https://github.com/cverluise/PatCit'
+repo_name: cverluise/PatCit
+repo_url: https://github.com/cverluise/PatCit
+
 
 # Copyright
-copyright: 'Copyright; 2019 Gaétan de Rassenfosse and Cyril Verluise'
+copyright: Copyright & copy; 2019-2020 Gaétan de Rassenfosse and Cyril Verluise
 
-# Configuration
+# Theme
 theme:
-  name: 'material'
-  language: 'en'
+  name: material
+  language: en
+  favicon: img/patcit-logo.svg
+  features:
+    - navigation.tabs
+    - navigation.sections
   palette:
-    primary: 'indigo'
-    accent: 'indigo'
-  font:
-    text: 'Roboto'
-    code: 'Roboto Mono'
-
-# Customization
-extra:
-  manifest: 'manifest.webmanifest'
-  social:
-    - type: 'github'
-      link: 'https://github.com/cverluise'
-    - type: 'twitter'
-      link: 'https://twitter.com/cyrilverluise'
-    - type: 'linkedin'
-      link: 'https://www.linkedin.com/in/cyril-verluise-80184347/'
-
-# Google Analytics
-google_analytics:
-  - 'UA-156947083-2'
-  - 'auto'
+    primary: teal
+    accent: teal
+  logo:
+    img/patcit-logo.svg
 
 # Extensions
 markdown_extensions:
-  - toc:
-      permalink: true
+  - abbr
   - admonition
+  - attr_list
   - footnotes
-  - codehilite:
-      guess_lang: false
   - toc:
       permalink: true
+  - pymdownx.snippets
+  - pymdownx.details
+  - pymdownx.superfences
+  - pymdownx.tabbed
+  - pymdownx.emoji:
+      emoji_index: !!python/name:materialx.emoji.twemoji
+      emoji_generator: !!python/name:materialx.emoji.to_svg
+  - pymdownx.highlight:
+      linenums: true
+  - pymdownx.arithmatex:
+        generic: true
   - pymdownx.tasklist:
       custom_checkbox: true
-  - pymdownx.superfences:
-  - pymdownx.details:
-  - pymdownx.emoji:
-      emoji_index: !!python/name:pymdownx.emoji.twemoji
-      emoji_generator: !!python/name:pymdownx.emoji.to_svg
 
+# Plugins
+plugins:
+  - search:
+      lang: en
+
+# JS
 extra_javascript:
-  - 'https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.0/MathJax.js?config=TeX-MML-AM_CHTML'
+  - javascripts/config.js
+  - https://polyfill.io/v3/polyfill.min.js?features=es6
+  - https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js
 
+# Footer
+extra:
+  social:
+    - icon: fontawesome/brands/twitter
+      link: https://twitter.com/cyrilverluise
+    - icon: fontawesome/brands/linkedin
+      link: https://www.linkedin.com/in/cyril-verluise-80184347/
+    - icon: fontawesome/brands/github
+      link: https://cverluise.github.io/PatCit/
 
 # Page tree
 
 nav:
-  - About:
-    - Project: index.md
-    - Roadmap: roadmap.md
-    - Team: team.md
-  - Keep me updated: update.md
+  - About: index.md
+  - Team: team.md
+  - Awesome: awesome.md
   - Data:
     - Download: download.md
     - Explore: explore.md
     - Versions: versions.md
   - Developper:
-    - Recipes: recipes.md
+#    - Recipes: recipes.md
     - Contributions: contributing.md
     - Code of Conduct: code-of-conduct.md
-  - How it works:
-     - Extract, Parse, Consolidate: extract-parse-consolidate.md
-     - Classify: classify.md
-  - Awesome resources: awesome.md
-  - Vocabulary: vocabulary.md
-  - License:
-    - MIT2: license-mit.md
+#  - How it works:
+#     - Extract, Parse, Consolidate: extract-parse-consolidate.md
+#     - Classify: classify.md
+  #  - Vocabulary: vocabulary.md
+  - Licenses:
+    - MIT: license-mit.md
     - CC-BY-4: license-cc.md
