@@ -283,8 +283,11 @@ def npl_properties(path, cat_model: str = None, language_codes: str = "en,un"):
 def add_publication_number(line):
     line = json.loads(line)
     pubnum = line.get("pubnum")
+    status = line.get("status")
 
-    publication_number = intext.get_publication_number(pubnum)
+    service = "appnum" if status in ["application", "provisional"] else "pubnum"
+
+    publication_number = intext.get_publication_number(pubnum, service)
     line.update({"publication_number": publication_number})
 
     typer.echo(json.dumps(line))
