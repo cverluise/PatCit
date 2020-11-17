@@ -35,6 +35,20 @@ async def fetch_npls(id_, npls):
     return await asyncio.gather(*npls)
 
 
+def get_text_span(patent):
+    """
+    Return the start end of the extracted patent (actually the patent number, which is the only
+    stable anchor) based on Grobid output
+    :param patent: bs4.tag
+    :return: int, int
+    """
+    span = patent.find("ptr")["target"].replace("#string-range", "")
+    _, start, length = span.split(",")
+    length = length.replace(")", "")
+    start, end = (int(start), int(start) + int(length))
+    return start, end
+
+
 async def fetch_patent(id_, patent):
     """
     Return grobid output as a dict
@@ -44,10 +58,21 @@ async def fetch_patent(id_, patent):
     """
     pat = {}
     pat.update(patent.attrs)
-    pat.update({"orgname": patent.find("orgname").string})
+    if patent.find("orgname"):
+        pat.update({"orgname": patent.find("orgname").string})
+    if patent.find("classcode"):
+        pat.update({"kindcode": patent.find("classcode").string})
+
     for idno in patent.find_all("idno"):
         pat.update({idno["subtype"]: idno.string})
     pat.update({pk: id_})
+
+    span = "-".join([str(c) for c in get_text_span(patent)])
+    pat.update({"span": span})
+    pubnum_components = filter(
+        lambda x: x, [pat.get("orgname"), pat.get("original"), pat.get("kindcode")]
+    )
+    pat.update({"pubnum": "-".join(pubnum_components)})
     return pat
 
 
@@ -62,10 +87,15 @@ async def fetch_patents(id_, patents):
     return await asyncio.gather(*pats)
 
 
-def get_publication_number(pubnum):
+def get_publication_number(pubnum, typ):
     """Return the publication_number based on the country code and original number using the
     google patents linking api"""
-    root = "https://patents.google.com/api/match?pubnum="
+    assert typ in ["publication", "application"]
+    root_pub = "https://patents.google.com/api/match?pubnum="
+    root_app = "https://patents.google.com/api/match?pubnum="
+
+    root = root_app if typ == "application" else root_pub
+
     if pubnum:
         r = requests.get(root + pubnum)
         publication_number = r.text
