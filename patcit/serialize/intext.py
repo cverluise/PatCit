@@ -67,8 +67,8 @@ async def fetch_patent(id_, patent):
         pat.update({idno["subtype"]: idno.string})
     pat.update({pk: id_})
 
-    span = "-".join([str(c) for c in get_text_span(patent)])
-    pat.update({"span": span})
+    char_start, char_end = get_text_span(patent)
+    pat.update({"char_start": char_start, "char_end": char_end})
     pubnum_components = filter(
         lambda x: x, [pat.get("orgname"), pat.get("original"), pat.get("kindcode")]
     )
@@ -87,17 +87,14 @@ async def fetch_patents(id_, patents):
     return await asyncio.gather(*pats)
 
 
-def get_publication_number(pubnum, typ):
+def get_publication_number(pubnum, service):
     """Return the publication_number based on the country code and original number using the
     google patents linking api"""
-    assert typ in ["publication", "application"]
-    root_pub = "https://patents.google.com/api/match?pubnum="
-    root_app = "https://patents.google.com/api/match?pubnum="
-
-    root = root_app if typ == "application" else root_pub
+    assert service in ["pubnum", "appnum"]
+    root = "https://patents.google.com/api/match?"
 
     if pubnum:
-        r = requests.get(root + pubnum)
+        r = requests.get(f"{root}{service}={pubnum}")
         publication_number = r.text
         publication_number = (
             publication_number if publication_number != "notfound" else None
