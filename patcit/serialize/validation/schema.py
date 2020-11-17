@@ -50,6 +50,8 @@ def get_schema(flavor, primary_key="npl_publn_id", pk_type="number"):
                 "epodoc": {"type": "string"},
                 "orgname": {"type": "string"},
                 "status": {"type": "string"},
+                "original": {"type": "string"},
+                "pubnum": {"type": "string"},
             },
         }
     else:
