@@ -177,14 +177,6 @@ def prep_spacy_sam_patents(texts_file: str = None, citations_file: str = None):
     def prep_citations_spans(citations_file):
         with open(citations_file, "r") as fin:
 
-            def get_text_span(patent):
-                # TODO -> move to contextual_citation.fetch_patent
-                span = patent.find("ptr")["target"].replace("#string-range", "")
-                _, start, length = span.split(",")
-                length = length.replace(")", "")
-                start, end = (int(start), int(start) + int(length))
-                return start, end
-
             reader = csv.DictReader(fin, fieldnames=["publication_number", "citations"])
             out = {}
             for l in reader:
@@ -192,7 +184,7 @@ def prep_spacy_sam_patents(texts_file: str = None, citations_file: str = None):
                 patents = soup.find_all("biblstruct", {"type": "patent"})
                 spans = []
                 for patent in patents:
-                    start, end = get_text_span(patent)
+                    start, end = intext.get_text_span(patent)
                     span = asyncio.run(
                         intext.fetch_patent(l["publication_number"], patent)
                     )
