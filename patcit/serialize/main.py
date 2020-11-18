@@ -288,7 +288,7 @@ def add_publication_number(line):
     service = "appnum" if status in ["application", "provisional"] else "pubnum"
 
     publication_number = intext.get_publication_number(pubnum, service)
-    line.update({"publication_number": publication_number})
+    line.update({"publication_number": publication_number, "service": service})
 
     typer.echo(json.dumps(line))
 
