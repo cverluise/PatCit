@@ -567,5 +567,22 @@ def to_spacy_json(
     typer.echo(json.dumps(docs_json, indent=1, sort_keys=True))
 
 
+@app.command()
+def filter_validation(file, index):
+    """Return the lines from FILE with publication number in index
+
+    index is expected to be a newline delimited list of publication numbers"""
+    index_lines = open(index, "r")
+    index_ = index_lines.read().split("\n")
+
+    with open(file, "r") as lines:
+        for line in lines:
+            line = json.loads(line)
+            if line.get("publication_number") in index_:
+                typer.echo(json.dumps(line))
+            else:
+                pass
+
+
 if __name__ == "__main__":
     app()
