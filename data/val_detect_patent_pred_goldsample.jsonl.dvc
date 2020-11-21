@@ -1,0 +1,3 @@
+outs:
+- md5: f72f2fff2314fa1d2af4e19cf847a417
+  path: val_detect_patent_pred_goldsample.jsonl
