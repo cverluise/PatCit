@@ -95,10 +95,13 @@ def get_publication_number(pubnum, service):
 
     if pubnum:
         r = requests.get(f"{root}{service}={pubnum}")
-        publication_number = r.text
-        publication_number = (
-            publication_number if publication_number != "notfound" else None
-        )
+        if r.status_code == 200:
+            publication_number = r.text
+            publication_number = (
+                publication_number if publication_number != "notfound" else None
+            )
+        else:
+            publication_number = None
     else:
         publication_number = None
     return publication_number
