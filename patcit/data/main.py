@@ -324,6 +324,33 @@ def bibref_silver_to_gold(file: str, model: str = None):
 
 
 @app.command()
+def join_text_cit(texts_file: str, citations_file: str):
+    """Return citation lines (jsonl) with the appropriate text
+
+    Expect:
+    - a csv file with publication_number,text fields
+    - a jsonl file with "publication_number", "spans", etc fields
+
+    Useful for populate val_detect_patent*.jsonl with text in view of contextualizing citations
+    """
+    with open(citations_file, "r") as lines:
+        citations = {}
+        for line in lines:
+            line = json.loads(line)
+            citations.update({line["publication_number"]: line})
+
+    with open(texts_file, "r") as fin:
+        reader = csv.DictReader(fin, fieldnames=["publication_number", "text"])
+        texts = {}
+        for line in reader:
+            texts.update({line["publication_number"]: line})
+
+    for k, v in citations.items():
+        v.update(texts[k])
+        typer.echo(json.dumps(v))
+
+
+@app.command()
 def prep_spacy_sam(
     texts_file: str = None, citations_file: str = None, flavor: str = "patents"
 ):
@@ -389,7 +416,7 @@ def align_spans_(sam, nlp):
     return spans
 
 
-def contextualize_spans_(sam, nlp, context_window=10, attr=None):
+def contextualize_spans_(sam, nlp, context_window=10, attr=None, report=False):
     tmp = sam.copy()
     text = tmp["text"]
     tokens = nlp(tmp["text"]).to_json()["tokens"]
@@ -419,9 +446,16 @@ def contextualize_spans_(sam, nlp, context_window=10, attr=None):
         assert span_["end"] in list(map(int, spacy_ends - context_start))
 
         out.update({"spans": [span_]})
+
         if attr:
             out.update({"label": span_[attr]})
-        typer.echo(json.dumps(out))
+        if report:
+            text_, start_, end_ = out["text"], span_["start"], span_["end"]
+            typer.echo(
+                text_[:start_] + "`" + text_[start_:end_] + f" TAG`" + text_[end_:]
+            )
+        else:
+            typer.echo(json.dumps(out))
 
 
 @app.command()
@@ -478,7 +512,9 @@ def report_alignment(file: str, context_window: int = 10):
 
 
 @app.command()
-def contextualize_spans(file: str, model: str = "en", attr: str = None):
+def contextualize_spans(
+    file: str, model: str = "en", attr: str = None, report: bool = False
+):
     """Contextualize spans
 
     Expect jsonl with Simple Annotation Model lines
@@ -491,7 +527,7 @@ def contextualize_spans(file: str, model: str = "en", attr: str = None):
         for line in fin:
             sam = json.loads(line)
             try:
-                contextualize_spans_(sam, nlp, attr=attr)
+                contextualize_spans_(sam, nlp, attr=attr, report=report)
             except IndexError:  # arises when the window exceeds the size of the doc
                 # E.g. IndexError: index 1191 is out of bounds for axis 0 with size 1191
                 pass
