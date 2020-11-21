@@ -263,46 +263,38 @@ def front_page_cat(meta: str = None, cat: str = None, text_name: str = "npl_bibl
     typer.echo(query)
 
 
-def intext_patent_add_publication_number(
-    grobid_intext_patent: str = None, pubnum2publication_number: str = None
-):
-    """Query to add publication_number to grobid_intext_patent based on CONCAT(orgname, original) (
-    aka pubnum)"""
-    query = f"""
-    WITH
-      tmp AS(
-      SELECT
-        *,
-        CONCAT(orgname, original) AS pubnum
-      FROM
-        `{grobid_intext_patent}`)  # npl-parsing.patcit.v01_UScontextualPat
-    SELECT
-      tmp.* EXCEPT(status, epodoc),
-      crossover.* EXCEPT(pubnum)
-    FROM
-      tmp
-    LEFT JOIN
-      `{pubnum2publication_number}` AS crossover  # npl-parsing.external.v03_intext_pat_pubnum
-    ON
-      tmp.pubnum=crossover.pubnum"""
-    return query
-
-
+@app.command()
 def intext_patent(
-    grobid_intext_patent: str = None, patstat_patent_properties: str = None
+    grobid_intext_patent: str = None,
+    patstat_patent_properties: str = None,
+    index_publication_number: str = None,
 ):
     """Return query to create the intext_patent table"""
     query = f"""
     WITH
       tmp AS (
+      WITH
+        intext_patent AS (
+        SELECT
+          patent.*,
+          index.* EXCEPT(pubnum,
+            status) #,
+          #"google_patents" AS linking_service
+        FROM
+          `{grobid_intext_patent}` AS patent  # npl-parsing.external.v03_intext_patent
+        LEFT JOIN
+          `{index_publication_number}` AS index
+          #npl-parsing.external.v03_index_pat_publication_number
+        ON
+          patent.pubnum = index.pubnum)
       SELECT
         intext_patent.*,
         patent_properties.* EXCEPT(publication_number)
       FROM
-        `{grobid_intext_patent}` AS intext_patent  # npl-parsing.external.v03_intext_pat
+        intext_patent  # npl-parsing.external.v03_intext_pat
       LEFT JOIN
         `{patstat_patent_properties}` AS patent_properties
-        # npl-parsing.external.patstat_patent_properties
+        #npl-parsing.external.patstat_patent_properties
       ON
         intext_patent.publication_number =patent_properties.publication_number)
     SELECT
@@ -315,11 +307,32 @@ def intext_patent(
     FROM
       tmp
     LEFT JOIN
-      `npl-parsing.external.patstat_patent_properties` AS patent_properties
+      `{patstat_patent_properties}` AS patent_properties
+      #npl-parsing.external.patstat_patent_properties
     ON
       tmp.publication_number_o= patent_properties.publication_number
     """
-    return query
+    typer.echo(query)
+
+
+@app.command(deprecated=True)
+def update_publication_number(intext_patent: str = None):
+    """Update publication_number with grobid parsed pubnum when no match and all 3 attributes
+    matched. Not used because that would mix docdb publication number with unknown formtat"""
+    query = f"""
+    UPDATE
+    `{intext_patent}`
+    #npl-parsing.external.v031r_intext_patent
+    SET
+      publication_number=pubnum,
+      linking_service='grobid'
+    WHERE
+      publication_number IS NULL
+      AND orgname IS NOT NULL
+      AND original IS NOT NULL
+      AND kindcode IS NOT NULL
+    """
+    typer.echo(query)
 
 
 if __name__ == "__main__":
