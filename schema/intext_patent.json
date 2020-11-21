@@ -31,14 +31,29 @@
   },
   {
     "fields": [
-      { "description": "Country code of the *cited* patent. Extracted from the patent text by GROBID. Accuracy:98%.",
+      { "description": "Country code of the *cited* patent. Parsed by GROBID.",
         "mode": "NULLABLE",
         "name": "country_code",
         "type": "STRING"
       },
-      { "description": "Original number of the *cited* patent. Extracted from the patent text by GROBID. Accuracy: 96%.",
+      { "description": "Original number of the *cited* patent. Parsed by GROBID.",
         "mode": "NULLABLE",
         "name": "original_number",
+        "type": "STRING"
+      },
+      { "description": "Kind code of the *cited* patent. Parsed by GROBID.",
+        "mode": "NULLABLE",
+        "name": "kind_code",
+        "type": "STRING"
+      },
+      { "description": "The status of the *cited* patent. Parsed by GROBID.",
+        "mode": "NULLABLE",
+        "name": "status",
+        "type": "STRING"
+      },
+       { "description": "Concatenation of country code, original number and kind code of the *cited* patent. Based on attributes parsed attributes.",
+        "mode": "NULLABLE",
+        "name": "pubnum",
         "type": "STRING"
       },
       { "description": "Publication number of the *cited* patent. Obtained from the google patent linking API (https://patents.google.com/api/match?pubnum=<pubnum> with <pubnum>=CONCAT(country_code,original_number)). *Not validated yet*.",
@@ -70,6 +85,16 @@
         "mode": "NULLABLE",
         "name": "inpadoc_family_id",
         "type": "STRING"
+      },
+      { "description": "First character of the detected *cited* patent. Refers to description_localized.text in patents-public-data.patents.publications.",
+        "mode": "REPEATED",
+        "name": "char_start",
+        "type": "INTEGER"
+      },
+      { "description": "Last character of the detected *cited* patent. Refers to description_localized.text in patents-public-data.patents.publications.",
+        "mode": "REPEATED",
+        "name": "char_end",
+        "type": "INTEGER"
       }
     ],
     "mode": "REPEATED",
