@@ -190,9 +190,9 @@ bq extract
 - prep table
 
 ```shell script
-ls intext_patent_flat_0000000000*.jsonl | parallel -j +0 --eta "sort {} | uniq >> distinct_{}"
-ls distinct_intext_patent_flat_0000000000*.jsonl | parallel -j +0 --eta "jq -s -c 'group_by(.publication_number_o)[] | {publication_number: .[0].publication_number_o, publication_date: .[0].publication_date_o, appln_id: .[0].appln_id_o, pat_publn_id: .[0].pat_publn_id_o, docdb_family_id: .[0].docdb_family_id_o, inpadoc_family_id: .[0].inpadoc_family_id_o, citation: [ .[] | {country_code: .orgname, original_number: .original, publication_number: .publication_number, publication_date: .publication_date, appln_id: .appln_id, pat_publn_id: .pat_publn_id, docdb_family_id: .docdb_family_id, inpadoc_family_id: .inpadoc_family_id} ]}' {} >> $(sed -e 's/_flat//g') && gzip $(sed -e 's/_flat//g')"
-bq load --source_format=NEWLINE_DELIMITED_JSON --max_bad_records=100 --ignore_unknown_values --replace patcit-public-data:intext.patent "gs://patcit_dev/intext/intext_patent*.jsonl.gz" schema/intext_patent.json
+ls flat_v031_intext_patent_* | cut -d_ -f2- | parallel -j 1 --eta "jq -s -c 'group_by(.publication_number_o)[] | {publication_number: .[0].publication_number_o, publication_date: .[0].publication_date_o, appln_id: .[0].appln_id_o, pat_publn_id: .[0].pat_publn_id_o, docdb_family_id: .[0].docdb_family_id_o, inpadoc_family_id: .[0].inpadoc_family_id_o, citation: [ group_by(.pubnum)[] | {country_code: .[0].orgname, original_number: .[0].original, kind_code: .[0].kindcode, type: .[0].type, status: .[0].status, pubnum: .[0].pubnum, epodoc: .[0].epodoc, publication_number: .[0].publication_number, publication_date: .[0].publication_date, appln_id: .[0].appln_id, pat_publn_id: .[0].pat_publn_id, docdb_family_id: .[0].docdb_family_id, inpadoc_family_id: .[0].inpadoc_family_id, char_start: [ .[] | .char_start], char_end: [ .[] | .char_end], service: .[0].service} ]}' flat_{} >> {} "
+ls v031_*.jsonl | parallel -j+0 --eta "mv {} {}_tmp &&  sed 's/\[null\]/\[\]/g' {}_tmp >> {}"
+bq load --source_format=NEWLINE_DELIMITED_JSON --max_bad_records=1000 --ignore_unknown_values --replace npl-parsing:external.v031_intext_patent "gs://patcit_dev/intext/v031_*.jsonl.gz" schema/intext_patent.json
 ```
 
 
