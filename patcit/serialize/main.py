@@ -328,5 +328,25 @@ def add_identifier(file: str):
             typer.echo(json.dumps(line))
 
 
+@app.command()
+def pat_add_flag(file: str, threshold: int = 50):
+    with open(file, "r") as lines:
+        for i, line in enumerate(lines):
+            line = json.loads(line)
+            citations = line.get("citation")
+            citations_ = []
+            for citation in citations:
+                char_start = citation.get("char_start")
+                if char_start:
+                    flag = all(map(lambda x: int(x) <= threshold, char_start))
+                else:
+                    flag = False
+                citation.update({"flag": flag})
+                citations_ += [citation]
+
+            line.update({"citation": citations_})
+            typer.echo(json.dumps(line))
+
+
 if __name__ == "__main__":
     app()
