@@ -333,14 +333,22 @@ def pat_add_flag(file: str, threshold: int = 50):
     with open(file, "r") as lines:
         for i, line in enumerate(lines):
             line = json.loads(line)
+            publication_date = line.get("publication_date")
             citations = line.get("citation")
             citations_ = []
             for citation in citations:
                 char_start = citation.get("char_start")
-                if char_start:
-                    flag = all(map(lambda x: int(x) <= threshold, char_start))
+                if publication_date:
+                    if publication_date <= 19760000:
+                        if char_start:
+                            flag = all(map(lambda x: int(x) <= threshold, char_start))
+                        else:
+                            flag = False
+                    else:
+                        flag = False
                 else:
                     flag = False
+
                 citation.update({"flag": flag})
                 citations_ += [citation]
 
