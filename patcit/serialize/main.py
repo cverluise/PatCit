@@ -339,7 +339,7 @@ def pat_add_flag(file: str, threshold: int = 50):
             for citation in citations:
                 char_start = citation.get("char_start")
                 if publication_date:
-                    if publication_date <= 19760000:
+                    if int(publication_date) <= 19760000:
                         if char_start:
                             flag = all(map(lambda x: int(x) <= threshold, char_start))
                         else:
