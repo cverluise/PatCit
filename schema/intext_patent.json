@@ -86,6 +86,11 @@
         "name": "inpadoc_family_id",
         "type": "STRING"
       },
+      { "description": "Flag detected citations which are likely to be in the header than in the specification itself. Flag is True for citations extracted from patents published in the pre-1976 format and with all occurrences detected before character 50. It is recommended to exclude those citations from most analyses.",
+        "mode": "NULLABLE",
+        "name": "flag",
+        "type": "BOOLEAN"
+      },
       { "description": "First character of the detected *cited* patent. Refers to description_localized.text in patents-public-data.patents.publications.",
         "mode": "REPEATED",
         "name": "char_start",
