@@ -366,7 +366,7 @@ def pat_add_flag(file: str, threshold_flag1: int = 50, threshold_flag2: float = 
                 else:
                     flag2 = False
                 flag = any([flag1, flag2])
-                citation.update({"flag": flag})
+                citation.update({"flag": flag, "flag1": flag1, "flag2": flag2})
                 citations_ += [citation]
 
             line.update({"citation": citations_})
