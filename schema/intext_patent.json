@@ -86,7 +86,7 @@
         "name": "inpadoc_family_id",
         "type": "STRING"
       },
-      { "description": "Flag detected citations which are likely to be in the header than in the specification itself. Flag is True for citations extracted from patents published in the pre-1976 format and with all occurrences detected before character 50. It is recommended to exclude those citations from most analyses.",
+      { "description": "Flag detected citations which are likely to be in the header rather than in the specification itself. Flag is True for citations extracted from patents published in the pre-1976 format and with all occurrences detected before character 50 or in the last 4 percent of the text. It is recommended to exclude those citations from most analyses.",
         "mode": "NULLABLE",
         "name": "flag",
         "type": "BOOLEAN"
