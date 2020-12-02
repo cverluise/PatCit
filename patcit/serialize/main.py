@@ -306,7 +306,7 @@ def pat_add_pubnum(file, max_workers: int = 10):
 def add_identifier(file: str):
     """Return each line with identifiers (md5 and patcit_id) - create if not existing, preserve
     otherwise.
-    Expect a .jsonl file.
+    Expect a NDJSONL file.
     """
     with open(file, "r") as lines:
         for line in lines:
@@ -329,26 +329,43 @@ def add_identifier(file: str):
 
 
 @app.command()
-def pat_add_flag(file: str, threshold: int = 50):
+def pat_add_flag(file: str, threshold_flag1: int = 50, threshold_flag2: float = 0.96):
+    """Return each line with a flag attribute.
+    Expect a NDJSONL file."""
     with open(file, "r") as lines:
         for i, line in enumerate(lines):
             line = json.loads(line)
             publication_date = line.get("publication_date")
+            text_length = line.get("text_length")
             citations = line.get("citation")
             citations_ = []
             for citation in citations:
                 char_start = citation.get("char_start")
-                if publication_date:
+                # flag 1
+                if publication_date and char_start:
                     if int(publication_date) <= 19760000:
-                        if char_start:
-                            flag = all(map(lambda x: int(x) <= threshold, char_start))
-                        else:
-                            flag = False
+                        flag1 = all(
+                            map(lambda x: int(x) <= threshold_flag1, char_start)
+                        )
                     else:
-                        flag = False
+                        flag1 = False
                 else:
-                    flag = False
-
+                    flag1 = False
+                # flag 2
+                if publication_date and text_length and char_start:
+                    if 19710000 <= int(publication_date) <= 19760000:
+                        # if char_start:
+                        flag2 = all(
+                            map(
+                                lambda x: int(x) / int(text_length) >= threshold_flag2,
+                                char_start,
+                            )
+                        )
+                    else:
+                        flag2 = False
+                else:
+                    flag2 = False
+                flag = any([flag1, flag2])
                 citation.update({"flag": flag})
                 citations_ += [citation]
 
