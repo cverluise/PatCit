@@ -33,7 +33,7 @@ def parsing_check(dataset, source, attr):
 
             task["html"] = (
                 f"<span style='background-color:#775ec2;color:white;font-size:130%;font-weight:bold;'>  "
-                f"{span[attr]}  </span><br> \
+                f"{str(span.get(attr))}  </span><br> \
                            {before} <span style='background-color: #fae284'><a \
                            href={root + suffix}>{span_}</a></span> \
                            {after}"
