@@ -27,7 +27,7 @@ def date_dd(dataset, source):
                 {
                     "view_id": "text_input",
                     "field_rows": 1,
-                    "field_label": "Publication year (yyyymmdd)",
+                    "field_label": "Publication year (yyyy)",
                 },
             ],
         },
