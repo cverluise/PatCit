@@ -569,13 +569,6 @@
   
 </li>
         
-          <li class="md-nav__item">
-  <a href="#bibref_1" class="md-nav__link">
-    bibref
-  </a>
-  
-</li>
-        
       </ul>
     </nav>
   
@@ -768,44 +761,48 @@ bq load --source_format NEWLINE_DELIMITED_JSON --replace --autodetect &lt;proper
 <h2 id="in-text">In text<a class="headerlink" href="#in-text" title="Permanent link">&para;</a></h2>
 <h3 id="patent">Patent<a class="headerlink" href="#patent" title="Permanent link">&para;</a></h3>
 <ul>
-<li>
-<p>Add <code>publication_number</code></p>
-</li>
-<li>
-<p>Add patent properties</p>
-</li>
-<li>
-<p>Make sure it is ordered along the primary key</p>
-</li>
-<li>
-<p>Extract table to gs
-    <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
-2
-3
-4</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">SELECT</span>
-  <span class="k">DISTINCT</span><span class="p">(</span><span class="n">CONCAT</span><span class="p">(</span><span class="n">orgname</span><span class="p">,</span><span class="n">original</span><span class="p">))</span> <span class="k">AS</span> <span class="n">pubnum</span>
-<span class="k">FROM</span>
-  <span class="o">`</span><span class="n">npl</span><span class="o">-</span><span class="n">parsing</span><span class="p">.</span><span class="n">patcit</span><span class="p">.</span><span class="n">v01_UScontextualPat</span><span class="o">`</span>
-</code></pre></div>
-</td></tr></table></p>
-</li>
-<li>
-<p>prep table</p>
-</li>
+<li>serialize</li>
 </ul>
+<p>```shell script
+ls *.csv.gz | cut -d_ -f4- | cut -d. -f1 | parallel -j +0 --eta "patcit serialize grobid-intext processed_us_description_{}.csv.gz --flavor pat &gt;&gt; pat_serialized_{}.jsonl"
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
 2
-3</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>ls intext_patent_flat_0000000000*.jsonl <span class="p">|</span> parallel -j +0 --eta <span class="s2">&quot;sort {} | uniq &gt;&gt; distinct_{}&quot;</span>
-ls distinct_intext_patent_flat_0000000000*.jsonl <span class="p">|</span> parallel -j +0 --eta <span class="s2">&quot;jq -s -c &#39;group_by(.publication_number_o)[] | {publication_number: .[0].publication_number_o, publication_date: .[0].publication_date_o, appln_id: .[0].appln_id_o, pat_publn_id: .[0].pat_publn_id_o, docdb_family_id: .[0].docdb_family_id_o, inpadoc_family_id: .[0].inpadoc_family_id_o, citation: [ .[] | {country_code: .orgname, original_number: .original, publication_number: .publication_number, publication_date: .publication_date, appln_id: .appln_id, pat_publn_id: .pat_publn_id, docdb_family_id: .docdb_family_id, inpadoc_family_id: .inpadoc_family_id} ]}&#39; {} &gt;&gt; </span><span class="k">$(</span>sed -e <span class="s1">&#39;s/_flat//g&#39;</span><span class="k">)</span><span class="s2"> &amp;&amp; gzip </span><span class="k">$(</span>sed -e <span class="s1">&#39;s/_flat//g&#39;</span><span class="k">)</span><span class="s2">&quot;</span>
-bq load --source_format<span class="o">=</span>NEWLINE_DELIMITED_JSON --max_bad_records<span class="o">=</span><span class="m">100</span> --ignore_unknown_values --replace patcit-public-data:intext.patent <span class="s2">&quot;gs://patcit_dev/intext/intext_patent*.jsonl.gz&quot;</span> schema/intext_patent.json
+3
+4
+5</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>- build `publication_number` index
+
+```shell script
+ls *.jsonl | parallel -j+0 --eta &quot;jq -s -c &#39;{status: .status, pubnum: .pubnum}&#39; &gt;&gt; tmp_pubnum_index.jsonl&quot;
+sort pubnum_index.jsonl | uniq &gt;&gt; pubnum_index.jsonl
 </code></pre></div>
-</td></tr></table>
-<h3 id="bibref_1">bibref<a class="headerlink" href="#bibref_1" title="Permanent link">&para;</a></h3>
+</td></tr></table></p>
 <ul>
-<li>Harmonize format</li>
+<li>add <code>publication_number</code> (BQ)</li>
 </ul>
-<p><code>```shell script
-patcit serialize patcit-bibref gold_npl_serialized_us_description_post1976_000000000000.jsonl --src-flavor grobid-intext
+<p>```shell script
+patcit serialize add-pubnum pubnum_index.jsonl &gt;&gt; publication_number_index.jsonl
+<table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span>1
+2
+3
+4
+5
+6</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>- add patent properties (BQ)
+
+```shell script
+bq load ... publication_number_index.jsonl
+bq load ... pat_serialize*.jsonl
+bq query ...
+</code></pre></div>
+</td></tr></table></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Make sure it is ordered along the primary key</p>
+</div>
+<ul>
+<li>extract to gs</li>
+</ul>
+<p>````shell script
+bq extract
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
@@ -816,23 +813,41 @@ patcit serialize patcit-bibref gold_npl_serialized_us_description_post1976_00000
  8
  9
 10
-11</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>- Add bibref score
+11
+12
+13
+14
+15
+16
+17
+18</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>!!! warning
+    Make sure that there is no primary key overlap between files
 
-- Select bibref score above a given threshold
+- prep table
+
 ```shell script
-ls npl_*.jsonl | parallel -j 1 --eta &quot; patcit data bibref-silver-to-gold {} --model ../models/en_cat_bibref_sm &gt;&gt; score_{} &amp;&amp; jq -c &#39;select(.bibref_score&gt;.55)&#39; score_{} &gt;&gt; gold_{}&quot;
+ls flat_v031_intext_patent_* | cut -d_ -f2- | parallel -j 1 --eta &quot;jq -s -c &#39;group_by(.publication_number_o)[] | {publication_number: .[0].publication_number_o, publication_date: .[0].publication_date_o, appln_id: .[0].appln_id_o, pat_publn_id: .[0].pat_publn_id_o, docdb_family_id: .[0].docdb_family_id_o, inpadoc_family_id: .[0].inpadoc_family_id_o, citation: [ group_by(.pubnum)[] | {country_code: .[0].orgname, original_number: .[0].original, kind_code: .[0].kindcode, type: .[0].type, status: .[0].status, pubnum: .[0].pubnum, epodoc: .[0].epodoc, publication_number: .[0].publication_number, publication_date: .[0].publication_date, appln_id: .[0].appln_id, pat_publn_id: .[0].pat_publn_id, docdb_family_id: .[0].docdb_family_id, inpadoc_family_id: .[0].inpadoc_family_id, char_start: [ .[] | .char_start], char_end: [ .[] | .char_end], service: .[0].service} ]}&#39; flat_{} &gt;&gt; {} &quot;
+ls v031_*.jsonl | parallel -j+0 --eta &quot;mv {} {}_tmp &amp;&amp;  sed &#39;s/\[null\]/\[\]/g&#39; {}_tmp &gt;&gt; {}&quot;
+bq load --source_format=NEWLINE_DELIMITED_JSON --max_bad_records=1000 --ignore_unknown_values --replace npl-parsing:external.v031_intext_patent &quot;gs://patcit_dev/intext/v031_*.jsonl.gz&quot; schema/intext_patent.json
 ```
 
-- Add identifiers
+
+### bibref
+
+- Harmonize format
 
 ````shell script
-ls patcit_gold_npl_serialized_us_description_pre1976_*.jsonl | parallel -j+0 --eta &quot;mv {} {}_depr &amp;&amp; patcit serialize add-identifier {}_depr &gt;&gt; {}&quot;
+patcit serialize patcit-bibref gold_npl_serialized_us_description_post1976_000000000000.jsonl --src-flavor grobid-intext
 </code></pre></div>
-</td></tr></table>
-- Load in BQ. take care to apply excatly the same schema as for</code>patcit_crossref</p>
+</td></tr></table></p>
 <ul>
-<li>Add patent properties &amp; order</li>
-</ul>
+<li>
+<p>Add bibref score</p>
+</li>
+<li>
+<p>Select bibref score above a given threshold
+```shell script
+ls npl_*.jsonl | parallel -j 1 --eta " patcit data bibref-silver-to-gold {} --model ../models/en_cat_bibref_sm &gt;&gt; score_{} &amp;&amp; jq -c 'select(.bibref_score&gt;.55)' score_{} &gt;&gt; gold_{}"
 <table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span> 1
  2
  3
@@ -865,42 +880,62 @@ ls patcit_gold_npl_serialized_us_description_pre1976_*.jsonl | parallel -j+0 --e
 30
 31
 32
-33</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code><span class="k">WITH</span>
-  <span class="n">bibref</span> <span class="k">AS</span> <span class="p">(</span>
-  <span class="k">SELECT</span>
-    <span class="n">tmp</span><span class="p">.</span><span class="o">*</span>
-  <span class="k">FROM</span>
-    <span class="o">`</span><span class="n">npl</span><span class="o">-</span><span class="n">parsing</span><span class="p">.</span><span class="n">tmp</span><span class="p">.</span><span class="n">tmp_</span><span class="o">`</span> <span class="k">AS</span> <span class="n">tmp</span>
-  <span class="k">LEFT</span> <span class="k">JOIN</span>
-    <span class="o">`</span><span class="n">npl</span><span class="o">-</span><span class="n">parsing</span><span class="p">.</span><span class="k">external</span><span class="p">.</span><span class="n">patcit_crossref</span><span class="o">`</span> <span class="k">AS</span> <span class="n">crossref</span>
-  <span class="k">ON</span>
-    <span class="n">tmp</span><span class="p">.</span><span class="n">DOI</span><span class="o">=</span><span class="n">crossref</span><span class="p">.</span><span class="n">DOI</span>
-  <span class="k">WHERE</span>
-    <span class="n">crossref</span><span class="p">.</span><span class="n">DOI</span> <span class="k">IS</span> <span class="k">NULL</span>
-  <span class="k">UNION</span> <span class="k">ALL</span>
-  <span class="k">SELECT</span>
-    <span class="n">tmp</span><span class="p">.</span><span class="n">patcit_id</span><span class="p">,</span>
-    <span class="n">tmp</span><span class="p">.</span><span class="n">publication_number_o</span><span class="p">,</span>
-    <span class="mi">1</span> <span class="k">AS</span> <span class="n">bibref_score</span><span class="p">,</span>
-    <span class="n">crossref</span><span class="p">.</span><span class="o">*</span> <span class="k">EXCEPT</span><span class="p">(</span><span class="n">npl_publn_id</span><span class="p">)</span>
-  <span class="k">FROM</span>
-    <span class="o">`</span><span class="n">npl</span><span class="o">-</span><span class="n">parsing</span><span class="p">.</span><span class="n">tmp</span><span class="p">.</span><span class="n">tmp_</span><span class="o">`</span> <span class="k">AS</span> <span class="n">tmp</span>
-  <span class="k">INNER</span> <span class="k">JOIN</span>
-    <span class="o">`</span><span class="n">npl</span><span class="o">-</span><span class="n">parsing</span><span class="p">.</span><span class="k">external</span><span class="p">.</span><span class="n">patcit_crossref</span><span class="o">`</span> <span class="k">AS</span> <span class="n">crossref</span>
-  <span class="k">ON</span>
-    <span class="n">tmp</span><span class="p">.</span><span class="n">DOI</span><span class="o">=</span><span class="n">crossref</span><span class="p">.</span><span class="n">DOI</span><span class="p">)</span>
-<span class="k">SELECT</span>
-  <span class="n">bibref</span><span class="p">.</span><span class="o">*</span><span class="p">,</span>
-  <span class="n">patstat</span><span class="p">.</span><span class="o">*</span> <span class="k">EXCEPT</span><span class="p">(</span><span class="n">publication_number</span><span class="p">)</span>
-<span class="k">FROM</span>
-  <span class="n">bibref</span>
-<span class="k">LEFT</span> <span class="k">JOIN</span>
-  <span class="o">`</span><span class="n">npl</span><span class="o">-</span><span class="n">parsing</span><span class="p">.</span><span class="k">external</span><span class="p">.</span><span class="n">patstat_patent_properties</span><span class="o">`</span> <span class="k">AS</span> <span class="n">patstat</span>
-<span class="k">ON</span>
-  <span class="n">bibref</span><span class="p">.</span><span class="n">publication_number_o</span> <span class="o">=</span> <span class="n">patstat</span><span class="p">.</span><span class="n">publication_number</span>
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43</pre></div></td><td class="code"><div class="highlight"><pre><span></span><code>- Add identifiers
+
+````shell script
+ls patcit_gold_npl_serialized_us_description_pre1976_*.jsonl | parallel -j+0 --eta &quot;mv {} {}_depr &amp;&amp; patcit serialize add-identifier {}_depr &gt;&gt; {}&quot;
+````
+- Load in BQ. take care to apply excatly the same schema as for `patcit_crossref
+
+- Add patent properties &amp; order
+
+```sql
+WITH
+  bibref AS (
+  SELECT
+    tmp.*
+  FROM
+    `npl-parsing.tmp.tmp_` AS tmp
+  LEFT JOIN
+    `npl-parsing.external.patcit_crossref` AS crossref
+  ON
+    tmp.DOI=crossref.DOI
+  WHERE
+    crossref.DOI IS NULL
+  UNION ALL
+  SELECT
+    tmp.patcit_id,
+    tmp.publication_number_o,
+    1 AS bibref_score,
+    crossref.* EXCEPT(npl_publn_id)
+  FROM
+    `npl-parsing.tmp.tmp_` AS tmp
+  INNER JOIN
+    `npl-parsing.external.patcit_crossref` AS crossref
+  ON
+    tmp.DOI=crossref.DOI)
+SELECT
+  bibref.*,
+  patstat.* EXCEPT(publication_number)
+FROM
+  bibref
+LEFT JOIN
+  `npl-parsing.external.patstat_patent_properties` AS patstat
+ON
+  bibref.publication_number_o = patstat.publication_number
 </code></pre></div>
-</td></tr></table>
-<ul>
+</td></tr></table></p>
+</li>
 <li>
 <p>Order on the grouping key (e.g. patcit_id)</p>
 </li>
