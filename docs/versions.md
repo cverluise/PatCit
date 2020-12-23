@@ -11,6 +11,7 @@
 
 |Version| Date| Features| Access|
 |----|----|----|----|
+|`v0.3.1`| December 2020 | Major improvement of `intext.patent`|[BigQuery][bq-patcit], [Zenodo][zen-patcit]|
 |`v0.3`| November 2020 | See [`v0.3` release page][v0.3-release].|[BigQuery][bq-patcit], [Zenodo][zen-patcit]|
 |`v0.2`|March 2020 | See [`v0.2-npl` release page][v0.2-npl-release].|[BigQuery][bq-patcit-old], [Zenodo][zen-patcit]|
 |`v0.1`|November 2019|Parse and consolidate *all* (40 million) NPL citations reported in the DOCDB database.|[BigQuery][bq-patcit-old]|
@@ -20,6 +21,7 @@
 
 |Version| Date| Features| Access|
 |----|----|----|----|
+|`v0.3.1`| December 2020 | Major improvement of `intext.patent`|[BigQuery][bq-patcit], [Zenodo][zen-patcit]|
 |`v0.3`| November 2020 | See [`v0.3` release page][v0.3-release].| [BigQuery][bq-patcit], [Zenodo][zen-patcit]|
 |`v0.1`| December 2019 | Extract, parse and consolidate patent and bibliographical reference citations for *all* USPTO patents.| [BigQuery][bq-patcit-old], [Zenodo][zen-patcit]|
 |`beta`| November 2019 | Extract, parse and consolidate patent and bibliographical reference citations for 250k US patents. Sandbox for data tests and user feedback. | [BigQuery][bq-patcit-old]|
