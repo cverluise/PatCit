@@ -56,7 +56,7 @@
         "name": "pubnum",
         "type": "STRING"
       },
-      { "description": "Publication number of the *cited* patent. Obtained from the google patent linking API (https://patents.google.com/api/match?pubnum=<pubnum> with <pubnum>=CONCAT(country_code,original_number)). *Not validated yet*.",
+      { "description": "Publication number of the *cited* patent. Obtained from the google patent linking API (https://patents.google.com/api/match?pubnum=<pubnum> with <pubnum>=CONCAT(country_code,original_number)).",
         "mode": "NULLABLE",
         "name": "publication_number",
         "type": "STRING"
