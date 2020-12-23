@@ -1,0 +1,3 @@
+outs:
+- md5: 9ea70bf3e8665ba9dff06c973da8fc28
+  path: val_parsing_patent_kindcodenonnull_gold.jsonl

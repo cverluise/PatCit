@@ -4,7 +4,6 @@ import csv
 import json
 import lzma
 import operator
-import os
 import sys
 from glob import glob
 from hashlib import md5
@@ -15,7 +14,6 @@ import typer
 from bs4 import BeautifulSoup
 from jsonschema import validate
 from smart_open import open, register_compressor
-from tqdm import tqdm
 
 from patcit.serialize import intext, bibref
 from patcit.serialize.validation.issues import eval_issues
@@ -112,7 +110,7 @@ async def prep_validate_intext_cits(id_, ccits, flavor):
     return await asyncio.gather(*tasks)
 
 
-def serialize_prep_validate_intext_cits(id_, citations):
+def serialize_prep_validate_intext_cits(id_, citations, flavor: str):
     """
     Return a list of serialized npls and pats
     :param id_: str, e.g publication number of the originating patent
@@ -123,70 +121,55 @@ def serialize_prep_validate_intext_cits(id_, citations):
     soup = BeautifulSoup(citations, "lxml")
     npls, pats = intext.split_pats_npls(soup)
 
-    if npls:
-        npls = asyncio.run(intext.fetch_npls(id_, npls))
-        npls = asyncio.run(prep_validate_intext_cits(id_, npls, "npl"))
+    if flavor == "npl":
+        if npls:
+            npls = asyncio.run(intext.fetch_npls(id_, npls))
+            npls = asyncio.run(prep_validate_intext_cits(id_, npls, "npl"))
+        else:
+            npls = [json.dumps({pk: id_})]
+            # we create an empty entry when there were no detected
+            # citations
+        cits = npls
     else:
-        npls = [json.dumps({pk: id_})]
-        # we create an empty entry when there were no detected
-        # citations
+        if pats:
+            pats = asyncio.run(intext.fetch_patents(id_, pats))
+            pats = asyncio.run(prep_validate_intext_cits(id_, pats, "pat"))
+        else:
+            pats = [json.dumps({pk: id_})]
+            # we create an empty entry when there were no detected
+            # citations
+        cits = pats
 
-    if pats:
-        pats = asyncio.run(intext.fetch_patents(id_, pats))
-        pats = asyncio.run(prep_validate_intext_cits(id_, pats, "pat"))
-    else:
-        pats = [json.dumps({pk: id_})]
-        # we create an empty entry when there were no detected
-        # citations
-
-    return npls, pats
+    return cits
 
 
 @app.command()
-def grobid_intext(path: str, max_workers: int = None):
+def grobid_intext(file: str, flavor: str = None, skip_header: bool = True):
     """Serialize in-text citations
 
     Notes: Assume original file names ('processed_' in, 'serialized_' out)"""
+    assert flavor in ["npl", "pat"]
 
-    def serialize(input_file):
-        root = os.path.dirname(input_file)
-        f_name = (os.path.split(input_file)[-1]).split(".")[0]
-        # file name w/o format extension
-        out_npl_file = os.path.join(
-            root, "npl_" + f_name.replace("processed_", "serialized_") + ".jsonl"
+    with open(file, "r") as fin:
+        lines = csv.DictReader(
+            fin,
+            fieldnames=["publication_number", "citation"],
+            delimiter=",",
+            quotechar='"',
+            quoting=csv.QUOTE_MINIMAL,
         )
-        out_pat_file = os.path.join(
-            root, "pat_" + f_name.replace("processed_", "serialized_") + ".jsonl"
-        )
+        header = 0
+        for line in lines:
+            if header == 0 and skip_header:  # header
+                header += 1
+                pass
+            else:
+                cits = serialize_prep_validate_intext_cits(
+                    line["publication_number"], line["citation"], flavor
+                )
 
-        with open(input_file, "r") as fin:
-            fin_reader = csv.DictReader(
-                fin,
-                fieldnames=["publication_number", "citation"],
-                delimiter=",",
-                quotechar='"',
-                quoting=csv.QUOTE_MINIMAL,
-            )
-            line_count = 0
-            fout_npls = open(out_npl_file, "w")
-            fout_pats = open(out_pat_file, "w")
-            for line in tqdm(fin_reader):
-                if line_count == 0:  # header
-                    pass
-                else:
-                    npls, pats = serialize_prep_validate_intext_cits(
-                        line["publication_number"], line["citation"]
-                    )
-                    # print(npls)
-                    fout_npls.write("\n".join(npls) + "\n")
-                    fout_pats.write("\n".join(pats) + "\n")
-                line_count += 1
-            fout_npls.close()
-            fout_pats.close()
-
-    files = glob(path)
-    with concurrent.futures.ProcessPoolExecutor(max_workers=max_workers) as executor:
-        executor.map(serialize, files)
+                for cit in cits:
+                    typer.echo(cit)
 
 
 @app.command()
@@ -300,9 +283,12 @@ def npl_properties(path, cat_model: str = None, language_codes: str = "en,un"):
 def add_publication_number(line):
     line = json.loads(line)
     pubnum = line.get("pubnum")
+    status = line.get("status")
 
-    publication_number = intext.get_publication_number(pubnum)
-    line.update({"publication_number": publication_number})
+    service = "appnum" if status in ["application", "provisional"] else "pubnum"
+
+    publication_number = intext.get_publication_number(pubnum, service)
+    line.update({"publication_number": publication_number, "service": service})
 
     typer.echo(json.dumps(line))
 
@@ -320,7 +306,7 @@ def pat_add_pubnum(file, max_workers: int = 10):
 def add_identifier(file: str):
     """Return each line with identifiers (md5 and patcit_id) - create if not existing, preserve
     otherwise.
-    Expect a .jsonl file.
+    Expect a NDJSONL file.
     """
     with open(file, "r") as lines:
         for line in lines:
@@ -339,6 +325,51 @@ def add_identifier(file: str):
             else:
                 line.update({"patcit_id": md5_})
 
+            typer.echo(json.dumps(line))
+
+
+@app.command()
+def pat_add_flag(file: str, threshold_flag1: int = 50, threshold_flag2: float = 0.96):
+    """Return each line with a flag attribute.
+    Expect a NDJSONL file."""
+    with open(file, "r") as lines:
+        for i, line in enumerate(lines):
+            line = json.loads(line)
+            publication_date = line.get("publication_date")
+            text_length = line.get("text_length")
+            citations = line.get("citation")
+            citations_ = []
+            for citation in citations:
+                char_start = citation.get("char_start")
+                # flag 1
+                if publication_date and char_start:
+                    if int(publication_date) <= 19760000:
+                        flag1 = all(
+                            map(lambda x: int(x) <= threshold_flag1, char_start)
+                        )
+                    else:
+                        flag1 = False
+                else:
+                    flag1 = False
+                # flag 2
+                if publication_date and text_length and char_start:
+                    if 19710000 <= int(publication_date) <= 19760000:
+                        # if char_start:
+                        flag2 = all(
+                            map(
+                                lambda x: int(x) / int(text_length) >= threshold_flag2,
+                                char_start,
+                            )
+                        )
+                    else:
+                        flag2 = False
+                else:
+                    flag2 = False
+                flag = any([flag1, flag2])
+                citation.update({"flag": flag, "flag1": flag1, "flag2": flag2})
+                citations_ += [citation]
+
+            line.update({"citation": citations_})
             typer.echo(json.dumps(line))
 
 

@@ -5,6 +5,7 @@
 [patcit-academic]:https://docs.google.com/presentation/d/11COlz64EZn8PipXvnDBBZI_bnDD0fpm6tyx1_EqD6lU/edit?usp=sharing
 [patcit-website]:https://cverluise.github.io/PatCit/
 [patcit-newsletter]:https://tinyletter.com/patcit
+[zen-patcit]:https://doi.org/10.5281/zenodo.3710993
 
 [^1]: Front page NPL citations contain bibliographical references, office actions, search reports, patents, webpages, wikis, norms & standards, product documentations, databases and litigations. Patent text notably contain citations of patents, NPL, software, databases and products.
 
@@ -21,7 +22,9 @@ It is now common to use front-page *patent* citations to study some aspects of t
 
 ### Getting started
 
-👩‍🔬 Exploring the universe of patent citations has never been easier. No more complicated data set-up, memory issue and queries running for ever, we host [patCit on BigQuery][patcit-bq] for you. We also release public access to [quickstart notebooks](../notebook).
+🛢️ Exploring the universe of patent citations has never been easier. No more complicated data set-up, memory issue and queries running for ever, we host [patCit on BigQuery][patcit-bq] for you. You can also download it on [Zenodo][zen-patcit].
+
+👩‍🔬 Time to play! We give public access to [quickstart notebooks](../notebook).
 
 🤗 patCit is community driven and benefits from the suppport of a reactive team who is eager happy to help and tackle your next request. This is where academics and industry practitioners meet.
 

@@ -1,3 +1,4 @@
+import itertools
 import json
 import os
 from collections import Counter
@@ -281,7 +282,7 @@ def spacy_model(model: str, pipes: str = "ner"):
 
 
 @app.command()
-def grobid_intext(pred: str, gold: str, leniency: int = 0):
+def grobid_intext(pred: str, gold: str, leniency: int = 0, report: bool = False):
     """Evaluate grobid predictions for in-text citations (BIBREF and PATENTS)."""
 
     def get_index(file: str, key: str = "publication_number", value: str = "spans"):
@@ -317,38 +318,55 @@ def grobid_intext(pred: str, gold: str, leniency: int = 0):
     pred_index = {k: v for k, v in get_index(pred).items() if k in gold_index.keys()}
     # we restrict the pred_index to the keys of the docs which were actually hand-labelled
     # ie the keys which can be found in gold_index
+    report_ = []
 
     pos_types = []
     for k, golds in gold_index.items():
         preds = pred_index[k]
         for pred_ in preds:  # true/false positives
-            pos_types += [has_sibling(np.array(pred_), np.array(golds), leniency)]
+            pos_type = has_sibling(np.array(pred_), np.array(golds), leniency)
+            pos_types += [pos_type]
+            if report and pos_type == False:
+                report_ += [
+                    {
+                        "type": pos_type,
+                        "publication_number": k,
+                        "start": pred_[0],
+                        "end": pred_[1],
+                    }
+                ]
 
-    pos_types = Counter(pos_types)  # Now of the form {True:int, False:int}
+    if report:
+        report_ = sorted(report_, key=lambda x: x["publication_number"])
+        for k, v in itertools.groupby(report_, key=lambda x: x["publication_number"]):
+            typer.echo(json.dumps({"publication_number": k, "spans": list(v)}))
 
-    n_preds = sum(list(map(lambda x: len(x), pred_index.values())))
-    n_golds = sum(list(map(lambda x: len(x), gold_index.values())))
+    else:
+        pos_types = Counter(pos_types)  # Now of the form {True:int, False:int}
 
-    precision = pos_types[True] / (pos_types[True] + pos_types[False])
-    recall = pos_types[True] / n_golds  # nb golds is the number of actual positives
+        n_preds = sum(list(map(lambda x: len(x), pred_index.values())))
+        n_golds = sum(list(map(lambda x: len(x), gold_index.values())))
 
-    out = {
-        "n_keys": len(gold_index.keys()),
-        "n_preds": n_preds,
-        "n_golds": n_golds,
-        "true_positives": pos_types[True],
-        "false_positives": pos_types[False],
-        "false_negatives": n_golds - pos_types[True],
-        "precision": precision,
-        "recall": recall,
-        "leniency": leniency,
-    }
+        precision = pos_types[True] / (pos_types[True] + pos_types[False])
+        recall = pos_types[True] / n_golds  # nb golds is the number of actual positives
 
-    res = pd.DataFrame.from_dict(out, orient="index")
-    res.to_clipboard()
+        out = {
+            "n_keys": len(gold_index.keys()),
+            "n_preds": n_preds,
+            "n_golds": n_golds,
+            "true_positives": pos_types[True],
+            "false_positives": pos_types[False],
+            "false_negatives": n_golds - pos_types[True],
+            "precision": precision,
+            "recall": recall,
+            "leniency": leniency,
+        }
 
-    typer.secho(res.T.to_string(), fg=typer.colors.BLUE)
-    typer.secho(f"Results copied to clipboard!", fg=typer.colors.YELLOW)
+        res = pd.DataFrame.from_dict(out, orient="index")
+        res.to_clipboard()
+
+        typer.secho(res.T.to_string(), fg=typer.colors.BLUE)
+        typer.secho(f"Results copied to clipboard!", fg=typer.colors.YELLOW)
 
 
 if __name__ == "__main__":

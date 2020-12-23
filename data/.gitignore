@@ -24,3 +24,8 @@
 /ent_std_test.json
 /ent_std_train.json
 /ent_std_xx.jsonl
+/val_detect_patent_falsenegatives.jsonl
+/val_detect_patent_falsepositives.jsonl
+/val_detect_patent_pred_goldsample.jsonl
+/val_parsing_patent_kindcode_gold.jsonl
+/val_parsing_patent_kindcodenonnull_gold.jsonl
