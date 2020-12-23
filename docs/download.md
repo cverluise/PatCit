@@ -1,5 +1,5 @@
 [gs-quickstart]:https://cloud.google.com/storage/docs/quickstarts-console
-[zen-patcit]:https://zenodo.org/record/4244176
+[zen-patcit]:https://doi.org/10.5281/zenodo.3710993
 [^bq-save]:You can save small tables (less than 16,000 rows) to clipboard, locally or to Google sheets. You can save mid-size (less than 1Gb) tables to Google Drive. Larger tables have to be saved to BigQuery, then to Google Cloud Storage and from there you can download them locally.
 
 
