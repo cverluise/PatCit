@@ -21,7 +21,6 @@ smart_open = "^1.9.0"
 tqdm = "^4.50.2"
 wasabi = "^0.8.0"
 tabulate = "^0.8.7"
-pycld2 = "^0.41"
 glom = "^20.8.0"
 fuzzysearch = "^0.7.3"
 dateparser = "^0.7.6"
@@ -31,6 +30,7 @@ en_core_web_sm = {url = "https://github.com/explosion/spacy-models/releases/down
 spacy = "^2.3.2"
 spacy-lookups-data = "^0.3.2"
 typer =  {extras = ["all"], version = "^0.3.2"}
+pycld3 = "^0.22"
 
 [tool.poetry.dev-dependencies]
 pre-commit = "^2.0.1"
