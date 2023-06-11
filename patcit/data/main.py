@@ -9,7 +9,7 @@ from glob import glob
 
 import numpy as np
 import pandas as pd
-import pycld2 as cld2
+import cld3
 import spacy
 import typer
 from bs4 import BeautifulSoup
@@ -559,8 +559,9 @@ def to_spacy_json(
             language_codes = language_codes.split(",")
             keep_index = []
             for i, text in enumerate(texts):
-                is_reliable, bytes, details = cld2.detect(text)
-                language, language_code, percent, score = details[0]
+                # is_reliable, bytes, details = cld2.detect(text)
+                pred_language = cld3.get_language(text)
+                language_code = pred_language.language
                 if language_code in language_codes:
                     keep_index += [i]
         else:

@@ -8,7 +8,7 @@ import sys
 from glob import glob
 from hashlib import md5
 
-import pycld2 as cld2
+import cld3
 import spacy
 import typer
 from bs4 import BeautifulSoup
@@ -222,13 +222,12 @@ def npl_properties(path, cat_model: str = None, language_codes: str = "en,un"):
         return {"md5": md5(text.lower().encode("utf-8")).hexdigest()}
 
     async def get_language(text):
-        is_reliable, _, details = cld2.detect(text)
+        pred_language = cld3.get_language(text)
 
-        _, language_code, _, _ = details[0]
         out = {
-            "language_is_reliable": is_reliable,
+            "language_is_reliable": pred_language.is_reliable,
             # "language": language,
-            "language_code": language_code,
+            "language_code": pred_language.language,
             # "language_percent": percent,
             # "language_score": score,
         }
