@@ -34,7 +34,7 @@
     "name": "npl_cat_language_flag",
     "type": "BOOLEAN"
   },
-  { "description": "ISO-2 language code detected using pycld2 (https://github.com/aboSamoor/pycld2).",
+  { "description": "ISO-2 language code detected using pycld2 or pycld3 (https://github.com/aboSamoor/pycld2 or https://github.com/bsolomon1124/pycld3).",
     "mode": "NULLABLE",
     "name": "language_code",
     "type": "STRING"
